@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize';
 require('dotenv').config();
-const { DB_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST } = process.env;
+const { DATABASE_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST } = process.env;
 
 let dbUrl;
 
 switch (NODE_ENV) {
-  case 'production': dbUrl = DB_URL;
+  case 'production': dbUrl = DATABASE_URL;
     break;
   case 'development': dbUrl = DB_URL_DEV;
     break;
