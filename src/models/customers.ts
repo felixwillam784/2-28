@@ -19,8 +19,9 @@ const Customers = sequelize.define('customers', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  phone_number: {
+  phoneNumber: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
