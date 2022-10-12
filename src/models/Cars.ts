@@ -5,46 +5,52 @@ const Cars = sequelize.define('cars', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
   },
   brand: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   model: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   price: {
-    type: DataTypes.DOUBLE
+    type: DataTypes.DOUBLE,
+    allowNull: false,
   },
   year: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   mileage: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   quality: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
   },
   isGoodPrice: {
-    type: DataTypes.BOOLEAN
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
   },
   location: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   state: {
-    type: DataTypes.STRING
+    allowNull: false,
+    type: DataTypes.ENUM('pending', 'under-check', 'on-market', 'sold'),
+    defaultValue: 'pending',
   },
   transmission: {
-    type: DataTypes.STRING
+    type: DataTypes.ENUM('auto', 'manual'),
   },
   features: {
-    type: DataTypes.STRING
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
   description: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   fuel: {
-    type: DataTypes.STRING
-  }
+    type: DataTypes.ENUM('diesel', 'petrol'),
+  },
 });
 export default Cars;
