@@ -37,14 +37,7 @@ jobs:
 
       - name: Connect to PostgreSQL
 
-        run: npm run testDB 
-
-        env: 
-          DB_URL_test: postgres://mm:12345@postgres:5432/good-car
-
-      - name: testing Routes
-
-        run: npm run testRoutes
+        run: npm run test
 
         env: 
           DB_URL_test: postgres://mm:12345@postgres:5432/good-car
