@@ -2,11 +2,11 @@ import { DataTypes } from 'sequelize';
 
 import sequelize from '../config/connection';
 
-const Admins = sequelize.define('admin', {
+const Admins = sequelize.define('admins', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   username: {
     type: DataTypes.STRING,
@@ -15,6 +15,6 @@ const Admins = sequelize.define('admin', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
-})
-export default Admins
+  },
+});
+export default Admins;
