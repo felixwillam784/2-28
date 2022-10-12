@@ -20,5 +20,6 @@ module.exports = {
   ],
   rules: {
     semi: 0
-  }
+  },
+  ignorePatterns: ["/dist/*", "__test__/*"],
 }

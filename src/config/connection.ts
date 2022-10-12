@@ -1,6 +1,10 @@
 import { Sequelize } from 'sequelize';
+
 require('dotenv').config();
-const { DATABASE_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST } = process.env;
+
+const {
+  DATABASE_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST,
+} = process.env;
 
 let dbUrl;
 
@@ -19,11 +23,11 @@ const sequelize = new Sequelize(dbUrl, {
   dialectOptions: {
     ssl: NODE_ENV === 'production'
       ? {
-          require: true,
-          rejectUnauthorized: false
-        }
-      : false
-  }
+        require: true,
+        rejectUnauthorized: false,
+      }
+      : false,
+  },
 });
 
 export default sequelize;
