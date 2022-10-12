@@ -1,7 +1,26 @@
 {
+  "name": "car-trade",
+  "version": "1.0.0",
+  "description": "An app facilitate a way to buy and sell a car simply and easily",
+  "main": "commitlint.config.js",
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "husky": "^8.0.1"
-  }
+  },
+  "scripts": {
+    "test": "echo tests running"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CA-G12/car-trade.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CA-G12/car-trade/issues"
+  },
+  "homepage": "https://github.com/CA-G12/car-trade#readme"
 }
