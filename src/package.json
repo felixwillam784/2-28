@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "cross-env nodemon  index.ts",
     "build": "tsc",
-    "lint": "eslint **/*.ts",
-    "format": "eslint **/*.ts --fix"
+    "lint": "eslint --ext .ts ./",
+    "format": "npm run lint --fix"
   },
   "author": "",
   "license": "ISC",
