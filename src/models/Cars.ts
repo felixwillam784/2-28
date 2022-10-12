@@ -21,6 +21,7 @@ const Cars = sequelize.define('cars', {
   },
   year: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   mileage: {
     type: DataTypes.INTEGER,
@@ -34,6 +35,7 @@ const Cars = sequelize.define('cars', {
   },
   location: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   state: {
     allowNull: false,
