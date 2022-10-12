@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 
-require('dotenv').config();
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const {
   DATABASE_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST,
