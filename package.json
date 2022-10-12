@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "echo tests running",
-    "format": "cd src && npm run format && cd ../clients && npm run format"
+    "format": "cd src && npm run format && cd ../clients && npm run format",
+    "prepare": "npx husky install"
   },
   "repository": {
     "type": "git",
