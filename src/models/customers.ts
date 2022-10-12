@@ -7,7 +7,7 @@ const Customers = sequelize.define('customers', {
     autoIncrement: true,
     primaryKey: true,
   },
-  full_name: {
+  fullName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
