@@ -10,7 +10,8 @@
     "husky": "^8.0.1"
   },
   "scripts": {
-    "test": "echo tests running"
+    "test": "echo tests running",
+    "format": "cd src && npm run format && cd ../clients && npm run format"
   },
   "repository": {
     "type": "git",
