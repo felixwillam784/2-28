@@ -1,8 +1,13 @@
 import app from './app';
+import sequelize from './config/connection';
 
-const Port = app.get('port');
+const PORT = app.get('port');
 
-app.listen(4000, () => {
-  // eslint-disable-next-line no-console
-  console.log(`http://localhost:${Port}`);
-});
+sequelize.sync().then(
+  () => {
+    app.listen(PORT, () => {
+      // eslint-disable-next-line no-console
+      console.log(`http://localhost:${PORT}`);
+    });
+  },
+);
