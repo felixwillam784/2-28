@@ -1,3 +1,8 @@
 import app from './app';
 
-app.listen(3000);
+const Port = app.get('port');
+
+app.listen(4000, () => {
+  // eslint-disable-next-line no-console
+  console.log(`http://localhost:${Port}`);
+});
