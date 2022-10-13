@@ -5,7 +5,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import router from './routes';
+import router from './routes/routes';
 
 dotenv.config();
 const app: Express = express();

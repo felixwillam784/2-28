@@ -1,5 +1,5 @@
 import app from './app';
-import sequelize from './config/connection';
+import sequelize from './db/config/connection';
 
 const PORT = app.get('port');
 
