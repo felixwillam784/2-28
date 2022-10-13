@@ -1,11 +1,10 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/connection';
 
-const Images = sequelize.define('images', {
+const Image = sequelize.define('image', {
 
   id: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -15,4 +14,4 @@ const Images = sequelize.define('images', {
   },
 });
 
-export default Images;
+export default Image;

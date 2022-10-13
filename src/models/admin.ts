@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 
 import sequelize from '../config/connection';
 
-const Admins = sequelize.define('admins', {
+const Admin = sequelize.define('admin', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -17,4 +17,4 @@ const Admins = sequelize.define('admins', {
     allowNull: false,
   },
 });
-export default Admins;
+export default Admin;
