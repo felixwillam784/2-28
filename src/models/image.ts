@@ -1,20 +1,17 @@
 import { DataTypes } from 'sequelize';
-
 import sequelize from '../config/connection';
 
-const Admin = sequelize.define('admin', {
+const Image = sequelize.define('image', {
+
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
+  image: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 });
-export default Admin;
+
+export default Image;
