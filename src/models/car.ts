@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/connection';
 
-const Cars = sequelize.define('cars', {
+const Car = sequelize.define('car', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -55,4 +55,4 @@ const Cars = sequelize.define('cars', {
     type: DataTypes.ENUM('diesel', 'petrol'),
   },
 });
-export default Cars;
+export default Car;

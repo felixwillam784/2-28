@@ -13,7 +13,7 @@
   },
   "scripts": {
     "client": "cd client && npm run start",
-    "test": "echo tests running",
+    "test": "cd src && npm run test",
     "format": "cd src && npm run format && cd ../client && npm run format",
     "prepare": "is-ci || npx husky install",
     "init": "cd client && npm i && cd ../src && npm i",

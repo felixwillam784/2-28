@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/connection';
 
-const Customers = sequelize.define('customers', {
+const Customer = sequelize.define('customer', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -25,4 +25,4 @@ const Customers = sequelize.define('customers', {
   },
 });
 
-export default Customers;
+export default Customer;
