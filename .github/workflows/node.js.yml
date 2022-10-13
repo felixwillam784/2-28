@@ -1,15 +1,19 @@
 name: PostgreSQL service example
-on: push
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
 
   container-job:
-
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node: [ 14, 16, 18 ]
+        node: [ 16 ]
 
     name: Node ${{ matrix.node }} sample
 
