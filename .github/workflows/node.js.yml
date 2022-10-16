@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
-        run: npm config set legacy-peer-deps true &&  npm ci
+        run: npm ci
 
       - name: Connect to PostgreSQL
 
