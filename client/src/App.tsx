@@ -1,8 +1,8 @@
-import HomeCardSection from './components/HomeCardSection';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <HomeCardSection />
+    <Outlet />
   );
 }
 
