@@ -3,15 +3,26 @@ import './style.css';
 
 interface HomeCardProps {
   title: string,
-  par: string,
-  src: string
+  description: string,
+  src: string,
+  alt: string
 }
 
-export default function HomeCard({ title, par, src }:HomeCardProps) {
+export default function HomeCard(
+  {
+    title, description, src, alt,
+  }:HomeCardProps,
+) {
   return (
     <div className="home_card">
-      <img className="card-image" src={src} alt="ss" />
-      <Typography component="h1">{title}</Typography>
+      <img className="card-image" src={src} alt={alt} />
+      <Typography
+        sx={{ fontSize: '1.4rem' }}
+        component="h1"
+      >
+        {title}
+
+      </Typography>
       <Typography
         sx={{
           textAlign: 'center',
@@ -21,7 +32,7 @@ export default function HomeCard({ title, par, src }:HomeCardProps) {
         }}
         component="p"
       >
-        {par}
+        {description}
       </Typography>
     </div>
   );
