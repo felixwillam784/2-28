@@ -20,5 +20,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["custom.d.ts","src/**/*.tsx", "src/assets/index.ts"]
+  "include": ["custom.d.ts","src"]
 }
