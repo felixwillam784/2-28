@@ -1,7 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { Box, Typography } from '@mui/material';
-import './styles.css';
+import './style.css';
 
 function HeroSection() {
   return (
@@ -16,8 +16,7 @@ function HeroSection() {
           },
         }}
         component="img"
-        alt=""
-        // src="../../assets/banner.jpg"
+        alt="banner image contains car photo"
         src="https://carswitch.com/components/choose-country/images/banner.jpg"
       />
       <CssBaseline />
