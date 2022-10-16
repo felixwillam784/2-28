@@ -1,3 +1,5 @@
+import './style.css';
+
 interface ImageProps {
   src: string,
   alt:string
@@ -6,12 +8,9 @@ interface ImageProps {
 function Image({ src, alt }:ImageProps) {
   return (
     <img
+      className="imgesStyle"
       src={src}
       alt={alt}
-      style={{
-        width: '150px',
-        height: '150px',
-      }}
     />
   );
 }
