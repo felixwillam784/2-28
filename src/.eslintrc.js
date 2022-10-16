@@ -19,7 +19,8 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    semi: 0
+    semi: 0,
+    "linebreak-style":0
   },
   ignorePatterns: ["/dist/*", "__test__/*"],
 }
