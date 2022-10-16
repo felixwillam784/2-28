@@ -1,4 +1,4 @@
-import HeroSection from '../../components/heroSection/heroSection';
+import HeroSection from '../../components/HeroSection';
 
 function Landing() {
   return (<HeroSection />);

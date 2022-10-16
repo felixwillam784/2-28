@@ -1,0 +1,33 @@
+.hero-section{
+  position: relative;
+}
+.hero-image{
+  position: absolute;
+}
+
+.container{
+  height: 323px;
+  display: flex !important;
+  align-items: center;
+  /* justify-content: flex-end; */
+}
+.brief-statement {
+  transform: translateX(0);
+  text-align: center;
+  width: fit-content;
+  color: var(--text-color);
+}
+
+
+.hero-txt1{
+  font-weight: 600 !important;
+  margin-bottom: 3px !important;
+  text-transform: uppercase;
+}
+
+.hero-txt2{
+  font-weight: 600 !important;
+  margin-bottom: 3px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
