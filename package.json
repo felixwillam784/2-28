@@ -13,12 +13,12 @@
   },
   "scripts": {
     "client": "cd client && npm run start",
-    "test": "echo tests running",
-    "format": "cd src && npm run format && cd ../client && npm run format",
+    "test": "cd server && npm run test",
+    "format": "cd server && npm run format && cd ../client && npm run format",
     "prepare": "is-ci || npx husky install",
-    "init": "cd client && npm i && cd ../src && npm i",
+    "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
-    "dev": "cd src && npm run dev"
+    "dev": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",

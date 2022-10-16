@@ -1,17 +1,14 @@
 import { DataTypes } from 'sequelize';
+
 import sequelize from '../config/connection';
 
-const Customers = sequelize.define('customers', {
+const Admin = sequelize.define('admin', {
   id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
     primaryKey: true,
+    autoIncrement: true,
   },
-  fullName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -19,10 +16,5 @@ const Customers = sequelize.define('customers', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  phoneNumber: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
 });
-
-export default Customers;
+export default Admin;
