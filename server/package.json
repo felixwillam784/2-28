@@ -8,12 +8,15 @@
     "build": "tsc",
     "lint": "eslint --ext .ts ./",
     "format": "npm run lint --fix",
-    "test": "jest"
+    "test": "jest",
+    "build:db": "node ./server/src/config/dbBuild.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@jest/globals": "^29.1.2",
+    "@types/compression": "^1.7.2",
+    "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.14",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
