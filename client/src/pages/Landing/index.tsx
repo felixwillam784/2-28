@@ -1,5 +1,11 @@
+import Brand from '../../components/brand';
+
 function Landing() {
-  return (<h1>Landing</h1>);
+  return (
+    <div>
+      <Brand />
+    </div>
+  );
 }
 
 export default Landing;
