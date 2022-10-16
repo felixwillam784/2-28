@@ -9,7 +9,7 @@
     "lint": "eslint --ext .ts ./",
     "format": "npm run lint --fix",
     "test": "jest",
-    "build:db": "node ./server/src/config/dbBuild.js"
+    "build:db": "./server/src/db/config/buildFakeData.js"
   },
   "author": "",
   "license": "ISC",
