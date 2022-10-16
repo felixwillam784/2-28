@@ -37,6 +37,7 @@ export const theme = createTheme({
     h4: {
       fontWeight: '600',
       marginBottom: '3px',
+      textTransform: 'uppercase',
     },
     subtitle1: {
       fontWeight: '600',
