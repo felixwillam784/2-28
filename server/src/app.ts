@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json('bade request');
+  res.status(404).json('bad request');
 });
 app.use(
   (
