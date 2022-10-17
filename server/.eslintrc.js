@@ -20,6 +20,7 @@ module.exports = {
   ],
   rules: {
     semi: 0,
+    "linebreak-style":0,
     "import/extensions": 0
   },
   ignorePatterns: ["/dist/*", "__test__/*"],
