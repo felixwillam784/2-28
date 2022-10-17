@@ -7,7 +7,7 @@ function Brand() {
   return (
     <section className="brandLaing">
       <div className="companyName">
-        <h1>MAKE</h1>
+        <h4>find your favorite car by brand</h4>
       </div>
       <div className="imgCarLogo">
         <Link to="/cars?brand=audi">
