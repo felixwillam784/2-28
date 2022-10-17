@@ -1,5 +1,13 @@
+import HeroSection from '../../components/HeroSection';
+import Brand from '../../components/brand';
+
 function Landing() {
-  return (<h1>Landing</h1>);
+  return (
+    <>
+      <HeroSection />
+      <Brand />
+    </>
+  );
 }
 
 export default Landing;

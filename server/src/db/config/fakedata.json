@@ -1,0 +1,771 @@
+{
+    "admins": [
+        {
+            "username": "admin",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi"
+        }
+    ],
+    "customers": [
+        {
+            "fullName": "husam",
+            "email": "husam@gmail.com",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi",
+            "phoneNumber": "+9705*46374*9"
+        },
+        {
+            "fullName": "tariq",
+            "email": "tariq@gmail.com",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi",
+            "phoneNumber": "+9705*4*37469"
+        },
+        {
+            "fullName": "abdo",
+            "email": "abdo@gmail.com",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi",
+            "phoneNumber": "+9705*463*469"
+        },
+        {
+            "fullName": "lina",
+            "email": "lina@gmail.com",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi",
+            "phoneNumber": "+9705*4637*69"
+        },
+        {
+            "fullName": "mai",
+            "email": "mai@gmail.com",
+            "password": "$2a$10$H6ecuHzDjK7IVyqJB2pKi.kPPMBDjQI4swryJNJgK0hh8M8BLpsBi",
+            "phoneNumber": "+9705*46*7469"
+        }
+    ],
+    "images": [
+        {
+            "carId": 1,
+            "image": "https://images.carswitch.com/300902toyota/1732239685874186.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 1,
+            "image": "https://images.carswitch.com/300902toyota/1732239688222639.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 1,
+            "image": "https://images.carswitch.com/300902toyota/1732239687162576.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 1,
+            "image": "https://images.carswitch.com/300902toyota/1732239686338011.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 2,
+            "image": "https://images.carswitch.com/347254/236af43d.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 2,
+            "image": "https://images.carswitch.com/347254/7f58e7fd.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 2,
+            "image": "https://images.carswitch.com/347254/557b0797.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 2,
+            "image": "https://images.carswitch.com/347254/18d36ce1.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 2,
+            "image": "https://images.carswitch.com/347254/6f55c051.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 3,
+            "image": "https://images.carswitch.com/327672mercedes/1739589424607727.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 3,
+            "image": "https://images.carswitch.com/327672mercedes/1739589425096085.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 3,
+            "image": "https://images.carswitch.com/327672mercedes/1739589425216599.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 3,
+            "image": "https://images.carswitch.com/327672mercedes/1739590459999789.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 3,
+            "image": "https://images.carswitch.com/327672mercedes/1739590460305059.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 4,
+            "image": "https://images.carswitch.com/322738range%20rover/1738414599800448.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 4,
+            "image": "https://images.carswitch.com/347713range%20rover/1745387915484035.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 4,
+            "image": "https://images.carswitch.com/347713range%20rover/1745387916109753.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 4,
+            "image": "https://images.carswitch.com/347713range%20rover/1745387916364776.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 4,
+            "image": "https://images.carswitch.com/347713range%20rover/1745387946648860.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 5,
+            "image": "https://images.carswitch.com/351175/63b233e2.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 5,
+            "image": "https://images.carswitch.com/351175/52aa0495.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 5,
+            "image": "https://images.carswitch.com/351175/860ed7d0.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 5,
+            "image": "https://images.carswitch.com/351175/fe4b0af5.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 6,
+            "image": "https://images.carswitch.com/310513nissan/1734981231322407.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 6,
+            "image": "https://images.carswitch.com/310513nissan/1734981231747436.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 6,
+            "image": "https://images.carswitch.com/310513nissan/1734981232732894.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 7,
+            "image": "https://images.carswitch.com/302934hyundai/1732628395628464.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 7,
+            "image": "https://images.carswitch.com/302934hyundai/1732628396151093.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 7,
+            "image": "https://images.carswitch.com/302934hyundai/1732628397225588.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 7,
+            "image": "https://images.carswitch.com/302934hyundai/1732628397109571.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 8,
+            "image": "https://images.carswitch.com/330374volkswagen/1740420765110873.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 8,
+            "image": "https://images.carswitch.com/330374volkswagen/1740420766250653.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 8,
+            "image": "https://images.carswitch.com/330374volkswagen/1740420767812235.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 8,
+            "image": "https://images.carswitch.com/330374volkswagen/1740420767985068.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 8,
+            "image": "https://images.carswitch.com/330374volkswagen/1740420768177787.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 9,
+            "image": "https://images.carswitch.com/349245mitsubishi/1746191836764079.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 9,
+            "image": "https://images.carswitch.com/349245mitsubishi/1746199368719143.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 9,
+            "image": "https://images.carswitch.com/349245mitsubishi/1746199369278878.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 9,
+            "image": "https://images.carswitch.com/349245mitsubishi/1746199369734887.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 9,
+            "image": "https://images.carswitch.com/349245mitsubishi/1746199369984827.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 10,
+            "image": "https://images.carswitch.com/348370kia/1745831298871627.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 10,
+            "image": "https://images.carswitch.com/348370kia/1745831299826122.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 10,
+            "image": "https://images.carswitch.com/348370kia/1745831301401007.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 10,
+            "image": "https://images.carswitch.com/348370kia/1745831302921118.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 11,
+            "image": "https://images.carswitch.com/344111lexus/1744300403836787.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 11,
+            "image": "https://images.carswitch.com/344111lexus/1744300404017951.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 11,
+            "image": "https://images.carswitch.com/344111lexus/1744300405324957.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 11,
+            "image": "https://images.carswitch.com/344111lexus/1744300407274297.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 11,
+            "image": "https://images.carswitch.com/344111lexus/1744300406904731.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 12,
+            "image": "https://images.carswitch.com/337885mg/1742841509580827.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 12,
+            "image": "https://images.carswitch.com/337885mg/1742841510791302.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 12,
+            "image": "https://images.carswitch.com/337885mg/1742841512329378.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 12,
+            "image": "https://images.carswitch.com/337885mg/1742841514267757.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 12,
+            "image": "https://images.carswitch.com/337885mg/1742841515495177.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736682506401588.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736682506549885.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736683167977399.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736683175736136.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736683175338469.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 13,
+            "image": "https://images.carswitch.com/317152tesla/1736683174744707.jpg?fit=crop&w=414&h=310&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756500919454.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756501424732.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756501543545.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756503320297.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756502741732.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        },
+        {
+            "carId": 14,
+            "image": "https://images.carswitch.com/325650ford/1739756502173170.jpg?fit=crop&w=611&h=456&auto=format,compress&sat=30&vib=10&q=46"
+        }
+    ],
+    "cars": [
+        {
+            "brand": "Toyota",
+            "model": "Land Cruiser VXR 4.0L V6",
+            "price": 48000,
+            "year": 2022,
+            "mileage": 36000,
+            "quality": 95,
+            "isGoodPrice": false,
+            "location": "palestine - gaza",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Rear entertainment screens",
+                "Parking sensors",
+                "Cruise Control",
+                "Steering wheel control",
+                "Navigation",
+                "Bluetooth",
+                "Brake assist"
+            ],
+            "description": "This car had an accedent in the right side but the quality of the body generally is good",
+            "fuel": "diesel",
+            "customerId": 1
+        },
+        {
+            "brand": "BMW",
+            "model": "X6 M - Sport",
+            "price": 55000,
+            "year": 2021,
+            "mileage": 21000,
+            "quality": 85,
+            "isGoodPrice": true,
+            "location": "palestine - ramallah",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Reversing Camera",
+                "Parking sensors",
+                "Collision warning system",
+                "Navigation"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 2
+        },
+        {
+            "brand": "Mercedes",
+            "model": "GLC300 2.0L I4 TC",
+            "price": 58000,
+            "year": 2021,
+            "mileage": 15800,
+            "quality": 90,
+            "isGoodPrice": true,
+            "location": "palestine - alnazreth",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Rear mirror camera",
+                "Brake assist",
+                "Reversing Camera",
+                "Collision warning system",
+                "Navigation"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 3
+        },
+        {
+            "brand": "Range Rover",
+            "model": "Sport HSE 3.0L Supercharged V6",
+            "price": 22000,
+            "year": 2017,
+            "mileage": 136000,
+            "quality": 70,
+            "isGoodPrice": false,
+            "location": "palestine - alqods",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Parking sensors",
+                "Navigation",
+                "Premium sound system",
+                "Bluetooth",
+                "Brake assist"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 4
+        },
+        {
+            "brand": "Porsche",
+            "model": "Boxster S",
+            "price": 18000,
+            "year": 2013,
+            "mileage": 112000,
+            "quality": 60,
+            "isGoodPrice": true,
+            "location": "palestine - Rafah",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Collision warning system",
+                "Navigation",
+                "Bluetooth",
+                "Brake assist"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 1
+        },
+        {
+            "brand": "Nissan",
+            "model": "Patrol 4.0L V6",
+            "price": 14000,
+            "year": 2017,
+            "mileage": 41000,
+            "quality": 50,
+            "isGoodPrice": true,
+            "location": "palestine - gaza",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Navigation",
+                "Automated Parking",
+                "Adaptive cruis control",
+                "Collision warning system",
+                "Paddle shifters"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 2
+        },
+        {
+            "brand": "Hyundai",
+            "model": "SantaFe 3.3L V.6",
+            "price": 16000,
+            "year": 2014,
+            "mileage": 69000,
+            "quality": 80,
+            "isGoodPrice": true,
+            "location": "palestine - alqods",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Bluetooth",
+                "Adaptive cruis control",
+                "Digital display",
+                "Push Start",
+                "Keyless entry"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 3
+        },
+        {
+            "brand": "Volkswagen",
+            "model": "Jetta 2.0L I4",
+            "price": 13000,
+            "year": 2016,
+            "mileage": 57000,
+            "quality": 70,
+            "isGoodPrice": false,
+            "location": "palestine - ramallah",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Power seats",
+                "Automated Parking",
+                "Parking sensors",
+                "Navigation",
+                "Bluetooth",
+                "Digital display",
+                "Paddle shifters",
+                "Apple carplay/ Android",
+                "Rear entertainment screens",
+                "Premium sound system",
+                "Leather Seats",
+                "Push Start",
+                "Keyless entry"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 4
+        },
+        {
+            "brand": "Mitsubishi",
+            "model": "Montero Sport 3.0 L V6",
+            "price": 1400,
+            "year": 2017,
+            "mileage": 161000,
+            "quality": 75,
+            "isGoodPrice": true,
+            "location": "palestine - gaza",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Automated Parking",
+                "Parking sensors",
+                "Blind spot moitor",
+                "Collision warning system",
+                "Cruise Control",
+                "Steering wheel control",
+                "Auto dimming mirror",
+                "Rear entertainment screens"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 1
+        },
+        {
+            "brand": "Kia",
+            "model": "Optima 2.0L I4",
+            "price": 6000,
+            "year": 2016,
+            "mileage": 228000,
+            "quality": 55,
+            "isGoodPrice": true,
+            "location": "palestine - Rafah",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Blind spot moitor",
+                "Collision warning system",
+                "Cruise Control",
+                "Steering wheel control",
+                "Auto dimming mirror",
+                "Headsup display",
+                "Birdseye view camera",
+                "Leather Seats",
+                "Push Start",
+                "Keyless entry"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 2
+        },
+        {
+            "brand": "Lexus",
+            "model": "IS350 3.5L V6",
+            "price": 9000,
+            "year": 2015,
+            "mileage": 166000,
+            "quality": 50,
+            "isGoodPrice": false,
+            "location": "palestine - alnazreth",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Brake assist",
+                "Reversing Camera",
+                "Blind spot moitor",
+                "Collision warning system",
+                "Headsup display",
+                "Birdseye view camera",
+                "Rear entertainment screens",
+                "Premium sound system"
+            ],
+            "description": "This car had an accedent in the left side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 3
+        },
+        {
+            "brand": "MG",
+            "model": "HS 2.0L TC I4",
+            "price": 10000,
+            "year": 2020,
+            "mileage": 34000,
+            "quality": 90,
+            "isGoodPrice": false,
+            "location": "palestine - alqods",
+            "state": "on-market",
+            "transmission": "auto",
+            "features": [
+                "Brake assist",
+                "Reversing Camera",
+                "Blind spot moitor",
+                "Auto dimming mirror",
+                "Headsup display",
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Automated Parking",
+                "Leather Seats",
+                "Push Start"
+            ],
+            "description": "This car has no accedent and the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 4
+        },
+        {
+            "brand": "Tesla",
+            "model": "Model Y Standard",
+            "price": 64000,
+            "year": 2022,
+            "mileage": 1700,
+            "quality": 95,
+            "isGoodPrice": true,
+            "location": "palestine - ramallah",
+            "state": "on-market",
+            "transmission": "manual",
+            "features": [
+                "Steering wheel control",
+                "Auto dimming mirror",
+                "Headsup display",
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Automated Parking",
+                "Adaptive cruis control",
+                "Brake assist",
+                "Digital display",
+                "Paddle shifters",
+                "Apple carplay/ Android",
+                "Rear entertainment screens",
+                "Premium sound system",
+                "Push Start",
+                "Leather Seats"
+            ],
+            "description": "This car has no accedent and the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 1
+        },
+        {
+            "brand": "Ford",
+            "model": "Mustang 2.3L i4 EcoBoost",
+            "price": 21000,
+            "year": 2018,
+            "mileage": 69000,
+            "quality": 85,
+            "isGoodPrice": false,
+            "location": "palestine - gaza",
+            "state": "pending",
+            "transmission": "manual",
+            "features": [
+                "Parking sensors",
+                "Navigation",
+                "Bluetooth",
+                "Blind spot moitor",
+                "Collision warning system",
+                "Cruise Control",
+                "Steering wheel control",
+                "Auto dimming mirror",
+                "Headsup display",
+                "Rear entertainment screens",
+                "Premium sound system",
+                "Leather Seats"
+            ],
+            "description": "This car has an accedent in the right side but the quality of the body generally is good",
+            "fuel": "petrol",
+            "customerId": 2
+        },
+        {
+            "brand": "Audi",
+            "model": "A8 6.3L W12",
+            "price": 28000,
+            "year": 2015,
+            "mileage": 227000,
+            "quality": 80,
+            "isGoodPrice": false,
+            "location": "palestine - alqods",
+            "state": "pending",
+            "transmission": "auto",
+            "features": [
+                "Auto dimming mirror",
+                "Headsup display",
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Automated Parking",
+                "Adaptive cruis control",
+                "Digital display",
+                "Paddle shifters",
+                "Apple carplay/ Android",
+                "Rear entertainment screens",
+                "Premium sound system",
+                "Leather Seats"
+            ],
+            "description": "",
+            "fuel": "petrol",
+            "customerId": 3
+        },
+        {
+            "brand": "Jeep",
+            "model": "Wrangler 3.6L V6",
+            "price": 31000,
+            "year": 2018,
+            "mileage": 107000,
+            "quality": 70,
+            "isGoodPrice": false,
+            "location": "palestine - Rafah",
+            "state": "pending",
+            "transmission": "manual",
+            "features": [
+                "Brake assist",
+                "Blind spot moitor",
+                "Collision warning system",
+                "Cruise Control",
+                "Steering wheel control",
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Digital display"
+            ],
+            "description": "",
+            "fuel": "diesel",
+            "customerId": 4
+        },
+        {
+            "brand": "Lamborghini",
+            "model": "Huracan 5.2 V10",
+            "price": 195000,
+            "year": 2017,
+            "mileage": 166000,
+            "quality": 85,
+            "isGoodPrice": false,
+            "location": "palestine - alnazreth",
+            "state": "under-check",
+            "transmission": "manual",
+            "features": [
+                "Bluetooth",
+                "Brake assist",
+                "Reversing Camera",
+                "Blind spot moitor",
+                "Collision warning system",
+                "Cruise Control",
+                "Steering wheel control",
+                "Headsup display",
+                "Birdseye view camera",
+                "Rear mirror camera",
+                "Digital display",
+                "Push Start",
+                "Paddle shifters",
+                "Rear entertainment screens",
+                "Premium sound system",
+                "Keyless entry"
+            ],
+            "description": "",
+            "fuel": "petrol",
+            "customerId": 1
+        },
+        {
+            "brand": "Infiniti",
+            "model": "QX70 3.7L V6",
+            "price": 16500,
+            "year": 2015,
+            "mileage": 191000,
+            "quality": 70,
+            "isGoodPrice": false,
+            "location": "palestine - gaza",
+            "state": "under-check",
+            "transmission": "auto",
+            "features": [
+                "Navigation",
+                "Bluetooth",
+                "Brake assist",
+                "Collision warning system",
+                "Auto dimming mirror",
+                "Headsup display",
+                "Automated Parking",
+                "Adaptive cruis control"
+            ],
+            "description": "",
+            "fuel": "petrol",
+            "customerId": 2
+        }
+    ]
+}

@@ -9,6 +9,6 @@ Image.belongsTo(Car);
 Customer.hasMany(Car);
 Car.belongsTo(Customer);
 
-export default {
+export {
   Image, Car, Customer, Admin,
 };
