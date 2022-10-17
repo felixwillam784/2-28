@@ -12,7 +12,7 @@ interface OutlineCardProps {
   price:number
   mailage:number
   description:string
-  goodPrice:boolean
+  isGoodPrice:boolean
 }
 
 export default function CarCard({
@@ -22,7 +22,7 @@ export default function CarCard({
   price,
   mailage,
   description,
-  goodPrice,
+  isGoodPrice,
 }:OutlineCardProps) {
   return (
     <Card sx={{
@@ -128,7 +128,7 @@ export default function CarCard({
         </Button>
       </CardContent>
       {
-        goodPrice ? (
+        isGoodPrice && (
           <Typography
             sx={{
               position: 'relative',
@@ -143,7 +143,7 @@ export default function CarCard({
           >
             good price
           </Typography>
-        ) : ''
+        )
       }
     </Card>
   );

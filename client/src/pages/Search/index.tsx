@@ -13,7 +13,7 @@ const car = [{
   description:
   `Posuere consectetur est at lob ortis. Aenean eu l eo quam Pellentesque
   ornare sem lacini ... more`,
-  goodPrice: false,
+  isGoodPrice: false,
 
 },
 {
@@ -29,7 +29,7 @@ const car = [{
   description:
   `Posuere consectetur est at lob ortis. Aenean eu l eo quam Pellentesque
    ornare sem lacini ... more`,
-  goodPrice: true,
+  isGoodPrice: true,
 
 }];
 function Search() {
@@ -44,7 +44,7 @@ function Search() {
           price={e.price}
           mailage={e.mailage}
           description={e.description}
-          goodPrice={e.goodPrice}
+          isGoodPrice={e.isGoodPrice}
         />
       ))}
     </div>
