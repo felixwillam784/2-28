@@ -8,17 +8,17 @@ import { CardMedia, CircularProgress } from '@mui/material';
 interface OutlineCardProps {
   image:string
   carName:string
-  presented:number
+  quality:number
   price:number
   mailage:number
   description:string
   goodPrice:boolean
 }
 
-export default function OutlinedCard({
+export default function CarCard({
   image,
   carName,
-  presented,
+  quality,
   price,
   mailage,
   description,
@@ -35,7 +35,7 @@ export default function OutlinedCard({
         component="img"
         height="300px"
         image={image}
-        alt="Paella dish"
+        alt={carName}
         sx={{ width: '300px', objectFit: 'cover' }}
       />
       <CardContent>
@@ -56,7 +56,7 @@ export default function OutlinedCard({
         >
           {carName}
           <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-            <CircularProgress variant="determinate" value={presented} />
+            <CircularProgress variant="determinate" value={quality} />
             <Box
               sx={{
                 top: 0,
@@ -74,7 +74,7 @@ export default function OutlinedCard({
                 component="div"
                 color="text.secondary"
               >
-                {presented}
+                {quality}
                 %
               </Typography>
             </Box>

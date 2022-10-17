@@ -1,11 +1,9 @@
-// import { Outlet } from 'react-router-dom';
-// import OutlinedCard from "./components/CarCard/indes";
-import Search from './pages/Search';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <div>
-      <Search />
+      <Outlet />
     </div>
   );
 }

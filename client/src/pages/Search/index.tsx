@@ -1,11 +1,13 @@
-import Images from '../../assets';
-import OutlinedCard from '../../components/CarCard/indes';
+import CarCard from '../../components/CarCard';
 
 const car = [{
   id: 1,
-  image: Images.carTest,
+  image:
+  `https://images.unsplash.com/photo-1503376780353-
+7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx
+8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`,
   carName: ' 2018 car name',
-  presented: 90,
+  quality: 90,
   price: 300,
   mailage: 300,
   description:
@@ -16,9 +18,12 @@ const car = [{
 },
 {
   id: 2,
-  image: Images.carTest,
+  image:
+  `https://images.unsplash.com/photo-1503376780353-
+7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx
+8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`,
   carName: ' 2018 car name',
-  presented: 90,
+  quality: 90,
   price: 300,
   mailage: 300,
   description:
@@ -31,11 +36,11 @@ function Search() {
   return (
     <div>
       {car.map((e) => (
-        <OutlinedCard
+        <CarCard
           key={e.id}
           image={e.image}
           carName={e.carName}
-          presented={e.presented}
+          quality={e.quality}
           price={e.price}
           mailage={e.mailage}
           description={e.description}
