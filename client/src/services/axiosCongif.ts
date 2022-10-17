@@ -23,7 +23,7 @@ function handleError(error: AxiosError) {
       };
   }
 }
-
+export const cancelTokenSource = axios.CancelToken.source();
 const httpInstance = axios.create({
   timeout: 5000,
   baseURL: 'https://localhost.com',
@@ -34,7 +34,11 @@ httpInstance.defaults.headers.common.successAlert = false;
 httpInstance.defaults.headers.common.errorAlert = true;
 Object.setPrototypeOf(httpInstance, axios);
 
-httpInstance.interceptors.request.use((config) => config);
+httpInstance.interceptors.request.use(async (config) => {
+  // eslint-disable-next-line no-param-reassign
+  config.cancelToken = cancelTokenSource.token;
+  return config;
+});
 
 httpInstance.interceptors.response.use(
   (res) => res,
