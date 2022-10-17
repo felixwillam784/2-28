@@ -1,0 +1,12 @@
+.home_card_section{
+    background-color: #8EB3FE;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.wrapper{
+    width: 80%;
+    color: white;
+    padding-top: 3rem;
+}
