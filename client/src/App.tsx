@@ -1,8 +1,12 @@
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
+// import OutlinedCard from "./components/CarCard/indes";
+import Search from './pages/Search';
 
 function App() {
   return (
-    <Outlet />
+    <div>
+      <Search />
+    </div>
   );
 }
 
