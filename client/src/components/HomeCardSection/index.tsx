@@ -1,28 +1,37 @@
 import { Typography } from '@mui/material';
-import Images from '../../assets';
-import HomeCard from '../HomeCard';
 import './style.css';
 
-export default function HomeCardSection() {
-  return (
-    <div className="home_card_section">
-      <div className="wrapper">
+interface HomeCardTayp {
+  color: string,
+  text: string,
+  ask: string,
+  children: JSX.Element[]
+}
 
+export default function HomeCardSection({
+  color, text, ask, children,
+}: HomeCardTayp) {
+  return (
+    <div
+      style={
+        {
+          backgroundColor: color,
+        }
+      }
+      className="home_card_section"
+    >
+      <div className="wrapper">
         <Typography
           sx={{ fontSize: '1.4rem' }}
           component="h1"
         >
-          Buying a used car?
+          {text}
         </Typography>
         <Typography
           sx={{ fontSize: '1.4rem' }}
           component="p"
         >
-          Here is why you should do it on
-          {' '}
-          <br />
-          {' '}
-          Carswitch
+          {ask}
         </Typography>
       </div>
       <Typography
@@ -30,29 +39,11 @@ export default function HomeCardSection() {
           display: 'flex',
           justifyContent: 'space-between',
           width: '80%',
-          position: 'absolute',
-          top: '10rem',
+          marginTop: '50px',
         }}
         component="div"
       >
-        <HomeCard
-          title="Great Value"
-          description="Skip the dealership margins, and buy directly"
-          src={Images.privateSeller}
-          alt="privateSeller"
-        />
-        <HomeCard
-          title="Trusted Quality"
-          description="Condition reports upfront & online, "
-          src={Images.inspected}
-          alt="inspected"
-        />
-        <HomeCard
-          title="All Online"
-          description="Ve handle every step, you just click click click"
-          src={Images.rating}
-          alt="rating"
-        />
+        {children}
       </Typography>
     </div>
   );

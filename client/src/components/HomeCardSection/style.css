@@ -1,9 +1,9 @@
 .home_card_section{
-    background-color: #8EB3FE;
-    height: 320px;
+    height: 350px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 400px;
 }
 .wrapper{
     width: 80%;
