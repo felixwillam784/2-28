@@ -47,15 +47,15 @@ function Landing() {
         />
         <HomeCard
           title="Trusted Quality"
-          // eslint-disable-next-line max-len
-          description="Keep the car, well bring buyers to you & secure payment  Fraud proof"
+          description="Keep the car, well bring buyers to you & secure
+          payment Fraud proof"
           src={Images.inspected}
           alt="inspected"
         />
         <HomeCard
           title="All Online"
-          // eslint-disable-next-line max-len
-          description="You set the price, we handle the rest - at your doorstep!"
+          description="You set the price, we handle the rest - at
+          your doorstep!"
           src={Images.rating}
           alt="rating"
         />

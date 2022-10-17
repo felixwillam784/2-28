@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import './style.css';
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface colors {
+
+interface HomeCardTayp {
   color: string,
   text: string,
   ask: string,
@@ -10,7 +10,7 @@ interface colors {
 
 export default function HomeCardSection({
   color, text, ask, children,
-}: colors) {
+}: HomeCardTayp) {
   return (
     <div
       style={
