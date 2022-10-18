@@ -19,7 +19,7 @@
     "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
     "dev": "cd server && npm run dev",
-    "init-db":"cd server && npm run build:db "
+    "init-db":"cd server && npm run build:test"
   },
   "repository": {
     "type": "git",
