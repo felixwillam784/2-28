@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import brands from '../../brand.json';
-import validationSchema from '../../helpers/sellingRequestSchema';
+import validationSchema from '../../helpers/validationSchema';
 
 function SellCarModal() {
   const formik = useFormik({
