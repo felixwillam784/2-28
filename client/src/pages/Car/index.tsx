@@ -1,5 +1,7 @@
+import CarSlider from '../../components/CarSlider';
+
 function Car() {
-  return (<h1>Car</h1>);
+  return (<CarSlider />);
 }
 
 export default Car;
