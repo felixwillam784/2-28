@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { join } from 'path';
-import router from './routes/routes';
+import router from './routes';
 
 dotenv.config();
 const app: Express = express();
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json('bade request');
+  res.status(404).json('bad request');
 });
 app.use(
   (

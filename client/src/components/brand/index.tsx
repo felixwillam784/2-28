@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import Images from '../../assets';
 import './style.css';
 import Image from './image';
+import Images from '../../assets';
 
 function Brand() {
   return (
     <section className="brandLaing">
       <div className="companyName">
-        <h1>MAKE</h1>
+        <h4>find your favorite car by brand</h4>
       </div>
       <div className="imgCarLogo">
         <Link to="/cars?brand=audi">
