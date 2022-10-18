@@ -4,8 +4,8 @@ function handleError(error: AxiosError) {
   if (axios.isCancel(error)) {
     return 'Axios is canceled';
   }
-  const { response }:AxiosError = error;
-  const { status, data }:any = response;
+  const { response }: AxiosError = error;
+  const { status, data }: any = response;
   return { status, data };
 }
 

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 import brands from '../../brand.json';
-import validationSchema from '../../helpers/validationSchema';
+import { addCarSchema } from '../../helpers/validationSchema';
 
 function SellCarModal() {
   const formik = useFormik({
@@ -23,7 +23,7 @@ function SellCarModal() {
       price: '',
       location: '',
     },
-    validationSchema,
+    validationSchema: addCarSchema,
     onSubmit: (values) => {
       console.log(values);
       alert(JSON.stringify(values, null, 2));
