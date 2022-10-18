@@ -1,5 +1,7 @@
+import SendRequestModule from '../../components/sendRequsetModel';
+
 function Profile() {
-  return (<h1>Profile</h1>);
+  return (<SendRequestModule />);
 }
 
 export default Profile;
