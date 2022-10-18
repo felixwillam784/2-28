@@ -17,6 +17,7 @@ const buildDB = async () => {
 
   await Image.bulkCreate(images);
 };
-
-buildDB();
+if (process.env.DB_SEED) {
+  buildDB();
+}
 export default buildDB;
