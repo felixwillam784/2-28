@@ -11,7 +11,7 @@ interface HomeCardProps {
 export default function HomeCard(
   {
     title, description, src, alt,
-  }:HomeCardProps,
+  }: HomeCardProps,
 ) {
   return (
     <div className="home_card">

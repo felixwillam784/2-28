@@ -18,7 +18,7 @@ interface Image {
   audi: string,
 }
 
-const Images:Image = {
+const Images: Image = {
   privateSeller,
   inspected,
   rating,
