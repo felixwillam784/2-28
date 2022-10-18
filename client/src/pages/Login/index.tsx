@@ -1,18 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { loginSchema } from '../../helpers/validationSchema';
 import './style.css';
-
-const validationSchema = yup.object({
-  email: yup
-    .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
-});
 
 function Login() {
   const formik = useFormik({
@@ -20,7 +9,7 @@ function Login() {
       email: '',
       password: '',
     },
-    validationSchema,
+    validationSchema: loginSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },

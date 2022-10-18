@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const validationSchema = yup.object({
+const addCarSchema = yup.object({
   brand: yup
     .string()
     .required('brand is required'),
@@ -19,5 +19,14 @@ const validationSchema = yup.object({
     .string()
     .required('location is required'),
 });
-
-export default validationSchema;
+const loginSchema = yup.object({
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
+export { loginSchema, addCarSchema };
