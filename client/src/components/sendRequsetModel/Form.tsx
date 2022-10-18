@@ -3,6 +3,7 @@ import {
   FormControlLabel,
   MenuItem,
   Radio, RadioGroup, Select, TextField, Typography,
+  FormHelperText,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -18,9 +19,8 @@ const validationSchema = yup.object({
   year: yup
     .number()
     .required('year is required'),
-  Mileage: yup
-    .number()
-    .required('mileage is required'),
+  milage: yup
+    .number(),
   price: yup
     .number()
     .required('price is required'),
@@ -29,13 +29,13 @@ const validationSchema = yup.object({
     .required('location is required'),
 });
 
-function Form() {
+function SellCarModal() {
   const formik = useFormik({
     initialValues: {
       brand: '',
       model: '',
       year: '',
-      Mileage: '',
+      milage: '',
       price: '',
       location: '',
     },
@@ -53,14 +53,14 @@ function Form() {
       alignItems: 'center',
     }}
     >
-      <Typography sx={{ fontSize: '1.7rem' }} component="h1">
-        Sell Car Request
+      <Typography sx={{ fontSize: '1.7rem', mt: '1rem' }} component="h2">
+        Sell Your Car Now!
       </Typography>
       <hr style={{
         height: '.3rem',
         width: '20rem',
         backgroundColor: '#0A20E6',
-        margin: '2rem 0',
+        margin: '1rem 0',
       }}
       />
       <form onSubmit={formik.handleSubmit}>
@@ -75,42 +75,40 @@ function Form() {
           component="label"
         >
           Brand
-          {/* <Field
-              as="select"
-              id="brand"
-              name="brand"
-            > */}
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={formik.values.brand}
-            label="brand"
-            name="brand"
-            onChange={formik.handleChange}
-            sx={{ width: '14rem' }}
+          <Typography
+            component="div"
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
           >
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={formik.values.brand}
+              label="brand"
+              name="brand"
+              onChange={formik.handleChange}
+              sx={{ width: '14rem' }}
+              error={formik.touched.brand && Boolean(formik.errors.brand)}
+            >
 
-            {brands
-              .map((brand) => (
-                <MenuItem
-                  key={brand.id}
-                  value={brand.brand}
-                >
-                  {brand.brand}
+              {brands
+                .map((brand) => (
+                  <MenuItem
+                    key={brand.id}
+                    value={brand.brand}
+                  >
+                    {brand.brand}
 
-                </MenuItem>
-              ))}
-          </Select>
-          {/* </Field> */}
-          {/* <TextField
-            id="brand"
-            name="brand"
-            label="brand"
-            value={formik.values.brand}
-            onChange={formik.handleChange}
-            error={formik.touched.brand && Boolean(formik.errors.brand)}
-            helperText={formik.touched.brand && formik.errors.brand}
-          /> */}
+                  </MenuItem>
+                ))}
+            </Select>
+            <FormHelperText sx={{ color: 'red' }}>
+              {formik.touched.brand && formik.errors.brand}
+
+            </FormHelperText>
+          </Typography>
         </Typography>
         <Typography
           sx={{
@@ -176,13 +174,13 @@ function Form() {
             component="div"
           >
             <TextField
-              id="Mileage"
-              name="Mileage"
-              label="Mileage"
-              value={formik.values.Mileage}
+              id="milage"
+              name="milage"
+              label="milage"
+              value={formik.values.milage}
               onChange={formik.handleChange}
-              error={formik.touched.Mileage && Boolean(formik.errors.Mileage)}
-              helperText={formik.touched.Mileage && formik.errors.Mileage}
+              error={formik.touched.milage && Boolean(formik.errors.milage)}
+              helperText={formik.touched.milage && formik.errors.milage}
             />
             <RadioGroup
               sx={{
@@ -251,11 +249,19 @@ function Form() {
             helperText={formik.touched.location && formik.errors.location}
           />
         </Typography>
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button
+          sx={{
+            mb: '1rem',
+          }}
+          color="primary"
+          variant="contained"
+          fullWidth
+          type="submit"
+        >
           Submit
         </Button>
       </form>
     </div>
   );
 }
-export default Form;
+export default SellCarModal;
