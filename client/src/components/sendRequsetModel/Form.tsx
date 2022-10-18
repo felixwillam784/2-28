@@ -1,20 +1,32 @@
 import {
   Button,
   FormControlLabel,
-  Radio, RadioGroup, TextField, Typography,
+  MenuItem,
+  Radio, RadioGroup, Select, TextField, Typography,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import brands from '../../brand.json';
 
 const validationSchema = yup.object({
-  email: yup
+  brand: yup
     .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
+    .required('brand is required'),
+  model: yup
     .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .required('model is required'),
+  year: yup
+    .number()
+    .required('year is required'),
+  Mileage: yup
+    .number()
+    .required('mileage is required'),
+  price: yup
+    .number()
+    .required('price is required'),
+  location: yup
+    .string()
+    .required('location is required'),
 });
 
 function Form() {
@@ -29,6 +41,7 @@ function Form() {
     },
     validationSchema,
     onSubmit: (values) => {
+      console.log(values);
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -62,7 +75,34 @@ function Form() {
           component="label"
         >
           Brand
-          <TextField
+          {/* <Field
+              as="select"
+              id="brand"
+              name="brand"
+            > */}
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={formik.values.brand}
+            label="brand"
+            name="brand"
+            onChange={formik.handleChange}
+            sx={{ width: '14rem' }}
+          >
+
+            {brands
+              .map((brand) => (
+                <MenuItem
+                  key={brand.id}
+                  value={brand.brand}
+                >
+                  {brand.brand}
+
+                </MenuItem>
+              ))}
+          </Select>
+          {/* </Field> */}
+          {/* <TextField
             id="brand"
             name="brand"
             label="brand"
@@ -70,7 +110,7 @@ function Form() {
             onChange={formik.handleChange}
             error={formik.touched.brand && Boolean(formik.errors.brand)}
             helperText={formik.touched.brand && formik.errors.brand}
-          />
+          /> */}
         </Typography>
         <Typography
           sx={{
