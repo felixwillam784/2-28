@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default */
 import { createBrowserRouter } from 'react-router-dom';
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
