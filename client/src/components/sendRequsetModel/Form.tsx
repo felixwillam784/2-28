@@ -2,32 +2,16 @@ import {
   Button,
   FormControlLabel,
   MenuItem,
-  Radio, RadioGroup, Select, TextField, Typography,
+  Radio,
+  RadioGroup,
+  Select,
+  TextField,
+  Typography,
   FormHelperText,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import brands from '../../brand.json';
-
-const validationSchema = yup.object({
-  brand: yup
-    .string()
-    .required('brand is required'),
-  model: yup
-    .string()
-    .required('model is required'),
-  year: yup
-    .number()
-    .required('year is required'),
-  milage: yup
-    .number(),
-  price: yup
-    .number()
-    .required('price is required'),
-  location: yup
-    .string()
-    .required('location is required'),
-});
+import validationSchema from '../../helpers/sellingRequestSchema';
 
 function SellCarModal() {
   const formik = useFormik({
@@ -35,7 +19,7 @@ function SellCarModal() {
       brand: '',
       model: '',
       year: '',
-      milage: '',
+      milage: [],
       price: '',
       location: '',
     },
@@ -47,23 +31,30 @@ function SellCarModal() {
   });
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
     >
-      <Typography sx={{ fontSize: '1.7rem', mt: '1rem' }} component="h2">
+      <Typography sx={{ fontSize: '1.7rem' }} component="h2">
         Sell Your Car Now!
       </Typography>
-      <hr style={{
-        height: '.3rem',
-        width: '20rem',
-        backgroundColor: '#0A20E6',
-        margin: '1rem 0',
-      }}
+      <hr
+        style={{
+          height: '.3rem',
+          width: '20rem',
+          backgroundColor: '#0A20E6',
+          marginBottom: '.5rem',
+        }}
       />
-      <form onSubmit={formik.handleSubmit}>
+      <form
+        style={{
+          maxHeight: '80vh',
+        }}
+        onSubmit={formik.handleSubmit}
+      >
         <Typography
           sx={{
             display: 'flex',
@@ -92,22 +83,17 @@ function SellCarModal() {
               sx={{ width: '14rem' }}
               error={formik.touched.brand && Boolean(formik.errors.brand)}
             >
-
-              {brands
-                .map((brand) => (
-                  <MenuItem
-                    key={brand.id}
-                    value={brand.brand}
-                  >
-                    {brand.brand}
-
-                  </MenuItem>
-                ))}
+              {brands.map((brand) => (
+                <MenuItem key={brand.id} value={brand.brand}>
+                  {brand.brand}
+                </MenuItem>
+              ))}
             </Select>
-            <FormHelperText sx={{ color: 'red' }}>
-              {formik.touched.brand && formik.errors.brand}
-
-            </FormHelperText>
+            {formik.errors.brand && (
+              <FormHelperText sx={{ color: 'red' }}>
+                {formik.touched.brand && formik.errors.brand}
+              </FormHelperText>
+            )}
           </Typography>
         </Typography>
         <Typography
@@ -192,18 +178,11 @@ function SellCarModal() {
               }}
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="mile"
-              name="radio-buttons-group"
+              name="milage"
+              onChange={formik.handleChange}
             >
-              <FormControlLabel
-                value="mile"
-                control={<Radio />}
-                label="mile"
-              />
-              <FormControlLabel
-                value="km"
-                control={<Radio />}
-                label="km"
-              />
+              <FormControlLabel value="mile" control={<Radio />} label="mile" />
+              <FormControlLabel value="km" control={<Radio />} label="km" />
             </RadioGroup>
           </Typography>
         </Typography>
