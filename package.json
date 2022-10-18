@@ -18,8 +18,7 @@
     "prepare": "is-ci || npx husky install",
     "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
-    "dev": "cd server && npm run dev",
-    "init-db":"cd server && npm run build:test"
+    "dev": "cd server && npm run dev"
   },
   "repository": {
     "type": "git",

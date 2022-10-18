@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { join } from 'path';
-import router from './routes/routes';
+import router from './routes';
 
 dotenv.config();
 const app: Express = express();

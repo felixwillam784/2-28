@@ -1,4 +1,3 @@
-// const createError = require('http-errors');
 import {
   RequestHandler, Request, Response, NextFunction,
 } from 'express';
