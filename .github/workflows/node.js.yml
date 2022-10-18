@@ -46,7 +46,7 @@ jobs:
         run: npm ci
 
       - name: Connect to PostgreSQL
-        run: npm run init-db && npm run test
+        run: npm run build:test && npm run test
 
         env: 
           DB_URL_TEST: postgres://team3:12345@localhost:5432/good-cars
