@@ -11,7 +11,12 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+.formLogin h1{
+  font-size: 30px;
+  font-weight: bold;
+}
 .loginPage{
+  background-color: #000;
   display: flex;
 }
 .loginImg{
@@ -35,6 +40,15 @@
   position: absolute;
   top: 25px;
 }
+.decsLogin h2{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.signup{
+  font-size: 15px;
+  font-weight: lighter;
+}
 .decsLogin p{
   font-size: 20px;
 }
@@ -44,9 +58,13 @@
 .formPage{
   width: 70%;
   height: 100vh;
-  border-radius: 15px;
-  background-color: #F6F7F9;
+  border-radius: 45px 0 0  45px      ;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.button{
+  padding: 35px 0; 
+  background-color: #000;
 }

@@ -1,6 +1,5 @@
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import './style.css';
 
@@ -33,8 +32,6 @@ function Login() {
         className="loginImg"
       >
         <div className="decsLogin">
-          <h3>LOG IN</h3>
-
           <h2>
             The better way
             to
@@ -45,7 +42,7 @@ function Login() {
       </div>
       <div className="formPage">
         <form className="formLogin" onSubmit={formik.handleSubmit}>
-          <h3>LOG IN</h3>
+          <h1>LOG IN</h1>
           <TextField
             fullWidth
             id="email"
@@ -67,13 +64,19 @@ function Login() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <Button color="primary" variant="contained" fullWidth type="submit">
+          <Button
+            className="button"
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
             Submit
           </Button>
           <h4 className="signup">
             Don&apos;t you have an account?
             {' '}
-            <Link to="/signup">Create one!</Link>
+            <a href="/signup">Create one!</a>
           </h4>
         </form>
       </div>
