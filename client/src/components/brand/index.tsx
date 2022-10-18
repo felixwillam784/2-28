@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Images from '../../assets';
 import './style.css';
 import Image from './image';
+import Images from '../../assets';
 
 function Brand() {
   return (
