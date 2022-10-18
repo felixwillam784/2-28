@@ -1,0 +1,52 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.formLogin{
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.loginPage{
+  display: flex;
+}
+.loginImg{
+  width: 30%;
+  height: 100vh;
+  background-image: url(../../assets/2.jpg);
+  background-size: cover;
+  background-position: left;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.decsLogin{
+  color: #fff;
+  font-size: 30px;
+  width: 80%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 25px;
+}
+.decsLogin p{
+  font-size: 20px;
+}
+.carImg{
+  height: 99.7vh;
+}
+.formPage{
+  width: 70%;
+  height: 100vh;
+  border-radius: 15px;
+  background-color: #F6F7F9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

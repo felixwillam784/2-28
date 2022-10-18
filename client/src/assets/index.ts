@@ -6,6 +6,7 @@ import nissan from './nissan.png';
 import toyota from './toyota.png';
 import mitsbishi from './mitsubishi_v2.png';
 import audi from './audi.png';
+import car from './2.jpg';
 
 interface Image {
   privateSeller: string,
@@ -16,9 +17,10 @@ interface Image {
   toyota: string,
   mitsbishi: string,
   audi: string,
+  car: string
 }
 
-const Images:Image = {
+const Images: Image = {
   privateSeller,
   inspected,
   rating,
@@ -27,6 +29,7 @@ const Images:Image = {
   toyota,
   mitsbishi,
   audi,
+  car,
 };
 
 export default Images;
