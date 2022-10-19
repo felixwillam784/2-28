@@ -15,13 +15,12 @@ import router from './routes';
 dotenv.config();
 const app: Express = express();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.set('port', process.env.PORT || 4000);
 
 app.use([compression(),
-express.json(),
-cookieParser(),
-express.urlencoded({ extended: false })]);
+  express.json(),
+  cookieParser(),
+  express.urlencoded({ extended: false })]);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
