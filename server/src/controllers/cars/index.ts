@@ -1,4 +1,4 @@
 import getFilteredCars from './getFilteredCars';
+import getCarsId from './gitCarsId';
 
-// eslint-disable-next-line import/prefer-default-export
-export { getFilteredCars };
+export { getFilteredCars, getCarsId };

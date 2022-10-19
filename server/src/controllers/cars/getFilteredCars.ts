@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { getCars } from '../../services';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getFilteredCars = async (req:Request, res:Response, next:NextFunction) => {
+const getFilteredCars = async (req: Request, res: Response, next: NextFunction) => {
   const {
     brand = '',
     model = '',

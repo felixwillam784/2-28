@@ -19,9 +19,9 @@ const app: Express = express();
 app.set('port', process.env.PORT || 4000);
 
 app.use([compression(),
-  express.json(),
-  cookieParser(),
-  express.urlencoded({ extended: false })]);
+express.json(),
+cookieParser(),
+express.urlencoded({ extended: false })]);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -43,11 +43,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 app.use(
   (
-    error:ErrorRequestHandler & { status?: number, message?:string },
-    req:Request,
-    res:Response,
+    error: ErrorRequestHandler & { status?: number, message?: string },
+    req: Request,
+    res: Response,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    next:NextFunction,
+    next: NextFunction,
   ) => {
     if (error.status) {
       res.status(error.status).json(error.message);
