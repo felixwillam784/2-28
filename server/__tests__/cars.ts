@@ -1,5 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
+
+import {
+  describe, expect, test, afterAll, beforeAll,
+} from '@jest/globals';
+
 import request from 'supertest';
 
 import app from '../src/app';
@@ -8,6 +12,7 @@ import sequelize from '../src/db/config/connection';
 
 beforeAll(() => buildDB());
 afterAll(() => sequelize.close());
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getRandomIndex(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
