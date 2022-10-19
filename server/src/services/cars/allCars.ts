@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { Car } from '../../db/models';
+import { Car, Image } from '../../db/models';
 
 const CAR_NUM_IN_PAGE = 9;
 
@@ -43,7 +43,12 @@ const getCars = async ({
     where.state = state.trim();
   }
   const cars = await Car.findAndCountAll(
-    { where, offset: (page - 1) * CAR_NUM_IN_PAGE, limit: CAR_NUM_IN_PAGE },
+    {
+      where,
+      offset: (page - 1) * CAR_NUM_IN_PAGE,
+      limit: CAR_NUM_IN_PAGE,
+      include: { model: Image },
+    },
   );
 
   return cars;
