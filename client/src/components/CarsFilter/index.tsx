@@ -190,6 +190,7 @@ function CarsFilter() {
           id="combo-box"
           onChange={changeBrand}
           options={brands.map((e) => e.brand)}
+          defaultValue={state.brand}
           sx={{ width: 250 }}
           renderInput={(params) => (
             <TextField
