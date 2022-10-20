@@ -1,11 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 import {
   describe, expect, test, afterAll, beforeAll,
 } from '@jest/globals';
 
 import request from 'supertest';
-
 import app from '../src/app';
 import buildDB from '../src/db/config/buildFakeData';
 import sequelize from '../src/db/config/connection';
@@ -96,5 +93,13 @@ describe('/cars endpoint', () => {
     expect(result.body.data.rows[0].year).toEqual(2017);
     expect(result.body.data.rows[0].price).toBeLessThanOrEqual(200000);
     expect(result.statusCode).toEqual(200);
+  });
+});
+describe('/cars/:id', () => {
+  test('should return all cars details when there is no filter car', async () => {
+    const result = await request(app).get('/api/v1/cars/2');
+    expect(result.body.msg).toEqual('done!');
+    expect(result.body.data[0].id).toEqual(2);
+    expect(result.body.data[0].brand).toEqual('BMW');
   });
 });
