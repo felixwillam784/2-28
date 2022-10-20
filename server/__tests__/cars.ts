@@ -1,9 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 import {
-  describe, expect, test, afterAll, beforeAll,
+  afterAll, beforeAll, describe, expect, test,
 } from '@jest/globals';
-
 import request from 'supertest';
 
 import app from '../src/app';

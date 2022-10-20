@@ -12,7 +12,7 @@ function handleError(error: AxiosError) {
 export const cancelTokenSource = axios.CancelToken.source();
 const httpInstance = axios.create({
   timeout: 5000,
-  baseURL: 'https://localhost.com',
+  baseURL: '/api/v1',
 });
 
 Object.setPrototypeOf(httpInstance, axios);

@@ -10,7 +10,7 @@ interface OutlineCardProps {
   carName:string
   quality:number
   price:number
-  mailage:number
+  milage:number
   description:string
   isGoodPrice:boolean
 }
@@ -20,7 +20,7 @@ export default function CarCard({
   carName,
   quality,
   price,
-  mailage,
+  milage,
   description,
   isGoodPrice,
 }:OutlineCardProps) {
@@ -29,11 +29,13 @@ export default function CarCard({
       display: 'flex',
       maxWidth: '50vw',
       mb: '1rem',
+      borderRadius: '20px',
+      marginLeft: '20rem',
     }}
     >
       <CardMedia
         component="img"
-        height="300px"
+        height="100%"
         image={image}
         alt={carName}
         sx={{ width: '300px', objectFit: 'cover' }}
@@ -102,7 +104,7 @@ export default function CarCard({
               fontWeight: '500',
             }}
           >
-            {mailage}
+            {milage}
             km
           </span>
         </Typography>

@@ -1,8 +1,6 @@
-import CarsFilter from '../../components/CarsFilter';
-
 function Cars() {
   return (
-    <CarsFilter />
+    <h1>sd</h1>
   );
 }
 

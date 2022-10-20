@@ -1,52 +1,82 @@
+/* eslint-disable no-nested-ternary */
+import { Pagination, TextField } from '@mui/material';
+import { useState } from 'react';
 import CarCard from '../../components/CarCard';
+import CarsFilter from '../../components/CarsFilter';
+import CustomSkeleton from '../../helpers/skeleton';
+import { CarsCount, CarsRow } from '../../interfaces';
+import './style.css';
 
-const car = [{
-  id: 1,
-  image:
-  `https://images.unsplash.com/photo-1503376780353-
-7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx
-8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`,
-  carName: ' 2018 car name',
-  quality: 90,
-  price: 300,
-  mailage: 300,
-  description:
-  `Posuere consectetur est at lob ortis. Aenean eu l eo quam Pellentesque
-  ornare sem lacini ... more`,
-  isGoodPrice: false,
-
-},
-{
-  id: 2,
-  image:
-  `https://images.unsplash.com/photo-1503376780353-
-7e6692767b70?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx
-8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`,
-  carName: ' 2018 car name',
-  quality: 90,
-  price: 300,
-  mailage: 300,
-  description:
-  `Posuere consectetur est at lob ortis. Aenean eu l eo quam Pellentesque
-   ornare sem lacini ... more`,
-  isGoodPrice: true,
-
-}];
 function Search() {
+  const [cars, setCars] = useState<CarsRow | []>([]);
+  const [pagination, setPagination] = useState <CarsCount>(1);
+  const [pageNumber, setPageIndex] = useState<number>(1);
+  const [loading, setLoading] = useState <boolean>(false);
+  const [search, setSearch] = useState<string>('');
+  const paginationHandler = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPageIndex(value);
+  };
   return (
-    <div>
-      {car.map((e) => (
-        <CarCard
-          key={e.id}
-          image={e.image}
-          carName={e.carName}
-          quality={e.quality}
-          price={e.price}
-          mailage={e.mailage}
-          description={e.description}
-          isGoodPrice={e.isGoodPrice}
-        />
-      ))}
+    <div className="search_container">
+      <CarsFilter
+        setCars={setCars}
+        setPagination={setPagination}
+        setLoading={setLoading}
+        pageNumber={pageNumber}
+        search={search}
+      />
+      {loading
+        ? (
+          <div className="car_wrapper">
+
+            <CustomSkeleton />
+            <CustomSkeleton />
+            <CustomSkeleton />
+            <CustomSkeleton />
+          </div>
+        )
+
+        : (cars.length ? (
+          <div className="car_wrapper">
+            <TextField
+              sx={{
+                width: '50vw',
+                mb: '2rem',
+                marginLeft: '20rem',
+              }}
+              id="outlined-basic"
+              label="search"
+              variant="outlined"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {cars.map((e) => (
+              <CarCard
+                key={e.id}
+                image={
+                  // eslint-disable-next-line max-len
+                  e.images[0]?.image || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'
+                }
+                carName={e.model}
+                quality={e.quality}
+                price={e.price}
+                milage={e.mileage}
+                description={e.description}
+                isGoodPrice={e.isGoodPrice}
+              />
+            ))}
+            <Pagination
+              sx={{
+                margin: '2rem 0rem',
+                marginLeft: '10rem',
+              }}
+              onChange={paginationHandler}
+              count={pagination / 9}
+              variant="outlined"
+            />
+
+          </div>
+        ) : <h2>NO results found</h2>)}
     </div>
   );
 }

@@ -3,11 +3,13 @@ import {
   Autocomplete, TextField, Switch, Slider, FormControlLabel,
 } from '@mui/material';
 import {
-  useState, SetStateAction, useEffect,
+  useState, useEffect, SetStateAction,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import brands from '../../brands.json';
+import { CarsData, CarsFilterProps, Params } from '../../interfaces';
 import models from '../../models.json';
+import httpInstance from '../../services/axiosCongif';
 
 import './style.css';
 
@@ -44,35 +46,52 @@ const getYears = ():Array<string> => {
   return yearsArr;
 };
 
-function CarsFilter() {
+function CarsFilter({
+  setCars, setPagination, setLoading, pageNumber, search,
+}:CarsFilterProps) {
   const { state } = useLocation();
 
-  const [brand, setBrand] = useState(state?.brand || '');
-  const [model, setModel] = useState('');
-  const [mileage, setMileage] = useState(100000);
-  const [year, setYear] = useState(null);
-  const [fuel, setFuel] = useState('');
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [isGoodPrice, setPriceBool] = useState(false);
+  const [brand, setBrand] = useState<string>(state?.brand || '');
+  const [model, setModel] = useState<string | null>('');
+  const [mileage, setMileage] = useState<number | number[]>(0);
+  const [year, setYear] = useState<string | null>(null);
+  const [fuel, setFuel] = useState<string | null>('');
+  const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [isGoodPrice, setPriceBool] = useState<boolean>(false);
 
   const changePriceType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPriceBool(event.target.checked);
   };
 
-  const changeBrand = (e: any, values: SetStateAction<any>) => {
-    setBrand(values);
+  const changeBrand = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: SetStateAction<string>,
+  ) => {
+    setBrand(value);
   };
-  const changeModel = (e: any, values: SetStateAction<any>) => {
-    setModel(values);
+  const changeModel = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null,
+  ) => {
+    setModel(value);
   };
-  const changeYear = (e: any, values: SetStateAction<any>) => {
-    setYear(values);
+  const changeYear = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null,
+  ) => {
+    setYear(value);
   };
-  const changeMileage = (e: any, values: SetStateAction<any>) => {
-    setMileage(values * 10000);
+  const changeMileage = (
+    event: Event,
+    value: number | number[],
+  ) => {
+    setMileage(+value * 10000);
   };
-  const changefuelType = (e: React.SyntheticEvent<Element, Event>, values: SetStateAction<any>) => {
-    setFuel(values);
+  const changefuelType = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: SetStateAction<string | null>,
+  ) => {
+    setFuel(value);
   };
   const changeMaxPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const num = Number(event.target.value);
@@ -80,8 +99,53 @@ function CarsFilter() {
   };
 
   useEffect(() => {
-    // here we will fetch the data and set it on a props that it defined in parent component
-  }, [brand, model, mileage, year, fuel, isGoodPrice]);
+    setLoading(true);
+    if (search.length !== 0) {
+      setModel(search);
+    }
+    const params:Params = {
+      brand,
+      model,
+      mileage,
+      year,
+      fuel,
+      maxPrice,
+      goodPrice: 0,
+    };
+    switch (true) {
+      case model?.length !== 0:
+      { params.model = model;
+        break; }
+      case brand.length !== 0:
+      { params.brand = brand;
+        break; }
+      case year?.length !== 0:
+      { params.year = year;
+        break; }
+      case fuel?.length !== 0:
+      { params.fuel = fuel;
+        break; }
+      case maxPrice !== 0:
+      { params.maxPrice = maxPrice;
+        break; }
+      case isGoodPrice:
+      { params.goodPrice = 1;
+        break; }
+      case mileage !== 0: {
+        params.mileage = mileage;
+        break;
+      }
+      default:
+    }
+    const getCars = async () => {
+      // eslint-disable-next-line max-len
+      const response: CarsData = await httpInstance.get('/cars', { params });
+      setCars(response.data.rows);
+      setPagination(response.data.count);
+      setLoading(false);
+    };
+    getCars();
+  }, [brand, model, mileage, year, fuel, isGoodPrice, pageNumber, search]);
 
   return (
     <section className="filter">
@@ -133,7 +197,7 @@ function CarsFilter() {
         <div style={{ width: 200, margin: 40 }}>
           <span> Max mileage (KM) : </span>
           <Slider
-            value={mileage / 10000}
+            value={+mileage / 10000}
             valueLabelDisplay="auto"
             onChange={changeMileage}
             marks={mileRang}
