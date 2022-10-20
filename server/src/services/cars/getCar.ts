@@ -1,7 +1,10 @@
-import { Car } from '../../db/models';
+import { Car, Image } from '../../db/models';
 
-const getCarById = async (id) => {
-  const carId = await Car.findByPk(id);
-  return carId;
+const getCarInfo = async (id) => {
+  const car = await Car.findAll({
+    where: { id },
+    include: { model: Image },
+  });
+  return car;
 };
-export default getCarById;
+export default getCarInfo;

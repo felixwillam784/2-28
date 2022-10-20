@@ -2,7 +2,6 @@ import {
   afterAll, beforeAll, describe, expect, test,
 } from '@jest/globals';
 import request from 'supertest';
-
 import app from '../src/app';
 import buildDB from '../src/db/config/buildFakeData';
 import sequelize from '../src/db/config/connection';
