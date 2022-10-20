@@ -41,11 +41,12 @@ export interface CarsData {
 }
 
 export interface Params {
-  brand: string,
-  model: string | null,
-  mileage:number | number[],
-  year: string | null,
-  fuel: string | null,
-  maxPrice: number,
-  goodPrice: number,
+  brand?: string,
+  model?: string | null,
+  mileage?:number | number[],
+  year?: string | null,
+  fuel?: string | null,
+  maxPrice?: number,
+  goodPrice?: number,
+  page?: number
 }

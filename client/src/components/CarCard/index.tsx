@@ -10,7 +10,7 @@ interface OutlineCardProps {
   carName:string
   quality:number
   price:number
-  milage:number
+  mileage:number
   description:string
   isGoodPrice:boolean
 }
@@ -20,7 +20,7 @@ export default function CarCard({
   carName,
   quality,
   price,
-  milage,
+  mileage,
   description,
   isGoodPrice,
 }:OutlineCardProps) {
@@ -104,7 +104,7 @@ export default function CarCard({
               fontWeight: '500',
             }}
           >
-            {milage}
+            {mileage}
             km
           </span>
         </Typography>

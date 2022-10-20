@@ -53,7 +53,7 @@ function CarsFilter({
 
   const [brand, setBrand] = useState<string>(state?.brand || '');
   const [model, setModel] = useState<string | null>('');
-  const [mileage, setMileage] = useState<number | number[]>(0);
+  const [mileage, setMileage] = useState<number | number[] >(0);
   const [year, setYear] = useState<string | null>(null);
   const [fuel, setFuel] = useState<string | null>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
@@ -100,52 +100,39 @@ function CarsFilter({
 
   useEffect(() => {
     setLoading(true);
-    if (search.length !== 0) {
-      setModel(search);
-    }
     const params:Params = {
-      brand,
-      model,
-      mileage,
-      year,
-      fuel,
-      maxPrice,
-      goodPrice: 0,
+      page: pageNumber,
     };
-    switch (true) {
-      case model?.length !== 0:
-      { params.model = model;
-        break; }
-      case brand.length !== 0:
-      { params.brand = brand;
-        break; }
-      case year?.length !== 0:
-      { params.year = year;
-        break; }
-      case fuel?.length !== 0:
-      { params.fuel = fuel;
-        break; }
-      case maxPrice !== 0:
-      { params.maxPrice = maxPrice;
-        break; }
-      case isGoodPrice:
-      { params.goodPrice = 1;
-        break; }
-      case mileage !== 0: {
-        params.mileage = mileage;
-        break;
-      }
-      default:
+    if (model?.length !== 0 || search.length !== 0) {
+      params.model = model || search;
+    }
+    if (brand?.length !== 0) {
+      params.brand = brand;
+    }
+    if (year?.length !== 0) {
+      params.year = year;
+    }
+    if (fuel?.length !== 0) {
+      params.fuel = fuel;
+    }
+    if (maxPrice > 0) {
+      params.maxPrice = maxPrice;
+    }
+    if (isGoodPrice) {
+      params.goodPrice = 1;
+    }
+    if (mileage !== 0) {
+      params.mileage = mileage;
     }
     const getCars = async () => {
       // eslint-disable-next-line max-len
-      const response: CarsData = await httpInstance.get('/cars', { params });
+      const response: CarsData = await httpInstance.get('/cars?', { params });
       setCars(response.data.rows);
       setPagination(response.data.count);
       setLoading(false);
     };
     getCars();
-  }, [brand, model, mileage, year, fuel, isGoodPrice, pageNumber, search]);
+  }, [brand, model, mileage, year, fuel, isGoodPrice, pageNumber, search, maxPrice]);
 
   return (
     <section className="filter">
