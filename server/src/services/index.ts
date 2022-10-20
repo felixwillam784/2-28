@@ -1,4 +1,3 @@
-import { getCars } from './cars';
+import { getCars, getCarInfo } from './cars';
 
-// eslint-disable-next-line import/prefer-default-export
-export { getCars };
+export { getCars, getCarInfo };
