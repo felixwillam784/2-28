@@ -8,7 +8,7 @@ const {
   DATABASE_URL, NODE_ENV, DB_URL_DEV, DB_URL_TEST,
 } = process.env;
 
-let dbUrl;
+let dbUrl :string;
 
 switch (NODE_ENV) {
   case 'production': dbUrl = DATABASE_URL;
