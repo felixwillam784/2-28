@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   color: var(--text-color) !important;
-  margin-top: 1rem;
+  margin: 2rem 0;
 }
 
 .car-info {
@@ -57,7 +57,7 @@
   margin-top: 0px !important;
   font-weight: 500 !important;
   font-size: 1.5rem !important;
-  color: #6699FF;
+  color: #f5965b;
 }
 
 .main-info-container {
@@ -101,7 +101,9 @@
   font-weight: 700;
   margin: 0 0.5rem;
 }
-
+.quality-circle{
+  
+}
 .subtitle {
   width: fit-content;
   font-weight: 500 !important;

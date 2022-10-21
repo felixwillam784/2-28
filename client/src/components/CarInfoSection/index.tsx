@@ -1,16 +1,16 @@
 import {
-  Typography, Button, Box, Container, Paper,
+  Typography, Button, Box, Container, Paper, CircularProgress,
 } from '@mui/material';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import NorthIcon from '@mui/icons-material/North';
+import StarIcon from '@mui/icons-material/Star';
 import './style.css';
 import features from '../../assets/data/features';
 
 type Props = {
-  carInfo:{
+  carInfo: {
     id: number,
     brand: string,
     model: string,
@@ -31,16 +31,22 @@ type Props = {
   }
 };
 
-function CarInfo({ carInfo }:Props) {
+const numberWithCommas = (x: number) => {
+  const parts = x.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+};
+
+function CarInfo({ carInfo }: Props) {
   return (
     <Container
       className="car-info-container"
       fixed
     >
       <section className="car-info">
-        { carInfo.isGoodPrice ? (
+        {carInfo.isGoodPrice ? (
           <section className="good-price-label">
-            <span className="circle"><NorthIcon fontSize="small" /></span>
+            <span className="circle"><StarIcon fontSize="small" /></span>
             <span className="good-price">Great price</span>
           </section>
         ) : ''}
@@ -48,7 +54,7 @@ function CarInfo({ carInfo }:Props) {
           <div className="head-info">
             <Typography className="car-name" variant="h5">{`${carInfo.brand} ${carInfo.model}`}</Typography>
             <Typography className="price" variant="subtitle1">
-              {`$ ${carInfo.price}`}
+              {`$ ${numberWithCommas(carInfo.price)}`}
             </Typography>
           </div>
           <div className="info-container">
@@ -59,6 +65,35 @@ function CarInfo({ carInfo }:Props) {
             <Typography className="info-value" variant="body1">
               {`${carInfo.mileage} KM`}
             </Typography>
+            <span className="dot-divider">.</span>
+            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+              <CircularProgress
+                sx={{ marginTop: '-5px', color: '#393d47' }}
+                variant="determinate"
+                value={carInfo.quality}
+              />
+              <Box
+                sx={{
+                  top: -1,
+                  left: 4,
+                  bottom: 0,
+                  right: 0,
+                  position: 'absolute',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                >
+                  {carInfo.quality}
+                  %
+                </Typography>
+              </Box>
+            </Box>
+
           </div>
           <div className="info-container">
             <LocationOnIcon />
@@ -67,12 +102,7 @@ function CarInfo({ carInfo }:Props) {
             <LocalGasStationIcon />
             <Typography className="info-value" variant="body1">{carInfo.fuel}</Typography>
           </div>
-          {/*
-          <div className="info-container">
-            <Typography className="info-label" variant="subtitle1">quality :</Typography>
-            <Typography className="info-value" variant="body1">{carInfo.quality}</Typography>
-          </div>
-         */}
+
         </section>
 
         <Typography className="subtitle" variant="subtitle1"> Car overview</Typography>
