@@ -22,8 +22,7 @@ const testInfo = {
     'Bluetooth',
     'Brake assist',
   ],
-  description:
-  'This car had an accident in the right side but the quality of the body generally is good',
+  description: '',
   fuel: 'diesel',
   createdAt: '2022-10-17T08:26:03.560Z',
   updatedAt: '2022-10-17T08:26:03.560Z',

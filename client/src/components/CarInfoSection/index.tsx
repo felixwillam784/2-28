@@ -134,19 +134,21 @@ function CarInfo({ carInfo }: Props) {
         <Typography className="subtitle" variant="subtitle1">Description</Typography>
         <section className="main-info-container description">
 
-          <Typography variant="body1">
-            {carInfo.description}
-            .
-          </Typography>
+          {carInfo.description ? (
+            <Typography variant="body1">
+              {carInfo.description}
+              .
+            </Typography>
+          ) : <Typography sx={{ color: 'gray' }} variant="body1">No description provided</Typography> }
         </section>
-      </section>
-      <section className="buttons-container">
-        <Button sx={{ color: '#0A20E6', borderColor: '#0A20E6' }} variant="outlined" size="large">
-          Arrange visit
-        </Button>
-        <Button sx={{ backgroundColor: '#0A20E6' }} variant="contained" size="large">
-          Buy
-        </Button>
+        <section className="buttons-container">
+          <Button sx={{ color: '#0A20E6', borderColor: '#0A20E6' }} variant="outlined" size="large">
+            Arrange visit
+          </Button>
+          <Button sx={{ backgroundColor: '#0A20E6' }} variant="contained" size="large">
+            Buys
+          </Button>
+        </section>
       </section>
     </Container>
   );
