@@ -15,7 +15,6 @@ import router from './routes';
 dotenv.config();
 const app: Express = express();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.set('port', process.env.PORT || 4000);
 
 app.use([compression(),
@@ -43,11 +42,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 app.use(
   (
-    error:ErrorRequestHandler & { status?: number, message?:string },
-    req:Request,
-    res:Response,
+    error: ErrorRequestHandler & { status?: number, message?: string },
+    req: Request,
+    res: Response,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    next:NextFunction,
+    next: NextFunction,
   ) => {
     if (error.status) {
       res.status(error.status).json(error.message);

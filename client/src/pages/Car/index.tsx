@@ -1,4 +1,5 @@
 import CarInfo from '../../components/CarInfoSection';
+import CarSlider from '../../components/CarSlider';
 
 const testInfo = {
   id: 1,
@@ -30,7 +31,12 @@ const testInfo = {
 };
 
 function Car() {
-  return (<CarInfo carInfo={testInfo} />);
+  return (
+    <>
+      <CarSlider />
+      <CarInfo carInfo={testInfo} />
+    </>
+  );
 }
 
 export default Car;

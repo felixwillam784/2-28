@@ -10,19 +10,19 @@ function Brand() {
         <h4>find your favorite car by brand</h4>
       </div>
       <div className="imgCarLogo">
-        <Link to="/cars?brand=audi">
+        <Link state={{ brand: 'Audi' }} to="/cars">
           <Image src={Images.audi} alt="audi" />
         </Link>
-        <Link to="/cars?brand=mitsbishi">
-          <Image src={Images.mitsbishi} alt="mitsbishi" />
+        <Link state={{ brand: 'Mitsubishi' }} to="/cars">
+          <Image src={Images.mitsbishi} alt="mitsubishi" />
         </Link>
-        <Link to="/cars?brand=nissan">
+        <Link state={{ brand: 'Nissan' }} to="/cars">
           <Image src={Images.nissan} alt="nissan" />
         </Link>
-        <Link to="/cars?brand=toyota">
+        <Link state={{ brand: 'Toyota' }} to="/cars">
           <Image src={Images.toyota} alt="toyota" />
         </Link>
-        <Link to="/cars?brand=lamborghini">
+        <Link state={{ brand: 'Lamborghini' }} to="/cars">
           <Image src={Images.lamborghini} alt="lamborghini" />
         </Link>
       </div>

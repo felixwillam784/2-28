@@ -9,7 +9,7 @@ type ControllersReturn = {
 };
 type Controllers = (req: Request, res: Response, next: NextFunction) => Promise<ControllersReturn>;
 
-const ExpressWrapper = (fn:Controllers): RequestHandler => async (req, res, next) => {
+const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, next) => {
   try {
     const { status, data = null, msg = null } = await fn(req, res, next);
 
