@@ -146,7 +146,7 @@ function CarInfo({ carInfo }: Props) {
             Arrange visit
           </Button>
           <Button sx={{ backgroundColor: '#0A20E6' }} variant="contained" size="large">
-            Buys
+            Buy
           </Button>
         </section>
       </section>
