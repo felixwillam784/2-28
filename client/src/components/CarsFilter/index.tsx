@@ -6,8 +6,8 @@ import {
   useState, SetStateAction, useEffect,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import brands from '../../brands.json';
-import models from '../../models.json';
+import brands from '../../assets/data/brands.json';
+import models from '../../assets/data/models.json';
 
 import './style.css';
 
