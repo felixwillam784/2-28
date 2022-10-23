@@ -36,6 +36,7 @@ function Cars() {
           id="outlined-basic"
           label="search"
           variant="outlined"
+          type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -73,8 +74,8 @@ function Cars() {
         <Pagination
           sx={{
             margin: '2rem 0rem',
-            // marginLeft: '50rem',
           }}
+          page={currentPage}
           onChange={paginationHandler}
           count={Math.ceil(pagination / 9)}
           variant="outlined"
