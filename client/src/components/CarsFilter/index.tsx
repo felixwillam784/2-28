@@ -3,11 +3,14 @@ import {
   Autocomplete, TextField, Switch, Slider, FormControlLabel,
 } from '@mui/material';
 import {
-  useState, SetStateAction, useEffect,
+  useState, useEffect, SetStateAction,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import brands from '../../brands.json';
+import { CarsData, CarsFilterProps, Params } from '../../interfaces';
 import models from '../../models.json';
+import httpInstance from '../../services/axiosCongif';
+import CustomizedSnackbars from '../snackbar';
 
 import './style.css';
 
@@ -44,35 +47,62 @@ const getYears = ():Array<string> => {
   return yearsArr;
 };
 
-function CarsFilter() {
+function CarsFilter({
+  setCars, setPagination, setLoading, currentPage, search,
+  setCurrentPAge,
+}:CarsFilterProps) {
   const { state } = useLocation();
 
-  const [brand, setBrand] = useState(state?.brand || '');
-  const [model, setModel] = useState('');
-  const [mileage, setMileage] = useState(100000);
-  const [year, setYear] = useState(null);
-  const [fuel, setFuel] = useState('');
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [isGoodPrice, setPriceBool] = useState(false);
+  const [brand, setBrand] = useState<string>(state?.brand || '');
+  const [model, setModel] = useState<string | null>('');
+  const [mileage, setMileage] = useState<number | number[] >(0);
+  const [year, setYear] = useState<string | null>(null);
+  const [fuel, setFuel] = useState<string | null>('');
+  const [maxPrice, setMaxPrice] = useState<number>(0);
+  const [isGoodPrice, setPriceBool] = useState<boolean>(false);
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
 
   const changePriceType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPriceBool(event.target.checked);
   };
 
-  const changeBrand = (e: any, values: SetStateAction<any>) => {
-    setBrand(values);
+  const changeBrand = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: SetStateAction<string>,
+  ) => {
+    setBrand(value);
   };
-  const changeModel = (e: any, values: SetStateAction<any>) => {
-    setModel(values);
+  const changeModel = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null,
+  ) => {
+    setModel(value);
   };
-  const changeYear = (e: any, values: SetStateAction<any>) => {
-    setYear(values);
+  const changeYear = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: string | null,
+  ) => {
+    setYear(value);
   };
-  const changeMileage = (e: any, values: SetStateAction<any>) => {
-    setMileage(values * 10000);
+  const changeMileage = (
+    event: Event,
+    value: number | number[],
+  ) => {
+    setMileage(+value * 10000);
   };
-  const changefuelType = (e: React.SyntheticEvent<Element, Event>, values: SetStateAction<any>) => {
-    setFuel(values);
+  const changefuelType = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: SetStateAction<string | null>,
+  ) => {
+    setFuel(value);
   };
   const changeMaxPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const num = Number(event.target.value);
@@ -80,8 +110,48 @@ function CarsFilter() {
   };
 
   useEffect(() => {
-    // here we will fetch the data and set it on a props that it defined in parent component
-  }, [brand, model, mileage, year, fuel, isGoodPrice]);
+    const params:Params = {
+      page: currentPage,
+      state: 'on-market',
+    };
+    if (model?.length !== 0 || search.length !== 0) {
+      params.model = model || search;
+    }
+    if (brand?.length !== 0) {
+      params.brand = brand;
+    }
+    if (year?.length !== 0) {
+      params.year = year;
+    }
+    if (fuel?.length !== 0) {
+      params.fuel = fuel;
+    }
+    if (maxPrice > 0) {
+      params.maxPrice = maxPrice;
+    }
+    if (isGoodPrice) {
+      params.goodPrice = 1;
+    }
+    if (mileage !== 0) {
+      params.mileage = mileage;
+    }
+    const getCars = async () => {
+      try {
+        setLoading(true);
+        setOpenSnackBar(false);
+        const response: CarsData = await httpInstance.get('/cars?', { params });
+        setCars(response.data.rows);
+        setPagination(response.data.count);
+        if (Math.ceil(response.data.count / 9) < currentPage) {
+          setCurrentPAge(1);
+        }
+        setLoading(false);
+      } catch (error) {
+        setOpenSnackBar(true);
+      }
+    };
+    getCars();
+  }, [brand, model, mileage, year, fuel, isGoodPrice, currentPage, search, maxPrice]);
 
   return (
     <section className="filter">
@@ -92,7 +162,7 @@ function CarsFilter() {
           id="combo-box"
           onChange={changeBrand}
           options={brands.map((e) => e.brand)}
-          defaultValue={state?.brand || ''}
+          defaultValue={state?.brand || null}
           sx={{ width: 250 }}
           renderInput={(params) => (
             <TextField
@@ -133,12 +203,17 @@ function CarsFilter() {
         <div style={{ width: 200, margin: 40 }}>
           <span> Max mileage (KM) : </span>
           <Slider
-            value={mileage / 10000}
+            value={+mileage / 10000}
             valueLabelDisplay="auto"
             onChange={changeMileage}
             marks={mileRang}
           />
         </div>
+        <CustomizedSnackbars
+          err="something went wrong"
+          open={openSnackBar}
+          handleClose={handleClose}
+        />
         <Autocomplete
           disablePortal
           id="combo-box"
