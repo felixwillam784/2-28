@@ -1,4 +1,4 @@
-import VerticalTabs from '../../components/Tabs/list';
+import VerticalTabs from '../../components/Tabs';
 
 function DashBoard() {
   return (<VerticalTabs />);
