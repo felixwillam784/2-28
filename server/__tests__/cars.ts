@@ -93,7 +93,9 @@ describe('/cars endpoint', () => {
     expect(result.statusCode).toEqual(200);
   });
   test('should return id of car that update', async () => {
-    const result = await request(app).put('/api/v1/cars/1');
+    const result = await request(app).put('/api/v1/cars/1')
+
+      .set('Cookie', 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjF9.5bbTDHhlnCvs5ZDGfXcL_MU_4CCKzJ61wUDCGD_nWks');
     expect(result.body.data[0]).toEqual(0);
     expect(result.body.msg).toEqual('done!');
     expect(result.statusCode).toEqual(200);
