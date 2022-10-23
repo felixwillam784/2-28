@@ -1,23 +1,10 @@
-import {
-  Request, Response, NextFunction,
-} from 'express';
+import jwt from 'jsonwebtoken';
 
-const jwt = require('jsonwebtoken');
-
-const verifyToken = (role:'admin' | 'user') => async (req:Request, res:Response, next:NextFunction) => {
-  try {
-    const { token } = req.cookies;
-    const decoded = await jwt.verify(token, process.env.SECRET_KEY);
-    res.locals.user = decoded;
-
-    if (role !== decoded.role) {
-      throw Error();
-    }
-    next();
-  } catch (err) {
-    res.status(401).send({ status: 401, msg: 'Unauthorized' });
-  }
-  next();
-};
+const verifyToken = (token) => new Promise((resolve, reject) => {
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    if (err) reject(new Error('Unauthorized'));
+    else resolve(decoded);
+  });
+});
 
 export default verifyToken;
