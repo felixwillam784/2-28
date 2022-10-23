@@ -1,0 +1,13 @@
+.stripe-form {
+    padding: 1.7rem;
+    background-color: #edecec;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;
+}
+.pay-button{
+    margin-top: 0.9rem;
+    width: 40px;
+    align-self: center;
+}
