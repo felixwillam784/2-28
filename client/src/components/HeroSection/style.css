@@ -5,7 +5,7 @@
   position: absolute;
 }
 
-.container{
+.hero-container{
   height: 323px;
   display: flex !important;
   align-items: center;

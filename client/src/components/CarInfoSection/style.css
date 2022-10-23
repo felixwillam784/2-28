@@ -1,0 +1,145 @@
+.car-info-container {
+  min-height: 600px;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color) !important;
+  margin: 2rem 0;
+}
+
+.car-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 500px;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
+  padding: 1rem 0.3rem;
+}
+
+.good-price-label {
+  position: relative;
+  margin-left: 3rem;
+  padding: 20px;
+}
+.circle{
+  position: absolute;
+  font-size: 2px !important;
+  background-color: #FFF;
+  width : 29px !important;
+  height : 29px !important;
+  border: 0.5px solid #47BC2F ;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 10px;
+  top: 15px;
+}
+
+.good-price{
+  color: #FFF;
+  padding: 5px;
+  padding-left: 20px;
+  background-color: #47BC2F;
+  border-radius: 40px;
+}
+.head-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  white-space: nowrap;
+  margin-top: 0px !important;
+  font-weight: 500 !important;
+  font-size: 1.5rem !important;
+  color: #f5965b;
+}
+
+.main-info-container {
+  width: 90%;
+  margin: 1rem auto;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem;
+}
+
+.main-info-container.general {
+  flex-direction: column;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ababab4f !important;
+}
+
+.main-info-container.overview {
+  padding-bottom: 1.5rem;
+  margin-left: 4rem;
+  border-bottom: 1px solid #ababab4f !important;
+
+}
+
+.main-info-container.description {
+  margin-left: 4rem;
+}
+
+.car-name {
+  font-weight: 500 !important;
+}
+
+.info-container {
+  display: flex !important;
+  margin: 0.1rem 1rem;
+  text-transform: capitalize;
+  width: 40%;
+  white-space: nowrap;
+}
+
+.dot-divider {
+  font-weight: 700;
+  margin: 0 0.5rem;
+}
+.quality-circle{
+  
+}
+.subtitle {
+  width: fit-content;
+  font-weight: 500 !important;
+  margin-left: 3rem !important;
+  border-bottom: 2px  solid  #f29e6b;
+}
+
+.feature-card {
+  width: 150px;
+  height: 100px;
+  text-align: center;
+  border-radius: 10px !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-image {
+  width: 70px;
+  height: auto;
+}
+
+.info-value {
+  padding-left: 0.5rem;
+  color: var(--second-text-color);
+}
+
+.buttons-container {
+  margin: 2rem auto;
+}
+
+.buttons-container button {
+  white-space: nowrap;
+  margin: 1rem;
+  width: 9rem;
+  height: 3rem;
+}
