@@ -48,7 +48,7 @@ export default function CarCard({
             fontSize: 24,
             fontWeight: '900',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'start',
             justifyContent: 'space-between',
             width: '14rem',
             mb: '1rem',
@@ -112,13 +112,6 @@ export default function CarCard({
             km
           </span>
         </Typography>
-        {/* <Typography
-          sx={{ mb: 1.5, mt: '1.5rem' }}
-          color="text.secondary"
-          component="p"
-        >
-          {description}
-        </Typography> */}
 
         <Button
           fullWidth
