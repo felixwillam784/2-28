@@ -63,8 +63,8 @@ export default function VerticalTabs() {
           borderRight: 1, borderColor: 'divider', width: '13%', marginTop: '10px',
         }}
       >
-        <Tab sx={{ fontSize: '24px' }} label="New requests" {...a11yProps(0)} />
-        <Tab sx={{ fontSize: '24px' }} label="To check" {...a11yProps(1)} />
+        <Tab sx={{ fontSize: '18px' }} label="New requests" {...a11yProps(0)} />
+        <Tab sx={{ fontSize: '18px' }} label="To check" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         New requests
