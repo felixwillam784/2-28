@@ -17,6 +17,7 @@ function Cars() {
     setCurrentPAge(value);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  console.log(cars, 'cars');
   return (
     <div className="search_container">
       <CarsFilter
