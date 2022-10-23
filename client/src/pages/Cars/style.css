@@ -1,0 +1,23 @@
+.search_container{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.cars_Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-left: 20rem;
+}
+.car_wrapper{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+    width: 60vw;
+    margin-top: .5rem;
+    justify-content: space-around;
+}

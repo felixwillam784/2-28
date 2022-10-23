@@ -10,6 +10,7 @@ import brands from '../../brands.json';
 import { CarsData, CarsFilterProps, Params } from '../../interfaces';
 import models from '../../models.json';
 import httpInstance from '../../services/axiosCongif';
+import CustomizedSnackbars from '../snackbar';
 
 import './style.css';
 
@@ -47,7 +48,7 @@ const getYears = ():Array<string> => {
 };
 
 function CarsFilter({
-  setCars, setPagination, setLoading, pageNumber, search,
+  setCars, setPagination, setLoading, currentPage, search,
 }:CarsFilterProps) {
   const { state } = useLocation();
 
@@ -58,6 +59,20 @@ function CarsFilter({
   const [fuel, setFuel] = useState<string | null>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
   const [isGoodPrice, setPriceBool] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [err, setErr] = useState<string>('');
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const changePriceType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPriceBool(event.target.checked);
@@ -99,9 +114,8 @@ function CarsFilter({
   };
 
   useEffect(() => {
-    setLoading(true);
     const params:Params = {
-      page: pageNumber,
+      page: currentPage,
     };
     if (model?.length !== 0 || search.length !== 0) {
       params.model = model || search;
@@ -125,14 +139,19 @@ function CarsFilter({
       params.mileage = mileage;
     }
     const getCars = async () => {
-      // eslint-disable-next-line max-len
-      const response: CarsData = await httpInstance.get('/cars?', { params });
-      setCars(response.data.rows);
-      setPagination(response.data.count);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const response: CarsData = await httpInstance.get('/cars?', { params });
+        setCars(response.data.rows);
+        setPagination(response.data.count);
+        setLoading(false);
+      } catch (error:any) {
+        setErr(error.message);
+        handleClick();
+      }
     };
     getCars();
-  }, [brand, model, mileage, year, fuel, isGoodPrice, pageNumber, search, maxPrice]);
+  }, [brand, model, mileage, year, fuel, isGoodPrice, currentPage, search, maxPrice]);
 
   return (
     <section className="filter">
@@ -143,7 +162,7 @@ function CarsFilter({
           id="combo-box"
           onChange={changeBrand}
           options={brands.map((e) => e.brand)}
-          defaultValue={state?.brand || ''}
+          defaultValue={state?.brand || null}
           sx={{ width: 250 }}
           renderInput={(params) => (
             <TextField
@@ -190,6 +209,11 @@ function CarsFilter({
             marks={mileRang}
           />
         </div>
+        <CustomizedSnackbars
+          err={err}
+          open={open}
+          handleClose={handleClose}
+        />
         <Autocomplete
           disablePortal
           id="combo-box"

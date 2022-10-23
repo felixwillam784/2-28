@@ -12,7 +12,7 @@ import ToCheckRequests from '../pages/DashBoard/ToCheckRequests';
 import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
-import Search from '../pages/Search';
+import Cars from '../pages/Cars';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cars',
-        element: <Search />,
+        element: <Cars />,
       },
       {
         path: '/car/:id',

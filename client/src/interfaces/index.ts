@@ -28,7 +28,7 @@ export interface CarsFilterProps {
   setCars:React.Dispatch<React.SetStateAction<CarsRow | []>>,
   setPagination : React.Dispatch<React.SetStateAction<number>>,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  pageNumber: number,
+  currentPage: number,
   search: string
 }
 

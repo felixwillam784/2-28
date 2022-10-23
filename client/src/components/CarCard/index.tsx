@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardMedia, CircularProgress } from '@mui/material';
+import './style.css';
 
 interface OutlineCardProps {
   image:string
@@ -30,15 +31,13 @@ export default function CarCard({
       maxWidth: '50vw',
       mb: '1rem',
       borderRadius: '20px',
-      marginLeft: '20rem',
     }}
     >
       <CardMedia
         component="img"
-        height="100%"
         image={image}
         alt={carName}
-        sx={{ width: '300px', objectFit: 'cover' }}
+        sx={{ minWidth: '300px', objectFit: 'cover' }}
       />
       <CardContent>
         <Typography
