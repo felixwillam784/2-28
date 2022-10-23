@@ -21,7 +21,7 @@ function HeroSection() {
       />
       <CssBaseline />
       <Container
-        className="container"
+        className="hero-container"
         sx={{
           justifyContent: {
             xs: 'center',

@@ -4,7 +4,7 @@
 :root {
   --main-color: #0A20E6;
   --text-color: #2f3643;
-  --second-text-color: #A6AFBA;
+  --second-text-color: #848c95;
   --container-color: #FFF;
   --background-color: #F6F7F9;
 
@@ -23,5 +23,8 @@
   margin: 0 auto;
   /*   min-height : 100vh;
  */
+}
+body{
+  background-color: var(--background-color);
 }
 

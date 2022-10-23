@@ -10,7 +10,7 @@ import {
   FormHelperText,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import brands from '../../assets/data/brands.json';
+import brands from '../../brands.json';
 import { addCarSchema } from '../../helpers/validationSchema';
 
 function SellCarModal() {
