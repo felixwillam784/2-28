@@ -132,14 +132,3 @@
   padding-left: 0.5rem;
   color: var(--second-text-color);
 }
-
-.buttons-container {
-  margin: 2rem auto;
-}
-
-.buttons-container button {
-  white-space: nowrap;
-  margin: 1rem;
-  width: 9rem;
-  height: 3rem;
-}

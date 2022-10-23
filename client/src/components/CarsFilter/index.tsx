@@ -6,9 +6,9 @@ import {
   useState, useEffect, SetStateAction,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import brands from '../../brands.json';
+import brands from '../../assets/data/brands.json';
+import models from '../../assets/data/models.json';
 import { CarsData, CarsFilterProps, Params } from '../../interfaces';
-import models from '../../models.json';
 import httpInstance from '../../services/axiosCongif';
 import CustomizedSnackbars from '../snackbar';
 

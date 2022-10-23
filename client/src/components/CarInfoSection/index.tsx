@@ -1,5 +1,5 @@
 import {
-  Typography, Button, Box, Container, Paper, CircularProgress,
+  Typography, Box, Container, Paper, CircularProgress,
 } from '@mui/material';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import SpeedTwoToneIcon from '@mui/icons-material/SpeedTwoTone';
@@ -8,6 +8,7 @@ import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import StarIcon from '@mui/icons-material/Star';
 import './style.css';
 import features from '../../assets/data/features';
+import CarControll from '../carControll';
 
 type Props = {
   carInfo: {
@@ -141,15 +142,9 @@ function CarInfo({ carInfo }: Props) {
             </Typography>
           ) : <Typography sx={{ color: 'gray' }} variant="body1">No description provided</Typography> }
         </section>
-        <section className="buttons-container">
-          <Button sx={{ color: '#0A20E6', borderColor: '#0A20E6' }} variant="outlined" size="large">
-            Arrange visit
-          </Button>
-          <Button sx={{ backgroundColor: '#0A20E6' }} variant="contained" size="large">
-            Buy
-          </Button>
-        </section>
+
       </section>
+      <CarControll />
     </Container>
   );
 }
