@@ -6,7 +6,6 @@ import updateCarSchema from '../../helpers/updateCarSchema';
 const updateCars = async (req: Request, res: Response, next:NextFunction) => {
   const { body } = req;
   const { id } = req.params;
-  console.log(body, id);
   updateCarSchema.validate(body).catch((err) => {
     next(createError(404, err.errors));
   });
