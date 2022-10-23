@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import VerticalTabs from '../../components/Tabs';
 
 function DashBoard() {
-  return (<Outlet />);
+  return (<VerticalTabs />);
 }
 
 export default DashBoard;
