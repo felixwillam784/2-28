@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: secret key
         with: 
-          super_secret: car-trade-secret-123456
+          SECRET_KEY: car-trade-secret-123456
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Setup node
