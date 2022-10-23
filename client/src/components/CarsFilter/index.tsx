@@ -49,6 +49,7 @@ const getYears = ():Array<string> => {
 
 function CarsFilter({
   setCars, setPagination, setLoading, currentPage, search,
+  setCurrentPAge,
 }:CarsFilterProps) {
   const { state } = useLocation();
 
@@ -59,19 +60,14 @@ function CarsFilter({
   const [fuel, setFuel] = useState<string | null>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
   const [isGoodPrice, setPriceBool] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
-  const [err, setErr] = useState<string>('');
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
 
-    setOpen(false);
+    setOpenSnackBar(false);
   };
 
   const changePriceType = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,6 +112,7 @@ function CarsFilter({
   useEffect(() => {
     const params:Params = {
       page: currentPage,
+      state: 'on-market',
     };
     if (model?.length !== 0 || search.length !== 0) {
       params.model = model || search;
@@ -141,13 +138,16 @@ function CarsFilter({
     const getCars = async () => {
       try {
         setLoading(true);
+        setOpenSnackBar(false);
         const response: CarsData = await httpInstance.get('/cars?', { params });
         setCars(response.data.rows);
         setPagination(response.data.count);
+        if (Math.ceil(response.data.count / 9) < currentPage) {
+          setCurrentPAge(1);
+        }
         setLoading(false);
-      } catch (error:any) {
-        setErr(error.message);
-        handleClick();
+      } catch (error) {
+        setOpenSnackBar(true);
       }
     };
     getCars();
@@ -210,8 +210,8 @@ function CarsFilter({
           />
         </div>
         <CustomizedSnackbars
-          err={err}
-          open={open}
+          err="something went wrong"
+          open={openSnackBar}
           handleClose={handleClose}
         />
         <Autocomplete

@@ -29,7 +29,8 @@ export interface CarsFilterProps {
   setPagination : React.Dispatch<React.SetStateAction<number>>,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   currentPage: number,
-  search: string
+  search: string,
+  setCurrentPAge: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface CarsData {
@@ -48,5 +49,6 @@ export interface Params {
   fuel?: string | null,
   maxPrice?: number,
   goodPrice?: number,
-  page?: number
+  page?: number,
+  state: string,
 }

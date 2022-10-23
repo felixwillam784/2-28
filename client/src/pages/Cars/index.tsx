@@ -15,6 +15,7 @@ function Cars() {
   const [search, setSearch] = useState<string>('');
   const paginationHandler = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPAge(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
     <div className="search_container">
@@ -24,6 +25,7 @@ function Cars() {
         setLoading={setLoading}
         currentPage={currentPage}
         search={search}
+        setCurrentPAge={setCurrentPAge}
       />
       <div className="cars_Container">
         <TextField
