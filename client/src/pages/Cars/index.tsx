@@ -64,7 +64,6 @@ function Cars() {
                   quality={e.quality}
                   price={e.price}
                   mileage={e.mileage}
-                  description={e.description}
                   isGoodPrice={e.isGoodPrice}
                 />
               ))}
