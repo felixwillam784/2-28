@@ -12,7 +12,6 @@ interface OutlineCardProps {
   quality:number
   price:number
   mileage:number
-  description:string
   isGoodPrice:boolean
 }
 
@@ -22,7 +21,6 @@ export default function CarCard({
   quality,
   price,
   mileage,
-  description,
   isGoodPrice,
 }:OutlineCardProps) {
   return (
