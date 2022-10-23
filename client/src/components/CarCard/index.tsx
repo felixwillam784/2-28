@@ -41,24 +41,27 @@ export default function CarCard({
         height="150rem"
         sx={{ minWidth: '100%', objectFit: 'cover' }}
       />
-      <CardContent>
+      <CardContent sx={{
+        height: '50%',
+      }}
+      >
         <Typography
           sx={{
             color: 'black',
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: '900',
             display: 'flex',
             alignItems: 'start',
             justifyContent: 'space-between',
             width: '14rem',
             mb: '1rem',
-            maxHeight: '6rem',
-            height: '6rem',
+            maxHeight: '3rem',
+            height: '3rem',
             overflow: 'hidden',
           }}
           color="text.secondary"
           gutterBottom
-          component="h1"
+          component="h2"
         >
           {carName}
           <Box sx={{ position: 'relative', display: 'inline-flex' }}>
@@ -90,15 +93,16 @@ export default function CarCard({
         <Typography
           sx={{
             fontSize: '1rem',
-            fontWeight: '900',
+            fontWeight: '500',
             width: '13rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            mt: '1rem',
           }}
           component="p"
         >
-          price:
+
           {price}
           $
           {' '}
