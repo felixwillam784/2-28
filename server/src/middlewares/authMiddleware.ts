@@ -15,7 +15,7 @@ const authMiddleware = (role:'admin' | 'user') => async (req:Request, res:Respon
     res.locals.user = decoded;
 
     if (role !== (decoded as JwtPayload).role) {
-      throw Error();
+      next(createError(401, 'Unauthorized'));
     }
     next();
   } catch (err) {
