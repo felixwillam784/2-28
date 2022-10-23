@@ -38,9 +38,7 @@ jobs:
           - 5432:5432
 
     steps:
-      - name: secret key
-        with: 
-          SECRET_KEY: car-trade-secret-123456
+
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Setup node
@@ -55,3 +53,4 @@ jobs:
 
         env: 
           DB_URL_TEST: postgres://team3:12345@localhost:5432/goodcar
+          SECRET_KEY: car-trade-secret-123456
