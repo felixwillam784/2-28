@@ -1,39 +1,27 @@
-import CarInfo from '../../components/CarInfoSection';
-import CarSlider from '../../components/CarSlider';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-const testInfo = {
-  id: 1,
-  brand: 'Toyota',
-  model: 'Land Cruiser VXR 4.0L V6',
-  price: 48000,
-  year: 2022,
-  mileage: 36000,
-  quality: 95,
-  isGoodPrice: true,
-  location: 'palestine - gaza',
-  state: 'on-market',
-  transmission: 'auto',
-  features: [
-    'Rear entertainment screens',
-    'Parking sensors',
-    'Cruise Control',
-    'Steering wheel control',
-    'Navigation',
-    'Bluetooth',
-    'Brake assist',
-  ],
-  description: '',
-  fuel: 'diesel',
-  createdAt: '2022-10-17T08:26:03.560Z',
-  updatedAt: '2022-10-17T08:26:03.560Z',
-  customerId: 1,
-};
+import CarSlider from '../../components/CarSlider';
+import StripeForm from '../../components/StripForm';
+import StripeCheckoutForm from '../../components/StripCheckoutForm';
+
+const stripePromise = loadStripe(
+  'pk_test_51Luz0QK7KEWff3QCtg4mT8AFgOzOYCeNp1DaKtfisod4i2aZ0HWJQUZtAKPM8A20mnQKREir6VonFHzmJEoTUQtq00Jwh1wfOv',
+);
 
 function Car() {
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: '{{CLIENT_SECRET}}',
+  };
   return (
     <>
       <CarSlider />
-      <CarInfo carInfo={testInfo} />
+      <Elements stripe={stripePromise} options={options}>
+        <StripeForm />
+      </Elements>
+
+      <StripeCheckoutForm />
     </>
   );
 }
