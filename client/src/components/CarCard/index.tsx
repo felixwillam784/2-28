@@ -28,16 +28,20 @@ export default function CarCard({
   return (
     <Card sx={{
       display: 'flex',
-      maxWidth: '50vw',
+      flexDirection: 'column',
+      maxWidth: '19vw',
       mb: '1rem',
       borderRadius: '20px',
+      position: 'relative',
+      maxHeight: '25rem',
     }}
     >
       <CardMedia
         component="img"
         image={image}
         alt={carName}
-        sx={{ minWidth: '300px', objectFit: 'cover' }}
+        height="150rem"
+        sx={{ minWidth: '100%', objectFit: 'cover' }}
       />
       <CardContent>
         <Typography
@@ -48,8 +52,11 @@ export default function CarCard({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            width: '15rem',
-            mb: '1.5rem',
+            width: '14rem',
+            mb: '1rem',
+            maxHeight: '6rem',
+            height: '6rem',
+            overflow: 'hidden',
           }}
           color="text.secondary"
           gutterBottom
@@ -86,7 +93,7 @@ export default function CarCard({
           sx={{
             fontSize: '1rem',
             fontWeight: '900',
-            width: '15rem',
+            width: '13rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -107,20 +114,20 @@ export default function CarCard({
             km
           </span>
         </Typography>
-        <Typography
+        {/* <Typography
           sx={{ mb: 1.5, mt: '1.5rem' }}
           color="text.secondary"
           component="p"
         >
           {description}
-        </Typography>
+        </Typography> */}
 
         <Button
+          fullWidth
           sx={{
-            width: '10rem',
             borderRadius: '15px',
             padding: '.5rem',
-            mt: '1.5rem',
+            mt: '.5rem',
             cursor: 'pointer',
           }}
           variant="contained"
@@ -132,7 +139,7 @@ export default function CarCard({
         isGoodPrice && (
           <Typography
             sx={{
-              position: 'relative',
+              position: 'absolute',
               backgroundColor: 'red',
               top: '0rem',
               height: '4rem',
