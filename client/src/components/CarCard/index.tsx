@@ -4,13 +4,14 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardMedia, CircularProgress } from '@mui/material';
+import './style.css';
 
 interface OutlineCardProps {
   image:string
   carName:string
   quality:number
   price:number
-  mailage:number
+  mileage:number
   description:string
   isGoodPrice:boolean
 }
@@ -20,7 +21,7 @@ export default function CarCard({
   carName,
   quality,
   price,
-  mailage,
+  mileage,
   description,
   isGoodPrice,
 }:OutlineCardProps) {
@@ -29,14 +30,14 @@ export default function CarCard({
       display: 'flex',
       maxWidth: '50vw',
       mb: '1rem',
+      borderRadius: '20px',
     }}
     >
       <CardMedia
         component="img"
-        height="300px"
         image={image}
         alt={carName}
-        sx={{ width: '300px', objectFit: 'cover' }}
+        sx={{ minWidth: '300px', objectFit: 'cover' }}
       />
       <CardContent>
         <Typography
@@ -102,7 +103,7 @@ export default function CarCard({
               fontWeight: '500',
             }}
           >
-            {mailage}
+            {mileage}
             km
           </span>
         </Typography>

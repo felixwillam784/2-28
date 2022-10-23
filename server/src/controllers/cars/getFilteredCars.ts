@@ -13,7 +13,6 @@ const getFilteredCars = async (req: Request) => {
     state = '',
     page = 1,
   } = req.query;
-
   const result = await getCars({
     brand, model, year, maxPrice, fuel, mileage, goodPrice, state, page,
   });

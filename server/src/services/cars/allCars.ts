@@ -48,6 +48,7 @@ const getCars = async ({
       offset: (page - 1) * CAR_NUM_IN_PAGE,
       limit: CAR_NUM_IN_PAGE,
       include: { model: Image },
+      distinct: true,
     },
   );
 

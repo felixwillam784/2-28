@@ -9,13 +9,12 @@
 }
 
 .filter {
-    padding-top: 1rem;
-    margin: 1.3rem;
+    margin: .4rem 1.3rem;
     width: 300px;
-    height: 700px;
-    /* border: solid 0.1px rgb(82, 82, 82); */
+    height: 620px;
     border-radius: 0.9rem;
     box-shadow: 4px 6px 9px 1px rgb(112, 112, 112);
+    position: fixed;
 }
 
 .title {
