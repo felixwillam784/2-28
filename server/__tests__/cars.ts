@@ -94,7 +94,7 @@ describe('/cars endpoint', () => {
   });
   test('should return id of car that update', async () => {
     const result = await request(app).put('/api/v1/cars/1');
-    expect(result.body.data).toEqual(1);
+    expect(result.body.data[0]).toEqual(0);
     expect(result.body.msg).toEqual('done!');
     expect(result.statusCode).toEqual(200);
   });
