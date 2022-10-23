@@ -4,7 +4,7 @@ import {
 
 const jwt = require('jsonwebtoken');
 
-const verifyToken = (role:string) => async (req:Request, res:Response, next:NextFunction) => {
+const verifyToken = (role:'admin' | 'user') => async (req:Request, res:Response, next:NextFunction) => {
   try {
     const { token } = req.cookies;
     const decoded = await jwt.verify(token, process.env.SECRET_KEY);
