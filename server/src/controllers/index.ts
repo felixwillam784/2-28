@@ -1,3 +1,7 @@
-import { getFilteredCars, getCarsById, deleteCarsById } from './cars';
+import {
+  getFilteredCars, getCarsById, updateCar, deleteCarsById,
+} from './cars';
 
-export { getFilteredCars, getCarsById, deleteCarsById };
+export {
+  getFilteredCars, getCarsById, updateCar, deleteCarsById,
+};
