@@ -12,6 +12,8 @@ const updateCarSchema = yup.object().shape({
   features: yup.array().of(yup.string()).notRequired().label('features'),
   transmission: yup.string().notRequired().label('transmission'),
   description: yup.string().notRequired().label('description'),
+  fuel: yup.string().notRequired().label('fuel'),
+  state: yup.string().notRequired().label('state'),
 });
 
 export default updateCarSchema;

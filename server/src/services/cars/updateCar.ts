@@ -3,9 +3,12 @@ import { Car } from '../../db/models';
 const updateCarServes = async (body, id) => {
   const car = await Car.update(
     { ...body },
-    { where: { id } },
+    {
+      returning: true,
+      where: { id },
+
+    },
   );
-  console.log(car);
   return car;
 };
 
