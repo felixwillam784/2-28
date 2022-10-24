@@ -167,4 +167,30 @@ describe('/cars endpoint', () => {
     expect(result.body.data[1][0].customerId).toEqual(1);
     expect(result.statusCode).toEqual(200);
   });
+  test('should return the data of user', async () => {
+    const result = await request(app).post('/api/v1/auth/login')
+      .send({ email: 'husam@gmail.com', password: '123456789' })
+      .expect(200);
+    expect(result.body).toEqual({ data: 'husam@gmail.com', msg: 'done' });
+  });
+  test('should return the password not match', async () => {
+    const result = await request(app).post('/api/v1/auth/login')
+      .send({ email: 'husam@gmail.com', password: '12345678' })
+      .expect(200);
+    expect(result.body).toEqual({ data: 'password not match', msg: 'done' });
+  });
+  test('should return the password not match', async () => {
+    const result = await request(app).post('/api/v1/auth/login')
+      .send({ email: 'hsam@gmail.com', password: '123456789' })
+      .expect(200);
+    expect(result.body).toEqual({
+      data: {
+        data: {
+          msg: 'user not found',
+        },
+        msg: 'done',
+      },
+      msg: 'done',
+    });
+  });
 });
