@@ -1,4 +1,5 @@
 import getFilteredCars from './getFilteredCars';
 import getCarsById from './getCarsById';
+import updateCar from './updateCars';
 
-export { getFilteredCars, getCarsById };
+export { getFilteredCars, getCarsById, updateCar };
