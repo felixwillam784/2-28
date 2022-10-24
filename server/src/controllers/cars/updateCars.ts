@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import { updateCarServes } from '../../services/cars';
-import updateCarSchema from '../../validation/updateCarSchema';
+import { updateCarSchema } from '../../validation';
 
 const updateCars = async (req: Request) => {
   const { body } = req;
