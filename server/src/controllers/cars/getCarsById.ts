@@ -9,7 +9,6 @@ const getCarsById = async (req: Request) => {
   });
   await schema.validate({ id });
   const result = await getCarInfo(id);
-
   return { status: 200, msg: 'done!', data: result };
 };
 

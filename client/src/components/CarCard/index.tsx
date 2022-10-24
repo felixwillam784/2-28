@@ -12,7 +12,6 @@ interface OutlineCardProps {
   quality:number
   price:number
   mileage:number
-  description:string
   isGoodPrice:boolean
 }
 
@@ -22,38 +21,47 @@ export default function CarCard({
   quality,
   price,
   mileage,
-  description,
   isGoodPrice,
 }:OutlineCardProps) {
   return (
     <Card sx={{
       display: 'flex',
-      maxWidth: '50vw',
+      flexDirection: 'column',
+      maxWidth: '19vw',
       mb: '1rem',
       borderRadius: '20px',
+      position: 'relative',
+      maxHeight: '25rem',
     }}
     >
       <CardMedia
         component="img"
         image={image}
         alt={carName}
-        sx={{ minWidth: '300px', objectFit: 'cover' }}
+        height="150rem"
+        sx={{ minWidth: '100%', objectFit: 'cover' }}
       />
-      <CardContent>
+      <CardContent sx={{
+        height: '50%',
+      }}
+      >
         <Typography
           sx={{
             color: 'black',
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: '900',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'start',
             justifyContent: 'space-between',
-            width: '15rem',
-            mb: '1.5rem',
+            width: '14rem',
+            mb: '1rem',
+            maxHeight: '3rem',
+            height: '3rem',
+            overflow: 'hidden',
           }}
           color="text.secondary"
           gutterBottom
-          component="h1"
+          component="h2"
         >
           {carName}
           <Box sx={{ position: 'relative', display: 'inline-flex' }}>
@@ -85,15 +93,16 @@ export default function CarCard({
         <Typography
           sx={{
             fontSize: '1rem',
-            fontWeight: '900',
-            width: '15rem',
+            fontWeight: '500',
+            width: '13rem',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            mt: '1rem',
           }}
           component="p"
         >
-          price:
+
           {price}
           $
           {' '}
@@ -107,20 +116,13 @@ export default function CarCard({
             km
           </span>
         </Typography>
-        <Typography
-          sx={{ mb: 1.5, mt: '1.5rem' }}
-          color="text.secondary"
-          component="p"
-        >
-          {description}
-        </Typography>
 
         <Button
+          fullWidth
           sx={{
-            width: '10rem',
             borderRadius: '15px',
             padding: '.5rem',
-            mt: '1.5rem',
+            mt: '.5rem',
             cursor: 'pointer',
           }}
           variant="contained"
@@ -132,7 +134,7 @@ export default function CarCard({
         isGoodPrice && (
           <Typography
             sx={{
-              position: 'relative',
+              position: 'absolute',
               backgroundColor: 'red',
               top: '0rem',
               height: '4rem',

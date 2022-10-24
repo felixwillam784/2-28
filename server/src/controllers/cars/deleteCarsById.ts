@@ -1,9 +1,12 @@
 import { Request } from 'express';
-import { deleteCars } from '../../services';
+import * as yup from 'yup';
 
 const deleteCarsById = async (req:Request) => {
   const { id } = req.params;
-  const del = await deleteCars(id);
-  return { status: 200, msg: 'done!', data: del };
+  const schema = yup.object({
+    id: yup.number().integer().required(),
+  });
+  await schema.validate({ id });
+  return { status: 200, msg: 'done!' };
 };
 export default deleteCarsById;
