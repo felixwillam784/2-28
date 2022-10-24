@@ -1,12 +1,19 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import * as yup from 'yup';
+import { deleteCars } from '../../services';
 
-const deleteCarsById = async (req:Request) => {
+const schema = yup.object({
+  id: yup.number().integer().required(),
+});
+const deleteCarsById = async (req:Request, res:Response) => {
   const { id } = req.params;
-  const schema = yup.object({
-    id: yup.number().integer().required(),
-  });
   await schema.validate({ id });
-  return { status: 200, msg: 'done!' };
+  const result = await deleteCars(id);
+  // console.log(result, 'sss');
+  // eslint-disable-next-line eqeqeq
+  if (result == 0) {
+    res.json({ msg: 'not found' });
+  }
+  return { status: 200, msg: 'done!', data: result };
 };
 export default deleteCarsById;

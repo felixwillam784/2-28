@@ -93,28 +93,31 @@ describe('/cars endpoint', () => {
     expect(result.statusCode).toEqual(200);
   });
   test('should delete  cars', async () => {
-    const result = await request(app).delete('/api/v1/cars/7');
-    expect(result.body.data).toEqual(1);
+    const result = await request(app).delete('/api/v1/cars/7')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
     expect(result.body.msg).toEqual('done!');
   });
   test('should delete  cars', async () => {
-    const result = await request(app).delete('/api/v1/cars/6');
-    expect(result.body.data).toEqual(1);
+    const result = await request(app).delete('/api/v1/cars/6')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
     expect(result.body.msg).toEqual('done!');
   });
   test('should delete  cars', async () => {
-    const result = await request(app).delete('/api/v1/cars/8');
-    expect(result.body.data).toEqual(1);
+    const result = await request(app).delete('/api/v1/cars/8')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
+    expect(result.body.msg).toEqual('done!');
     expect(result.body.msg).toEqual('done!');
   });
   test('should delete  cars', async () => {
-    const result = await request(app).delete('/api/v1/cars/10');
-    expect(result.body.data).toEqual(1);
+    const result = await request(app).delete('/api/v1/cars/10')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
+    expect(result.body.msg).toEqual('done!');
     expect(result.body.msg).toEqual('done!');
   });
   test('should delete  cars', async () => {
-    const result = await request(app).delete('/api/v1/cars/9');
-    expect(result.body.data).toEqual(1);
+    const result = await request(app).delete('/api/v1/cars/9')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
+    expect(result.body.msg).toEqual('done!');
     expect(result.body.msg).toEqual('done!');
   });
 });
