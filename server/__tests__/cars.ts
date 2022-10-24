@@ -184,13 +184,12 @@ describe('/cars endpoint', () => {
       .send({ email: 'hsam@gmail.com', password: '123456789' })
       .expect(200);
     expect(result.body).toEqual({
+
       data: {
-        data: {
-          msg: 'user not found',
-        },
-        msg: 'done',
+        msg: 'user not found',
       },
       msg: 'done',
+
     });
   });
 });
