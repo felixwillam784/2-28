@@ -2,10 +2,12 @@ import {
   afterAll, beforeAll, describe, expect, test,
 } from '@jest/globals';
 import request from 'supertest';
+import { config } from 'dotenv';
 import app from '../src/app';
 import buildDB from '../src/db/config/buildFakeData';
 import sequelize from '../src/db/config/connection';
 
+config();
 beforeAll(() => buildDB());
 afterAll(() => sequelize.close());
 function getRandomIndex(min, max) {
@@ -95,7 +97,7 @@ describe('/cars endpoint', () => {
   test('should return id of car that update', async () => {
     const result = await request(app).put('/api/v1/cars/1')
 
-      .set('Cookie', 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjF9.5bbTDHhlnCvs5ZDGfXcL_MU_4CCKzJ61wUDCGD_nWks');
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
     expect(result.body.data[0]).toEqual(0);
     expect(result.body.msg).toEqual('done!');
     expect(result.statusCode).toEqual(200);
