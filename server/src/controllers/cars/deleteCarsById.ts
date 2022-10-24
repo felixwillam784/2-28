@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import * as yup from 'yup';
 import createError from 'http-errors';
 import { deleteCars } from '../../services';
