@@ -15,7 +15,6 @@ const loginController = async (req:Request) => {
     return { status: 200, msg: 'done', data: 'password not match' };
   }
   const token = await generateToken(result);
-  console.log(token, 'token ');
   return {
     status: 200, msg: 'done', data: email, token,
   };
