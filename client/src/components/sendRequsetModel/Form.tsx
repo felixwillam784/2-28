@@ -13,19 +13,29 @@ import { useFormik } from 'formik';
 import brands from '../../assets/data/brands.json';
 import { addCarSchema } from '../../helpers/validationSchema';
 
+const convertToKM = (value: number, type: string) => {
+  if (type === 'mile') return value * 1.609344;
+  return value;
+};
+
 function SellCarModal() {
   const formik = useFormik({
     initialValues: {
       brand: '',
       model: '',
-      year: '',
-      milage: [],
-      price: '',
+      year: 0,
+      milage: 0,
+      price: 0,
       location: '',
+      type: '',
     },
     validationSchema: addCarSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
+      const newValue = Math.floor(convertToKM(values.milage, values.type));
+      // eslint-disable-next-line no-param-reassign
+      values.milage = newValue;
       console.log(values);
+      resetForm();
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -132,7 +142,8 @@ function SellCarModal() {
             id="year"
             name="year"
             label="year"
-            value={formik.values.year}
+            type="number"
+            value={!formik.values.year ? '' : formik.values.year}
             onChange={formik.handleChange}
             error={formik.touched.year && Boolean(formik.errors.year)}
             helperText={formik.touched.year && formik.errors.year}
@@ -163,7 +174,8 @@ function SellCarModal() {
               id="milage"
               name="milage"
               label="milage"
-              value={formik.values.milage}
+              type="number"
+              value={!formik.values.milage ? '' : formik.values.milage}
               onChange={formik.handleChange}
               error={formik.touched.milage && Boolean(formik.errors.milage)}
               helperText={formik.touched.milage && formik.errors.milage}
@@ -177,12 +189,12 @@ function SellCarModal() {
                 width: '15rem',
               }}
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="mile"
+              defaultValue="km"
               name="milage"
               onChange={formik.handleChange}
             >
-              <FormControlLabel value="mile" control={<Radio />} label="mile" />
-              <FormControlLabel value="km" control={<Radio />} label="km" />
+              <FormControlLabel name="type" value="km" control={<Radio />} label="km" />
+              <FormControlLabel name="type" value="mile" control={<Radio />} label="mile" />
             </RadioGroup>
           </Typography>
         </Typography>
@@ -201,7 +213,8 @@ function SellCarModal() {
             id="price"
             name="price"
             label="price"
-            value={formik.values.price}
+            type="number"
+            value={!formik.values.price ? '' : formik.values.price}
             onChange={formik.handleChange}
             error={formik.touched.price && Boolean(formik.errors.price)}
             helperText={formik.touched.price && formik.errors.price}
