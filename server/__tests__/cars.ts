@@ -92,4 +92,29 @@ describe('/cars endpoint', () => {
     expect(result.body.data.rows[0].price).toBeLessThanOrEqual(200000);
     expect(result.statusCode).toEqual(200);
   });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/7');
+    expect(result.body.data).toEqual(1);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/6');
+    expect(result.body.data).toEqual(1);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/8');
+    expect(result.body.data).toEqual(1);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/10');
+    expect(result.body.data).toEqual(1);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/9');
+    expect(result.body.data).toEqual(1);
+    expect(result.body.msg).toEqual('done!');
+  });
 });
