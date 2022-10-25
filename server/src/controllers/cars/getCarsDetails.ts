@@ -6,6 +6,9 @@ const getCarsDetails = async (req: Request) => {
     state = '',
     page = 1,
   } = req.query;
+  if (!state) {
+    return { status: 200, msg: 'Not found' };
+  }
   const result = await getCarsCustomInfo(state, page);
   if (result.rows.length === 0) {
     return { status: 200, msg: 'Not found', data: result };
