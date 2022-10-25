@@ -9,6 +9,6 @@ const carsRouter = Router();
 
 carsRouter.get('/', ExpressWrapper(getFilteredCars));
 carsRouter.get('/', ExpressWrapper(getCarsById));
-carsRouter.delete('/cars/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
+carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCar));
 export default carsRouter;
