@@ -167,6 +167,11 @@ describe('/cars endpoint', () => {
     expect(result.body.data[1][0].customerId).toEqual(1);
     expect(result.statusCode).toEqual(200);
   });
+  test('should delete  cars', async () => {
+    const result = await request(app).delete('/api/v1/cars/9')
+      .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
+    expect(result.body.msg).toEqual('done!');
+  });
   test('should return the data of user', async () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'husam@gmail.com', password: '123456789' })

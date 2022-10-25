@@ -1,11 +1,14 @@
 import { Router } from 'express';
 import ExpressWrapper from './ExpressWrapper';
-import { getFilteredCars, getCarsById, updateCar } from '../controllers';
 import authMiddleware from '../middlewares/authMiddleware';
+import {
+  getFilteredCars, getCarsById, updateCar, deleteCarsById,
+} from '../controllers';
 
 const carsRouter = Router();
 
 carsRouter.get('/', ExpressWrapper(getFilteredCars));
 carsRouter.get('/', ExpressWrapper(getCarsById));
+carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCar));
 export default carsRouter;

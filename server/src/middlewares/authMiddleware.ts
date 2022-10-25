@@ -11,6 +11,7 @@ import verifyToken from '../helpers/verifyToken';
 const authMiddleware = (role:'admin' | 'user') => async (req:Request, res:Response, next:NextFunction) => {
   try {
     const { token } = req.cookies;
+
     const decoded = await verifyToken(token);
     res.locals.user = decoded;
 
