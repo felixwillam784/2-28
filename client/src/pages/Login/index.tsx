@@ -1,9 +1,14 @@
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
+import httpInstance from '../../services/axiosCongif';
 import './style.css';
 
 function Login() {
+  const [responseError, setResponseError] = useState<string>('');
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -11,7 +16,16 @@ function Login() {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const login = async () => {
+        try {
+          setResponseError('');
+          await httpInstance.post('/auth/login', values);
+          navigate('/');
+        } catch (error:any) {
+          setResponseError(error.response.data.message);
+        }
+      };
+      login();
     },
   });
 
@@ -53,6 +67,15 @@ function Login() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
+          {
+            responseError
+              && (
+              <Typography sx={{ color: 'red' }} component="p">
+                {responseError}
+              </Typography>
+              )
+
+          }
           <Button
             className="button"
             color="primary"
