@@ -176,13 +176,13 @@ describe('/cars endpoint', () => {
   test('should return the password not match', async () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'husam@gmail.com', password: '12345678' })
-      .expect(200);
+      .expect(400);
     expect(result.body).toEqual({ data: 'password not match', msg: 'done' });
   });
   test('should return the password not match', async () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'hsam@gmail.com', password: '123456789' })
-      .expect(200);
+      .expect(400);
     expect(result.body).toEqual({
 
       data: {
