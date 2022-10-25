@@ -18,7 +18,6 @@ const getFilteredCars = async (req: Request) => {
   });
 
   if (result.rows.length === 0) {
-    // console.log(result.rows);
     return { status: 200, msg: 'Not found', data: result };
   }
   return { status: 200, msg: 'done!', data: result };

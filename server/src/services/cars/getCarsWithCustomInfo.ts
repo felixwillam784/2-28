@@ -11,6 +11,7 @@ const getCarsDetailsQuery = async (state, page) => {
       { model: Customer, attributes: ['fullName', 'phoneNumber', 'email'] },
     ],
     limit: CAR_NUM_IN_PAGE,
+    distinct: true,
   });
   return cars;
 };
