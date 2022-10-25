@@ -5,7 +5,7 @@ import authMiddleware from '../middlewares/authMiddleware';
 
 const carsRouter = Router();
 
-carsRouter.get('/cars', ExpressWrapper(getFilteredCars));
-carsRouter.get('/cars/:id', ExpressWrapper(getCarsById));
-carsRouter.put('/cars/:id', authMiddleware('admin'), ExpressWrapper(updateCar));
+carsRouter.get('/', ExpressWrapper(getFilteredCars));
+carsRouter.get('/', ExpressWrapper(getCarsById));
+carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCar));
 export default carsRouter;

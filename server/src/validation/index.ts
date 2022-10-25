@@ -1,4 +1,4 @@
 import updateCarSchema from './updateCarSchema';
+import loginSchema from './loginSchema';
 
-// eslint-disable-next-line import/prefer-default-export
-export { updateCarSchema };
+export { updateCarSchema, loginSchema };
