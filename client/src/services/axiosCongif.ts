@@ -6,6 +6,7 @@ function handleError(error: AxiosError) {
   }
   const { response }: AxiosError = error;
   const { status, data }: any = response;
+  console.log({ status, data }, '{ status, data }');
   return { status, data };
 }
 
@@ -25,10 +26,8 @@ httpInstance.interceptors.request.use(async (config) => {
 
 httpInstance.interceptors.response.use(
   (res) => res.data,
-  (error) => {
-    handleError(error);
-    return Promise.reject(error);
-  },
+  (error) => handleError(error)
+  ,
 );
 
 export default httpInstance;

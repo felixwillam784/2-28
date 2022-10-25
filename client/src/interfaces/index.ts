@@ -52,3 +52,8 @@ export interface Params {
   page?: number,
   state: string,
 }
+
+export interface LoginResponseError {
+  status: number,
+  data: { message:string }
+}

@@ -1,20 +1,29 @@
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../helpers/validationSchema';
+import httpInstance from '../../services/axiosCongif';
 import './style.css';
 
 function Login() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const response = await httpInstance.post('/auth/login', values);
+      if (response.data.message === 'user not found') {
+        formik.errors.email = response.data.message;
+      } else if (response.data.message === 'password not match') {
+        formik.errors.password = response.data.message;
+      } else {
+        navigate('/');
+      }
     },
   });
-
   return (
     <div className="loginPage">
       <div
