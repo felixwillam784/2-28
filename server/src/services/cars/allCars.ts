@@ -31,11 +31,9 @@ const getCars = async ({
   if (year.trim()) {
     where.year = +year;
   }
-
   if (fuel.trim()) {
     where.fuel = fuel.trim();
   }
-
   if (+goodPrice) {
     where.isGoodPrice = Boolean(+goodPrice);
   }
