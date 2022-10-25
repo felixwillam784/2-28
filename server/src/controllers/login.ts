@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import bcrypt from 'bcryptjs';
-import { createError } from 'http-errors';
+import createError from 'http-errors';
 import { loginSchema } from '../validation';
 import { loginQuery } from '../services';
 import { generateToken } from '../helpers';
