@@ -1,7 +1,7 @@
 import { Customer } from '../db/models';
 
-const loginServices = async ({ email }) => {
-  const userLogin:any = await Customer.findOne({ where: { email } });
-  return userLogin;
+const loginQuery = async ({ email }) => {
+  const userInfo:any = await Customer.findOne({ where: { email } });
+  return userInfo;
 };
-export default loginServices;
+export default loginQuery;

@@ -1,4 +1,4 @@
 import { getCars, getCarInfo } from './cars';
-import loginServices from './login';
+import loginQuery from './login';
 
-export { getCars, getCarInfo, loginServices };
+export { getCars, getCarInfo, loginQuery };
