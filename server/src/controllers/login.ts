@@ -10,11 +10,11 @@ const loginController = async (req:Request) => {
   await loginSchema.validate({ email, password });
   const result:{ password:string, id:number, fullName:string } = await findUser({ email });
   if (!result) {
-    throw createError(400, 'there is no user ');
+    throw createError(400, 'wrong email or password');
   }
   const isCompare = await bcrypt.compare(password, result.password);
   if (!isCompare) {
-    throw createError(400, 'wrong password');
+    throw createError(400, 'wrong email or password');
   }
   const token = await generateToken({ userId: result.id, role: 'user' });
   return {
