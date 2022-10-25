@@ -177,12 +177,12 @@ describe('/cars endpoint', () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'husam@gmail.com', password: '12345678' })
       .expect(400);
-    expect(result.body.message).toEqual('password not match');
+    expect(result.body.message).toEqual('wrong password');
   });
   test('should return the password not match', async () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'hsam@gmail.com', password: '123456789' })
       .expect(400);
-    expect(result.body.message).toEqual('user not found');
+    expect(result.body.message).toEqual('there is no user ');
   });
 });

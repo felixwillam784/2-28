@@ -1,12 +1,13 @@
 import { Button, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import history from 'history/browser';
+// import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosCongif';
 import './style.css';
 
 function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -20,7 +21,7 @@ function Login() {
       } else if (response.data.message === 'password not match') {
         formik.errors.password = response.data.message;
       } else {
-        navigate('/');
+        history.back();
       }
     },
   });
