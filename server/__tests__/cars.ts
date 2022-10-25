@@ -92,4 +92,16 @@ describe('/cars endpoint', () => {
     expect(result.body.data.rows[0].price).toBeLessThanOrEqual(200000);
     expect(result.statusCode).toEqual(200);
   });
+  test('should return details cars', async () => {
+    const result = await request(app).get('/api/v1/admin/cars?state=pending&page=1');
+    expect(result.body.data.count).toEqual(3);
+    expect(result.body.data.rows.length).toEqual(3);
+    expect(result.body.data.rows[0].id).toEqual(14);
+  });
+  test('should return details cars', async () => {
+    const result = await request(app).get('/api/v1/admin/cars?state=on-market&page=1');
+    expect(result.body.data.count).toEqual(13);
+    expect(result.body.data.rows.length).toEqual(10);
+    expect(result.body.data.rows[0].id).toEqual(1);
+  });
 });

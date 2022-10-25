@@ -1,3 +1,3 @@
-import { getCars, getCarInfo } from './cars';
+import { getCars, getCarInfo, getCarsCustomInfo } from './cars';
 
-export { getCars, getCarInfo };
+export { getCars, getCarInfo, getCarsCustomInfo };

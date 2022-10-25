@@ -12,7 +12,6 @@ type Controllers = (req: Request, res: Response, next: NextFunction) => Promise<
 const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, next) => {
   try {
     const { status, data = null, msg = null } = await fn(req, res, next);
-
     res.status(status).json({ msg, data });
   } catch (error: any) {
     // may need change
