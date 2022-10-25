@@ -25,7 +25,10 @@ httpInstance.interceptors.request.use(async (config) => {
 
 httpInstance.interceptors.response.use(
   (res) => res.data,
-  (error) => handleError(error)
+  (error) => {
+    handleError(error);
+    return Promise.reject(error);
+  }
   ,
 );
 

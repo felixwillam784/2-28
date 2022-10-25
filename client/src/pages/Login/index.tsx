@@ -1,30 +1,35 @@
-import { Button, TextField } from '@mui/material';
-import history from 'history/browser';
-// import { useNavigate } from 'react-router-dom';
+import { Button, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosCongif';
+// import CustomizedSnackbars from '../../components/snackbar';
 import './style.css';
 
 function Login() {
-  // const navigate = useNavigate();
+  const [responseError, setResponseError] = useState<{ message: string }>();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      const response = await httpInstance.post('/auth/login', values);
-      if (response.data.message === 'user not found') {
-        formik.errors.email = response.data.message;
-      } else if (response.data.message === 'password not match') {
-        formik.errors.password = response.data.message;
-      } else {
-        history.back();
-      }
+    onSubmit: (values) => {
+      const login = async () => {
+        try {
+          setResponseError({ message: '' });
+          await httpInstance.post('/auth/login', values);
+          navigate('/');
+        } catch (error:any) {
+          setResponseError(error.response.data);
+        }
+      };
+      login();
     },
   });
+
   return (
     <div className="loginPage">
       <div
@@ -63,6 +68,14 @@ function Login() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
+          {
+            responseError ? (
+              <Typography sx={{ color: 'red' }} component="p">
+                {responseError.message}
+              </Typography>
+            ) : ''
+
+          }
           <Button
             className="button"
             color="primary"
