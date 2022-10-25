@@ -1,6 +1,8 @@
-import { getCars, getCarInfo, getCarsCustomInfo } from './cars';
-import loginQuery from './login';
+import {
+  getCars, getCarInfo, deleteCars, getCarsCustomInfo,
+} from './cars';
+import findUser from './login';
 
 export {
-  getCars, getCarInfo, loginQuery, getCarsCustomInfo,
+  getCars, getCarInfo, findUser, deleteCars, getCarsCustomInfo,
 };

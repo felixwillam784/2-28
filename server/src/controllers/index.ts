@@ -1,8 +1,8 @@
 import {
-  getFilteredCars, getCarsById, getCarsDetails, updateCars,
+  getFilteredCars, getCarsById, updateCar, deleteCarsById, getCarsDetails,
 } from './cars';
 import loginController from './login';
 
 export {
-  getFilteredCars, getCarsById, getCarsDetails, updateCars, loginController,
+  getFilteredCars, getCarsById, updateCar, loginController, deleteCarsById, getCarsDetails,
 };
