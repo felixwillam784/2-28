@@ -6,7 +6,6 @@ function handleError(error: AxiosError) {
   }
   const { response }: AxiosError = error;
   const { status, data }: any = response;
-  console.log({ status, data }, '{ status, data }');
   return { status, data };
 }
 
