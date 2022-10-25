@@ -5,8 +5,6 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import RequestsTable from '../requestsTable';
 
-import './style.css';
-
 interface TabPanelProps {
   children: React.ReactNode;
   index: number;
