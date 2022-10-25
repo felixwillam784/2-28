@@ -24,13 +24,9 @@ export interface CarWithImages extends Car {
 
 export interface CarWithCustomerInfo extends Car {
   customer:{
-    id: number,
     fullName: string,
     email: string,
-    password: string,
     phoneNumber: string,
-    createdAt: string,
-    updatedAt: string,
   }
 }
 
