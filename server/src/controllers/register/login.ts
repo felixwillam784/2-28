@@ -1,9 +1,9 @@
 import { Request } from 'express';
 import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
-import { loginSchema } from '../validation';
-import { findUser } from '../services';
-import { generateToken } from '../helpers';
+import { loginSchema } from '../../validation';
+import { findUser } from '../../services';
+import { generateToken } from '../../helpers';
 
 const loginController = async (req:Request) => {
   const { email, password } = req.body;

@@ -1,8 +1,17 @@
 import {
-  getCars, getCarInfo, deleteCars, getCarsCustomInfo,
+  getCars,
+  getCarInfo,
+  deleteCars,
+  getCarsCustomInfo,
+  addCarService,
 } from './cars';
-import findUser from './login';
+import findUser from './register';
 
 export {
-  getCars, getCarInfo, findUser, deleteCars, getCarsCustomInfo,
+  getCars,
+  getCarInfo,
+  findUser,
+  deleteCars,
+  getCarsCustomInfo,
+  addCarService,
 };
