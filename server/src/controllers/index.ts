@@ -1,3 +1,8 @@
-import { getFilteredCars, getCarsById, getCarsDetails } from './cars';
+import {
+  getFilteredCars, getCarsById, getCarsDetails, updateCars,
+} from './cars';
+import loginController from './login';
 
-export { getFilteredCars, getCarsById, getCarsDetails };
+export {
+  getFilteredCars, getCarsById, getCarsDetails, updateCars, loginController,
+};

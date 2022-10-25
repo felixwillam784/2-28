@@ -1,11 +1,14 @@
 import { Router } from 'express';
 import ExpressWrapper from './ExpressWrapper';
-import { getFilteredCars, getCarsById, getCarsDetails } from '../controllers';
+import {
+  getFilteredCars, getCarsById, updateCars, getCarsDetails,
+} from '../controllers';
+import authMiddleware from '../middlewares/authMiddleware';
 
 const carsRouter = Router();
 
-carsRouter.get('/cars', ExpressWrapper(getFilteredCars));
-carsRouter.get('/cars/:id', ExpressWrapper(getCarsById));
+carsRouter.get('/', ExpressWrapper(getFilteredCars));
+carsRouter.get('/', ExpressWrapper(getCarsById));
+carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.get('/admin/cars', ExpressWrapper(getCarsDetails));
-
 export default carsRouter;
