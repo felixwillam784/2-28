@@ -4,11 +4,10 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosCongif';
-// import CustomizedSnackbars from '../../components/snackbar';
 import './style.css';
 
 function Login() {
-  const [responseError, setResponseError] = useState<{ message: string }>();
+  const [responseError, setResponseError] = useState<string>('');
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -19,11 +18,11 @@ function Login() {
     onSubmit: (values) => {
       const login = async () => {
         try {
-          setResponseError({ message: '' });
+          setResponseError('');
           await httpInstance.post('/auth/login', values);
           navigate('/');
         } catch (error:any) {
-          setResponseError(error.response.data);
+          setResponseError(error.response.data.message);
         }
       };
       login();
@@ -69,11 +68,12 @@ function Login() {
             helperText={formik.touched.password && formik.errors.password}
           />
           {
-            responseError ? (
+            responseError
+              && (
               <Typography sx={{ color: 'red' }} component="p">
-                {responseError.message}
+                {responseError}
               </Typography>
-            ) : ''
+              )
 
           }
           <Button
