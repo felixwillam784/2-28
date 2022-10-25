@@ -8,7 +8,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import brands from '../../assets/data/brands.json';
 import models from '../../assets/data/models.json';
-import { CarsData, CarsFilterProps, Params } from '../../interfaces';
+import { CarsWithImagesData, CarsFilterProps, Params } from '../../interfaces';
 import httpInstance from '../../services/axiosCongif';
 import CustomizedSnackbars from '../snackbar';
 
@@ -139,7 +139,7 @@ function CarsFilter({
       try {
         setLoading(true);
         setOpenSnackBar(false);
-        const response: CarsData = await httpInstance.get('/cars?', { params });
+        const response: CarsWithImagesData = await httpInstance.get('/cars?', { params });
         setCars(response.data.rows);
         setPagination(response.data.count);
         if (Math.ceil(response.data.count / 9) < currentPage) {

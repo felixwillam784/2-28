@@ -5,9 +5,7 @@ export interface Car {
   description:string,
   features:Array<string>,
   fuel:string,
-  id:number
-  images:Array<{ carId:number,
-    createdAt:string, id:number, image:string, updatedAt:string }>,
+  id:number,
   isGoodPrice:boolean,
   location:string,
   mileage:number,
@@ -17,15 +15,28 @@ export interface Car {
   state:string,
   transmission:string,
   updatedAt:string,
-  year:number
+  year:number,
+}
+export interface CarWithImages extends Car {
+  images:Array<{ carId:number,
+    createdAt:string, id:number, image:string, updatedAt:string }>,
 }
 
-export type CarsRow = Array<Car>;
+export interface CarWithCustomerInfo extends Car {
+  customer:{
+    fullName: string,
+    email: string,
+    phoneNumber: string,
+  }
+}
+
+export type CarsWithImagesRow = Array<CarWithImages>;
+export type CarsWithCustomerRow = Array<CarWithCustomerInfo>;
 
 export type CarsCount = number;
 
 export interface CarsFilterProps {
-  setCars:React.Dispatch<React.SetStateAction<CarsRow | []>>,
+  setCars:React.Dispatch<React.SetStateAction<CarsWithImagesRow | []>>,
   setPagination : React.Dispatch<React.SetStateAction<number>>,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   currentPage: number,
@@ -33,11 +44,18 @@ export interface CarsFilterProps {
   setCurrentPAge: React.Dispatch<React.SetStateAction<number>>
 }
 
-export interface CarsData {
+export interface CarsWithImagesData {
   msg: string,
   data:{
     count: CarsCount,
-    rows: CarsRow
+    rows: CarsWithImagesRow
+  }
+}
+export interface CarsWithCustomerData {
+  msg: string,
+  data:{
+    count: CarsCount,
+    rows: CarsWithCustomerRow
   }
 }
 

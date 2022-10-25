@@ -1,0 +1,25 @@
+.details-container{
+  width: 90%;
+  margin: 0.5rem auto;
+  padding: 1rem;
+}
+
+.info-title{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #f5965b;
+}
+
+.sub2-details-container{
+  margin-left: 1rem;
+  height: 7rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.info-title{
+ font-weight: 500 !important;
+ font-size: 18px !important;
+}
