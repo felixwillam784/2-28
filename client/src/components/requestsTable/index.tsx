@@ -342,18 +342,18 @@ const carsInfo = {
 };
 
 type Props = {
-  status : string
+  state : string
 };
 
 function RequestsTable(props:Props) {
-  const { status } = props;
+  const { state } = props;
   const [carsData, setCarsData] = useState<CarsWithCustomerData >();
   const [pageCount, setPageCount] = useState<number>(1);
-  const [requestsState, setRequestsState] = useState<string>(status);
 
   useEffect(() => {
     setCarsData(carsInfo);
-  }, [requestsState, pageCount]);
+    console.log(state);
+  }, [state, pageCount]);
 
   return (
     <Box>
@@ -373,7 +373,7 @@ function RequestsTable(props:Props) {
           </TableHead>
           <TableBody>
             {carsData?.data.rows.map((row:CarWithCustomerInfo) => (
-              <Row key={row.model} state={requestsState} car={row} />
+              <Row key={row.model} state={state} car={row} />
             ))}
           </TableBody>
         </Table>

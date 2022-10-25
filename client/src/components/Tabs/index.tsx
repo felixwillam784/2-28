@@ -70,10 +70,10 @@ export default function VerticalTabs() {
         <Tab sx={{ fontSize: '18px' }} label="To check" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <RequestsTable status="pending" />
+        <RequestsTable state="pending" />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <RequestsTable status="under-check" />
+        <RequestsTable state="under-check" />
       </TabPanel>
     </Box>
   );
