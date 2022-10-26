@@ -8,7 +8,7 @@ import {
 const carsRouter = Router();
 
 carsRouter.get('/', ExpressWrapper(getFilteredCars));
-carsRouter.get('/:id', ExpressWrapper(getCarsById));
+carsRouter.get('/car/:id', ExpressWrapper(getCarsById));
 carsRouter.get('/dashboard', authMiddleware('admin'), ExpressWrapper(getCarsDetails));
 carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCar));

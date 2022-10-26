@@ -15,7 +15,7 @@ function Car() {
   useEffect(() => {
     const getCarInfo = async () => {
       setIsLoading(true);
-      const response = await httpInstance.get(`/cars/${id}`);
+      const response = await httpInstance.get(`/cars/car/${id}`);
       setCarInfo(response.data[0]);
       setIsLoading(false);
       // eslint-disable-next-line no-empty
