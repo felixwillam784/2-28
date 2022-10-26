@@ -3,7 +3,7 @@ import { Pagination, TextField } from '@mui/material';
 import { useState } from 'react';
 import CarCard from '../../components/CarCard';
 import CarsFilter from '../../components/CarsFilter';
-import CustomSkeleton from '../../components/skeletons/skeleton';
+import { CarSkeleton } from '../../components/skeletons';
 import { CarsCount, CarsWithImagesRow } from '../../interfaces';
 import './style.css';
 
@@ -44,10 +44,10 @@ function Cars() {
           ? (
             <div className="car_wrapper">
 
-              <CustomSkeleton />
-              <CustomSkeleton />
-              <CustomSkeleton />
-              <CustomSkeleton />
+              <CarSkeleton />
+              <CarSkeleton />
+              <CarSkeleton />
+              <CarSkeleton />
             </div>
           )
 

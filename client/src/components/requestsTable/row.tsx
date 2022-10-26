@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -11,56 +11,33 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { CarsWithCustomerRow, CarWithCustomerInfo } from '../../interfaces';
-import CustomizedSnackbars from '../snackbar';
+import { RowProps } from '../../interfaces';
 
-type Props = { car:CarWithCustomerInfo, state:string,
-  setCarsData:React.Dispatch<React.SetStateAction<CarsWithCustomerRow>>,
-  setOpenSnackBar:React.Dispatch<React.SetStateAction<boolean>>,
-  setSnackbarMessage:React.Dispatch<React.SetStateAction<string>>,
-  setSnackbarType:React.Dispatch<React.SetStateAction<'success' | 'error'>>,
-};
-
-function Row(props:Props) {
+function Row(props:RowProps) {
   const {
-    car, state, setCarsData, setOpenSnackBar, setSnackbarMessage, setSnackbarType,
+    car, state, setCarsData, setSnackBarProperties,
   } = props;
   const [open, setOpen] = useState(false);
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSnackBar(false);
-  };
-
-  const handleReject = async (id:number) => {
+  const deleteCar = async (id:number) => {
     try {
-      setOpenSnackBar(false);
+      setSnackBarProperties((preState) => ({ ...preState, open: false }));
       const response = await httpInstance.delete(`/cars/${id}`);
       setCarsData((prevState) => prevState.filter(((element) => element.id !== car.id)));
-      setSnackbarMessage('Reject request successfully');
-      setSnackbarType('success');
-      setOpenSnackBar(true);
+      setSnackBarProperties({ open: true, message: 'Sell request deleted successfully', type: 'success' });
     } catch (err) {
-      setSnackbarMessage('something went wrong!');
-      setSnackbarType('error');
-      setOpenSnackBar(true);
+      setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
     }
   };
 
   const handleAccept = async (id:number) => {
     try {
-      setOpenSnackBar(false);
+      setSnackBarProperties((preState) => ({ ...preState, open: false }));
       const response = await httpInstance.put(`/cars/${id}`, { state: 'under-check' });
       setCarsData((prevState) => prevState.filter(((element) => element.id !== car.id)));
-      setSnackbarMessage('Accept request successfully');
-      setSnackbarType('success');
-      setOpenSnackBar(true);
+      setSnackBarProperties({ open: true, message: 'Sell request accepted successfully', type: 'success' });
     } catch (err) {
-      setSnackbarMessage('something went wrong!');
-      setSnackbarType('error');
-      setOpenSnackBar(true);
+      setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
     }
   };
 
@@ -101,7 +78,7 @@ function Row(props:Props) {
               </Button>
             )}
 
-          <Button onClick={() => handleReject(car.id)} variant="contained" color="error">
+          <Button onClick={() => deleteCar(car.id)} variant="contained" color="error">
             Reject
           </Button>
         </TableCell>
