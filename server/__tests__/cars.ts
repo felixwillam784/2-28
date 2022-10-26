@@ -204,4 +204,12 @@ describe('/cars endpoint', () => {
       .expect(400);
     expect(result.body.message).toEqual('wrong email or password');
   });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo12345@gmail.com', password: '123456789', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(200);
+    expect(result.body.msg).toEqual('done!');
+  });
 });
