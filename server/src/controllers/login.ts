@@ -8,7 +8,8 @@ import { generateToken } from '../helpers';
 const loginController = async (req:Request) => {
   const { email, password } = req.body;
   await loginSchema.validate({ email, password });
-  const result:{ password:string, id:number, fullName:string } = await findUser({ email });
+  const result:{ password:string, id:number, fullName:string,
+    email: string } = await findUser({ email });
   if (!result) {
     throw createError(400, 'wrong email or password');
   }
@@ -18,7 +19,11 @@ const loginController = async (req:Request) => {
   }
   const token = await generateToken({ userId: result.id, role: 'user' });
   return {
-    status: 200, msg: 'done', data: email, token,
+    status: 200,
+    data: {
+      id: result.id, email: result.email, userName: result.fullName, role: 'user',
+    },
+    token,
   };
 };
 
