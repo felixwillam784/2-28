@@ -12,13 +12,21 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>((
 interface Snackbars {
   open: boolean,
   handleClose: (event?: React.SyntheticEvent | Event, reason?: string) => void,
-  err:string
+  message:string,
+  type:'error' | 'success'
 }
-export default function CustomizedSnackbars({ open, handleClose, err }:Snackbars) {
+export default function CustomizedSnackbars({
+  open, handleClose, message, type,
+}:Snackbars) {
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} sx={{ width: '100%' }} severity="error">{err}</Alert>
+      <Snackbar
+        open={open}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} sx={{ width: '100%' }} severity={type}>{message}</Alert>
       </Snackbar>
     </Stack>
   );

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
-import httpInstance from '../../services/axiosCongif';
+import httpInstance from '../../services/axiosConfig';
 import './style.css';
 
 function Login() {

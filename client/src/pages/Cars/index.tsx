@@ -3,7 +3,7 @@ import { Pagination, TextField } from '@mui/material';
 import { useState } from 'react';
 import CarCard from '../../components/CarCard';
 import CarsFilter from '../../components/CarsFilter';
-import CustomSkeleton from '../../components/skeleton';
+import CustomSkeleton from '../../components/skeletons/skeleton';
 import { CarsCount, CarsWithImagesRow } from '../../interfaces';
 import './style.css';
 
