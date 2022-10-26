@@ -5,11 +5,12 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { StepContent, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import SellCarModal from './sendRequsetModel/Form';
 
-const steps = [{ label: 'Car Into', component: 'first' }, { label: 'Car Image', component: 'second' }];
 
 export default function CustomStepper() {
+  const steps = [{ label: 'Car Into', component: 'first' }, { label: 'Car Image', component: 'second' }];
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -31,13 +32,13 @@ export default function CustomStepper() {
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
-        {steps.map(({ label, component }) => (
+        {steps.map(({ label }) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
-            <StepContent>{component}</StepContent>
           </Step>
         ))}
       </Stepper>
+      {steps[activeStep].component}
       {activeStep === steps.length ? (
         <>
           <Typography sx={{ mt: 2, mb: 1 }}>

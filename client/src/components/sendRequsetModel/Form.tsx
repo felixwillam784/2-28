@@ -38,17 +38,17 @@ function SellCarModal() {
         alignItems: 'center',
       }}
     >
-      <Typography sx={{ fontSize: '1.7rem' }} component="h2">
-        Sell Your Car Now!
-      </Typography>
-      <hr
-        style={{
-          height: '.3rem',
-          width: '20rem',
-          backgroundColor: '#0A20E6',
-          marginBottom: '.5rem',
-        }}
-      />
+    {/* //   <Typography sx={{ fontSize: '1.7rem' }} component="h2">
+    //     Sell Your Car Now!
+    //   </Typography>
+    //   <hr
+    //     style={{
+    //       height: '.3rem',
+    //       width: '20rem',
+    //       backgroundColor: '#0A20E6',
+    //       marginBottom: '.5rem',
+    //     }}
+    //   /> */}
       <form
         style={{
           maxHeight: '80vh',
