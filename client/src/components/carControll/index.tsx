@@ -1,5 +1,5 @@
 import './style.css';
-import { Button, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import { Elements } from '@stripe/react-stripe-js';
 
 import { useState } from 'react';
@@ -34,9 +34,11 @@ function CarControll() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Elements stripe={stripePromise} options={options}>
-          <StripeForm />
-        </Elements>
+        <Box>
+          <Elements stripe={stripePromise} options={options}>
+            <StripeForm />
+          </Elements>
+        </Box>
       </Modal>
     </>
 
