@@ -6,8 +6,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
-import SellCarModal from './sendRequsetModel/Form';
-
 
 export default function CustomStepper() {
   const steps = [{ label: 'Car Into', component: 'first' }, { label: 'Car Image', component: 'second' }];
