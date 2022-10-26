@@ -16,13 +16,13 @@ const signupController = async (req:Request) => {
   const result = await checkEmail({ email });
 
   if (result.length) {
-    throw createError(400, 'this email is signup');
+    throw createError(400, 'this email is registered');
   }
   const hashedPassword = await bcrypt.hash(password, 12);
-  const res = await signupUser({
+  const user = await signupUser({
     email, password: hashedPassword, phoneNumber, fullName,
   });
-  const token = await generateToken({ userId: res, role: 'user' });
-  return { status: 200, msg: 'done!', data: token };
+  const token = await generateToken({ userId: user, role: 'user' });
+  return { status: 201, msg: 'done!', data: token };
 };
 export default signupController;
