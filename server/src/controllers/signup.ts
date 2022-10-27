@@ -23,6 +23,6 @@ const signupController = async (req:Request) => {
     email, password: hashedPassword, phoneNumber, fullName,
   });
   const token = await generateToken({ userId: user, role: 'user' });
-  return { status: 201, msg: 'done!', data: token };
+  return { status: 201, msg: 'done!', token };
 };
 export default signupController;
