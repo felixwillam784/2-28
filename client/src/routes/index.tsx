@@ -6,9 +6,7 @@ import Profile from '../pages/Profile';
 // import Cars from '../pages/Cars';
 import Car from '../pages/Car';
 import Landing from '../pages/Landing';
-import DashBoard from '../pages/DashBoard';
-import RecentRequests from '../pages/DashBoard/RecentRequests';
-import ToCheckRequests from '../pages/DashBoard/ToCheckRequests';
+import DashBoard, { DashBoardMain } from '../pages/DashBoard';
 import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
@@ -42,17 +40,13 @@ const router = createBrowserRouter([
         element: <Car />,
       },
       {
-        path: '/admin',
-        element: <DashBoard />,
+        path: 'admin',
+        element: <DashBoardMain />,
         children: [
-          { index: true, element: <RecentRequests /> },
+          { index: true, element: <DashBoard /> },
           {
-            path: '/admin/login',
+            path: 'login',
             element: <AdminLogin />,
-          },
-          {
-            path: '/admin/to-check',
-            element: <ToCheckRequests />,
           },
         ],
       },
