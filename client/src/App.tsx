@@ -1,9 +1,12 @@
 import { Outlet } from 'react-router-dom';
+import UserInfoProvider from './context';
 
 function App() {
   return (
     <div>
-      <Outlet />
+      <UserInfoProvider>
+        <Outlet />
+      </UserInfoProvider>
     </div>
   );
 }
