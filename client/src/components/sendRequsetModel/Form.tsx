@@ -41,6 +41,7 @@ function SellCarModal() {
         values,
       )
         .catch((err: Error) => {
+          // eslint-disable-next-line no-console
           console.log(err);
         });
       resetForm();

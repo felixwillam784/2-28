@@ -15,6 +15,7 @@ const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, nex
       res.status(status).json({ msg, data });
     }
   } catch (error: any) {
+    // eslint-disable-next-line no-console
     console.log(error);
 
     // may need change

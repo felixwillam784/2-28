@@ -6,14 +6,20 @@ import {
   getCarsDetails,
   addCar,
 } from './cars';
-import loginController from './register';
+import {
+  loginController,
+  signupController,
+  userController,
+} from './register';
 
 export {
   getFilteredCars,
   getCarsById,
   updateCar,
   loginController,
+  userController,
   deleteCarsById,
   getCarsDetails,
+  signupController,
   addCar,
 };

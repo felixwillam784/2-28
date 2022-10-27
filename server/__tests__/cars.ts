@@ -212,4 +212,36 @@ describe('/cars endpoint', () => {
       .expect(400);
     expect(result.body.message).toEqual('wrong email or password');
   });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo12345@gmail.com', password: '123456789', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(201);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo123451@gmail.com', password: '123456789', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(201);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo123451@gmail.com', password: '12345678', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(400);
+    expect(result.body.message).toEqual('this email is registered');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo@gmail.com', password: '12345678', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(400);
+    expect(result.body.message).toEqual('this email is registered');
+  });
 });
