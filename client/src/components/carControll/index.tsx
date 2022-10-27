@@ -47,16 +47,8 @@ function CarControll() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box style={{
-          position: 'absolute' as const,
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 400,
-          backgroundColor: 'white',
-          boxShadow: '24',
-          padding: '2rem',
-        }}
+        <Box
+          className="strip_Model"
         >
           <Elements stripe={stripePromise} options={options}>
             <StripeForm />

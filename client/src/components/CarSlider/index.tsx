@@ -32,7 +32,7 @@ function CarSlider({ carImages }:SliderImages) {
         }}
         navigation
         grabCursor
-        centeredSlides
+        // centeredSlides
         spaceBetween={-70}
         slidesPerView={3}
         coverflowEffect={{

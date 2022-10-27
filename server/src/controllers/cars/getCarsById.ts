@@ -11,7 +11,7 @@ const getCarsById = async (req: Request) => {
   await schema.validate({ id });
   const result:any = await getCarInfo(id);
   if (result[0].state !== 'on-market') {
-    throw createError(404, 'bad request');
+    throw createError(400, 'bad request');
   }
   return { status: 200, msg: 'done!', data: result };
 };

@@ -1,14 +1,19 @@
 .stripe-form {
-    padding: 1.7rem;
-    background-color: #edecec;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30%;
+  padding: 1.7rem;
+  background-color: #edecec;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30%;
 }
-.pay-button{
-    margin-top: 0.9rem;
-    width: 40px;
-    display: flex;
-    align-self: center;
+.pay-button {
+  margin-top: 0.9rem;
+  width: 40px;
+  display: flex;
+  align-self: center;
+}
+.stripe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
