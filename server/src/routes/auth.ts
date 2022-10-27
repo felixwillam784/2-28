@@ -3,9 +3,9 @@ import { loginController } from '../controllers';
 import userController from '../controllers/user';
 import ExpressWrapper from './ExpressWrapper';
 
-const loginRouter = Router();
+const auth = Router();
 
-loginRouter.post('/login', ExpressWrapper(loginController));
-loginRouter.get('/user', ExpressWrapper(userController));
+auth.post('/login', ExpressWrapper(loginController));
+auth.get('/user', ExpressWrapper(userController));
 
-export default loginRouter;
+export default auth;
