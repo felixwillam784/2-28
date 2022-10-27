@@ -1,3 +1,3 @@
-import findUser from './login';
+import { findUser, findUserById } from './login';
 
-export default findUser;
+export { findUser, findUserById };

@@ -1,13 +1,15 @@
 import { Request } from 'express';
 import { addCarService } from '../../services';
-import { updateCarSchema } from '../../validation';
+import { addCarSchema } from '../../validation';
 
-const addCar = async (req: Request) => {
-  const customerId = req.cookies.id;
+const addCar = async (req: Request, res) => {
+  // const { token } = req.cookies;
   const { body } = req;
-  await updateCarSchema.validate(body, customerId);
+  const { userId } = res.locals.user;
+  console.log(res.locals.user.userId);
 
-  const result = await addCarService(body, customerId);
+  await addCarSchema.validate(body);
+  const result = await addCarService(body, userId);
   return { message: 'successfully', status: 200, data: result };
 };
 

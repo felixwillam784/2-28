@@ -1,8 +1,8 @@
 import { Car } from '../../db/models';
 
-const addCarService = async (body, customerId) => {
-  const carRequest = await Car.bulkCreate(
-    [{ ...body, customerId }],
+const addCarService = async (body, id) => {
+  const carRequest = await Car.create(
+    { ...body, customerId: id },
     {
       returning: true,
     },

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import loginRouter from './auth';
+import auth from './auth';
 import carsRouter from './cars';
 
 const router = Router();
@@ -9,6 +9,6 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.use('/cars', carsRouter);
-router.use('/auth', loginRouter);
+router.use('/auth', auth);
 
 export default router;

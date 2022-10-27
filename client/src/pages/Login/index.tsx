@@ -1,13 +1,16 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
-import httpInstance from '../../services/axiosCongif';
+import httpInstance from '../../services/axiosConfig';
 import './style.css';
+import { UserContext } from '../../context';
+import { UserContextTypeWithDispatch } from '../../interfaces';
 
 function Login() {
   const [responseError, setResponseError] = useState<string>('');
+  const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -19,7 +22,8 @@ function Login() {
       const login = async () => {
         try {
           setResponseError('');
-          await httpInstance.post('/auth/login', values);
+          const result = await httpInstance.post('/auth/login', values);
+          setUserInfo(result.data);
           navigate('/');
         } catch (error:any) {
           setResponseError(error.response.data.message);

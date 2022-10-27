@@ -5,7 +5,7 @@ import {
   getCarsCustomInfo,
   addCarService,
 } from './cars';
-import findUser from './register';
+import { findUser, findUserById } from './register';
 
 export {
   getCars,
@@ -14,4 +14,5 @@ export {
   deleteCars,
   getCarsCustomInfo,
   addCarService,
+  findUserById,
 };

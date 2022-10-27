@@ -4,4 +4,9 @@ const findUser = async ({ email }) => {
   const userInfo:any = await Customer.findOne({ where: { email } });
   return userInfo;
 };
-export default findUser;
+
+const findUserById = async ({ id }) => {
+  const userInfo:any = await Customer.findOne({ where: { id } });
+  return userInfo;
+};
+export { findUser, findUserById };
