@@ -76,5 +76,14 @@ export interface RowProps {
   setCarsData:React.Dispatch<React.SetStateAction<CarsWithCustomerRow>>,
   setSnackBarProperties :
   React.Dispatch<React.SetStateAction<{ open:boolean, message:string, type:'success' | 'error' }>>
-
+}
+export interface UserContextType {
+  id: number,
+  email: string,
+  userName: string,
+  role: string
+}
+export interface UserContextTypeWithDispatch {
+  userInfo: UserContextType | null,
+  setUserInfo:(c: UserContextType | null) => void,
 }

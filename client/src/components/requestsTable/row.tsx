@@ -11,7 +11,8 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { RowProps } from '../../interfaces';
+import { RowProps, CarWithCustomerInfo } from '../../interfaces';
+import CarAdminModel from '../CarAdminModule';
 
 function Row(props:RowProps) {
   const {
@@ -71,14 +72,11 @@ function Row(props:RowProps) {
             >
               Accept
             </Button>
-          )
-            : (
-              <Button sx={{ marginRight: '0.5rem' }} variant="contained" color="success">
-                Check
-              </Button>
-            )}
+          ) : (
+            <CarAdminModel />
 
-          <Button onClick={() => deleteCar(car.id)} variant="contained" color="error">
+          )}
+          <Button variant="contained" color="error">
             Reject
           </Button>
         </TableCell>
