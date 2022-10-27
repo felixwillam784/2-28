@@ -8,7 +8,6 @@ const addCar = async (req: Request, res) => {
   const data = { ...body, customerId: userId };
   await addCarSchema.validate(body);
   const result = await addCarService(data);
-  console.log(result);
 
   return { message: 'successfully', status: 201, data: result };
 };
