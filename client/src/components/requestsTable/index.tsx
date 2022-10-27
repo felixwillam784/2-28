@@ -22,7 +22,8 @@ type Props = {
   state : string
 };
 
-const skeletonRows = Array(10).fill(<TableSkeleton />);
+// eslint-disable-next-line react/no-array-index-key
+const skeletonRows = Array(10).map((ele, index) => (<TableSkeleton key={`skeletonRows${index}`} />));
 
 function RequestsTable(props:Props) {
   const { state } = props;
@@ -53,7 +54,7 @@ function RequestsTable(props:Props) {
         setLoading(true);
         const response: CarsWithCustomerData = await httpInstance.get('/cars/dashboard?', { params });
         setCarsData(response.data.rows);
-        setPageCount(Math.floor(response.data.count / 10));
+        setPageCount(Math.ceil(response.data.count / 10));
         setLoading(false);
       } catch (err) {
         setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });

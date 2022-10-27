@@ -23,7 +23,7 @@ function Row(props:RowProps) {
     try {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
       const response = await httpInstance.delete(`/cars/${id}`);
-      setCarsData((prevState) => prevState.filter(((element) => element.id !== car.id)));
+      setCarsData((prevState) => prevState.filter(((element) => element.id !== id)));
       setSnackBarProperties({ open: true, message: 'Sell request deleted successfully', type: 'success' });
     } catch (err) {
       setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
@@ -34,7 +34,7 @@ function Row(props:RowProps) {
     try {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
       const response = await httpInstance.put(`/cars/${id}`, { state: 'under-check' });
-      setCarsData((prevState) => prevState.filter(((element) => element.id !== car.id)));
+      setCarsData((prevState) => prevState.filter(((element) => element.id !== id)));
       setSnackBarProperties({ open: true, message: 'Sell request accepted successfully', type: 'success' });
     } catch (err) {
       setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
