@@ -10,9 +10,11 @@ import {
   FormHelperText,
 } from '@mui/material';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import httpInstance from '../../services';
 import brands from '../../assets/data/brands.json';
 import { addCarSchema } from '../../helpers/validationSchema';
+import CustomizedSnackbars from '../snackbar';
 
 const convertToKM = (value: number, type: string) => {
   if (type === 'mile') return value * 1.609344;
@@ -20,6 +22,18 @@ const convertToKM = (value: number, type: string) => {
 };
 
 function SellCarModal() {
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [data, setData] = useState<{ type: 'error' | 'success', message: string }>({ type: 'error', message: '' });
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
+
   const formik = useFormik({
     initialValues: {
       brand: '',
@@ -35,15 +49,27 @@ function SellCarModal() {
       const newValue = Math.floor(convertToKM(values.milage, values.type));
       // eslint-disable-next-line no-param-reassign
       values.milage = newValue;
-      httpInstance.post(
-        '/cars',
-        values,
-      )
-        .catch((err: Error) => {
-          // eslint-disable-next-line no-console
-          console.log(err);
-        });
-      resetForm();
+      const addCar = async () => {
+        try {
+          setLoading(true);
+          setOpenSnackBar(false);
+          await httpInstance.post(
+            '/cars',
+            values,
+          );
+          setData({ type: 'success', message: 'Added successfully' });
+          setLoading(false);
+          setOpenSnackBar(true);
+        } catch (error) {
+          setData({ type: 'error', message: 'somthing went wrong!' });
+          setLoading(false);
+          setOpenSnackBar(true);
+        }
+      };
+      addCar();
+      if (!loading) {
+        resetForm();
+      }
     },
   });
 
@@ -260,6 +286,12 @@ function SellCarModal() {
           Submit
         </Button>
       </form>
+      <CustomizedSnackbars
+        open={openSnackBar}
+        handleClose={handleClose}
+        message={data.message}
+        type={data.type}
+      />
     </div>
   );
 }
