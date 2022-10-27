@@ -2,7 +2,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { loginSchema } from '../../helpers/validationSchema';
+import { AdminLoginSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosConfig';
 import './styles.css';
 import { UserContext } from '../../context';
@@ -17,19 +17,9 @@ function AdminLogin() {
       UserName: '',
       password: '',
     },
-    validationSchema: loginSchema,
+    validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      const login = async () => {
-        try {
-          setResponseError('');
-          const result = await httpInstance.post('/auth/login', values);
-          setUserInfo(result.data);
-          navigate('/');
-        } catch (error:any) {
-          setResponseError(error.response.data.message);
-        }
-      };
-      login();
+      console.log(values);
     },
   });
 
