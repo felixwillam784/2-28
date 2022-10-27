@@ -8,15 +8,12 @@ import './style.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useState } from 'react';
-import { CarWithImages } from '../../interfaces';
+import { SliderImages } from '../../interfaces';
 import CarImageModel from '../OpenImageModel';
 
 SwiperCore.use([EffectCoverflow, Pagination, Navigation, Autoplay]);
 
-type Props = {
-  carInfo: CarWithImages | undefined
-};
-function CarSlider({ carInfo }:Props) {
+function CarSlider({ carImages }:SliderImages) {
   const [openModel, setOpenModel] = useState<boolean>(false);
   const [imageSrc, setImageSrc] = useState<string>('');
 
@@ -48,7 +45,7 @@ function CarSlider({ carInfo }:Props) {
         pagination
         className="mySwiper"
       >
-        {carInfo?.images.map((img) => (
+        {carImages.map((img) => (
           <SwiperSlide
             onClick={() => handleImageClick(img.image)}
             key={img.id}

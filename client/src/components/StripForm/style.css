@@ -9,5 +9,6 @@
 .pay-button{
     margin-top: 0.9rem;
     width: 40px;
+    display: flex;
     align-self: center;
 }

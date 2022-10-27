@@ -26,7 +26,7 @@ function Car() {
     const getCarInfo = async () => {
       try {
         setIsLoading(true);
-        const response = await httpInstance.get(`/cars/car/${id}`);
+        const response = await httpInstance.get(`/cars/${id}`);
         setCarInfo(response.data[0]);
         setIsLoading(false);
       } catch (error) {
@@ -55,7 +55,7 @@ function Car() {
   }
   return (
     <>
-      <CarSlider carInfo={carInfo} />
+      <CarSlider carImages={carInfo.images} />
       <CarInfo carInfo={carInfo} />
     </>
   );

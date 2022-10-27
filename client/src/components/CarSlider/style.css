@@ -16,7 +16,6 @@
     object-fit: cover;
   }
   .main-swiper{
-    background-color: rgb(212, 212, 208) !important;
     height: 50vh;
     display: flex;
     padding-bottom: 2rem;
