@@ -4,11 +4,11 @@ import { useState } from 'react';
 import CarCard from '../../components/CarCard';
 import CarsFilter from '../../components/CarsFilter';
 import CustomSkeleton from '../../components/skeleton';
-import { CarsCount, CarsRow } from '../../interfaces';
+import { CarsCount, CarsWithImagesRow } from '../../interfaces';
 import './style.css';
 
 function Cars() {
-  const [cars, setCars] = useState<CarsRow | []>([]);
+  const [cars, setCars] = useState<CarsWithImagesRow | []>([]);
   const [pagination, setPagination] = useState <CarsCount>(1);
   const [currentPage, setCurrentPAge] = useState<number>(1);
   const [loading, setLoading] = useState <boolean>(false);
@@ -54,11 +54,12 @@ function Cars() {
           : (cars?.length ? (
             <div className="car_wrapper">
               {cars.map((e) => (
+
                 <CarCard
                   key={e.id}
                   image={
                   // eslint-disable-next-line max-len
-                  e.images[0]?.image || 'https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg'
+                  e?.images[0].image
                 }
                   carName={e.model}
                   quality={e.quality}

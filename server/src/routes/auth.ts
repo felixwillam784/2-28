@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { loginController, signupController } from '../controllers';
+import userController from '../controllers/user';
 import ExpressWrapper from './ExpressWrapper';
 
-const loginRouter = Router();
+const auth = Router();
+auth.post('/signup', ExpressWrapper(signupController));
+auth.post('/login', ExpressWrapper(loginController));
+auth.get('/user', ExpressWrapper(userController));
 
-loginRouter.post('/login', ExpressWrapper(loginController));
-loginRouter.post('/signup', ExpressWrapper(signupController));
-export default loginRouter;
+export default auth;

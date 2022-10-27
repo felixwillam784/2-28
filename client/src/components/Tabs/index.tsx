@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import RequestsTable from '../requestsTable';
 
 interface TabPanelProps {
   children: React.ReactNode;
@@ -18,6 +18,9 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
+      style={{
+        width: '100%',
+      }}
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
@@ -26,7 +29,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Box>{children}</Box>
         </Box>
       )}
     </div>
@@ -67,10 +70,10 @@ export default function VerticalTabs() {
         <Tab sx={{ fontSize: '18px' }} label="To check" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        New requests
+        <RequestsTable state="pending" />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        To check
+        <RequestsTable state="under-check" />
       </TabPanel>
     </Box>
   );
