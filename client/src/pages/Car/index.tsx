@@ -38,14 +38,7 @@ function Car() {
   }, [id]);
   if (isLoading) {
     return (
-      <CircularProgress sx={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: '48px',
-        height: '50rem',
-      }}
-      />
+      <CircularProgress className="progress" />
     );
   }
   if (!carInfo) {
