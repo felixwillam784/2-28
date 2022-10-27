@@ -6,7 +6,7 @@ import {
 import createError from 'http-errors';
 import { JwtPayload } from 'jsonwebtoken';
 
-import verifyToken from '../helpers/verifyToken';
+import { verifyToken } from '../helpers';
 
 const authMiddleware = (role:'admin' | 'user') => async (req:Request, res:Response, next:NextFunction) => {
   try {
