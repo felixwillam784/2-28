@@ -50,7 +50,11 @@ function AdminLogin() {
       <div className="formPage">
         <form className="formLogin" onSubmit={formik.handleSubmit}>
           <h1>LOG IN</h1>
-          <TextField id="outlined-basic" label="username" variant="outlined" />
+          <TextField
+            id="outlined-basic"
+            label="username"
+            variant="outlined"
+          />
           <TextField
             fullWidth
             id="password"
