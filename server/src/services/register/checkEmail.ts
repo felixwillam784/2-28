@@ -1,4 +1,4 @@
-import { Customer } from '../db/models';
+import { Customer } from '../../db/models';
 
 const checkEmail = async ({ email }) => {
   const getEmail = await Customer.findAll({

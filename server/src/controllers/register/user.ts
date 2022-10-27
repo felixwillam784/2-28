@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { verifyToken } from '../helpers';
-import { findUserById } from '../services';
+import { verifyToken } from '../../helpers';
+import { findUserById } from '../../services';
 
 const userController = async (req:Request) => {
   const { token } = req.cookies;
