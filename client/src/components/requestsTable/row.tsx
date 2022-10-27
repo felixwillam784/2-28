@@ -12,6 +12,7 @@ import { Button } from '@mui/material';
 import BadgeIcon from '@mui/icons-material/Badge';
 import './style.css';
 import { CarWithCustomerInfo } from '../../interfaces';
+import CarAdminModel from '../CarAdminModule';
 
 function Row(props:{ car:CarWithCustomerInfo, state:string }) {
   const { car, state } = props;
@@ -43,9 +44,8 @@ function Row(props:{ car:CarWithCustomerInfo, state:string }) {
               Accept
             </Button>
           ) : (
-            <Button sx={{ marginRight: '0.5rem' }} variant="contained" color="success">
-              Check
-            </Button>
+            <CarAdminModel />
+
           )}
           <Button variant="contained" color="error">
             Reject
