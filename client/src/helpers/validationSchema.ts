@@ -30,8 +30,12 @@ const loginSchema = yup.object({
     .required('Password is required'),
 });
 const AdminLoginSchema = yup.object({
-  userName: yup
+  username: yup
     .string()
     .required('user name is required'),
+  password: yup
+    .string()
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
 });
 export { loginSchema, addCarSchema, AdminLoginSchema };

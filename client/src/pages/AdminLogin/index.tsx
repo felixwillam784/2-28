@@ -1,28 +1,23 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { AdminLoginSchema } from '../../helpers/validationSchema';
-import httpInstance from '../../services/axiosConfig';
 import './styles.css';
-import { UserContext } from '../../context';
-import { UserContextTypeWithDispatch } from '../../interfaces';
 
 function AdminLogin() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [responseError, setResponseError] = useState<string>('');
-  const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      UserName: '',
+      username: '',
       password: '',
     },
     validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
+      // eslint-disable-next-line no-console
       console.log(values);
     },
   });
-
   return (
     <div className="loginPage">
       <div
@@ -44,6 +39,7 @@ function AdminLogin() {
             id="outlined-basic"
             label="username"
             variant="outlined"
+            value={formik.values.username}
           />
           <TextField
             fullWidth
