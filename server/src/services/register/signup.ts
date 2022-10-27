@@ -1,4 +1,4 @@
-import { Customer } from '../db/models';
+import { Customer } from '../../db/models';
 
 const signupUser = async ({
   email, password, fullName, phoneNumber,
