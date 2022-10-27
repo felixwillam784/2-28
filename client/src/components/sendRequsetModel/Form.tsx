@@ -36,7 +36,7 @@ function SellCarModal() {
       // eslint-disable-next-line no-param-reassign
       values.milage = newValue;
       httpInstance.post(
-        '/cars/sell-car',
+        '/cars',
         values,
       )
         .catch((err: Error) => {
