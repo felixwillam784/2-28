@@ -2,9 +2,8 @@ import { Request } from 'express';
 import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
 import { signupSchema } from '../validation';
-import checkEmail from '../services/checkEmail';
-import signupUser from '../services/signup';
 import { generateToken } from '../helpers';
+import { checkEmail, signupUser } from '../services';
 
 const signupController = async (req:Request) => {
   const {
