@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import brands from '../../assets/data/brands.json';
 import models from '../../assets/data/models.json';
 import { CarsWithImagesData, CarsFilterProps, Params } from '../../interfaces';
-import httpInstance from '../../services/axiosCongif';
+import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
 
 import './style.css';
@@ -210,9 +210,10 @@ function CarsFilter({
           />
         </div>
         <CustomizedSnackbars
-          err="something went wrong"
           open={openSnackBar}
           handleClose={handleClose}
+          message="something went wrong"
+          type="error"
         />
         <Autocomplete
           disablePortal

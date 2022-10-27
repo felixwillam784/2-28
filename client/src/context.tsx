@@ -2,7 +2,7 @@ import {
   createContext, useEffect, useMemo, useState,
 } from 'react';
 import { UserContextType, UserContextTypeWithDispatch } from './interfaces';
-import httpInstance from './services/axiosCongif';
+import httpInstance from './services/axiosConfig';
 
 export const UserContext = createContext<UserContextTypeWithDispatch>({
   userInfo: {

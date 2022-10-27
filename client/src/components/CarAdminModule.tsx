@@ -23,14 +23,14 @@ export default function CarAdminModel() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <>
       <Button
         sx={{ marginRight: '0.5rem' }}
         variant="contained"
         color="success"
         onClick={handleOpen}
       >
-        Accept
+        Check
 
       </Button>
       <Modal
@@ -53,6 +53,6 @@ export default function CarAdminModel() {
           <CustomStepper />
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

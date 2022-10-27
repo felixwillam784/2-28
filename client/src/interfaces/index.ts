@@ -70,6 +70,13 @@ export interface Params {
   page?: number,
   state: string,
 }
+
+export interface RowProps {
+  car:CarWithCustomerInfo, state:string,
+  setCarsData:React.Dispatch<React.SetStateAction<CarsWithCustomerRow>>,
+  setSnackBarProperties :
+  React.Dispatch<React.SetStateAction<{ open:boolean, message:string, type:'success' | 'error' }>>
+}
 export interface UserContextType {
   id: number,
   email: string,

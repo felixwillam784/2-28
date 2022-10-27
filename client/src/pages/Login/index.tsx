@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
-import httpInstance from '../../services/axiosCongif';
+import httpInstance from '../../services/axiosConfig';
 import './style.css';
 import { UserContext } from '../../context';
 import { UserContextTypeWithDispatch } from '../../interfaces';
