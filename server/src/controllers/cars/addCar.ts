@@ -3,12 +3,14 @@ import { addCarService } from '../../services';
 import { addCarSchema } from '../../validation';
 
 const addCar = async (req: Request, res) => {
-  // const { token } = req.cookies;
   const { body } = req;
   const { userId } = res.locals.user;
+  const data = { ...body, customerId: userId };
   await addCarSchema.validate(body);
-  const result = await addCarService(body, userId);
-  return { message: 'successfully', status: 200, data: result };
+  const result = await addCarService(data);
+  console.log(result);
+
+  return { message: 'successfully', status: 201, data: result };
 };
 
 export default addCar;

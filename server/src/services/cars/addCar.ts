@@ -1,13 +1,13 @@
 import { Car } from '../../db/models';
 
-const addCarService = async (body, id) => {
-  const carRequest = await Car.create(
-    { ...body, customerId: id },
+const addCarService = async (data) => {
+  const car = await Car.create(
+    data,
     {
       returning: true,
     },
   );
-  return carRequest;
+  return car;
 };
 
 export default addCarService;

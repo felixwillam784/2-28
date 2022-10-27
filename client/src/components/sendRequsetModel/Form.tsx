@@ -35,7 +35,6 @@ function SellCarModal() {
       const newValue = Math.floor(convertToKM(values.milage, values.type));
       // eslint-disable-next-line no-param-reassign
       values.milage = newValue;
-      // console.log(values);
       httpInstance.post(
         '/cars/sell-car',
         values,
