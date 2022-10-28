@@ -11,19 +11,19 @@ const checkEmail = async ({ email }) => {
 };
 
 const findUser = async ({ email }) => {
-  const userInfo:any = await Customer.findOne({ where: { email } });
+  const userInfo = await Customer.findOne({ where: { email } });
   return userInfo;
 };
 
 const findUserById = async ({ id }) => {
-  const userInfo:any = await Customer.findOne({ where: { id } });
+  const userInfo = await Customer.findOne({ where: { id } });
   return userInfo;
 };
 
 const signupUser = async ({
   email, password, fullName, phoneNumber,
 }) => {
-  const userInfo: any = await Customer.create({
+  const userInfo = await Customer.create({
     email,
     password,
     fullName,
