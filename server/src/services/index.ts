@@ -4,6 +4,7 @@ import {
 import { findUser, findUserById } from './login';
 import signupUser from './signup';
 import checkEmail from './checkEmail';
+import checkAdmin from './checkAdmin';
 
 export {
   getCars,
@@ -14,4 +15,5 @@ export {
   findUserById,
   signupUser,
   checkEmail,
+  checkAdmin,
 };

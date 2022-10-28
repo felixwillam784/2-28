@@ -3,6 +3,7 @@ import {
 } from './cars';
 import loginController from './login';
 import signupController from './signup';
+import AdminLogin from './AdminLogin';
 
 export {
   getFilteredCars,
@@ -12,4 +13,5 @@ export {
   loginController,
   deleteCarsById,
   getCarsDetails,
+  AdminLogin,
 };
