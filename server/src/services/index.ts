@@ -2,20 +2,23 @@ import {
   getCars,
   getCarInfo,
   deleteCars,
-  getCarsCustomInfo,
+  getCarsDetailsQuery,
   addCarService,
+  updateCarServes,
 } from './cars';
-import { findUser, findUserById, signupUser } from './register';
-import checkEmail from './register/checkEmail';
+import {
+  findUser, findUserById, signupUser, checkEmail,
+} from './auth';
 
 export {
   getCars,
   getCarInfo,
   findUser,
   deleteCars,
-  getCarsCustomInfo,
+  getCarsDetailsQuery,
   addCarService,
   findUserById,
   signupUser,
   checkEmail,
+  updateCarServes,
 };
