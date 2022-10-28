@@ -1,4 +1,3 @@
-import generateToken from './generateToken';
-import verifyToken from './verifyToken';
+import { generateToken, verifyToken } from './jwt';
 
 export { generateToken, verifyToken };

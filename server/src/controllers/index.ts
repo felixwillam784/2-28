@@ -1,7 +1,7 @@
 import {
   getFilteredCars,
   getCarsById,
-  updateCar,
+  updateCars,
   deleteCarsById,
   getCarsDetails,
   addCar,
@@ -10,12 +10,12 @@ import {
   loginController,
   signupController,
   userController,
-} from './register';
+} from './auth';
 
 export {
   getFilteredCars,
   getCarsById,
-  updateCar,
+  updateCars,
   loginController,
   userController,
   deleteCarsById,

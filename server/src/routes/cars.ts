@@ -4,7 +4,7 @@ import authMiddleware from '../middlewares/authMiddleware';
 import {
   getFilteredCars,
   getCarsById,
-  updateCar,
+  updateCars,
   deleteCarsById,
   getCarsDetails,
   addCar,
@@ -16,7 +16,7 @@ carsRouter.get('/', ExpressWrapper(getFilteredCars));
 carsRouter.get('/', ExpressWrapper(getCarsById));
 carsRouter.get('/dashboard', authMiddleware('admin'), ExpressWrapper(getCarsDetails));
 carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
-carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCar));
+carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
 
 export default carsRouter;
