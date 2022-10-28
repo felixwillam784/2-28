@@ -1,4 +1,7 @@
-import updateCarSchema from './updateCarSchema';
+import { updateCarSchema, addCarSchema } from './updateCarSchema';
 import loginSchema from './loginSchema';
+import signupSchema from './signupSchema';
 
-export { updateCarSchema, loginSchema };
+export {
+  updateCarSchema, loginSchema, addCarSchema, signupSchema,
+};

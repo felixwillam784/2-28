@@ -1,14 +1,8 @@
 import {
-  RequestHandler, Request, Response, NextFunction,
+  RequestHandler,
 } from 'express';
 
-type ControllersReturn = {
-  status: number,
-  data?: any,
-  msg?: string,
-  token?: unknown,
-};
-type Controllers = (req: Request, res: Response, next: NextFunction) => Promise<ControllersReturn>;
+import { Controllers } from '../interfaces';
 
 const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, next) => {
   try {

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import CarInfo from '../../components/CarInfoSection';
 import CarSlider from '../../components/CarSlider';
-import httpInstance from '../../services/axiosCongif';
+import httpInstance from '../../services/index';
 import { CarWithImages } from '../../interfaces';
 import CarNotFound from '../../components/CarNotFound';
 import CustomizedSnackbars from '../../components/snackbar';
@@ -46,7 +46,8 @@ function Car() {
       <>
         <CarNotFound />
         <CustomizedSnackbars
-          err="something went wrong"
+          type="error"
+          message="something went wrong"
           open={openSnackBar}
           handleClose={handleClose}
         />

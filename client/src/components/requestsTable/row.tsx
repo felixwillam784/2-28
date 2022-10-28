@@ -9,13 +9,38 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import BadgeIcon from '@mui/icons-material/Badge';
+import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { CarWithCustomerInfo } from '../../interfaces';
+import { RowProps, CarWithCustomerInfo } from '../../interfaces';
+import CarAdminModel from '../CarAdminModule';
 
-function Row(props:{ car:CarWithCustomerInfo, state:string }) {
-  const { car, state } = props;
+function Row(props:RowProps) {
+  const {
+    car, state, setCarsData, setSnackBarProperties,
+  } = props;
   const [open, setOpen] = useState(false);
+
+  const deleteCar = async (id:number) => {
+    try {
+      setSnackBarProperties((preState) => ({ ...preState, open: false }));
+      const response = await httpInstance.delete(`/cars/${id}`);
+      setCarsData((prevState) => prevState.filter(((element) => element.id !== id)));
+      setSnackBarProperties({ open: true, message: 'Sell request deleted successfully', type: 'success' });
+    } catch (err) {
+      setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
+    }
+  };
+
+  const handleAccept = async (id:number) => {
+    try {
+      setSnackBarProperties((preState) => ({ ...preState, open: false }));
+      const response = await httpInstance.put(`/cars/${id}`, { state: 'under-check' });
+      setCarsData((prevState) => prevState.filter(((element) => element.id !== id)));
+      setSnackBarProperties({ open: true, message: 'Sell request accepted successfully', type: 'success' });
+    } catch (err) {
+      setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
+    }
+  };
 
   return (
     <>
@@ -39,19 +64,24 @@ function Row(props:{ car:CarWithCustomerInfo, state:string }) {
         <TableCell sx={{ fontSize: '16px' }} align="center">{car.price}</TableCell>
         <TableCell sx={{ fontSize: '16px' }} align="center">
           { state === 'pending' ? (
-            <Button sx={{ marginRight: '0.5rem' }} variant="contained" color="success">
+            <Button
+              onClick={() => handleAccept(car.id)}
+              sx={{ marginRight: '0.5rem' }}
+              variant="contained"
+              color="success"
+            >
               Accept
             </Button>
           ) : (
-            <Button sx={{ marginRight: '0.5rem' }} variant="contained" color="success">
-              Check
-            </Button>
+            <CarAdminModel />
+
           )}
           <Button variant="contained" color="error">
             Reject
           </Button>
         </TableCell>
       </TableRow>
+
       <TableRow>
         <TableCell
           sx={!open ? { border: 'none' } : {}}

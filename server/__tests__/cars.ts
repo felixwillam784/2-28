@@ -190,7 +190,15 @@ describe('/cars endpoint', () => {
     const result = await request(app).post('/api/v1/auth/login')
       .send({ email: 'husam@gmail.com', password: '123456789' })
       .expect(200);
-    expect(result.body).toEqual({ data: 'husam@gmail.com', msg: 'done' });
+    expect(result.body).toEqual({
+      data: {
+        email: 'husam@gmail.com',
+        id: 1,
+        role: 'user',
+        userName: 'husam',
+      },
+      msg: null,
+    });
   });
   test('should return the password not match', async () => {
     const result = await request(app).post('/api/v1/auth/login')
@@ -203,5 +211,37 @@ describe('/cars endpoint', () => {
       .send({ email: 'hsam@gmail.com', password: '123456789' })
       .expect(400);
     expect(result.body.message).toEqual('wrong email or password');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo12345@gmail.com', password: '123456789', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(201);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo123451@gmail.com', password: '123456789', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(201);
+    expect(result.body.msg).toEqual('done!');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo123451@gmail.com', password: '12345678', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(400);
+    expect(result.body.message).toEqual('this email is registered');
+  });
+  test('Signup', async () => {
+    const result = await request(app).post('/api/v1/auth/signup')
+      .send({
+        email: 'abdo@gmail.com', password: '12345678', phoneNumber: '0597111', fullName: 'abdo',
+      })
+      .expect(400);
+    expect(result.body.message).toEqual('this email is registered');
   });
 });

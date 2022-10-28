@@ -1,6 +1,6 @@
 import Skeleton from '@mui/material/Skeleton';
 
-export default function CustomSkeleton() {
+export default function CarSkeleton() {
   return (
     <div
       style={{
