@@ -24,7 +24,7 @@ export default function SendRequestModule() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Sell Car</Button>
       <Modal
         open={open}
         onClose={handleClose}
