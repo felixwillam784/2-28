@@ -31,7 +31,8 @@ const Car = sequelize.define('car', {
   },
   isGoodPrice: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    defaultValue: false,
+
   },
   location: {
     type: DataTypes.STRING,

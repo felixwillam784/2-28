@@ -1,17 +1,27 @@
 import {
-  getFilteredCars, getCarsById, updateCar, deleteCarsById, getCarsDetails,
+  getFilteredCars,
+  getCarsById,
+  updateCars,
+  deleteCarsById,
+  getCarsDetails,
+  addCar,
 } from './cars';
-import loginController from './login';
-import signupController from './signup';
-import AdminLogin from './AdminLogin';
+import {
+  loginController,
+  signupController,
+  userController,
+  AdminLogin,
+} from './auth';
 
 export {
   getFilteredCars,
-  signupController,
   getCarsById,
-  updateCar,
+  updateCars,
   loginController,
+  userController,
   deleteCarsById,
   getCarsDetails,
   AdminLogin,
+  signupController,
+  addCar,
 };

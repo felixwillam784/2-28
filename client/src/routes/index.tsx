@@ -3,7 +3,6 @@ import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import AdminLogin from '../pages/AdminLogin';
 import Profile from '../pages/Profile';
-// import Cars from '../pages/Cars';
 import Car from '../pages/Car';
 import Landing from '../pages/Landing';
 import DashBoard, { DashBoardMain } from '../pages/DashBoard';
