@@ -255,6 +255,7 @@ describe('/cars endpoint', () => {
     expect(result.body).toEqual({
       msg: null,
       data: {
+        id: 1,
         username: 'admin',
         role: 'admin',
       },
@@ -263,6 +264,6 @@ describe('/cars endpoint', () => {
   test('Admin Login', async () => {
     const result = await request(app).post('/api/v1/auth/admin/login')
       .send({ username: 'admin1', password: '123456789' });
-    expect(result.body.message).toEqual('wrong user name or password');
+    expect(result.body.message).toEqual('wrong username or password');
   });
 });
