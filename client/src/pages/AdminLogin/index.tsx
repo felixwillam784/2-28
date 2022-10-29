@@ -1,12 +1,18 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context';
 import { AdminLoginSchema } from '../../helpers/validationSchema';
+import { UserContextTypeWithDispatch } from '../../interfaces';
+import httpInstance from '../../services';
 import './styles.css';
 
 function AdminLogin() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [responseError, setResponseError] = useState<string>('');
+  const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -14,8 +20,18 @@ function AdminLogin() {
     },
     validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      // eslint-disable-next-line no-console
-      console.log(values);
+      const Admin = async () => {
+        try {
+          const result = await httpInstance.post('/admin/login', values);
+          setUserInfo(result.data);
+          console.log(result);
+
+          navigate('/');
+        } catch (error) {
+          setResponseError('error');
+        }
+      };
+      Admin();
     },
   });
   return (
@@ -36,10 +52,14 @@ function AdminLogin() {
         <form className="formLogin" onSubmit={formik.handleSubmit}>
           <h1>LOG IN</h1>
           <TextField
-            id="outlined-basic"
+            fullWidth
+            id="username"
+            name="username"
             label="username"
-            variant="outlined"
             value={formik.values.username}
+            onChange={formik.handleChange}
+            error={formik.touched.username && Boolean(formik.errors.username)}
+            helperText={formik.touched.username && formik.errors.username}
           />
           <TextField
             fullWidth
