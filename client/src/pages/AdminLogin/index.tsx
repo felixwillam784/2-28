@@ -20,18 +20,16 @@ function AdminLogin() {
     },
     validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      const Admin = async () => {
+      const AdminInfo = async () => {
         try {
           const result = await httpInstance.post('/admin/login', values);
           setUserInfo(result.data);
-          console.log(result);
-
           navigate('/');
         } catch (error) {
-          setResponseError('error');
+          setResponseError('wrong email or password');
         }
       };
-      Admin();
+      AdminInfo();
     },
   });
   return (
