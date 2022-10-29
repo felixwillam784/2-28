@@ -34,13 +34,13 @@ function Login() {
   });
 
   return (
-    <div className="loginPage">
+    <div className="signPage">
       <div
-        className="loginImg"
+        className="signImg"
       >
-        <div className="decsLogin">
+        <div className="decs">
           <h2>
-            The better way
+            The best way
             to
             buy or sell a used car
           </h2>
@@ -89,7 +89,7 @@ function Login() {
           >
             Submit
           </Button>
-          <h4 className="signup">
+          <h4 className="another-way">
             Don&apos;t you have an account?
             {' '}
             <a href="/signup">Create one!</a>

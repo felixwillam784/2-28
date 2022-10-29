@@ -1,0 +1,25 @@
+.formPage{
+    width: 70%;
+    height: 100vh;
+    border-radius: 45px 0 0 45px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formPage .button{
+    margin-top: 1.3rem;
+}
+.signup-form{
+    width: 50%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.signup-form h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 1.3rem;
+}

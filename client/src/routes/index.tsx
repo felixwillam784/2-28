@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import SignUp from '../pages/SignUp';
+import SignUp from '../pages/Signup';
 import Login from '../pages/Login';
 import AdminLogin from '../pages/AdminLogin';
 import Profile from '../pages/Profile';
