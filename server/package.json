@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node --loader ts-node/esm --experimental-specifier-resolution=node src/index.ts",
+    "start": "npm run build && NODE_ENV=production node ./dist/src/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "build": "tsc",
     "lint": "eslint --ext .ts ./",
