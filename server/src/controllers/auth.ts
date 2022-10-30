@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
 import { loginSchema, signupSchema } from '../validation';
 import {
-  findUser, checkEmail, signupUser, findUserById, checkAdmin,
+  findUser, checkEmail, signupUser, findUserById, checkAdmin, findAdminById,
 } from '../services';
 import { generateToken, verifyToken } from '../helpers';
 import AdminLoginSchema from '../validation/AdminLoginSchema';
@@ -66,7 +66,8 @@ const userController = async (req:Request) => {
         },
       };
     }
-    return { status: 200, data: { role: 'admin', id: decoded.id } };
+    const result:{ username: string } = await findAdminById(decoded.userId);
+    return { status: 200, data: { role: 'admin', id: decoded.id, userName: result.username } };
   }
   return { status: 401 };
 };
