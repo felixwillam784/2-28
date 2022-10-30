@@ -9,27 +9,10 @@ import StarIcon from '@mui/icons-material/Star';
 import './style.css';
 import features from '../../assets/data/features';
 import CarControll from '../carControll';
+import { CarWithImages } from '../../interfaces';
 
 type Props = {
-  carInfo: {
-    id: number,
-    brand: string,
-    model: string,
-    price: number,
-    year: number,
-    mileage: number,
-    quality: number,
-    isGoodPrice: boolean,
-    location: string,
-    state: string,
-    transmission: string,
-    features: string[],
-    description: string,
-    fuel: string,
-    createdAt: string,
-    updatedAt: string,
-    customerId: number
-  }
+  carInfo: CarWithImages | undefined
 };
 
 const numberWithCommas = (x: number) => {
@@ -45,7 +28,7 @@ function CarInfo({ carInfo }: Props) {
       fixed
     >
       <section className="car-info">
-        {carInfo.isGoodPrice ? (
+        {carInfo?.isGoodPrice ? (
           <section className="good-price-label">
             <span className="circle"><StarIcon fontSize="small" /></span>
             <span className="good-price">Great price</span>
@@ -53,25 +36,25 @@ function CarInfo({ carInfo }: Props) {
         ) : ''}
         <section className="main-info-container general">
           <div className="head-info">
-            <Typography className="car-name" variant="h5">{`${carInfo.brand} ${carInfo.model}`}</Typography>
+            <Typography className="car-name" variant="h5">{`${carInfo?.brand} ${carInfo?.model}`}</Typography>
             <Typography className="price" variant="subtitle1">
-              {`$ ${numberWithCommas(carInfo.price)}`}
+              {`$ ${numberWithCommas(carInfo?.price || 0)}`}
             </Typography>
           </div>
           <div className="info-container">
             <CalendarTodayOutlinedIcon />
-            <Typography className="info-value" variant="body1">{carInfo.year}</Typography>
+            <Typography className="info-value" variant="body1">{carInfo?.year}</Typography>
             <span className="dot-divider">.</span>
             <SpeedTwoToneIcon />
             <Typography className="info-value" variant="body1">
-              {`${carInfo.mileage} KM`}
+              {`${carInfo?.mileage} KM`}
             </Typography>
             <span className="dot-divider">.</span>
             <Box sx={{ position: 'relative', display: 'inline-flex' }}>
               <CircularProgress
                 sx={{ marginTop: '-5px', color: '#393d47' }}
                 variant="determinate"
-                value={carInfo.quality}
+                value={carInfo?.quality}
               />
               <Box
                 sx={{
@@ -89,7 +72,7 @@ function CarInfo({ carInfo }: Props) {
                   variant="caption"
                   color="text.secondary"
                 >
-                  {carInfo.quality}
+                  {carInfo?.quality}
                   %
                 </Typography>
               </Box>
@@ -98,29 +81,29 @@ function CarInfo({ carInfo }: Props) {
           </div>
           <div className="info-container">
             <LocationOnIcon />
-            <Typography className="info-value" variant="body1">{carInfo.location}</Typography>
+            <Typography className="info-value" variant="body1">{carInfo?.location}</Typography>
             <span className="dot-divider">.</span>
             <LocalGasStationIcon />
-            <Typography className="info-value" variant="body1">{carInfo.fuel}</Typography>
+            <Typography className="info-value" variant="body1">{carInfo?.fuel}</Typography>
           </div>
 
         </section>
 
         <Typography className="subtitle" variant="subtitle1"> Car overview</Typography>
         <section className="main-info-container overview">
-          {carInfo.transmission
+          {carInfo?.transmission
             ? (
               <Paper className="feature-card" elevation={2}>
                 <Box
                   className="feature-image"
                   component="img"
-                  alt={`transmission ${carInfo.transmission}`}
-                  src={features[carInfo.transmission === 'auto' ? 'Automatic Transmission' : 'Manual Transmission']}
+                  alt={`transmission ${carInfo?.transmission}`}
+                  src={features[carInfo?.transmission === 'auto' ? 'Automatic Transmission' : 'Manual Transmission']}
                 />
               </Paper>
             ) : ''}
 
-          {carInfo.features.map((feature) => (
+          {carInfo?.features.map((feature) => (
             <Paper key={feature} className="feature-card" elevation={2}>
               <Box
                 className="feature-image"
@@ -135,9 +118,9 @@ function CarInfo({ carInfo }: Props) {
         <Typography className="subtitle" variant="subtitle1">Description</Typography>
         <section className="main-info-container description">
 
-          {carInfo.description ? (
+          {carInfo?.description ? (
             <Typography variant="body1">
-              {carInfo.description}
+              {carInfo?.description}
               .
             </Typography>
           ) : <Typography sx={{ color: 'gray' }} variant="body1">No description provided</Typography> }

@@ -13,8 +13,8 @@ import {
 const carsRouter = Router();
 
 carsRouter.get('/', ExpressWrapper(getFilteredCars));
-carsRouter.get('/', ExpressWrapper(getCarsById));
 carsRouter.get('/dashboard', authMiddleware('admin'), ExpressWrapper(getCarsDetails));
+carsRouter.get('/:id', ExpressWrapper(getCarsById));
 carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));

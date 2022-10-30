@@ -15,3 +15,8 @@
     width: 100%;
     object-fit: cover;
   }
+  .main-swiper{
+    height: 50vh;
+    display: flex;
+    padding-bottom: 2rem;
+  }
