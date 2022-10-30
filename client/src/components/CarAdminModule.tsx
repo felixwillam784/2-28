@@ -17,7 +17,7 @@ const style = {
   p: 4,
 };
 
-export default function CarAdminModel() {
+export default function CarAdminModel({ id }:{ id:number }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -50,7 +50,7 @@ export default function CarAdminModel() {
             }}
             />
           </Typography>
-          <CustomStepper />
+          <CustomStepper id={id} />
         </Box>
       </Modal>
     </>

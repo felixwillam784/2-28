@@ -8,10 +8,10 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import SellCarModal from './sendRequsetModel/Form';
 
-export default function CustomStepper() {
+export default function CustomStepper({ id }:{ id:number }) {
   const steps = [{
     label: 'Car Into',
-    component: <SellCarModal modalType="checkRequest" />,
+    component: <SellCarModal id={id} modalType="checkRequest" />,
   }, { label: 'Car Image', component: 'second' }];
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -56,11 +56,9 @@ export default function CustomStepper() {
           <Button
             onClick={handleBack}
             sx={{ mr: 1 }}
+            disabled={activeStep === 0}
           >
-            {
-                    !activeStep ? 'save' : 'Back'
-                }
-
+            Back
           </Button>
           <Box sx={{ flex: '1 1 auto' }} />
           <Button onClick={handleNext}>

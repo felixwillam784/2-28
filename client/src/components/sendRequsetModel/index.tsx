@@ -27,7 +27,7 @@ export default function SendRequestModule() {
             }}
             onClick={handleClose}
           />
-          <SellCarModal modalType="addRequest" />
+          <SellCarModal id={undefined} modalType="addRequest" />
         </Box>
       </Modal>
     </div>

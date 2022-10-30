@@ -19,6 +19,15 @@ const addCarSchema = yup.object({
     .string()
     .required('location is required'),
 });
+
+const checkCarSchema = addCarSchema.shape({
+  isGoodPrice: yup.boolean().required('Is good price is required'),
+  quality: yup.number().required('Quality is required'),
+  transmission: yup.string().required('Transmission is required'),
+  description: yup.string().required('Description is required'),
+  features: yup.array().of(yup.string()).required('Features is required'),
+});
+
 const loginSchema = yup.object({
   email: yup
     .string()
@@ -29,4 +38,4 @@ const loginSchema = yup.object({
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
 });
-export { loginSchema, addCarSchema };
+export { loginSchema, addCarSchema, checkCarSchema };

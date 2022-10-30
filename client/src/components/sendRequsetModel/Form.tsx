@@ -11,13 +11,17 @@ import {
   FormHelperText,
   Box,
   Checkbox,
+  Autocomplete,
+  TextareaAutosize,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { features } from 'process';
 import httpInstance from '../../services';
 import brands from '../../assets/data/brands.json';
 import { addCarSchema } from '../../helpers/validationSchema';
 import CustomizedSnackbars from '../snackbar';
+import { featuresArray } from '../../assets/data/features';
 
 const convertToKM = (value: number, type: string) => {
   if (type === 'mile') return value * 1.609344;
@@ -26,10 +30,11 @@ const convertToKM = (value: number, type: string) => {
 
 type Props = {
   modalType: 'addRequest' | 'checkRequest',
+  id: number | undefined
 };
 
 function SellCarModal(props:Props) {
-  const { modalType } = props;
+  const { modalType, id } = props;
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<{ type: 'error' | 'success', message: string }>({ type: 'error', message: '' });
@@ -44,6 +49,7 @@ function SellCarModal(props:Props) {
 
   const formik = useFormik({
     initialValues: {
+      state: 'on-market',
       brand: '',
       model: '',
       year: 0,
@@ -67,24 +73,28 @@ function SellCarModal(props:Props) {
         try {
           setLoading(true);
           setOpenSnackBar(false);
-          await httpInstance.post(
-            '/cars',
-            values,
-          );
+
+          if (modalType === 'checkRequest') {
+            await httpInstance.put(`/cars/${id}`, values);
+          } else {
+            await httpInstance.post('/cars', values);
+          }
+
           setData({ type: 'success', message: 'Added successfully' });
           setLoading(false);
           setOpenSnackBar(true);
         } catch (error) {
+          console.log(error.message);
           setData({ type: 'error', message: 'somthing went wrong!' });
           setLoading(false);
           setOpenSnackBar(true);
         }
       };
-      // addCar();
-      // if (!loading) {
-      //   resetForm();
-      // }
-      console.log(formik.values);
+      addCar();
+      if (!loading) {
+        resetForm();
+      }
+      console.log(values);
     },
   });
 
@@ -177,7 +187,7 @@ function SellCarModal(props:Props) {
               }}
               component="label"
             >
-              model
+              Model
               <TextField
                 id="model"
                 name="model"
@@ -259,28 +269,32 @@ function SellCarModal(props:Props) {
                 </RadioGroup>
               </Typography>
             </Typography>
-            <Typography
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '30vw',
-                marginBottom: '1rem',
-              }}
-              component="label"
-            >
-              price
-              <TextField
-                id="price"
-                name="price"
-                label="price"
-                type="number"
-                value={!formik.values.price ? '' : formik.values.price}
-                onChange={formik.handleChange}
-                error={formik.touched.price && Boolean(formik.errors.price)}
-                helperText={formik.touched.price && formik.errors.price}
-              />
-            </Typography>
+
+            { modalType === 'checkRequest' ? null : (
+              <Typography
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '30vw',
+                  marginBottom: '1rem',
+                }}
+                component="label"
+              >
+                price
+                <TextField
+                  id="price"
+                  name="price"
+                  label="price"
+                  type="number"
+                  value={!formik.values.price ? '' : formik.values.price}
+                  onChange={formik.handleChange}
+                  error={formik.touched.price && Boolean(formik.errors.price)}
+                  helperText={formik.touched.price && formik.errors.price}
+                />
+              </Typography>
+            )}
+
             <Typography
               sx={{
                 display: 'flex',
@@ -300,6 +314,35 @@ function SellCarModal(props:Props) {
                 onChange={formik.handleChange}
                 error={formik.touched.location && Boolean(formik.errors.location)}
                 helperText={formik.touched.location && formik.errors.location}
+              />
+            </Typography>
+
+            <Typography
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              Description
+              <TextareaAutosize
+                id="description"
+                name="description"
+                value={!formik.values.description ? '' : formik.values.description}
+                onChange={formik.handleChange}
+                // error={formik.touched.description && Boolean(formik.errors.description)}
+                // helperText={formik.touched.description && formik.errors.description}
+                style={{
+                  width: '100%',
+                  borderRadius: '4px',
+                  border: '1px solid #80808066',
+                  marginTop: '1rem',
+                  height: '3rem',
+                  padding: '0.2rem',
+                }}
               />
             </Typography>
           </Box>
@@ -362,6 +405,7 @@ function SellCarModal(props:Props) {
                   defaultValue="manual"
                   name="transmission"
                   onChange={formik.handleChange}
+                  value={!formik.values.transmission ? '' : formik.values.transmission}
                 >
                   <FormControlLabel name="transmission" value="manual" control={<Radio />} label="Manual" />
                   <FormControlLabel name="transmission" value="automatic" control={<Radio />} label="Automatic" />
@@ -415,13 +459,57 @@ function SellCarModal(props:Props) {
                 }}
                 component="label"
               >
-                <Checkbox value={formik.values.isGoodPrice} onChange={formik.handleChange} />
+                <Checkbox
+                  name="isGoodPrice"
+                  id="isGoodPrice"
+                  value={formik.values.isGoodPrice}
+                  onChange={formik.handleChange}
+                  // error={formik.touched.isGoodPrice && Boolean(formik.errors.isGoodPrice)}
+                  // helperText={formik.touched.isGoodPrice && formik.errors.isGoodPrice}
+                />
 
                 Is Good Price
               </Typography>
-
             </Box>
 
+            <Typography
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              Features
+              <Autocomplete
+                multiple
+                sx={{ marginTop: '1rem' }}
+                options={featuresArray}
+                getOptionLabel={(option) => option.title}
+                defaultValue={[featuresArray[4]]}
+                // value={!formik.values.features ? [] : formik.values.features}
+                onChange={(eee, values) => formik.setFieldValue('features', [...values.map((value) => value.title)])}
+                id="features"
+                // name="features"
+                // onChange={formik.handleChange}
+                // eslint-disable-next-line react/jsx-props-no-spreading
+                // {...formik.getFieldProps('features')}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <TextField
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...params}
+                    name="features"
+                    // onChange={() => console.log('22222')}
+                    error={formik.touched.features && Boolean(formik.errors.features)}
+                    helperText={formik.touched.features && formik.errors.features}
+                    label="Features"
+                  />
+                )}
+              />
+            </Typography>
           </Box>
 
         </Box>
@@ -437,6 +525,7 @@ function SellCarModal(props:Props) {
         >
           Submit
         </Button>
+
       </form>
       <CustomizedSnackbars
         open={openSnackBar}

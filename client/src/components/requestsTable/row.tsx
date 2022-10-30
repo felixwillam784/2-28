@@ -73,7 +73,7 @@ function Row(props:RowProps) {
               Accept
             </Button>
           ) : (
-            <CarAdminModel />
+            <CarAdminModel id={car.id} />
 
           )}
           <Button variant="contained" color="error">
