@@ -26,7 +26,7 @@ const settings = ['Profile', 'Logout'];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
+  const { userInfo, setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
 
@@ -53,7 +53,6 @@ function NavBar() {
     setAnchorElUser(null);
   };
   const handleSetting = (setting:string) => {
-    console.log(setting);
     if (setting === 'Profile') {
       Navigate('/profile');
     } else if (setting === 'Logout') {
@@ -66,6 +65,8 @@ function NavBar() {
         }
       };
       logout();
+      setUserInfo(null);
+      Navigate('/');
     }
   };
   return (
