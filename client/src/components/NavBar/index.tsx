@@ -14,8 +14,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context';
 import { UserContextTypeWithDispatch } from '../../interfaces';
+import httpInstance from '../../services/axiosConfig';
+import CustomizedSnackbars from '../snackbar';
 
 const pages = ['HOME', 'HOW IT WORK', 'SHOP', 'CONTACT'];
 const settings = ['Profile', 'Logout'];
@@ -24,7 +27,17 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
+  const [snackBarProperties, setSnackBarProperties] = useState<
+  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
 
+  const Navigate = useNavigate();
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackBarProperties({ open: false, message: '', type: 'error' });
+  };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,7 +52,22 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const handleSetting = (setting:string) => {
+    console.log(setting);
+    if (setting === 'Profile') {
+      Navigate('/profile');
+    } else if (setting === 'Logout') {
+      const logout = async () => {
+        try {
+          setSnackBarProperties((preState) => ({ ...preState, open: false }));
+          const response = await httpInstance.get('auth/logout');
+        } catch (err) {
+          setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
+        }
+      };
+      logout();
+    }
+  };
   return (
     <AppBar
       position="sticky"
@@ -154,17 +182,24 @@ function NavBar() {
             ))}
           </Box>
 
-          { userInfo?.id
+          { userInfo !== null
             ? (
-              <Box sx={{ flexGrow: 0 }}>
+              <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt={userInfo.userName.toUpperCase()} src="/static/images/avatar/2.jpg" />
-                    <Typography variant="body1" sx={{ marginLeft: '0.5rem' }}>{` ${userInfo.userName}`}</Typography>
                   </IconButton>
                 </Tooltip>
+                <Typography
+                  variant="body1"
+                  sx={{ marginLeft: '0.5rem', cursor: 'pointer' }}
+                  onClick={handleOpenUserMenu}
+                >
+                  {` ${userInfo.userName}`}
+
+                </Typography>
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{ mt: '40px' }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
@@ -181,7 +216,7 @@ function NavBar() {
                 >
                   {settings.map((setting) => (
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                      <Typography textAlign="center" onClick={() => handleSetting(setting)}>{setting}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -219,6 +254,12 @@ function NavBar() {
             ) }
         </Toolbar>
       </Container>
+      <CustomizedSnackbars
+        open={snackBarProperties.open}
+        handleClose={handleClose}
+        message={snackBarProperties.message}
+        type={snackBarProperties.type}
+      />
     </AppBar>
   );
 }
