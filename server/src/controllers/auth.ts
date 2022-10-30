@@ -3,9 +3,10 @@ import bcrypt from 'bcryptjs';
 import createError from 'http-errors';
 import { loginSchema, signupSchema } from '../validation';
 import {
-  findUser, checkEmail, signupUser, findUserById,
+  findUser, checkEmail, signupUser, findUserById, checkAdmin,
 } from '../services';
 import { generateToken, verifyToken } from '../helpers';
+import AdminLoginSchema from '../validation/AdminLoginSchema';
 //----------------------------------------------------------------
 
 const loginController = async (req:Request) => {
@@ -70,8 +71,34 @@ const userController = async (req:Request) => {
   return { status: 401 };
 };
 
+const loginAdmin = async (req:Request) => {
+  const { username, password } = req.body;
+  console.log({ username, password }, 1);
+  await AdminLoginSchema.validate({ username, password });
+  const result:{ id:number, password:string, username:string } = await checkAdmin({ username });
+  if (!result) {
+    throw createError(400, 'wrong username or password');
+  }
+  const isCompare = await bcrypt.compare(password, result.password);
+
+  if (!isCompare) {
+    throw createError(400, 'wrong username or password');
+  }
+  const token = await generateToken({ userId: result.id, role: 'admin' });
+
+  return {
+    status: 200,
+    data:
+    {
+      id: result.id, username: result.username, role: 'admin',
+    },
+    token,
+  };
+};
+
 export {
   loginController,
   signupController,
   userController,
+  loginAdmin,
 };

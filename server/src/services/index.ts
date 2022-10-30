@@ -7,7 +7,7 @@ import {
   updateCarServes,
 } from './cars';
 import {
-  findUser, findUserById, signupUser, checkEmail,
+  findUser, findUserById, signupUser, checkEmail, checkAdmin,
 } from './auth';
 
 export {
@@ -20,5 +20,6 @@ export {
   findUserById,
   signupUser,
   checkEmail,
+  checkAdmin,
   updateCarServes,
 };

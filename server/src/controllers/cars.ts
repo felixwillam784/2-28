@@ -19,7 +19,7 @@ const addCar = async (req: Request, res) => {
   await addCarSchema.validate(body);
   const result = await addCarService(data);
 
-  return { message: 'successfully', status: 201, data: result };
+  return { msg: 'successfully', status: 201, data: result };
 };
 //-------------------------------------------------------
 const schema = yup.object({

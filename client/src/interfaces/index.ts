@@ -21,6 +21,10 @@ export interface CarWithImages extends Car {
   images:Array<{ carId:number,
     createdAt:string, id:number, image:string, updatedAt:string }>,
 }
+export interface SliderImages {
+  carImages:Array<{ carId:number,
+    createdAt:string, id:number, image:string, updatedAt:string }>,
+}
 
 export interface CarWithCustomerInfo extends Car {
   customer:{
