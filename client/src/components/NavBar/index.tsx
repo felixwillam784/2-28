@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from '@mui/material/Link';
 import { UserContext } from '../../context';
+import { UserContextTypeWithDispatch } from '../../interfaces';
 
 const pages = ['HOME', 'HOW IT WORK', 'SHOP', 'CONTACT'];
 const settings = ['Profile', 'Logout'];
@@ -22,8 +23,7 @@ const settings = ['Profile', 'Logout'];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  //   const user = useContext(UserContext);
-  const user = null;
+  const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -154,12 +154,13 @@ function NavBar() {
             ))}
           </Box>
 
-          {user
+          { userInfo?.id
             ? (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Mai Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt={userInfo.userName.toUpperCase()} src="/static/images/avatar/2.jpg" />
+                    <Typography variant="body1" sx={{ marginLeft: '0.5rem' }}>{` ${userInfo.userName}`}</Typography>
                   </IconButton>
                 </Tooltip>
                 <Menu
