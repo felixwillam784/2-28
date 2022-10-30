@@ -27,9 +27,11 @@ export default function UserInfoProvider({ children }:any) {
     };
     getUserInfo();
   }, []);
+
   const value = useMemo(() => ({
     userInfo, setUserInfo,
   }), [userInfo]);
+
   return (
     <UserContext.Provider value={value}>
       { children }
