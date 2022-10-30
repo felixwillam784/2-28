@@ -1,7 +1,10 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes,
+} from 'sequelize';
+import { CarInstance } from '../../interfaces';
 import sequelize from '../config/connection';
 
-const Car = sequelize.define('car', {
+const Car = sequelize.define<CarInstance>('car', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
