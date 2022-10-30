@@ -66,6 +66,9 @@ export default function SignUpform() {
           label="Email"
           value={forma.values.email}
           onChange={forma.handleChange}
+          onInput={() => {
+            setResError('');
+          }}
           error={forma.touched.email && Boolean(forma.errors.email)}
           helperText={forma.touched.email && forma.errors.email}
         />
