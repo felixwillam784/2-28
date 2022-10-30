@@ -9,7 +9,6 @@ import httpInstance from '../../services';
 import './styles.css';
 
 function AdminLogin() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [responseError, setResponseError] = useState<string>('');
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const navigate = useNavigate();
