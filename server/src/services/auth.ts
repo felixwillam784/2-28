@@ -33,13 +33,13 @@ const signupUser = async ({
 };
 
 const checkAdmin = async ({ username }) => {
-  const getAdmin:any = await Admin.findOne({
+  const findAdmin = await Admin.findOne({
     where: {
       username,
     },
     attributes: ['id', 'username', 'password'],
   });
-  return getAdmin;
+  return findAdmin;
 };
 
 export {
