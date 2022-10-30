@@ -42,6 +42,14 @@ const checkAdmin = async ({ username }) => {
   return admin;
 };
 
+const findAdminById = async (id: number) => {
+  const AdminInfo = await Admin.findOne({
+    where: { id },
+    attributes: ['id', 'username', 'password'],
+  });
+  return AdminInfo;
+};
+
 export {
-  findUser, findUserById, checkEmail, signupUser, checkAdmin,
+  findUser, findUserById, checkEmail, signupUser, checkAdmin, findAdminById,
 };
