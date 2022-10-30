@@ -71,7 +71,7 @@ const userController = async (req:Request) => {
   return { status: 401 };
 };
 
-const AdminLogin = async (req:Request) => {
+const loginAdmin = async (req:Request) => {
   const { username, password } = req.body;
   await AdminLoginSchema.validate({ username, password });
   const result:{ id:number, password:string, username:string } = await checkAdmin({ username });
@@ -99,5 +99,5 @@ export {
   loginController,
   signupController,
   userController,
-  AdminLogin,
+  loginAdmin,
 };
