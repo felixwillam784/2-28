@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import { createBrowserRouter } from 'react-router-dom';
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
@@ -10,6 +11,7 @@ import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
+import PrivateRouter from '../components/privateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <DashBoardMain />,
+
+        element: <PrivateRouter>
+          <DashBoardMain />
+          {' '}
+        </PrivateRouter>,
+
         children: [
           { index: true, element: <DashBoard /> },
           {
