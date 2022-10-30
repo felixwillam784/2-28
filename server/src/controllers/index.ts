@@ -10,7 +10,7 @@ import {
   loginController,
   signupController,
   userController,
-  AdminLogin,
+  LoginAdmin,
 } from './auth';
 
 export {
@@ -21,7 +21,7 @@ export {
   userController,
   deleteCarsById,
   getCarsDetails,
-  AdminLogin,
+  LoginAdmin,
   signupController,
   addCar,
 };
