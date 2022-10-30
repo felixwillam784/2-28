@@ -5,8 +5,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardMedia, CircularProgress } from '@mui/material';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 interface OutlineCardProps {
+  id: number,
   image:string
   carName:string
   quality:number
@@ -22,6 +24,7 @@ export default function CarCard({
   price,
   mileage,
   isGoodPrice,
+  id,
 }:OutlineCardProps) {
   return (
     <Card sx={{
@@ -116,19 +119,20 @@ export default function CarCard({
             km
           </span>
         </Typography>
-
-        <Button
-          fullWidth
-          sx={{
-            borderRadius: '15px',
-            padding: '.5rem',
-            mt: '.5rem',
-            cursor: 'pointer',
-          }}
-          variant="contained"
-        >
-          Buy Now
-        </Button>
+        <Link to={`/car/${id}`}>
+          <Button
+            fullWidth
+            sx={{
+              borderRadius: '15px',
+              padding: '.5rem',
+              mt: '.5rem',
+              cursor: 'pointer',
+            }}
+            variant="contained"
+          >
+            Buy Now
+          </Button>
+        </Link>
       </CardContent>
       {
         isGoodPrice && (
