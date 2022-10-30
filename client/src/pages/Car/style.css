@@ -8,4 +8,10 @@
     width: 9rem;
     height: 3rem;
   }
-  
+  .progress{
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 48px;
+        height: 50rem;
+  }
