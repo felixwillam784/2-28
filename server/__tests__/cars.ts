@@ -266,4 +266,60 @@ describe('/cars endpoint', () => {
       .send({ username: 'admin1', password: '123456789' });
     expect(result.body.message).toEqual('wrong username or password');
   });
+  test('should return old count of cars', async () => {
+    const result = await request(app).get('/api/v1/cars');
+    expect(result.body.data.count)
+      .toEqual(17);
+    expect(result.statusCode)
+      .toEqual(200);
+  });
+
+  test('should not add anything in the cars table', async () => {
+    const res = await request(app).post('/api/v1/cars')
+      .set('Cookie', 'token= <wrong token>')
+      .send({
+        brand: 'Toyota',
+        model: 'Land cruser',
+        year: 2016,
+        price: 21000,
+        mileage: 93000,
+        location: 'palestine - North Gaza',
+      });
+    expect(res.body).toEqual('Unauthorized');
+  });
+  test('should add new row in the cars table', async () => {
+    const res = await request(app).post('/api/v1/cars')
+      .set('Cookie', `token=${process.env.userToken}`)
+      .send({
+        brand: 'Toyota',
+        model: 'Land cruser',
+        year: 2016,
+        price: 21000,
+        mileage: 93000,
+        type: 'km',
+        location: 'palestine - North Gaza',
+      });
+    expect(201);
+    expect(res.body.msg)
+      .toEqual('successfully');
+    expect(res.body.data.brand)
+      .toEqual('Toyota');
+    expect(res.body.data.model)
+      .toEqual('Land cruser');
+    expect(res.body.data.year)
+      .toEqual(2016);
+    expect(res.body.data.price)
+      .toEqual(21000);
+    expect(res.body.data.mileage)
+      .toEqual(93000);
+    expect(res.body.data.location)
+      .toEqual('palestine - North Gaza');
+  });
+  test('should return new count of cars', async () => {
+    const result = await request(app).get('/api/v1/cars');
+    expect(result.body.data.count)
+      .toEqual(18);
+    expect(result.statusCode)
+      .toEqual(200);
+  });
 });
