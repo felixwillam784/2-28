@@ -51,6 +51,14 @@ const signupschema = yup.object({
     .required('Confirm Password is required!'),
 });
 
+const basicSchema = yup.object({
+  fullName: yup
+    .string(),
+  phoneNumber: yup.string(),
+  password: yup.string().min(8, 'Password should be of minimum 8 characters length'),
+  passwordConfirm: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+});
 const AdminLoginSchema = yup.object({
   username: yup
     .string()
@@ -61,5 +69,5 @@ const AdminLoginSchema = yup.object({
     .required('Password is required'),
 });
 export {
-  loginSchema, addCarSchema, signupschema, AdminLoginSchema,
+  loginSchema, addCarSchema, signupschema, AdminLoginSchema, basicSchema,
 };
