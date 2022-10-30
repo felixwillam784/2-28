@@ -1,4 +1,4 @@
-.formPage{
+.form{
     width: 70%;
     height: 100vh;
     border-radius: 45px 0 0 45px;
@@ -13,13 +13,19 @@
 }
 .signup-form{
     width: 50%;
-    height: 60vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    
 }
 .signup-form h1 {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 1.3rem;
+}
+
+.login{
+    font-size: 15px;
+    font-weight: lighter;
 }

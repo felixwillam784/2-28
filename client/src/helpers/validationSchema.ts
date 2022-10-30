@@ -46,5 +46,8 @@ const signupschema = yup.object({
     .string()
     .min(8, 'password must contain at least 8 characters')
     .required('Password is required!'),
+  repassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords not match')
+    .required('Confirm Password is required!'),
 });
 export { loginSchema, addCarSchema, signupschema };

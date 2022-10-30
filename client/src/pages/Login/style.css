@@ -15,11 +15,11 @@
   font-size: 30px;
   font-weight: bold;
 }
-.signPage{
+.main{
   background-color: #000;
   display: flex;
 }
-.signImg{
+.Img{
   width: 30%;
   height: 100vh;
   background-image: url(/public/images/2.jpg);
@@ -45,14 +45,14 @@
   font-weight: bold;
 }
 
-.another-way{
+.signup{
   font-size: 15px;
   font-weight: lighter;
 }
 .decs p{
   font-size: 20px;
 }
-.formPage{
+.form{
   width: 70%;
   height: 100vh;
   border-radius: 45px 0 0 45px;

@@ -3,9 +3,9 @@ import '../Login/style.css';
 
 function SignUp() {
   return (
-    <div className="signPage">
+    <div className="main">
       <div
-        className="signImg"
+        className="Img"
       >
         <div className="decs">
           <h2>

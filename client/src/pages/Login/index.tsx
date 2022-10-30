@@ -34,9 +34,9 @@ function Login() {
   });
 
   return (
-    <div className="signPage">
+    <div className="main">
       <div
-        className="signImg"
+        className="Img"
       >
         <div className="decs">
           <h2>
@@ -47,7 +47,7 @@ function Login() {
           <p>Great Value | Trusted Quality | All Online</p>
         </div>
       </div>
-      <div className="formPage">
+      <div className="form">
         <form className="formLogin" onSubmit={formik.handleSubmit}>
           <h1>LOG IN</h1>
           <TextField
@@ -89,7 +89,7 @@ function Login() {
           >
             Submit
           </Button>
-          <h4 className="another-way">
+          <h4 className="signup">
             Don&apos;t you have an account?
             {' '}
             <a href="/signup">Create one!</a>

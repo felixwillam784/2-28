@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context';
 import { signupschema } from '../../helpers/validationSchema';
 import { UserContextTypeWithDispatch } from '../../interfaces';
@@ -18,15 +18,21 @@ export default function SignUpform() {
       email: '',
       phoneNumber: '',
       password: '',
+      repassword: '',
     },
     validationSchema: signupschema,
-    onSubmit: (formValues) => {
+    onSubmit: ({
+      fullName, email, phoneNumber, password,
+    }) => {
       const signup = async () => {
         try {
+          setResError('');
           const result = await httpInstance
             .post(
               '/auth/signup',
-              formValues,
+              {
+                fullName, email, phoneNumber, password,
+              },
             );
           setUserInfo(result.data);
           navigate('/');
@@ -40,14 +46,14 @@ export default function SignUpform() {
   });
 
   return (
-    <div className="formPage">
+    <div className="form">
       <form className="signup-form" onSubmit={forma.handleSubmit}>
         <h1>Sign Up</h1>
         <TextField
           fullWidth
           id="fullName"
           name="fullName"
-          label="fullName"
+          label="full Name"
           value={forma.values.fullName}
           onChange={forma.handleChange}
           error={forma.touched.fullName && Boolean(forma.errors.fullName)}
@@ -67,7 +73,7 @@ export default function SignUpform() {
           fullWidth
           id="phoneNumber"
           name="phoneNumber"
-          label="phoneNumber"
+          label="phone Number"
           value={forma.values.phoneNumber}
           onChange={forma.handleChange}
           error={forma.touched.phoneNumber && Boolean(forma.errors.phoneNumber)}
@@ -83,6 +89,17 @@ export default function SignUpform() {
           onChange={forma.handleChange}
           error={forma.touched.password && Boolean(forma.errors.password)}
           helperText={forma.touched.password && forma.errors.password}
+        />
+        <TextField
+          fullWidth
+          id="repassword"
+          name="repassword"
+          label="Confirm Password"
+          type="password"
+          value={forma.values.repassword}
+          onChange={forma.handleChange}
+          error={forma.touched.repassword && Boolean(forma.errors.repassword)}
+          helperText={forma.touched.repassword && forma.errors.repassword}
         />
         {
           resError
@@ -101,10 +118,10 @@ export default function SignUpform() {
         >
           Sign Up
         </Button>
-        <h4 className="another-way">
+        <h4 className="login">
           Already you have an account!
           {' '}
-          <a href="/login">Log In</a>
+          <Link to="/login">Log In</Link>
           .
         </h4>
       </form>
