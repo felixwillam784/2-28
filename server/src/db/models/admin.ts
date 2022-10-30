@@ -1,9 +1,8 @@
 import { DataTypes } from 'sequelize';
-import { AdminInstance } from '../../interfaces';
 
 import sequelize from '../config/connection';
 
-const Admin = sequelize.define<AdminInstance>('admin', {
+const Admin = sequelize.define('admin', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

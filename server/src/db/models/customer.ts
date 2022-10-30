@@ -1,8 +1,7 @@
 import { DataTypes } from 'sequelize';
-import { CustomerInstance } from '../../interfaces';
 import sequelize from '../config/connection';
 
-const Customer = sequelize.define<CustomerInstance>('customer', {
+const Customer = sequelize.define('customer', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
