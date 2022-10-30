@@ -1,4 +1,4 @@
-import { Op } from 'sequelize';
+import { Op, WhereOptions } from 'sequelize';
 import {
   Car,
   Image,
@@ -21,7 +21,7 @@ const CAR_NUM_IN_PAGE = 9;
 const getCars = async ({
   brand, model, year, maxPrice, fuel, mileage, goodPrice, state, page,
 }) => {
-  const where:any = {
+  const where:WhereOptions = {
   };
   if (brand.trim()) {
     where.brand = {
