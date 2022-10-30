@@ -297,7 +297,7 @@ describe('/cars endpoint', () => {
   test('should return new count of cars', async () => {
     const result = await request(app).get('/api/v1/cars');
     expect(result.body.data.count)
-      .toEqual(18);
+      .toEqual(17);
     expect(result.statusCode)
       .toEqual(200);
   });
