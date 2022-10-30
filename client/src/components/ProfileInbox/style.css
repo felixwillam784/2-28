@@ -1,0 +1,39 @@
+.profile_basic {
+  width: 40vw;
+  margin-top: 1rem;
+  background-color: #fff;
+  border-radius: 15px;
+} 
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+.basic_button{
+    margin-right: 3rem !important;
+    display: flex;
+    align-self: end;
+    margin-bottom: 1rem !important;
+}
+.sell_row_container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem
+}
+.sell_row{
+  height: 3rem !important;
+  width: 100%;
+  margin: .5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px 1px  #888888;
+  font-size: 15px;
+  color: #505D68 ;
+}
