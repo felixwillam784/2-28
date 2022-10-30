@@ -1,16 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { basicSchema } from '../../helpers/validationSchema';
 import './style.css';
-
-const validationSchema = yup.object({
-  fullName: yup
-    .string(),
-  phoneNumber: yup.string(),
-  password: yup.string().min(8, 'Password should be of minimum 8 characters length'),
-  passwordConfirm: yup.string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
-});
 
 export default function UpdateSettingForm() {
   const formik = useFormik({
@@ -20,7 +11,7 @@ export default function UpdateSettingForm() {
       phoneNumber: '',
       passwordConfirm: '',
     },
-    validationSchema,
+    validationSchema: basicSchema,
     onSubmit: ({ fullName, password, phoneNumber }) => {
       alert(JSON.stringify({ fullName, password, phoneNumber }, null, 2));
     },
@@ -35,7 +26,7 @@ export default function UpdateSettingForm() {
               sx={{ width: '40%' }}
               id="fullName"
               name="fullName"
-              label="full Name"
+              label="Full Name"
               value={formik.values.fullName}
               onChange={formik.handleChange}
               error={formik.touched.fullName && Boolean(formik.errors.fullName)}
@@ -58,7 +49,7 @@ export default function UpdateSettingForm() {
               sx={{ width: '40%' }}
               id="phoneNumber"
               name="phoneNumber"
-              label="phoneNumber"
+              label="Phone Number"
               type="text"
               value={formik.values.phoneNumber}
               onChange={formik.handleChange}
@@ -70,7 +61,7 @@ export default function UpdateSettingForm() {
               sx={{ width: '40%' }}
               id="passwordConfirm"
               name="passwordConfirm"
-              label="PasswordConfirm"
+              label="Password Confirm"
               type="password"
               value={formik.values.passwordConfirm}
               onChange={formik.handleChange}
