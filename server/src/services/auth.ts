@@ -33,7 +33,7 @@ const signupUser = async ({
 };
 
 const checkAdmin = async ({ username }) => {
-  const admin:any = await Admin.findOne({
+  const admin = await Admin.findOne({
     where: {
       username,
     },
