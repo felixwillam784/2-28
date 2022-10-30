@@ -61,6 +61,7 @@ function Cars() {
                   // eslint-disable-next-line max-len
                   e?.images[0].image
                 }
+                  id={e.id}
                   carName={e.model}
                   quality={e.quality}
                   price={e.price}
