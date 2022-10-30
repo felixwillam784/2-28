@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
   FormControlLabel,
@@ -8,6 +9,8 @@ import {
   TextField,
   Typography,
   FormHelperText,
+  Box,
+  Checkbox,
 } from '@mui/material';
 import { useFormik } from 'formik';
 import { useState } from 'react';
@@ -21,7 +24,12 @@ const convertToKM = (value: number, type: string) => {
   return value;
 };
 
-function SellCarModal() {
+type Props = {
+  modalType: 'addRequest' | 'checkRequest',
+};
+
+function SellCarModal(props:Props) {
+  const { modalType } = props;
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<{ type: 'error' | 'success', message: string }>({ type: 'error', message: '' });
@@ -43,7 +51,13 @@ function SellCarModal() {
       price: 0,
       location: '',
       type: '',
+      isGoodPrice: false,
+      quality: 0,
+      transmission: '',
+      description: '',
+      features: [],
     },
+
     validationSchema: addCarSchema,
     onSubmit: (values, { resetForm }) => {
       const newValue = Math.floor(convertToKM(values.milage, values.type));
@@ -66,217 +80,355 @@ function SellCarModal() {
           setOpenSnackBar(true);
         }
       };
-      addCar();
-      if (!loading) {
-        resetForm();
-      }
+      // addCar();
+      // if (!loading) {
+      //   resetForm();
+      // }
+      console.log(formik.values);
     },
   });
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        width: '100%',
+        marginTop: '0.3rem',
       }}
     >
-      <Typography sx={{ fontSize: '1.7rem' }} component="h2">
-        Sell Your Car Now!
-      </Typography>
-      <hr
-        style={{
-          height: '.3rem',
-          width: '20rem',
-          backgroundColor: '#0A20E6',
-          marginBottom: '.5rem',
-        }}
-      />
+      {modalType === 'checkRequest' ? null : (
+        <>
+          <Typography sx={{ fontSize: '1.7rem' }} component="h2">
+            Sell Your Car Now!
+          </Typography>
+          <hr
+            style={{
+              height: '.3rem',
+              width: '20rem',
+              backgroundColor: '#0A20E6',
+              marginBottom: '.5rem',
+            }}
+          />
+        </>
+      )}
+
       <form
         style={{
           maxHeight: '80vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '90%',
         }}
         onSubmit={formik.handleSubmit}
       >
-        <Typography
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '35vw',
-            marginBottom: '1rem',
-          }}
-          component="label"
-        >
-          Brand
-          <Typography
-            component="div"
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={formik.values.brand}
-              label="brand"
-              name="brand"
-              onChange={formik.handleChange}
-              sx={{ width: '14rem' }}
-              error={formik.touched.brand && Boolean(formik.errors.brand)}
-            >
-              {brands.map((brand) => (
-                <MenuItem key={brand.id} value={brand.brand}>
-                  {brand.brand}
-                </MenuItem>
-              ))}
-            </Select>
-            {formik.errors.brand && (
-              <FormHelperText sx={{ color: 'red' }}>
-                {formik.touched.brand && formik.errors.brand}
-              </FormHelperText>
-            )}
-          </Typography>
-        </Typography>
-        <Typography
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '35vw',
-            marginBottom: '1rem',
-          }}
-          component="label"
-        >
-          model
-          <TextField
-            id="model"
-            name="model"
-            label="model"
-            value={formik.values.model}
-            onChange={formik.handleChange}
-            error={formik.touched.model && Boolean(formik.errors.model)}
-            helperText={formik.touched.model && formik.errors.model}
-          />
-        </Typography>
-        <Typography
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '35vw',
-            marginBottom: '1rem',
-          }}
-          component="label"
-        >
-          Year
-          <TextField
-            id="year"
-            name="year"
-            label="year"
-            type="number"
-            value={!formik.values.year ? '' : formik.values.year}
-            onChange={formik.handleChange}
-            error={formik.touched.year && Boolean(formik.errors.year)}
-            helperText={formik.touched.year && formik.errors.year}
-          />
-        </Typography>
-        <Typography
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'start',
-            width: '35vw',
-            margin: '1rem 0',
-          }}
-          component="label"
-        >
-          Mileage (approx)
-          <Typography
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '35vw',
-              margin: '1rem 0',
-            }}
-            component="div"
-          >
-            <TextField
-              id="milage"
-              name="milage"
-              label="milage"
-              type="number"
-              value={!formik.values.milage ? '' : formik.values.milage}
-              onChange={formik.handleChange}
-              error={formik.touched.milage && Boolean(formik.errors.milage)}
-              helperText={formik.touched.milage && formik.errors.milage}
-            />
-            <RadioGroup
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <Box sx={{ width: '45%' }}>
+            <Typography
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                width: '15rem',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
               }}
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="km"
-              name="milage"
-              onChange={formik.handleChange}
+              component="label"
             >
-              <FormControlLabel name="type" value="km" control={<Radio />} label="km" />
-              <FormControlLabel name="type" value="mile" control={<Radio />} label="mile" />
-            </RadioGroup>
-          </Typography>
-        </Typography>
-        <Typography
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '35vw',
-            marginBottom: '1rem',
-          }}
-          component="label"
-        >
-          price
-          <TextField
-            id="price"
-            name="price"
-            label="price"
-            type="number"
-            value={!formik.values.price ? '' : formik.values.price}
-            onChange={formik.handleChange}
-            error={formik.touched.price && Boolean(formik.errors.price)}
-            helperText={formik.touched.price && formik.errors.price}
-          />
-        </Typography>
-        <Typography
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '35vw',
-            marginBottom: '1rem',
-          }}
-          component="label"
-        >
-          location
-          <TextField
-            id="location"
-            name="location"
-            label="location"
-            value={formik.values.location}
-            onChange={formik.handleChange}
-            error={formik.touched.location && Boolean(formik.errors.location)}
-            helperText={formik.touched.location && formik.errors.location}
-          />
-        </Typography>
+              Brand
+              <Typography
+                component="div"
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formik.values.brand}
+                  label="brand"
+                  name="brand"
+                  onChange={formik.handleChange}
+                  sx={{ width: '14rem' }}
+                  error={formik.touched.brand && Boolean(formik.errors.brand)}
+                >
+                  {brands.map((brand) => (
+                    <MenuItem key={brand.id} value={brand.brand}>
+                      {brand.brand}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {formik.errors.brand && (
+                <FormHelperText sx={{ color: 'red' }}>
+                  {formik.touched.brand && formik.errors.brand}
+                </FormHelperText>
+                )}
+              </Typography>
+            </Typography>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              model
+              <TextField
+                id="model"
+                name="model"
+                label="model"
+                value={formik.values.model}
+                onChange={formik.handleChange}
+                error={formik.touched.model && Boolean(formik.errors.model)}
+                helperText={formik.touched.model && formik.errors.model}
+              />
+            </Typography>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              Year
+              <TextField
+                id="year"
+                name="year"
+                label="year"
+                type="number"
+                value={!formik.values.year ? '' : formik.values.year}
+                onChange={formik.handleChange}
+                error={formik.touched.year && Boolean(formik.errors.year)}
+                helperText={formik.touched.year && formik.errors.year}
+              />
+            </Typography>
+            <Typography
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'start',
+                width: '30vw',
+                margin: '1rem 0',
+              }}
+              component="label"
+            >
+              Mileage (approx)
+              <Typography
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '30vw',
+                  margin: '1rem 0',
+                }}
+                component="div"
+              >
+                <TextField
+                  id="milage"
+                  name="milage"
+                  label="milage"
+                  type="number"
+                  value={!formik.values.milage ? '' : formik.values.milage}
+                  onChange={formik.handleChange}
+                  error={formik.touched.milage && Boolean(formik.errors.milage)}
+                  helperText={formik.touched.milage && formik.errors.milage}
+                />
+                <RadioGroup
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    width: '15rem',
+                  }}
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="km"
+                  name="milage"
+                  onChange={formik.handleChange}
+                >
+                  <FormControlLabel name="type" value="km" control={<Radio />} label="km" />
+                  <FormControlLabel name="type" value="mile" control={<Radio />} label="mile" />
+                </RadioGroup>
+              </Typography>
+            </Typography>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              price
+              <TextField
+                id="price"
+                name="price"
+                label="price"
+                type="number"
+                value={!formik.values.price ? '' : formik.values.price}
+                onChange={formik.handleChange}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
+              />
+            </Typography>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              location
+              <TextField
+                id="location"
+                name="location"
+                label="location"
+                value={formik.values.location}
+                onChange={formik.handleChange}
+                error={formik.touched.location && Boolean(formik.errors.location)}
+                helperText={formik.touched.location && formik.errors.location}
+              />
+            </Typography>
+          </Box>
+
+          <Box sx={{ width: '45%' }}>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              Quality
+              <TextField
+                id="quality"
+                name="quality"
+                label="quality"
+                type="number"
+                value={formik.values.quality}
+                onChange={formik.handleChange}
+                error={formik.touched.quality && Boolean(formik.errors.quality)}
+                helperText={formik.touched.quality && formik.errors.quality}
+              />
+            </Typography>
+
+            <Typography
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '30vw',
+                margin: '1rem 0',
+              }}
+              component="label"
+            >
+              Transmission
+              <Typography
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '30vw',
+                  margin: '1rem 0',
+                }}
+                component="div"
+              >
+                <RadioGroup
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    width: '100%',
+                  }}
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="manual"
+                  name="transmission"
+                  onChange={formik.handleChange}
+                >
+                  <FormControlLabel name="transmission" value="manual" control={<Radio />} label="Manual" />
+                  <FormControlLabel name="transmission" value="automatic" control={<Radio />} label="Automatic" />
+                </RadioGroup>
+              </Typography>
+            </Typography>
+
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'start',
+                  width: '50%',
+                  margin: '1rem 0',
+                }}
+                component="label"
+              >
+                Price
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '30vw',
+                    margin: '1rem 0',
+                  }}
+                  component="div"
+                >
+                  <TextField
+                    id="price"
+                    name="price"
+                    label="price"
+                    type="number"
+                    value={!formik.values.price ? '' : formik.values.price}
+                    onChange={formik.handleChange}
+                    error={formik.touched.price && Boolean(formik.errors.price)}
+                    helperText={formik.touched.price && formik.errors.price}
+                  />
+                </Typography>
+              </Typography>
+
+              <Typography
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '50%',
+                  margin: '1rem 0',
+                }}
+                component="label"
+              >
+                <Checkbox value={formik.values.isGoodPrice} onChange={formik.handleChange} />
+
+                Is Good Price
+              </Typography>
+
+            </Box>
+
+          </Box>
+
+        </Box>
         <Button
           sx={{
             mb: '1rem',
+            width: modalType === 'checkRequest' ? '50%' : '100%',
           }}
           color="primary"
           variant="contained"
@@ -292,7 +444,7 @@ function SellCarModal() {
         message={data.message}
         type={data.type}
       />
-    </div>
+    </Box>
   );
 }
 export default SellCarModal;
