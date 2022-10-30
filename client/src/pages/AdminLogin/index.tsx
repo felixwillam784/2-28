@@ -22,13 +22,11 @@ function AdminLogin() {
     onSubmit: (values) => {
       const AdminInfo = async () => {
         try {
-          console.log(values);
           const result = await httpInstance.post('/auth/admin/login', values);
           setUserInfo(result.data);
           navigate('/');
-        } catch (error) {
-          console.log(error);
-          setResponseError('wrong username or password');
+        } catch (error:any) {
+          setResponseError(error.response.data.message);
         }
       };
       AdminInfo();

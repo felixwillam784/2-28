@@ -73,7 +73,6 @@ const userController = async (req:Request) => {
 
 const loginAdmin = async (req:Request) => {
   const { username, password } = req.body;
-  console.log({ username, password }, 1);
   await AdminLoginSchema.validate({ username, password });
   const result:{ id:number, password:string, username:string } = await checkAdmin({ username });
   if (!result) {
