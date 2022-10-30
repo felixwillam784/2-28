@@ -244,7 +244,28 @@ describe('/cars endpoint', () => {
       .expect(400);
     expect(result.body.message).toEqual('this email is registered');
   });
-
+  test('Admin Login', async () => {
+    const result = await request(app).post('/api/v1/auth/admin/login')
+      .send({ username: 'admin', password: '123456789' });
+    expect(result.body.data.role).toEqual('admin');
+  });
+  test('Admin Login', async () => {
+    const result = await request(app).post('/api/v1/auth/admin/login')
+      .send({ username: 'admin', password: '123456789' });
+    expect(result.body).toEqual({
+      msg: null,
+      data: {
+        id: 1,
+        username: 'admin',
+        role: 'admin',
+      },
+    });
+  });
+  test('Admin Login', async () => {
+    const result = await request(app).post('/api/v1/auth/admin/login')
+      .send({ username: 'admin1', password: '123456789' });
+    expect(result.body.message).toEqual('wrong username or password');
+  });
   test('should return old count of cars', async () => {
     const result = await request(app).get('/api/v1/cars');
     expect(result.body.data.count)

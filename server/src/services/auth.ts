@@ -1,4 +1,4 @@
-import { Customer } from '../db/models';
+import { Admin, Customer } from '../db/models';
 
 const checkEmail = async ({ email }) => {
   const getEmail = await Customer.findAll({
@@ -32,6 +32,16 @@ const signupUser = async ({
   return userInfo.id;
 };
 
+const checkAdmin = async ({ username }) => {
+  const admin = await Admin.findOne({
+    where: {
+      username,
+    },
+    attributes: ['id', 'username', 'password'],
+  });
+  return admin;
+};
+
 export {
-  findUser, findUserById, checkEmail, signupUser,
+  findUser, findUserById, checkEmail, signupUser, checkAdmin,
 };
