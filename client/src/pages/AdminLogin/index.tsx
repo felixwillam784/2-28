@@ -12,6 +12,16 @@ function AdminLogin() {
   const [responseError, setResponseError] = useState<string>('');
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const navigate = useNavigate();
+  const AdminInfo = async (values:any) => {
+    try {
+      setResponseError('');
+      const result = await httpInstance.post('/auth/admin/login', values);
+      setUserInfo(result.data);
+      navigate('/');
+    } catch (error:any) {
+      setResponseError(error.response.data.message);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -19,16 +29,7 @@ function AdminLogin() {
     },
     validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      const AdminInfo = async () => {
-        try {
-          const result = await httpInstance.post('/auth/admin/login', values);
-          setUserInfo(result.data);
-          navigate('/');
-        } catch (error:any) {
-          setResponseError(error.response.data.message);
-        }
-      };
-      AdminInfo();
+      AdminInfo(values);
     },
   });
   return (
