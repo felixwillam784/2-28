@@ -22,7 +22,7 @@ function NavBar() {
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }, { title: 'Dashboard', path: 'admin' }]
-    : [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }, { title: 'Contact', path: '' }];
+    : [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }, { title: 'Contact', path: '/contact' }];
 
   const settings = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'Logout', path: 'logout' }]
@@ -161,7 +161,18 @@ function NavBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '2rem' }}>
             {pages.map((page) => (
-              <NavLink key={`link${page.title}`} to={page.path} style={{ textDecoration: 'none' }}>
+              <NavLink
+                key={`link${page.title}`}
+                to={page.path}
+                // style={{ textDecoration: 'none' }}
+                style={
+                  ({ isActive }) => (isActive ? {
+                    borderBottom: '2px solid black',
+                    textDecoration: 'none',
+                  }
+                    : { borderBottom: 'none', textDecoration: 'none' })
+                }
+              >
                 <Button
                   key={page.title}
                   component="button"
@@ -173,6 +184,7 @@ function NavBar() {
                     fontFamily: 'var(--font-family)',
                     fontWeight: '400',
                     fontSize: '14px',
+                    marginBottom: '0.1rem',
                   }}
                 >
                   {page.title}
