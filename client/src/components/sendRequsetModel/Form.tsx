@@ -87,6 +87,8 @@ function SellCarModal(props:Props) {
     setSnackBarProperties({ open: false, message: '', type: 'error' });
   };
 
+  console.log(featuresArray[4]);
+
   const formik = useFormik({
     initialValues: {
       ...carData, type: '',
@@ -126,6 +128,7 @@ function SellCarModal(props:Props) {
       console.log(values);
     },
   });
+  console.log(formik.values.features, 'feeeeeeeeeeee');
 
   return (
     <Box
@@ -147,7 +150,7 @@ function SellCarModal(props:Props) {
               height: '.3rem',
               width: '20rem',
               backgroundColor: '#0A20E6',
-              marginBottom: '.5rem',
+              margin: '0.5rem auto',
             }}
           />
         </>
@@ -369,7 +372,7 @@ function SellCarModal(props:Props) {
                   borderRadius: '4px',
                   border: '1px solid #80808066',
                   marginTop: '1rem',
-                  height: '3rem',
+                  minHeight: '3rem',
                   padding: '0.2rem',
                 }}
               />
@@ -519,18 +522,19 @@ function SellCarModal(props:Props) {
                 getOptionLabel={(option) => option}
                 defaultValue={[featuresArray[4]]}
                 value={!formik.values.features ? [] : formik.values.features}
-                onChange={(eee, values) => formik.setFieldValue('features', [...values.map((value) => value.title)])}
+                onChange={(eee, values) => {
+                  console.log(values, 'values');
+
+                  formik.setFieldValue('features', [...values]);
+                }}
                 id="features"
-                // name="features"
-                // onChange={formik.handleChange}
                 // eslint-disable-next-line react/jsx-props-no-spreading
-                // {...formik.getFieldProps('features')}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
+                    name="features"
                   // eslint-disable-next-line react/jsx-props-no-spreading
                     {...params}
-                    name="features"
                     // onChange={() => console.log('22222')}
                     error={formik.touched.features && Boolean(formik.errors.features)}
                     helperText={formik.touched.features && formik.errors.features}

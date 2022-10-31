@@ -43,7 +43,7 @@ export default function CarAdminModel({ id }:{ id:number }) {
           <Typography sx={{ textAlign: 'center' }} component="h2">
             Car selling Details
             <hr style={{
-              margin: '1rem 0rem',
+              margin: '1rem auto',
               height: '.3rem',
               width: '20rem',
               backgroundColor: '#0A20E6',
