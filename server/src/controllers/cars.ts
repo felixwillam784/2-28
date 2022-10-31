@@ -2,6 +2,7 @@ import { Request } from 'express';
 
 import createError from 'http-errors';
 import * as yup from 'yup';
+import { sendEmail } from '../helpers';
 import {
   addCarService,
   deleteCars,
@@ -9,6 +10,7 @@ import {
   getCarsDetailsQuery,
   getCars,
   updateCarServes,
+  findUserById,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -94,7 +96,15 @@ const updateCars = async (req: Request) => {
   const result = await updateCarServes(body, id);
   return { status: 200, msg: 'done!', data: result };
 };
-
+const buyCar = async (req, res) => {
+  const { body } = req;
+  const { id } = req.query;
+  const { userId } = res.locals.user;
+  await updateCarServes(body, id);
+  const result:{ email: string, fullName: string } = await findUserById({ id: userId });
+  await sendEmail(result);
+  return { status: 200, msg: 'successfully' };
+};
 export {
   getFilteredCars,
   getCarsById,
@@ -102,4 +112,5 @@ export {
   deleteCarsById,
   getCarsDetails,
   addCar,
+  buyCar,
 };

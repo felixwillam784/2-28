@@ -8,6 +8,7 @@ import {
   deleteCarsById,
   getCarsDetails,
   addCar,
+  buyCar,
 } from '../controllers';
 
 const carsRouter = Router();
@@ -18,5 +19,6 @@ carsRouter.get('/:id', ExpressWrapper(getCarsById));
 carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
+carsRouter.post('/buy', authMiddleware('user'), ExpressWrapper(buyCar));
 
 export default carsRouter;
