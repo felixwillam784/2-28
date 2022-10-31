@@ -84,7 +84,6 @@ function SellCarModal(props:Props) {
           setLoading(false);
           setOpenSnackBar(true);
         } catch (error) {
-          console.log(error.message);
           setData({ type: 'error', message: 'somthing went wrong!' });
           setLoading(false);
           setOpenSnackBar(true);

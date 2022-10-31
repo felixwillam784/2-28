@@ -314,7 +314,7 @@
             "isGoodPrice": false,
             "location": "palestine - gaza",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Rear entertainment screens",
                 "Parking sensors",
@@ -359,7 +359,7 @@
             "isGoodPrice": true,
             "location": "palestine - alnazreth",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Rear mirror camera",
                 "Brake assist",
@@ -403,7 +403,7 @@
             "isGoodPrice": true,
             "location": "palestine - Rafah",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Collision warning system",
                 "Navigation",
@@ -470,7 +470,7 @@
             "isGoodPrice": false,
             "location": "palestine - ramallah",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Power seats",
                 "Automated Parking",
@@ -500,7 +500,7 @@
             "isGoodPrice": true,
             "location": "palestine - gaza",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Automated Parking",
                 "Parking sensors",
@@ -525,7 +525,7 @@
             "isGoodPrice": true,
             "location": "palestine - Rafah",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Blind spot moitor",
                 "Collision warning system",
@@ -577,7 +577,7 @@
             "isGoodPrice": false,
             "location": "palestine - alqods",
             "state": "on-market",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Brake assist",
                 "Reversing Camera",
@@ -665,7 +665,7 @@
             "isGoodPrice": false,
             "location": "palestine - alqods",
             "state": "pending",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Auto dimming mirror",
                 "Headsup display",
@@ -752,7 +752,7 @@
             "isGoodPrice": false,
             "location": "palestine - gaza",
             "state": "under-check",
-            "transmission": "auto",
+            "transmission": "automatic",
             "features": [
                 "Navigation",
                 "Bluetooth",
