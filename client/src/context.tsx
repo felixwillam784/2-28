@@ -17,11 +17,10 @@ export const UserContext = createContext<UserContextTypeWithDispatch>({
 
 export default function UserInfoProvider({ children }:any) {
   const [userInfo, setUserInfo] = useState<UserContextType | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const getUserInfo = async () => {
       try {
-        setLoading(true);
         const result = await httpInstance.get('/auth/user');
         setUserInfo(result.data);
         setLoading(false);
