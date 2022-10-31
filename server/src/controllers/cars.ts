@@ -106,7 +106,7 @@ const buyCar = async (req, res) => {
     await sendEmail(result);
     return { status: 200, msg: 'successfully' };
   }
-  return { status: 400, msg: 'car not available to sell' };
+  throw createError(400, 'car not available to sell');
 };
 export {
   getFilteredCars,
