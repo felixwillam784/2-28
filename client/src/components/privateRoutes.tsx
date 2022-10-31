@@ -1,16 +1,17 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../context';
 import { PrivateType, UserContextTypeWithDispatch } from '../interfaces';
 
-function ProtectedRoute({ children, role }:PrivateType) {
+function ProtectedRoute({ children, roles }:PrivateType) {
+  const { pathname } = useLocation(); // to redirect location
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
 
-  if (userInfo?.role !== role) {
-    if (role === 'admin') {
-      return <Navigate to="/admin/login" replace />;
+  if (userInfo?.role !== roles) {
+    if (roles === 'admin') {
+      return <Navigate to="/admin/login" replace state={{ currentLocation: pathname }} />;
     }
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ currentLocation: pathname }} />;
   }
 
   return children;

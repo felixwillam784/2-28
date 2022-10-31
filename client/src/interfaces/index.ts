@@ -89,5 +89,5 @@ export interface UserContextTypeWithDispatch {
 }
 export interface PrivateType {
   children:JSX.Element,
-  role:string,
+  roles:string,
 }
