@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useContext } from 'react';
 import {
   AppBar, Toolbar, Box, IconButton, Typography,
@@ -21,14 +20,14 @@ function NavBar() {
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
-    ? [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }, { title: 'Dashboard', path: 'admin' }]
-    : [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }, { title: 'Contact', path: '/contact' }];
+    ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
+    : [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }];
 
   const settings = userInfo?.role.toLowerCase() === 'admin'
-    ? [{ title: 'Logout', path: 'logout' }]
-    : [{ title: 'Profile', path: 'profile' }, { title: 'Logout', path: 'logout' }];
+    ? []
+    : [{ title: 'Profile', path: 'profile' }];
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -50,23 +49,24 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const handleSetting = (setting:string) => {
     if (setting === 'Profile') {
-      Navigate('/profile');
-    } else if (setting === 'Logout') {
-      const logout = async () => {
-        try {
-          setSnackBarProperties((preState) => ({ ...preState, open: false }));
-          const response = await httpInstance.get('auth/logout');
-        } catch (err) {
-          setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
-        }
-        setUserInfo(null);
-        Navigate('/');
-      };
-      logout();
+      navigate('/profile');
     }
   };
+  const handleLogout = async () => {
+    try {
+      setSnackBarProperties((preState) => ({ ...preState, open: false }));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await httpInstance.get('auth/logout');
+    } catch (err) {
+      setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
+    }
+    setUserInfo(null);
+    navigate('/');
+  };
+
   return (
     <AppBar
       position="sticky"
@@ -81,11 +81,7 @@ function NavBar() {
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
         <Toolbar disableGutters sx={{ height: { xs: '3.5rem', md: '3.5rem' } }}>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          {/* <Box
-            component="img"
-            src="https://cdn-icons-png.flaticon.com/512/8085/8085712.png"
-            sx={{ width: '2rem', height: 'auto', marginRight: '0.4rem' }}
-          /> */}
+
           <Typography
             variant="h6"
             noWrap
@@ -164,7 +160,7 @@ function NavBar() {
               <NavLink
                 key={`link${page.title}`}
                 to={page.path}
-                // style={{ textDecoration: 'none' }}
+                end
                 style={
                   ({ isActive }) => (isActive ? {
                     borderBottom: '2px solid black',
@@ -258,15 +254,34 @@ function NavBar() {
                 >
                   {settings.map((setting) => (
                     <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
-                      <Typography
-                        textAlign="center"
+                      <Button
+                        variant="text"
+                        sx={{
+                          textAlign: 'center',
+                          color: 'var(--text-color)',
+                          ':hover': { backgroundColor: 'transparent' },
+                          textTransform: 'capitalize',
+                        }}
                         onClick={() => handleSetting(setting.title)}
                       >
                         {setting.title}
-
-                      </Typography>
+                      </Button>
                     </MenuItem>
                   ))}
+                  <MenuItem key="logout" onClick={handleCloseUserMenu}>
+                    <Button
+                      variant="text"
+                      sx={{
+                        textAlign: 'center',
+                        color: 'var(--text-color)',
+                        ':hover': { backgroundColor: 'transparent' },
+                        textTransform: 'capitalize',
+                      }}
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
                 </Menu>
               </Box>
             ) }
