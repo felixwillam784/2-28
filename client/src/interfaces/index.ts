@@ -87,3 +87,7 @@ export interface UserContextTypeWithDispatch {
   userInfo: UserContextType | null,
   setUserInfo:(c: UserContextType | null) => void,
 }
+export interface PrivateType {
+  children:JSX.Element,
+  role:string,
+}

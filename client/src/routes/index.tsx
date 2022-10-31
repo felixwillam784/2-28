@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/jsx-closing-tag-location */
 import { createBrowserRouter } from 'react-router-dom';
 import SignUp from '../pages/SignUp';
@@ -11,7 +12,7 @@ import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
-import PrivateRouter from '../components/privateRoutes';
+import ProtectedRoute from '../components/privateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -22,15 +23,19 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       {
         path: '/login',
-        element: <Login />,
+        element:
+  <Login />
+        ,
       },
       {
         path: '/signup',
-        element: <SignUp />,
+        element:
+  <SignUp />
+        ,
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: <ProtectedRoute role="user"><Profile /></ProtectedRoute>,
       },
       {
         path: '/cars',
@@ -42,15 +47,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin',
-
-        element: <PrivateRouter>
+        element: <ProtectedRoute role="admin">
           <DashBoard />
-        </PrivateRouter>,
+        </ProtectedRoute>,
       },
       {
 
         path: '/admin/login',
-        element: <AdminLogin />,
+        element:
+  <AdminLogin />
+        ,
       },
 
     ],

@@ -1,22 +1,19 @@
 import { useContext } from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { UserContext } from '../context';
-import { UserContextTypeWithDispatch } from '../interfaces';
+import { PrivateType, UserContextTypeWithDispatch } from '../interfaces';
 
-// profile user //login
-// admin
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function PrivateRouter({ role, children }:any) {
-  // const navigate = useNavigate();
+function ProtectedRoute({ children, role }:PrivateType) {
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
-  // const navigate = useNavigate();
 
-  if (role !== userInfo?.role) {
-    console.log(userInfo?.role);
-    return <Navigate to="/admin/login" replace />;
+  if (userInfo?.role !== role) {
+    if (role === 'admin') {
+      return <Navigate to="/admin/login" replace />;
+    }
+    return <Navigate to="/login" replace />;
   }
+
   return children;
 }
-export default PrivateRouter;
+
+export default ProtectedRoute;
