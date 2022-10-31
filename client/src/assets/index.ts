@@ -6,6 +6,8 @@ import nissan from './nissan.png';
 import toyota from './toyota.png';
 import mitsbishi from './mitsubishi_v2.png';
 import audi from './audi.png';
+import error from './404.jpg';
+import notFound from './notFound.svg';
 
 interface Image {
   privateSeller: string,
@@ -16,6 +18,8 @@ interface Image {
   toyota: string,
   mitsbishi: string,
   audi: string,
+  error:string
+  notFound:string,
 }
 
 const Images: Image = {
@@ -27,6 +31,8 @@ const Images: Image = {
   toyota,
   mitsbishi,
   audi,
+  error,
+  notFound,
 };
 
 export default Images;
