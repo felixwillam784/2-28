@@ -15,13 +15,14 @@ import {
   TextareaAutosize,
 } from '@mui/material';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { features } from 'process';
 import httpInstance from '../../services';
 import brands from '../../assets/data/brands.json';
-import { addCarSchema } from '../../helpers/validationSchema';
+import { checkCarSchema } from '../../helpers/validationSchema';
 import CustomizedSnackbars from '../snackbar';
 import { featuresArray } from '../../assets/data/features';
+import { CarWithImages } from '../../interfaces';
 
 const convertToKM = (value: number, type: string) => {
   if (type === 'mile') return value * 1.609344;
@@ -33,60 +34,89 @@ type Props = {
   id: number | undefined
 };
 
+const initialData = {
+  id: 0,
+  brand: '',
+  model: '',
+  price: 0,
+  year: 0,
+  mileage: 0,
+  quality: 0,
+  isGoodPrice: false,
+  location: '',
+  state: '',
+  transmission: '',
+  features: [],
+  description: '',
+  fuel: '',
+  createdAt: '',
+  updatedAt: '',
+  customerId: 2,
+  images: [],
+};
+
 function SellCarModal(props:Props) {
   const { modalType, id } = props;
-  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [carData, setCarData] = useState<CarWithImages>(initialData);
   const [loading, setLoading] = useState<boolean>(true);
-  const [data, setData] = useState<{ type: 'error' | 'success', message: string }>({ type: 'error', message: '' });
+  const [snackBarProperties, setSnackBarProperties] = useState<
+  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
+
+  useEffect(() => {
+    const getCarInfo = async () => {
+      try {
+        setLoading(true);
+        setSnackBarProperties((preState) => ({ ...preState, open: false }));
+        const response = await httpInstance.get(`/cars/${id}`);
+        setCarData(response.data[0]);
+        console.log(response.data[0]);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
+      }
+    };
+    getCarInfo();
+  }, []);
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-
-    setOpenSnackBar(false);
+    setSnackBarProperties({ open: false, message: '', type: 'error' });
   };
 
   const formik = useFormik({
     initialValues: {
-      state: 'on-market',
-      brand: '',
-      model: '',
-      year: 0,
-      milage: 0,
-      price: 0,
-      location: '',
-      type: '',
-      isGoodPrice: false,
-      quality: 0,
-      transmission: '',
-      description: '',
-      features: [],
+      ...carData, type: '',
     },
-
-    validationSchema: addCarSchema,
+    enableReinitialize: true,
+    validationSchema: checkCarSchema,
     onSubmit: (values, { resetForm }) => {
-      const newValue = Math.floor(convertToKM(values.milage, values.type));
+      const newValue = Math.floor(convertToKM(values.mileage, values.type));
       // eslint-disable-next-line no-param-reassign
-      values.milage = newValue;
+      values.mileage = newValue;
       const addCar = async () => {
         try {
           setLoading(true);
-          setOpenSnackBar(false);
-
+          setSnackBarProperties((preState) => ({ ...preState, open: false }));
           if (modalType === 'checkRequest') {
             await httpInstance.put(`/cars/${id}`, values);
           } else {
             await httpInstance.post('/cars', values);
           }
-
-          setData({ type: 'success', message: 'Added successfully' });
           setLoading(false);
-          setOpenSnackBar(true);
+          setSnackBarProperties(
+            {
+              open: true,
+              message: modalType === 'checkRequest' ? 'Car checked successfully' : 'Sell car request sent successfully',
+              type: 'success',
+            },
+          );
         } catch (error) {
-          setData({ type: 'error', message: 'somthing went wrong!' });
           setLoading(false);
-          setOpenSnackBar(true);
+          setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
         }
       };
       addCar();
@@ -241,14 +271,14 @@ function SellCarModal(props:Props) {
                 component="div"
               >
                 <TextField
-                  id="milage"
-                  name="milage"
-                  label="milage"
+                  id="mileage"
+                  name="mileage"
+                  label="mileage"
                   type="number"
-                  value={!formik.values.milage ? '' : formik.values.milage}
+                  value={!formik.values.mileage ? '' : formik.values.mileage}
                   onChange={formik.handleChange}
-                  error={formik.touched.milage && Boolean(formik.errors.milage)}
-                  helperText={formik.touched.milage && formik.errors.milage}
+                  error={formik.touched.mileage && Boolean(formik.errors.mileage)}
+                  helperText={formik.touched.mileage && formik.errors.mileage}
                 />
                 <RadioGroup
                   sx={{
@@ -260,7 +290,7 @@ function SellCarModal(props:Props) {
                   }}
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="km"
-                  name="milage"
+                  name="mileage"
                   onChange={formik.handleChange}
                 >
                   <FormControlLabel name="type" value="km" control={<Radio />} label="km" />
@@ -486,9 +516,9 @@ function SellCarModal(props:Props) {
                 multiple
                 sx={{ marginTop: '1rem' }}
                 options={featuresArray}
-                getOptionLabel={(option) => option.title}
+                getOptionLabel={(option) => option}
                 defaultValue={[featuresArray[4]]}
-                // value={!formik.values.features ? [] : formik.values.features}
+                value={!formik.values.features ? [] : formik.values.features}
                 onChange={(eee, values) => formik.setFieldValue('features', [...values.map((value) => value.title)])}
                 id="features"
                 // name="features"
@@ -527,10 +557,10 @@ function SellCarModal(props:Props) {
 
       </form>
       <CustomizedSnackbars
-        open={openSnackBar}
+        open={snackBarProperties.open}
         handleClose={handleClose}
-        message={data.message}
-        type={data.type}
+        message={snackBarProperties.message}
+        type={snackBarProperties.type}
       />
     </Box>
   );
