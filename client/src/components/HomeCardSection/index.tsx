@@ -38,7 +38,7 @@ export default function HomeCardSection({
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          width: '80%',
+          width: { xs: '90%' },
           marginTop: '50px',
         }}
         component="div"
