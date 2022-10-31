@@ -97,13 +97,16 @@ const updateCars = async (req: Request) => {
   return { status: 200, msg: 'done!', data: result };
 };
 const buyCar = async (req, res) => {
-  const { body } = req;
-  const { id } = req.query;
+  const { state, id } = req.body;
   const { userId } = res.locals.user;
-  await updateCarServes(body, id);
-  const result:{ email: string, fullName: string } = await findUserById({ id: userId });
-  await sendEmail(result);
-  return { status: 200, msg: 'successfully' };
+  const carInfo = await getCarInfo(id);
+  if (carInfo[0].state === 'on-market') {
+    await updateCarServes({ state }, id);
+    const result:{ email: string, fullName: string } = await findUserById({ id: userId });
+    await sendEmail(result);
+    return { status: 200, msg: 'successfully' };
+  }
+  return { status: 400, msg: 'car not available to sell' };
 };
 export {
   getFilteredCars,

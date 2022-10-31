@@ -1,9 +1,7 @@
 import nodemailer from 'nodemailer';
-import { config } from 'dotenv';
 
-config();
-const { SECRET_EMAIL, SECRET_PASSWORD } = process.env;
 const sendEmail = (userInfo) => {
+  const { SECRET_EMAIL, SECRET_PASSWORD } = process.env;
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
