@@ -13,7 +13,6 @@
   },
   "scripts": {
     "start": "cd server && npm start",
-    "build": "cd server && npm run build",
     "client": "cd client && npm run start",
     "test": "cd server && npm run test",
     "format": "cd server && npm run format && cd ../client && npm run format",
