@@ -28,11 +28,7 @@ function UploadFiles() {
   ) => {
     const fileList = e.target.files;
     if (!fileList) return;
-    const list: Array<File> = [];
-    for (let i = 0; i < fileList.length; i += 1) {
-      list.push(fileList[i]);
-    }
-    setFile(list);
+    setFile(fileList);
   };
   const handleUpload = () => {
     if (!file) {
