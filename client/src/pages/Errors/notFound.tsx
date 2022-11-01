@@ -1,10 +1,18 @@
-import Images from '../../assets/index';
-import Imag from './images';
 import './styles.css';
+import Images from '../../assets';
 
 function NotFound(): JSX.Element {
   return (
-    <Imag src={Images.notFound} alt="not" />
+    <div className="pageBody">
+      <div className="content">
+        <h1 className="notFoundHeader">NOT FOUND</h1>
+        <img
+          className="imgNotFound"
+          src={Images.notFound}
+          alt="Not Found"
+        />
+      </div>
+    </div>
   );
 }
 
