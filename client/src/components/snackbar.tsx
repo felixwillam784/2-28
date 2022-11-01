@@ -13,7 +13,7 @@ interface Snackbars {
   open: boolean,
   handleClose: (event?: React.SyntheticEvent | Event, reason?: string) => void,
   message:string,
-  type:'error' | 'success'
+  type:'error' | 'success' | 'info'
 }
 export default function CustomizedSnackbars({
   open, handleClose, message, type,
@@ -22,7 +22,7 @@ export default function CustomizedSnackbars({
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Snackbar
         open={open}
-        autoHideDuration={5000}
+        autoHideDuration={3000}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         onClose={handleClose}
       >
