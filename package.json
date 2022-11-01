@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "cd server && npm start",
+    "build": "cd server && npm run build",
     "client": "cd client && npm run start",
     "test": "cd server && npm run test",
     "format": "cd server && npm run format && cd ../client && npm run format",
@@ -20,7 +21,7 @@
     "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
     "dev": "cd server && npm run dev",
-    "heroku-postbuild": "cd client && npm i && npm run build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
