@@ -40,7 +40,9 @@ export default function HomeCardSection({
           justifyContent: 'space-between',
           width: { xs: '90%' },
           marginTop: '50px',
+
         }}
+        className="car_card_wrapper"
         component="div"
       >
         {children}

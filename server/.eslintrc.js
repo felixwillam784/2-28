@@ -23,5 +23,5 @@ module.exports = {
     "linebreak-style":0,
     "import/extensions": 0
   },
-  ignorePatterns: ["/dist/*", "__test__/*"],
+  ignorePatterns: ["/dist/*", "__tests__/*"],
 }

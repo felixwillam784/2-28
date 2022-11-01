@@ -28,9 +28,9 @@
 }
 @media only screen and (max-width:450px) {
   .home_card{
-    flex-direction: row;
     width: 70%;
     height: 15rem;
+    margin-bottom: 2rem;
   }
   
 }
