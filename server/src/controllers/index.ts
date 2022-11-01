@@ -6,6 +6,7 @@ import {
   getCarsDetails,
   addCar,
   buyCar,
+  getUSerCArs,
 } from './cars';
 import {
   loginController,
@@ -26,4 +27,5 @@ export {
   signupController,
   addCar,
   buyCar,
+  getUSerCArs,
 };

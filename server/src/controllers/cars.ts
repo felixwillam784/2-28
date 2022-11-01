@@ -11,6 +11,7 @@ import {
   getCars,
   updateCarServes,
   findUserById,
+  getCarByCustomerId,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -108,6 +109,22 @@ const buyCar = async (req, res) => {
   }
   throw createError(400, 'car not available to sell');
 };
+const getUSerCArs = async (req, res) => {
+  const { userId } = res.locals.user;
+  const result = await getCarByCustomerId(userId);
+  if (result) {
+    return {
+      status: 200,
+      msg: 'successfully',
+      data: {
+        state: result[0].state,
+        createAt: result[0].createdAt,
+        carName: result[0].model,
+      },
+    };
+  }
+  return { status: 200, msg: 'successfully', data: 'you don`t have car' };
+};
 export {
   getFilteredCars,
   getCarsById,
@@ -116,4 +133,5 @@ export {
   getCarsDetails,
   addCar,
   buyCar,
+  getUSerCArs,
 };
