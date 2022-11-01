@@ -1,38 +1,37 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { loginSchema } from '../../helpers/validationSchema';
-import httpInstance from '../../services/axiosConfig';
-import './styles.css';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context';
+import { AdminLoginSchema } from '../../helpers/validationSchema';
 import { UserContextTypeWithDispatch } from '../../interfaces';
+import httpInstance from '../../services';
+import './styles.css';
 
 function AdminLogin() {
   const [responseError, setResponseError] = useState<string>('');
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const navigate = useNavigate();
+  const AdminInfo = async (values:any) => {
+    try {
+      setResponseError('');
+      const result = await httpInstance.post('/auth/admin/login', values);
+      setUserInfo(result.data);
+      navigate('/');
+    } catch (error:any) {
+      setResponseError(error.response.data.message);
+    }
+  };
   const formik = useFormik({
     initialValues: {
-      UserName: '',
+      username: '',
       password: '',
     },
-    validationSchema: loginSchema,
+    validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      const login = async () => {
-        try {
-          setResponseError('');
-          const result = await httpInstance.post('/auth/login', values);
-          setUserInfo(result.data);
-          navigate('/');
-        } catch (error:any) {
-          setResponseError(error.response.data.message);
-        }
-      };
-      login();
+      AdminInfo(values);
     },
   });
-
   return (
     <div className="loginPage">
       <div
@@ -50,7 +49,16 @@ function AdminLogin() {
       <div className="formPage">
         <form className="formLogin" onSubmit={formik.handleSubmit}>
           <h1>LOG IN</h1>
-          <TextField id="outlined-basic" label="username" variant="outlined" />
+          <TextField
+            fullWidth
+            id="username"
+            name="username"
+            label="username"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            error={formik.touched.username && Boolean(formik.errors.username)}
+            helperText={formik.touched.username && formik.errors.username}
+          />
           <TextField
             fullWidth
             id="password"

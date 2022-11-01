@@ -18,7 +18,6 @@ export const UserContext = createContext<UserContextTypeWithDispatch>({
 export default function UserInfoProvider({ children }:any) {
   const [userInfo, setUserInfo] = useState<UserContextType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
   useEffect(() => {
     const getUserInfo = async () => {
       try {
@@ -47,7 +46,6 @@ export default function UserInfoProvider({ children }:any) {
       </Backdrop>
     );
   }
-
   return (
     <UserContext.Provider value={value}>
       { children }

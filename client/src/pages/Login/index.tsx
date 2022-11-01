@@ -34,20 +34,20 @@ function Login() {
   });
 
   return (
-    <div className="loginPage">
+    <div className="main">
       <div
-        className="loginImg"
+        className="Img"
       >
-        <div className="decsLogin">
+        <div className="decs">
           <h2>
-            The better way
+            The best way
             to
             buy or sell a used car
           </h2>
           <p>Great Value | Trusted Quality | All Online</p>
         </div>
       </div>
-      <div className="formPage">
+      <div className="form">
         <form className="formLogin" onSubmit={formik.handleSubmit}>
           <h1>LOG IN</h1>
           <TextField

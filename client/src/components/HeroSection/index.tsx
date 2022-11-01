@@ -27,7 +27,10 @@ function HeroSection() {
             xs: 'center',
             md: 'flex-end',
           },
-          // backgroundColor: '#F6F7F9',
+          backgroundColor: {
+            xs: '#F6F7F9',
+            md: 'transparent',
+          },
         }}
         fixed
       >

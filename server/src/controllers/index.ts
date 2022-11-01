@@ -5,11 +5,13 @@ import {
   deleteCarsById,
   getCarsDetails,
   addCar,
+  buyCar,
 } from './cars';
 import {
   loginController,
   signupController,
   userController,
+  loginAdmin,
 } from './auth';
 
 export {
@@ -20,6 +22,8 @@ export {
   userController,
   deleteCarsById,
   getCarsDetails,
+  loginAdmin,
   signupController,
   addCar,
+  buyCar,
 };

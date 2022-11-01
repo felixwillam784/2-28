@@ -2,6 +2,7 @@ import { Request } from 'express';
 
 import createError from 'http-errors';
 import * as yup from 'yup';
+import { sendEmail } from '../helpers';
 import {
   addCarService,
   deleteCars,
@@ -9,6 +10,7 @@ import {
   getCarsDetailsQuery,
   getCars,
   updateCarServes,
+  findUserById,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -19,7 +21,7 @@ const addCar = async (req: Request, res) => {
   await addCarSchema.validate(body);
   const result = await addCarService(data);
 
-  return { message: 'successfully', status: 201, data: result };
+  return { msg: 'successfully', status: 201, data: result };
 };
 //-------------------------------------------------------
 const schema = yup.object({
@@ -94,7 +96,18 @@ const updateCars = async (req: Request) => {
   const result = await updateCarServes(body, id);
   return { status: 200, msg: 'done!', data: result };
 };
-
+const buyCar = async (req, res) => {
+  const { state, id } = req.body;
+  const { userId } = res.locals.user;
+  const carInfo = await getCarInfo(id);
+  if (carInfo[0].state === 'on-market') {
+    await updateCarServes({ state }, id);
+    const result:{ email: string, fullName: string } = await findUserById({ id: userId });
+    await sendEmail(result);
+    return { status: 200, msg: 'successfully' };
+  }
+  throw createError(400, 'car not available to sell');
+};
 export {
   getFilteredCars,
   getCarsById,
@@ -102,4 +115,5 @@ export {
   deleteCarsById,
   getCarsDetails,
   addCar,
+  buyCar,
 };
