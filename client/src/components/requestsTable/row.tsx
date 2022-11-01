@@ -12,7 +12,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { RowProps, CarWithCustomerInfo } from '../../interfaces';
+import { RowProps } from '../../interfaces';
 
 function Row(props:RowProps) {
   const {
@@ -83,7 +83,11 @@ function Row(props:RowProps) {
             </Button>
 
           )}
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => deleteCar(car.id)}
+          >
             Reject
           </Button>
         </TableCell>

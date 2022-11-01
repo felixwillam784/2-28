@@ -21,11 +21,12 @@ const addCarSchema = yup.object({
 });
 
 const checkCarSchema = addCarSchema.shape({
-  isGoodPrice: yup.boolean().required('Is good price is required'),
-  quality: yup.number().required('Quality is required'),
-  transmission: yup.string().required('Transmission is required'),
-  description: yup.string().required('Description is required'),
-  features: yup.array().of(yup.string()).min(1, 'Features is required').required('Features is required'),
+  isGoodPrice: yup.boolean().nullable().required('Is good price is required'),
+  quality: yup.number().nullable().required('Quality is required'),
+  transmission: yup.string().nullable().required('Transmission is required'),
+  description: yup.string().nullable().required('Description is required'),
+  features: yup.array().nullable().of(yup.string()).min(1, 'Features is required')
+    .required('Features is required'),
 });
 
 const loginSchema = yup.object({

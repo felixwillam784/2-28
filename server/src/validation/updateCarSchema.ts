@@ -12,8 +12,8 @@ const updateCarSchema = yup.object().shape({
   features: yup.array().of(yup.string()).notRequired().label('features'),
   transmission: yup.string().notRequired().label('transmission').oneOf(['automatic', 'manual']),
   description: yup.string().notRequired().label('description'),
-  fuel: yup.string().notRequired().label('fuel').oneOf(['petrol', 'diesel']),
-  state: yup.string().notRequired().label('state').oneOf(['under-check', 'pending', 'on-market']),
+  fuel: yup.string().nullable().label('fuel').oneOf(['petrol', 'diesel']),
+  state: yup.string().notRequired().label('state').oneOf(['under-check', 'pending', 'on-market', 'sold']),
 });
 const addCarSchema = updateCarSchema.shape({ location: yup.string().required().label('location') });
 

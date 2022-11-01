@@ -91,3 +91,14 @@ export interface UserContextTypeWithDispatch {
   userInfo: UserContextType | null,
   setUserInfo:(c: UserContextType | null) => void,
 }
+export interface PrivateType {
+  children:JSX.Element,
+  roles:string,
+}
+
+export interface EditCarFormProps {
+  modalType: 'addRequest' | 'checkRequest',
+  id: string | undefined,
+  formik : any,
+  children: JSX.Element | undefined
+}

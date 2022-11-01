@@ -1,14 +1,14 @@
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import CustomStepper from './stepper';
+import CustomStepper from '../../components/stepper';
 
 const style = {
   margin: '1rem auto',
   width: '90%',
 };
 
-export default function CarAdminModel() {
+export default function CheckCar() {
   const { id } = useParams();
 
   return (

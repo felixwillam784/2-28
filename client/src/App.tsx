@@ -5,8 +5,8 @@ import UserInfoProvider from './context';
 function App() {
   return (
     <div>
-      <NavBar />
       <UserInfoProvider>
+        <NavBar />
         <Outlet />
       </UserInfoProvider>
     </div>

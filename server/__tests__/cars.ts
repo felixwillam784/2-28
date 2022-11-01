@@ -135,7 +135,7 @@ describe('/cars endpoint', () => {
     expect(result.body.data[1][0].isGoodPrice).toEqual(false);
     expect(result.body.data[1][0].location).toEqual('palestine - gaza');
     expect(result.body.data[1][0].state).toEqual('on-market');
-    expect(result.body.data[1][0].transmission).toEqual('auto');
+    expect(result.body.data[1][0].transmission).toEqual('automatic');
     expect(result.body.data[1][0].description).toEqual('This car had an accedent in the right side but the quality of the body generally is good');
     expect(result.body.data[1][0].fuel).toEqual('diesel');
     expect(result.body.data[1][0].customerId).toEqual(1);
@@ -155,7 +155,7 @@ describe('/cars endpoint', () => {
     expect(result.body.data[1][0].isGoodPrice).toEqual(false);
     expect(result.body.data[1][0].location).toEqual('palestine - gaza');
     expect(result.body.data[1][0].state).toEqual('on-market');
-    expect(result.body.data[1][0].transmission).toEqual('auto');
+    expect(result.body.data[1][0].transmission).toEqual('automatic');
     expect(result.body.data[1][0].description).toEqual('This car had an accedent in the right side but the quality of the body generally is good');
     expect(result.body.data[1][0].fuel).toEqual('diesel');
     expect(result.body.data[1][0].customerId).toEqual(1);
@@ -175,7 +175,7 @@ describe('/cars endpoint', () => {
     expect(result.body.data[1][0].isGoodPrice).toEqual(false);
     expect(result.body.data[1][0].location).toEqual('palestine - gaza');
     expect(result.body.data[1][0].state).toEqual('on-market');
-    expect(result.body.data[1][0].transmission).toEqual('auto');
+    expect(result.body.data[1][0].transmission).toEqual('automatic');
     expect(result.body.data[1][0].description).toEqual('This car had an accedent in the right side but the quality of the body generally is good');
     expect(result.body.data[1][0].fuel).toEqual('diesel');
     expect(result.body.data[1][0].customerId).toEqual(1);

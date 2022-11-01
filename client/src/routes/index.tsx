@@ -10,7 +10,8 @@ import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
-import CarAdminModel from '../components/CarAdminModule';
+import CheckCar from '../pages/CheckCar';
+import ProtectedRoute from './privateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -21,15 +22,19 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       {
         path: '/login',
-        element: <Login />,
+        element:
+  <Login />
+        ,
       },
       {
         path: '/signup',
-        element: <SignUp />,
+        element:
+  <SignUp />
+        ,
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: <ProtectedRoute roles="user"><Profile /></ProtectedRoute>,
       },
       {
         path: '/cars',
@@ -41,18 +46,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <DashBoardMain />,
+        element: <ProtectedRoute roles="admin"><DashBoardMain /></ProtectedRoute>,
         children: [
           { index: true, element: <DashBoard /> },
           {
-            path: 'login',
-            element: <AdminLogin />,
-          },
-          {
             path: 'check/:id',
-            element: <CarAdminModel />,
+            element: <CheckCar />,
           },
         ],
+      },
+      {
+        path: 'admin/login',
+        element: <AdminLogin />,
       },
     ],
   },

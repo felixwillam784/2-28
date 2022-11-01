@@ -14,19 +14,10 @@ import {
   Autocomplete,
   TextareaAutosize,
 } from '@mui/material';
-
+import { EditCarFormProps } from '../../interfaces';
 import brands from '../../assets/data/brands.json';
 
-type Props =
-{
-  modalType: 'addRequest' | 'checkRequest',
-  id: string | undefined,
-  formik : any,
-  children: JSX.Element | undefined
-
-};
-
-function SellCarModal(props:Props) {
+function SellCarModal(props:EditCarFormProps) {
   const {
     modalType, id, formik, children,
   } = props;
