@@ -55,7 +55,6 @@ export default function SendRequestModule() {
       try {
         setLoading(true);
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
-        console.log('values', values);
         await httpInstance.post('/cars', values);
         setLoading(false);
         setSnackBarProperties(

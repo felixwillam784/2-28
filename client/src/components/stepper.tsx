@@ -78,7 +78,6 @@ function CustomStepper({ id }:{ id:string | undefined }) {
       try {
         setLoading(true);
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
-        console.log('values', values);
         await httpInstance.put(`/cars/${id}`, values);
         setLoading(false);
         setSnackBarProperties(
