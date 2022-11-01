@@ -5,6 +5,7 @@ import {
   deleteCarsById,
   getCarsDetails,
   addCar,
+  buyCar,
 } from './cars';
 import {
   loginController,
@@ -24,4 +25,5 @@ export {
   loginAdmin,
   signupController,
   addCar,
+  buyCar,
 };
