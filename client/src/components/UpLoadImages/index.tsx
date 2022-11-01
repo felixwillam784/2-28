@@ -1,34 +1,25 @@
-import { Alert, Button, Snackbar } from '@mui/material';
+import { Button } from '@mui/material';
 import {
   ref, getDownloadURL, uploadBytes,
 } from 'firebase/storage';
 import { useRef, useState } from 'react';
 import storage from '../../firebase/firebaseConfig';
+import CustomizedSnackbars from '../snackbar';
 
 function UploadFiles() {
-  const [file, setFile] = useState<FileList | never>();
+  const [file, setFile] = useState<FileList | null>();
   const [loading, setLoading] = useState(false);
-  const [snackbar, setSnackbar] = useState(false);
-  const [errSnack, setErrSnack] = useState(false);
-  const [sucsSnack, setSucsSnack] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [
+    snackData,
+    setSnackData,
+  ] = useState<{ type: 'error' | 'success' | 'info', message: string }>({ type: 'info', message: '' });
 
   const handleCloseSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackbar(false);
-  };
-  const handleCloseErrSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setErrSnack(false);
-  };
-  const handleCloseSucsSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSucsSnack(false);
+    setOpen(false);
   };
 
   const fileInput = useRef<any>(null);
@@ -45,7 +36,8 @@ function UploadFiles() {
   };
   const handleUpload = () => {
     if (!file) {
-      setSnackbar(true);
+      setSnackData({ type: 'info', message: 'You should choose an image befor upload' });
+      setOpen(true);
     } else {
       setLoading(true);
       const toUploadfiles = [];
@@ -55,21 +47,23 @@ function UploadFiles() {
         toUploadfiles.push(touploadFile);
       }
       Promise.all(toUploadfiles)
-        .then((d) => {
-          const getImages = d.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
+        .then((snapshots) => {
+          const getImages = snapshots.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
           return getImages;
         })
-        .then((t) => Promise.all(t))
+        .then((todownloadImages) => Promise.all(todownloadImages))
         .then(() => {
           setLoading(false);
-          setSucsSnack(true);
           setFile(undefined);
+          setSnackData({ type: 'success', message: 'Uploaded successfully' });
+          setOpen(true);
           if (fileInput.current) {
             fileInput.current.value = null;
           }
         })
         .catch(() => {
-          setErrSnack(true);
+          setSnackData({ type: 'error', message: 'Somthing went wrong' });
+          setOpen(true);
         });
     }
   };
@@ -84,21 +78,12 @@ function UploadFiles() {
           </>
         )
         : <Button onClick={handleUpload}>Upload</Button>}
-      <Snackbar open={snackbar} autoHideDuration={4000} onClose={handleCloseSnack}>
-        <Alert onClose={handleCloseSnack} severity="info" sx={{ width: '100%' }}>
-          You should choose an image befor upload
-        </Alert>
-      </Snackbar>
-      <Snackbar open={errSnack} autoHideDuration={4000} onClose={handleCloseErrSnack}>
-        <Alert onClose={handleCloseErrSnack} severity="error" sx={{ width: '100%' }}>
-          somthing went wrong
-        </Alert>
-      </Snackbar>
-      <Snackbar open={sucsSnack} autoHideDuration={4000} onClose={handleCloseSucsSnack}>
-        <Alert onClose={handleCloseSucsSnack} severity="success" sx={{ width: '100%' }}>
-          Uploaded successfully
-        </Alert>
-      </Snackbar>
+      <CustomizedSnackbars
+        open={open}
+        handleClose={handleCloseSnack}
+        message={snackData.message}
+        type={snackData.type}
+      />
 
     </div>
   );
