@@ -12,13 +12,15 @@
     "husky": "^8.0.1"
   },
   "scripts": {
+    "start": "cd server && npm start",
     "client": "cd client && npm run start",
     "test": "cd server && npm run test",
     "format": "cd server && npm run format && cd ../client && npm run format",
     "prepare": "is-ci || npx husky install",
     "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
-    "dev": "cd server && npm run dev"
+    "dev": "cd server && npm run dev",
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
