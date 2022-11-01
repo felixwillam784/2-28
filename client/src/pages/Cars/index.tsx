@@ -21,7 +21,7 @@ function Cars() {
   return (
     <div className="search_container">
       {
-        window.innerWidth <= 600 ? (
+        window.innerWidth <= 900 ? (
 
           <DrawerAppBar
             setCars={setCars}

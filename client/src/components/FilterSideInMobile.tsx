@@ -11,7 +11,7 @@ export default function DrawerAppBar(props: CarsFilterProps) {
     setCars, setPagination, setLoading, currentPage, search,
     setCurrentPAge,
   } = props;
-  const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = React.useState<boolean>(true);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
@@ -36,7 +36,10 @@ export default function DrawerAppBar(props: CarsFilterProps) {
   );
 
   return (
-    <Box sx={{ padding: '1rem', height: '3rem', position: 'absolute' }}>
+    <Box sx={{
+      padding: '1rem', height: '3rem', zIndex: 1,
+    }}
+    >
 
       <IconButton
         color="inherit"
@@ -44,7 +47,7 @@ export default function DrawerAppBar(props: CarsFilterProps) {
         edge="start"
         onClick={toggleDrawer(true)}
         onKeyDown={toggleDrawer(true)}
-        sx={{ mr: 2, display: { sm: 'none' }, fontSize: '14px' }}
+        sx={{ mr: 2, display: { md: 'none' }, fontSize: '14px' }}
       >
         <Tune />
         FILTER
