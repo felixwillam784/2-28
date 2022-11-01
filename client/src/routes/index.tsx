@@ -10,7 +10,7 @@ import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
-import ProtectedRoute from '../components/privateRoutes';
+import ProtectedRoute from './privateRoutes';
 
 const router = createBrowserRouter([
   {
