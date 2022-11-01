@@ -5,11 +5,12 @@ import AdminLogin from '../pages/AdminLogin';
 import Profile from '../pages/Profile';
 import Car from '../pages/Car';
 import Landing from '../pages/Landing';
-import DashBoard, { DashBoardMain } from '../pages/DashBoard';
+import DashBoard from '../pages/DashBoard';
 import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
+import ProtectedRoute from './privateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -20,15 +21,19 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       {
         path: '/login',
-        element: <Login />,
+        element:
+  <Login />
+        ,
       },
       {
         path: '/signup',
-        element: <SignUp />,
+        element:
+  <SignUp />
+        ,
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: <ProtectedRoute roles="user"><Profile /></ProtectedRoute>,
       },
       {
         path: '/cars',
@@ -39,16 +44,17 @@ const router = createBrowserRouter([
         element: <Car />,
       },
       {
-        path: 'admin',
-        element: <DashBoardMain />,
-        children: [
-          { index: true, element: <DashBoard /> },
-          {
-            path: 'login',
-            element: <AdminLogin />,
-          },
-        ],
+        path: '/admin',
+        element: <ProtectedRoute roles="admin"><DashBoard /></ProtectedRoute>,
       },
+      {
+
+        path: '/admin/login',
+        element:
+  <AdminLogin />
+        ,
+      },
+
     ],
   },
   {
