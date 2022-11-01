@@ -10,6 +10,7 @@ import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
+import CarAdminModel from '../components/CarAdminModule';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
           {
             path: 'login',
             element: <AdminLogin />,
+          },
+          {
+            path: 'check/:id',
+            element: <CarAdminModel />,
           },
         ],
       },

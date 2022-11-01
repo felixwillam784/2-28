@@ -1,58 +1,37 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
 import { Typography } from '@mui/material';
+import { useParams } from 'react-router-dom';
 import CustomStepper from './stepper';
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80%',
-  bgcolor: 'background.paper',
-  borderRadius: '20px',
-  boxShadow: 24,
-  p: 4,
+  margin: '1rem auto',
+  width: '90%',
 };
 
-export default function CarAdminModel({ id }:{ id:number }) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function CarAdminModel() {
+  const { id } = useParams();
 
   return (
-    <>
-      <Button
-        sx={{ marginRight: '0.5rem' }}
-        variant="contained"
-        color="success"
-        onClick={handleOpen}
+    <Box sx={style}>
+      <Typography
+        sx={{
+          textAlign: 'center',
+          fontWeight: '500',
+          fontSize: '25px',
+          color: 'var(--text-color)',
+        }}
+        component="h2"
       >
-        Check
-
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography sx={{ textAlign: 'center' }} component="h2">
-            Car selling Details
-            <hr style={{
-              margin: '1rem auto',
-              height: '.3rem',
-              width: '20rem',
-              backgroundColor: '#0A20E6',
-            }}
-            />
-          </Typography>
-          <CustomStepper id={id} />
-        </Box>
-      </Modal>
-    </>
+        Car selling Details
+        <hr style={{
+          margin: '0.7rem auto',
+          height: '.3rem',
+          width: '20rem',
+          backgroundColor: '#72a0fc',
+        }}
+        />
+      </Typography>
+      <CustomStepper id={id} />
+    </Box>
   );
 }

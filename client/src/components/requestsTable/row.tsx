@@ -9,17 +9,17 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
 import { RowProps, CarWithCustomerInfo } from '../../interfaces';
-import CarAdminModel from '../CarAdminModule';
 
 function Row(props:RowProps) {
   const {
     car, state, setCarsData, setSnackBarProperties,
   } = props;
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
   const deleteCar = async (id:number) => {
     try {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
@@ -73,7 +73,14 @@ function Row(props:RowProps) {
               Accept
             </Button>
           ) : (
-            <CarAdminModel id={car.id} />
+            <Button
+              onClick={() => navigate(`check/${car.id}`)}
+              sx={{ marginRight: '0.5rem' }}
+              variant="contained"
+              color="success"
+            >
+              Check
+            </Button>
 
           )}
           <Button variant="contained" color="error">

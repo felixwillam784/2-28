@@ -504,7 +504,7 @@
             "features": [
                 "Automated Parking",
                 "Parking sensors",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Cruise Control",
                 "Steering wheel control",
@@ -527,7 +527,7 @@
             "state": "on-market",
             "transmission": "automatic",
             "features": [
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Cruise Control",
                 "Steering wheel control",
@@ -556,7 +556,7 @@
             "features": [
                 "Brake assist",
                 "Reversing Camera",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Headsup display",
                 "Birdseye view camera",
@@ -581,7 +581,7 @@
             "features": [
                 "Brake assist",
                 "Reversing Camera",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Auto dimming mirror",
                 "Headsup display",
                 "Birdseye view camera",
@@ -641,7 +641,7 @@
                 "Parking sensors",
                 "Navigation",
                 "Bluetooth",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Cruise Control",
                 "Steering wheel control",
@@ -697,7 +697,7 @@
             "transmission": "manual",
             "features": [
                 "Brake assist",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Cruise Control",
                 "Steering wheel control",
@@ -724,7 +724,7 @@
                 "Bluetooth",
                 "Brake assist",
                 "Reversing Camera",
-                "Blind spot moitor",
+                "Blind spot monitor",
                 "Collision warning system",
                 "Cruise Control",
                 "Steering wheel control",

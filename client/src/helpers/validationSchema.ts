@@ -25,7 +25,7 @@ const checkCarSchema = addCarSchema.shape({
   quality: yup.number().required('Quality is required'),
   transmission: yup.string().required('Transmission is required'),
   description: yup.string().required('Description is required'),
-  features: yup.array().of(yup.string()).required('Features is required'),
+  features: yup.array().of(yup.string()).min(1, 'Features is required').required('Features is required'),
 });
 
 const loginSchema = yup.object({

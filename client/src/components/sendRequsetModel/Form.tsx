@@ -14,121 +14,22 @@ import {
   Autocomplete,
   TextareaAutosize,
 } from '@mui/material';
-import { useFormik } from 'formik';
-import { useState, useEffect } from 'react';
-import { features } from 'process';
-import httpInstance from '../../services';
+
 import brands from '../../assets/data/brands.json';
-import { checkCarSchema } from '../../helpers/validationSchema';
-import CustomizedSnackbars from '../snackbar';
-import { featuresArray } from '../../assets/data/features';
-import { CarWithImages } from '../../interfaces';
 
-const convertToKM = (value: number, type: string) => {
-  if (type === 'mile') return value * 1.609344;
-  return value;
-};
-
-type Props = {
+type Props =
+{
   modalType: 'addRequest' | 'checkRequest',
-  id: number | undefined
-};
+  id: string | undefined,
+  formik : any,
+  children: JSX.Element | undefined
 
-const initialData = {
-  id: 0,
-  brand: '',
-  model: '',
-  price: 0,
-  year: 0,
-  mileage: 0,
-  quality: 0,
-  isGoodPrice: false,
-  location: '',
-  state: '',
-  transmission: '',
-  features: [],
-  description: '',
-  fuel: '',
-  createdAt: '',
-  updatedAt: '',
-  customerId: 2,
-  images: [],
 };
 
 function SellCarModal(props:Props) {
-  const { modalType, id } = props;
-  const [carData, setCarData] = useState<CarWithImages>(initialData);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-
-  useEffect(() => {
-    const getCarInfo = async () => {
-      try {
-        setLoading(true);
-        setSnackBarProperties((preState) => ({ ...preState, open: false }));
-        const response = await httpInstance.get(`/cars/${id}`);
-        setCarData(response.data[0]);
-        console.log(response.data[0]);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
-      }
-    };
-    getCarInfo();
-  }, []);
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties({ open: false, message: '', type: 'error' });
-  };
-
-  console.log(featuresArray[4]);
-
-  const formik = useFormik({
-    initialValues: {
-      ...carData, type: '',
-    },
-    enableReinitialize: true,
-    validationSchema: checkCarSchema,
-    onSubmit: (values, { resetForm }) => {
-      const newValue = Math.floor(convertToKM(values.mileage, values.type));
-      // eslint-disable-next-line no-param-reassign
-      values.mileage = newValue;
-      const addCar = async () => {
-        try {
-          setLoading(true);
-          setSnackBarProperties((preState) => ({ ...preState, open: false }));
-          if (modalType === 'checkRequest') {
-            await httpInstance.put(`/cars/${id}`, values);
-          } else {
-            await httpInstance.post('/cars', values);
-          }
-          setLoading(false);
-          setSnackBarProperties(
-            {
-              open: true,
-              message: modalType === 'checkRequest' ? 'Car checked successfully' : 'Sell car request sent successfully',
-              type: 'success',
-            },
-          );
-        } catch (error) {
-          setLoading(false);
-          setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
-        }
-      };
-      addCar();
-      if (!loading) {
-        resetForm();
-      }
-      console.log(values);
-    },
-  });
-  console.log(formik.values.features, 'feeeeeeeeeeee');
+  const {
+    modalType, id, formik, children,
+  } = props;
 
   return (
     <Box
@@ -140,21 +41,6 @@ function SellCarModal(props:Props) {
         marginTop: '0.3rem',
       }}
     >
-      {modalType === 'checkRequest' ? null : (
-        <>
-          <Typography sx={{ fontSize: '1.7rem' }} component="h2">
-            Sell Your Car Now!
-          </Typography>
-          <hr
-            style={{
-              height: '.3rem',
-              width: '20rem',
-              backgroundColor: '#0A20E6',
-              margin: '0.5rem auto',
-            }}
-          />
-        </>
-      )}
 
       <form
         style={{
@@ -166,14 +52,20 @@ function SellCarModal(props:Props) {
         }}
         onSubmit={formik.handleSubmit}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <Box sx={{ width: '45%' }}>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
+          marginBottom: '2rem',
+        }}
+        >
+          <Box sx={{ width: '47%' }}>
             <Typography
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: '30vw',
+                width: '32vw',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -214,7 +106,7 @@ function SellCarModal(props:Props) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: '30vw',
+                width: '32vw',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -235,7 +127,7 @@ function SellCarModal(props:Props) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: '30vw',
+                width: '32vw',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -257,7 +149,7 @@ function SellCarModal(props:Props) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                width: '30vw',
+                width: '32vw',
                 margin: '1rem 0',
               }}
               component="label"
@@ -268,7 +160,7 @@ function SellCarModal(props:Props) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  width: '30vw',
+                  width: '32vw',
                   margin: '1rem 0',
                 }}
                 component="div"
@@ -302,37 +194,12 @@ function SellCarModal(props:Props) {
               </Typography>
             </Typography>
 
-            { modalType === 'checkRequest' ? null : (
-              <Typography
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '30vw',
-                  marginBottom: '1rem',
-                }}
-                component="label"
-              >
-                price
-                <TextField
-                  id="price"
-                  name="price"
-                  label="price"
-                  type="number"
-                  value={!formik.values.price ? '' : formik.values.price}
-                  onChange={formik.handleChange}
-                  error={formik.touched.price && Boolean(formik.errors.price)}
-                  helperText={formik.touched.price && formik.errors.price}
-                />
-              </Typography>
-            )}
-
             <Typography
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: '30vw',
+                width: '32vw',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -348,207 +215,34 @@ function SellCarModal(props:Props) {
                 helperText={formik.touched.location && formik.errors.location}
               />
             </Typography>
-
-            <Typography
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                width: '30vw',
-                marginBottom: '1rem',
-              }}
-              component="label"
-            >
-              Description
-              <TextareaAutosize
-                id="description"
-                name="description"
-                value={!formik.values.description ? '' : formik.values.description}
-                onChange={formik.handleChange}
-                // error={formik.touched.description && Boolean(formik.errors.description)}
-                // helperText={formik.touched.description && formik.errors.description}
-                style={{
-                  width: '100%',
-                  borderRadius: '4px',
-                  border: '1px solid #80808066',
-                  marginTop: '1rem',
-                  minHeight: '3rem',
-                  padding: '0.2rem',
-                }}
-              />
-            </Typography>
-          </Box>
-
-          <Box sx={{ width: '45%' }}>
             <Typography
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: '30vw',
+                width: '32vw',
                 marginBottom: '1rem',
               }}
               component="label"
             >
-              Quality
+              price
               <TextField
-                id="quality"
-                name="quality"
-                label="quality"
+                id="price"
+                name="price"
+                label="price"
                 type="number"
-                value={formik.values.quality}
+                value={!formik.values.price ? '' : formik.values.price}
                 onChange={formik.handleChange}
-                error={formik.touched.quality && Boolean(formik.errors.quality)}
-                helperText={formik.touched.quality && formik.errors.quality}
-              />
-            </Typography>
-
-            <Typography
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '30vw',
-                margin: '1rem 0',
-              }}
-              component="label"
-            >
-              Transmission
-              <Typography
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '30vw',
-                  margin: '1rem 0',
-                }}
-                component="div"
-              >
-                <RadioGroup
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    justifyContent: 'flex-end',
-                    width: '100%',
-                  }}
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="manual"
-                  name="transmission"
-                  onChange={formik.handleChange}
-                  value={!formik.values.transmission ? '' : formik.values.transmission}
-                >
-                  <FormControlLabel name="transmission" value="manual" control={<Radio />} label="Manual" />
-                  <FormControlLabel name="transmission" value="automatic" control={<Radio />} label="Automatic" />
-                </RadioGroup>
-              </Typography>
-            </Typography>
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'start',
-                  width: '50%',
-                  margin: '1rem 0',
-                }}
-                component="label"
-              >
-                Price
-                <Typography
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '30vw',
-                    margin: '1rem 0',
-                  }}
-                  component="div"
-                >
-                  <TextField
-                    id="price"
-                    name="price"
-                    label="price"
-                    type="number"
-                    value={!formik.values.price ? '' : formik.values.price}
-                    onChange={formik.handleChange}
-                    error={formik.touched.price && Boolean(formik.errors.price)}
-                    helperText={formik.touched.price && formik.errors.price}
-                  />
-                </Typography>
-              </Typography>
-
-              <Typography
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '50%',
-                  margin: '1rem 0',
-                }}
-                component="label"
-              >
-                <Checkbox
-                  name="isGoodPrice"
-                  id="isGoodPrice"
-                  value={formik.values.isGoodPrice}
-                  onChange={formik.handleChange}
-                  // error={formik.touched.isGoodPrice && Boolean(formik.errors.isGoodPrice)}
-                  // helperText={formik.touched.isGoodPrice && formik.errors.isGoodPrice}
-                />
-
-                Is Good Price
-              </Typography>
-            </Box>
-
-            <Typography
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                width: '30vw',
-                marginBottom: '1rem',
-              }}
-              component="label"
-            >
-              Features
-              <Autocomplete
-                multiple
-                sx={{ marginTop: '1rem' }}
-                options={featuresArray}
-                getOptionLabel={(option) => option}
-                defaultValue={[featuresArray[4]]}
-                value={!formik.values.features ? [] : formik.values.features}
-                onChange={(eee, values) => {
-                  console.log(values, 'values');
-
-                  formik.setFieldValue('features', [...values]);
-                }}
-                id="features"
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                filterSelectedOptions
-                renderInput={(params) => (
-                  <TextField
-                    name="features"
-                  // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...params}
-                    // onChange={() => console.log('22222')}
-                    error={formik.touched.features && Boolean(formik.errors.features)}
-                    helperText={formik.touched.features && formik.errors.features}
-                    label="Features"
-                  />
-                )}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
               />
             </Typography>
           </Box>
-
+          {children}
         </Box>
         <Button
           sx={{
-            mb: '1rem',
+            mb: '0.5rem',
             width: modalType === 'checkRequest' ? '50%' : '100%',
           }}
           color="primary"
@@ -560,12 +254,7 @@ function SellCarModal(props:Props) {
         </Button>
 
       </form>
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleClose}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
+
     </Box>
   );
 }
