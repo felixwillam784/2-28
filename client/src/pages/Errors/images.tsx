@@ -10,6 +10,7 @@ function Imag({ src, alt }:ImageProp) {
       <div className="content">
         <h1 className="notFoundHeader">NOT FOUND</h1>
         <img
+          className="imgNotFound"
           src={src}
           alt={alt}
         />
