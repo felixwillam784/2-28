@@ -21,3 +21,10 @@
     font-weight: bold;
     font-size: 26px;
 }
+@media only screen and (max-width: 600px) {
+    .filter{
+        width: 90%;
+        position: static;
+        margin: 0.4rem 0.5rem;
+    }
+}

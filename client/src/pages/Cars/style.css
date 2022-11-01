@@ -21,3 +21,9 @@
     margin-top: .5rem;
     justify-content: space-between ;
 }
+
+@media only screen and (max-width: 600px) {
+    .cars_Container{
+        padding-left: 0rem;
+    }
+}

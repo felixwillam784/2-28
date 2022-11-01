@@ -27,15 +27,17 @@ export default function CarCard({
   id,
 }:OutlineCardProps) {
   return (
-    <Card sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      maxWidth: '19vw',
-      mb: '1rem',
-      borderRadius: '20px',
-      position: 'relative',
-      maxHeight: '25rem',
-    }}
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '19vw',
+        mb: '1rem',
+        borderRadius: '20px',
+        position: 'relative',
+        maxHeight: '25rem',
+      }}
+      className="car"
     >
       <CardMedia
         component="img"
