@@ -33,11 +33,11 @@ const sendEmail = (userInfo) => {
     </div>`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error) => {
     if (error) {
       return { status: 500 };
     }
-    return { status: 200, msg: 'successfully', data: info };
+    return '';
   });
 };
 export default sendEmail;
