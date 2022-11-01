@@ -8,7 +8,7 @@ function Imag({ src, alt }:ImageProp) {
   return (
     <div className="pageBody">
       <div className="content">
-        <h1 className="header">NOT FOUND</h1>
+        <h1 className="notFoundHeader">NOT FOUND</h1>
         <img
           src={src}
           alt={alt}
