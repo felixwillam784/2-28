@@ -27,7 +27,6 @@ function HeroSection() {
             xs: 'center',
             md: 'flex-end',
           },
-          // backgroundColor: '# F6F7F9',
         }}
         fixed
       >

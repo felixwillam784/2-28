@@ -9,7 +9,6 @@
   height: 323px;
   display: flex !important;
   align-items: center  !important;
-  /* justify-content: flex-end !important; */
 }
 .brief-statement {
   transform: translateX(0);
