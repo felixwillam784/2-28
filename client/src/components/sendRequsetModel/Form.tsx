@@ -21,7 +21,6 @@ function SellCarModal(props:EditCarFormProps) {
   const {
     modalType, id, formik, children,
   } = props;
-  console.log(formik.values);
   return (
     <Box
       sx={{

@@ -33,7 +33,7 @@ function NavBar() {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackBarProperties({ open: false, message: '', type: 'error' });
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
   };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
