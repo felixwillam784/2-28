@@ -195,7 +195,7 @@ describe('/cars endpoint', () => {
         email: 'husam@gmail.com',
         id: 1,
         role: 'user',
-        userName: 'husam',
+        username: 'husam',
       },
       msg: null,
     });

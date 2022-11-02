@@ -22,7 +22,9 @@ const addCarSchema = yup.object({
 
 const checkCarSchema = addCarSchema.shape({
   isGoodPrice: yup.boolean().nullable().required('Is good price is required'),
-  quality: yup.number().nullable().required('Quality is required'),
+  quality: yup.number().nullable().min(0, 'Minimum atleast 0')
+    .max(100, 'Allowed maximum is 100')
+    .required('Quality is required'),
   transmission: yup.string().nullable().required('Transmission is required'),
   description: yup.string().nullable().required('Description is required'),
   features: yup.array().nullable().of(yup.string()).min(1, 'Features is required')

@@ -16,7 +16,6 @@ const ExpressWrapper = (fn: Controllers): RequestHandler => async (req, res, nex
     }
   } catch (error: any) {
     // may need change
-    console.log(error);
     if (error.name === 'ValidationError') {
       res.status(400).json({ message: error.errors });
     } else if (error.status) {
