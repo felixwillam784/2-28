@@ -112,14 +112,11 @@ const buyCar = async (req, res) => {
 const getUserCars = async (req, res) => {
   const { userId } = res.locals.user;
   const result = await getCarByCustomerId(userId);
-  if (result.length) {
-    return {
-      status: 200,
-      msg: 'successfully',
-      data: result[0],
-    };
-  }
-  return { status: 200, msg: 'successfully', data: 'you don`t have car' };
+  return {
+    status: 200,
+    msg: 'successfully',
+    data: result,
+  };
 };
 export {
   getFilteredCars,
