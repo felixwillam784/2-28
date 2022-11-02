@@ -109,7 +109,7 @@ const buyCar = async (req, res) => {
   }
   throw createError(400, 'car not available to sell');
 };
-const getUSerCArs = async (req, res) => {
+const getUserCars = async (req, res) => {
   const { userId } = res.locals.user;
   const result = await getCarByCustomerId(userId);
   if (result) {
@@ -133,5 +133,5 @@ export {
   getCarsDetails,
   addCar,
   buyCar,
-  getUSerCArs,
+  getUserCars,
 };
