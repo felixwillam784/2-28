@@ -113,6 +113,13 @@ const updateCarServes = async (body, id) => {
   return car;
 };
 
+const getCarByCustomerId = async (customerId) => {
+  const car = await Car.findAll({
+    where: { customerId },
+    attributes: ['state', 'id', 'createdAt', 'model'],
+  });
+  return car;
+};
 export {
   getCars,
   getCarInfo,
@@ -120,4 +127,5 @@ export {
   deleteCars,
   getCarsDetailsQuery,
   addCarService,
+  getCarByCustomerId,
 };

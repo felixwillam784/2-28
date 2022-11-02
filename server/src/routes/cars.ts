@@ -9,16 +9,17 @@ import {
   getCarsDetails,
   addCar,
   buyCar,
+  getUserCars,
 } from '../controllers';
 
 const carsRouter = Router();
 
 carsRouter.get('/', ExpressWrapper(getFilteredCars));
 carsRouter.get('/dashboard', authMiddleware('admin'), ExpressWrapper(getCarsDetails));
-carsRouter.get('/:id', ExpressWrapper(getCarsById));
 carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById));
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
 carsRouter.patch('/buy', authMiddleware('user'), ExpressWrapper(buyCar));
-
+carsRouter.get('/user', authMiddleware('user'), ExpressWrapper(getUserCars));
+carsRouter.get('/:id', ExpressWrapper(getCarsById));
 export default carsRouter;

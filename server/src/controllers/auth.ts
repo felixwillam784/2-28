@@ -25,7 +25,7 @@ const loginController = async (req:Request) => {
   return {
     status: 200,
     data: {
-      id: result.id, email: result.email, userName: result.fullName, role: 'user',
+      id: result.id, email: result.email, username: result.fullName, role: 'user',
     },
     token,
   };
@@ -62,12 +62,12 @@ const userController = async (req:Request) => {
       return {
         status: 200,
         data: {
-          id: result.id, email: result.email, userName: result.fullName, role: 'user',
+          id: result.id, email: result.email, username: result.fullName, role: 'user',
         },
       };
     }
     const result:{ username: string } = await findAdminById(decoded.userId);
-    return { status: 200, data: { role: 'admin', id: decoded.id, userName: result.username } };
+    return { status: 200, data: { role: 'admin', id: decoded.id, username: result.username } };
   }
   return { status: 401 };
 };

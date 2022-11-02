@@ -38,7 +38,7 @@ function RequestsTable(props:Props) {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackBarProperties({ open: false, message: '', type: 'error' });
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
   };
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {

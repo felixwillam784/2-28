@@ -35,7 +35,7 @@ function NavBar() {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackBarProperties({ open: false, message: '', type: 'error' });
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
   };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -253,7 +253,7 @@ function NavBar() {
               <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={userInfo.userName.toUpperCase()} src="/static/images/avatar/2.jpg" />
+                    <Avatar alt={userInfo.username.toUpperCase()} src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
                 <Typography
@@ -261,7 +261,7 @@ function NavBar() {
                   sx={{ marginLeft: '0.5rem', cursor: 'pointer' }}
                   onClick={handleOpenUserMenu}
                 >
-                  {` ${userInfo.userName}`}
+                  {` ${userInfo.username}`}
 
                 </Typography>
                 <Menu

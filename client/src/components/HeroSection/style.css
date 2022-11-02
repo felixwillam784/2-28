@@ -8,8 +8,7 @@
 .container{
   height: 323px;
   display: flex !important;
-  align-items: center;
-  /* justify-content: flex-end; */
+  align-items: center  !important;
 }
 .brief-statement {
   transform: translateX(0);
