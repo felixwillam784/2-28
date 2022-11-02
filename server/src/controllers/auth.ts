@@ -90,7 +90,7 @@ const loginAdmin = async (req:Request) => {
     status: 200,
     data:
     {
-      id: result.id, username: result.username, role: 'admin',
+      id: result.id, userName: result.username, role: 'admin',
     },
     token,
   };

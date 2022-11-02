@@ -77,7 +77,7 @@ export default function SendRequestModule() {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackBarProperties({ open: false, message: '', type: 'error' });
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
   };
 
   return (
