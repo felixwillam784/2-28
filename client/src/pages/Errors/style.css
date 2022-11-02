@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,500&display=swap');
+.imgNotFound{
+  width: 40%;
+  height: auto;
+  margin-top: 30px;
+
+}
+.content{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+.pageBody{
+  display:flex ;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center;
+  height:90vh ;
+}
+
+.notFoundHeader{
+  font-size: 40px;
+  color : #3f3d56 !important;
+  font-family: 'Exo 2', sans-serif !important;
+}
