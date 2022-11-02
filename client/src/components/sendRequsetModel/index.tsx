@@ -11,7 +11,7 @@ export default function SendRequestModule() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#fff' }}>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}

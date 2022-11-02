@@ -6,11 +6,12 @@ import {
 
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context';
 import { UserContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
+import SendRequestModule from '../sendRequsetModel';
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -18,6 +19,7 @@ function NavBar() {
   const { userInfo, setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
+  const { pathname } = useLocation();
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
@@ -66,6 +68,7 @@ function NavBar() {
     setUserInfo(null);
     navigate('/');
   };
+  const location = pathname.slice(1);
 
   return (
     <AppBar
@@ -76,6 +79,7 @@ function NavBar() {
         boxShadow:
         '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
         height: '3.7rem',
+        mb: '1rem',
       }}
     >
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
@@ -155,7 +159,13 @@ function NavBar() {
             GoodCar
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginLeft: '2rem' }}>
+          <Box sx={{
+            flexGrow: 1,
+            display: { xs: 'none', md: 'flex' },
+            marginLeft: '2rem',
+            alignItems: { md: 'center' },
+          }}
+          >
             {pages.map((page) => (
               <NavLink
                 key={`link${page.title}`}
@@ -174,7 +184,6 @@ function NavBar() {
                   component="button"
                   onClick={handleCloseNavMenu}
                   sx={{
-                    my: 2,
                     display: 'block',
                     color: 'var(--text-color)',
                     fontFamily: 'var(--font-family)',
@@ -187,40 +196,59 @@ function NavBar() {
                 </Button>
               </NavLink>
             ))}
+            <Button
+              component="button"
+              onClick={handleCloseNavMenu}
+              sx={{
+                display: 'block',
+                color: 'var(--text-color)',
+                fontFamily: 'var(--font-family)',
+                fontWeight: '400',
+                fontSize: '14px',
+                marginBottom: '0.1rem',
+              }}
+            >
+              <SendRequestModule />
+            </Button>
           </Box>
 
-          {(userInfo === null)
-            ? (
-              <Box sx={{ flexGrow: 0 }}>
-                <NavLink to="login" style={{ textDecoration: 'none' }}>
-                  <Button
-                    variant="text"
-                    sx={{
-                      color: 'var(--text-color)',
-                    }}
-                  >
-                    Login
+          {(userInfo === null) ? (
 
-                  </Button>
-                </NavLink>
-                <NavLink to="signup" style={{ textDecoration: 'none' }}>
-                  <Button
-                    variant="outlined"
-                    sx={{
+            <Box sx={{ flexGrow: 0 }}>
+              { location !== 'login' && (
+              <NavLink to="login" style={{ textDecoration: 'none' }}>
+                <Button
+                  variant="text"
+                  sx={{
+                    color: 'var(--text-color)',
+                  }}
+                >
+                  Login
+
+                </Button>
+              </NavLink>
+
+              )}
+              {location !== 'signup' && (
+              <NavLink to="signup" style={{ textDecoration: 'none' }}>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderColor: 'var(--text-color)',
+                    color: 'var(--text-color)',
+                    ':hover': {
+                      backgroundColor: '#2f36430f',
                       borderColor: 'var(--text-color)',
-                      color: 'var(--text-color)',
-                      ':hover': {
-                        backgroundColor: '#2f36430f',
-                        borderColor: 'var(--text-color)',
-                      },
-                    }}
-                  >
-                    SingUp
+                    },
+                  }}
+                >
+                  SingUp
 
-                  </Button>
-                </NavLink>
-              </Box>
-            )
+                </Button>
+              </NavLink>
+              )}
+            </Box>
+          )
             : (
               <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
                 <Tooltip title="Open settings">
