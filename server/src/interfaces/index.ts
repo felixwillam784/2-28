@@ -51,6 +51,7 @@ interface CarAttributes {
   features: Array<string>;
   description: string;
   fuel: string;
+  customerId?: number;
 }
 type CarCreationAttributes = Optional<CarAttributes, 'id'>;
 export interface CarInstance
