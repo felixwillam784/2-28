@@ -5,11 +5,12 @@ import AdminLogin from '../pages/AdminLogin';
 import Profile from '../pages/Profile';
 import Car from '../pages/Car';
 import Landing from '../pages/Landing';
-import DashBoard from '../pages/DashBoard';
+import DashBoard, { DashBoardMain } from '../pages/DashBoard';
 import NotFound from '../pages/Errors/notFound';
 import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
+import CheckCar from '../pages/CheckCar';
 import ProtectedRoute from './privateRoutes';
 
 const router = createBrowserRouter([
@@ -44,17 +45,20 @@ const router = createBrowserRouter([
         element: <Car />,
       },
       {
-        path: '/admin',
-        element: <ProtectedRoute roles="admin"><DashBoard /></ProtectedRoute>,
+        path: 'admin',
+        element: <ProtectedRoute roles="admin"><DashBoardMain /></ProtectedRoute>,
+        children: [
+          { index: true, element: <DashBoard /> },
+          {
+            path: 'check/:id',
+            element: <CheckCar />,
+          },
+        ],
       },
       {
-
-        path: '/admin/login',
-        element:
-  <AdminLogin />
-        ,
+        path: 'admin/login',
+        element: <AdminLogin />,
       },
-
     ],
   },
   {
