@@ -18,7 +18,7 @@ export default function HomeCard(
       <img className="card-image" src={src} alt={alt} />
       <div>
         <Typography
-          sx={{ fontSize: '1.4rem' }}
+          sx={{ fontSize: '1.4rem', textAlign: 'center' }}
           component="h1"
         >
           {title}
