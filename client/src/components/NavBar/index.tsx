@@ -23,7 +23,7 @@ function NavBar() {
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
-    : [{ title: 'HOME', path: '' }, { title: 'SHOP', path: 'cars' }];
+    : [{ title: 'HOME', path: '' }, { title: 'Buy car', path: 'cars' }];
 
   const settings = userInfo?.role.toLowerCase() === 'admin'
     ? []
