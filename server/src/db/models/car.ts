@@ -47,7 +47,7 @@ const Car = sequelize.define<CarInstance>('car', {
     defaultValue: 'pending',
   },
   transmission: {
-    type: DataTypes.ENUM('auto', 'manual'),
+    type: DataTypes.ENUM('automatic', 'manual'),
   },
   features: {
     type: DataTypes.ARRAY(DataTypes.STRING),

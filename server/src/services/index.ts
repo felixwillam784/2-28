@@ -5,6 +5,7 @@ import {
   getCarsDetailsQuery,
   addCarService,
   updateCarServes,
+  getCarByCustomerId,
 } from './cars';
 import {
   findUser, findUserById, signupUser, checkEmail, checkAdmin, findAdminById,
@@ -23,4 +24,5 @@ export {
   checkAdmin,
   updateCarServes,
   findAdminById,
+  getCarByCustomerId,
 };

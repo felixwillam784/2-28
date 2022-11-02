@@ -3,6 +3,7 @@ import { Pagination, TextField } from '@mui/material';
 import { useState } from 'react';
 import CarCard from '../../components/CarCard';
 import CarsFilter from '../../components/CarsFilter';
+import DrawerAppBar from '../../components/FilterSideInMobile';
 import { CarSkeleton } from '../../components/skeletons';
 import { CarsCount, CarsWithImagesRow } from '../../interfaces';
 import './style.css';
@@ -19,14 +20,30 @@ function Cars() {
   };
   return (
     <div className="search_container">
-      <CarsFilter
-        setCars={setCars}
-        setPagination={setPagination}
-        setLoading={setLoading}
-        currentPage={currentPage}
-        search={search}
-        setCurrentPAge={setCurrentPAge}
-      />
+      {
+        window.innerWidth <= 900 ? (
+
+          <DrawerAppBar
+            setCars={setCars}
+            setPagination={setPagination}
+            setLoading={setLoading}
+            currentPage={currentPage}
+            search={search}
+            setCurrentPAge={setCurrentPAge}
+          />
+        ) : (
+
+          <CarsFilter
+            setCars={setCars}
+            setPagination={setPagination}
+            setLoading={setLoading}
+            currentPage={currentPage}
+            search={search}
+            setCurrentPAge={setCurrentPAge}
+          />
+        )
+
+      }
       <div className="cars_Container">
         <TextField
           sx={{

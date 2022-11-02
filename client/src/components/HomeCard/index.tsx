@@ -16,24 +16,26 @@ export default function HomeCard(
   return (
     <div className="home_card">
       <img className="card-image" src={src} alt={alt} />
-      <Typography
-        sx={{ fontSize: '1.4rem' }}
-        component="h1"
-      >
-        {title}
+      <div>
+        <Typography
+          sx={{ fontSize: '1.4rem', textAlign: 'center' }}
+          component="h1"
+        >
+          {title}
 
-      </Typography>
-      <Typography
-        sx={{
-          textAlign: 'center',
-          color: '#939AA3',
-          lineHeight: '2',
-          fontWidth: '100',
-        }}
-        component="p"
-      >
-        {description}
-      </Typography>
+        </Typography>
+        <Typography
+          sx={{
+            textAlign: 'center',
+            color: '#939AA3',
+            lineHeight: '2',
+            fontWidth: '100',
+          }}
+          component="p"
+        >
+          {description}
+        </Typography>
+      </div>
     </div>
   );
 }

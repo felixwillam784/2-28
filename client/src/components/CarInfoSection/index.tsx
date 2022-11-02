@@ -98,7 +98,8 @@ function CarInfo({ carInfo }: Props) {
                   className="feature-image"
                   component="img"
                   alt={`transmission ${carInfo?.transmission}`}
-                  src={features[carInfo?.transmission === 'auto' ? 'Automatic Transmission' : 'Manual Transmission']}
+                  src={features[carInfo?.transmission === 'automatic'
+                    ? 'Automatic Transmission' : 'Manual Transmission']}
                 />
               </Paper>
             ) : ''}

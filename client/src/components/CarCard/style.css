@@ -1,0 +1,5 @@
+@media only screen and (max-width: 1024px) {
+    .car{
+        max-width: 60vw !important;
+    }
+}

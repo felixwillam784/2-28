@@ -27,6 +27,7 @@ function HeroSection() {
             xs: 'center',
             md: 'flex-end',
           },
+          height: { md: '30vh' },
           backgroundColor: {
             xs: '#F6F7F9',
             md: 'transparent',

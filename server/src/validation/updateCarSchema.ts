@@ -10,9 +10,9 @@ const updateCarSchema = yup.object().shape({
   quality: yup.number().notRequired().label('quality'),
   isGoodPrice: yup.boolean().notRequired().label('isGoodPrice'),
   features: yup.array().of(yup.string()).notRequired().label('features'),
-  transmission: yup.string().notRequired().label('transmission').oneOf(['Automatic', 'Manual']),
+  transmission: yup.string().notRequired().label('transmission').oneOf(['automatic', 'manual']),
   description: yup.string().notRequired().label('description'),
-  fuel: yup.string().notRequired().label('fuel').oneOf(['petrol', 'diesel']),
+  fuel: yup.string().nullable().label('fuel').oneOf(['petrol', 'diesel']),
   state: yup.string().notRequired().label('state').oneOf(['under-check', 'pending', 'on-market', 'sold']),
 });
 const addCarSchema = updateCarSchema.shape({ location: yup.string().required().label('location') });

@@ -12,7 +12,6 @@
     "test": " cross-env NODE_ENV=test jest --runInBand",
     "build:db:development": "cross-env NODE_ENV=development DB_SEED=true ts-node ./src/db/config/buildFakeData.ts",
     "build:db:production": "cross-env NODE_ENV=production DB_SEED=true ts-node ./src/db/config/buildFakeData.ts"
-
   },
   "author": "",
   "license": "ISC",

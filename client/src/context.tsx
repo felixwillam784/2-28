@@ -8,10 +8,10 @@ import httpInstance from './services/axiosConfig';
 
 export const UserContext = createContext<UserContextTypeWithDispatch>({
   userInfo: {
-    id: 0, email: '', userName: '', role: '',
+    id: 0, email: '', username: '', role: '',
   },
   setUserInfo: () => ({
-    id: 0, email: '', userName: '', role: '',
+    id: 0, email: '', username: '', role: '',
   }),
 });
 
