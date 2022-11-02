@@ -20,6 +20,6 @@ carsRouter.delete('/:id', authMiddleware('admin'), ExpressWrapper(deleteCarsById
 carsRouter.put('/:id', authMiddleware('admin'), ExpressWrapper(updateCars));
 carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
 carsRouter.patch('/buy', authMiddleware('user'), ExpressWrapper(buyCar));
-carsRouter.get('/user-car', authMiddleware('user'), ExpressWrapper(getUserCars));
+carsRouter.get('/user', authMiddleware('user'), ExpressWrapper(getUserCars));
 carsRouter.get('/:id', ExpressWrapper(getCarsById));
 export default carsRouter;

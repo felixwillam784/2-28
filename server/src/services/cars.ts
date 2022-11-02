@@ -116,6 +116,7 @@ const updateCarServes = async (body, id) => {
 const getCarByCustomerId = async (customerId) => {
   const car = await Car.findAll({
     where: { customerId },
+    attributes: ['state', 'id', 'createdAt', 'model'],
   });
   return car;
 };
