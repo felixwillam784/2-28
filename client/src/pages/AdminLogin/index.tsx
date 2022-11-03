@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context';
 import { AdminLoginSchema } from '../../helpers/validationSchema';
 import { UserContextTypeWithDispatch } from '../../interfaces';
@@ -11,13 +11,17 @@ import './styles.css';
 function AdminLogin() {
   const [responseError, setResponseError] = useState<string>('');
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const AdminInfo = async (values:any) => {
+  console.log(state?.currentLocation, 'jjjjjjjjjjjj');
+
+  const login = async (values:any) => {
     try {
       setResponseError('');
       const result = await httpInstance.post('/auth/admin/login', values);
       setUserInfo(result.data);
-      navigate('/');
+      console.log(result.data);
+      navigate(state?.currentLocation || '/');
     } catch (error:any) {
       setResponseError(error.response.data.message);
     }
@@ -29,7 +33,7 @@ function AdminLogin() {
     },
     validationSchema: AdminLoginSchema,
     onSubmit: (values) => {
-      AdminInfo(values);
+      login(values);
     },
   });
   return (
