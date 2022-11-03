@@ -105,9 +105,8 @@ const updateCarServes = async (body, id) => {
   const car = await Car.update(
     { ...body },
     {
-      returning: true,
       where: { id },
-
+      returning: true,
     },
   );
   return car;
