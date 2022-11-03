@@ -35,7 +35,7 @@ const addCar = async (req: Request, res) => {
      <li>price: $${result.price}</li>
   </ul>
  <p>Soonly our team will check your request, we will keep in touch with you, you can track your request state through email or using your profile..</p>
- <button class="button">Go To Profile!</button>`;
+ <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
 
     const subject = 'Car trade team';
     const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);
@@ -148,13 +148,13 @@ const updateCars = async (req: Request) => {
     <p>Soonly our team will check your request, if it is accepted, a group of professionals will contact you to
         come to see the car and gather its specifications preparing to publish it on our market.</p>
     <p>you can track the state of your request through your email or your profile.</p>
-    <button class="button">Go To Profile!</button>`;
+    <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
     } else if (body.state === 'on-market') {
       emailTitle = 'Your Car Added To The Market !';
       emailBody = `<p>We are happy to tell you that your sell car request
      has been accepted and your car added to the market finally🌟.</p>
      <p>You can track the state of your request through your email or your profile.</p>
-     <button class="button">Go To Profile!</button>`;
+     <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
     }
     const subject = 'Car trade team';
     const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);

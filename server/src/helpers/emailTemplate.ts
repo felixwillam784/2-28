@@ -54,14 +54,21 @@ function emailTemplate(title:string, username: string, body:string):string {
         }
 
         .button {
-            margin: 0 auto;
+            margin: 1rem auto;
             width: 115px;
-            height: 50px;
+            height: 21px;
             border-radius: 4px;
             border: 1px solid #5666ea;
             background-color: #5666ea;
-            color: white;
+            padding: 1rem 1rem;
+            color: white !important;
             font-weight: 600;
+            display: block;
+            cursor: pointer;
+        }
+        a { 
+            text-decoration: none;
+            color: white;
         }
         .list{
             text-align: left;
