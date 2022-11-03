@@ -139,6 +139,28 @@ function NavBar() {
                   <NavLink to={page.path}>{page.title}</NavLink>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+
+                <Button
+                  component="button"
+                  onClick={() => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                    userInfo?.role === 'user' ? handleOpen() : navigate('/login');
+                  }}
+                  sx={{
+                    display: 'block',
+                    color: 'var(--text-color)',
+                    fontFamily: 'var(--font-family)',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    marginBottom: '0.1rem',
+                    paddingLeft: '0.1rem',
+                    marginTop: '-0.5rem',
+                  }}
+                >
+                  Sell a car
+                </Button>
+              </MenuItem>
             </Menu>
           </Box>
 
