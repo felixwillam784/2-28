@@ -120,16 +120,10 @@ const getUserCars = async (req, res) => {
   };
 };
 
-const addImages = async (request: { body: { imagesArray: Array<object>; }; }) => {
-  const { imagesArray } = request.body;
-  console.log('imagesArr', imagesArray);
-
-  const carImages: Array<object> = imagesArray;
-  const result = await addImagesService(carImages);
-  console.log('resultt', result);
-
-  return { status: 200, msg: 'successfully', data: null };
+const addImages = async () => {
+  addImagesService();
 };
+
 export {
   getFilteredCars,
   getCarsById,

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, useState } from 'react';
 
 import {
@@ -66,6 +65,22 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     getCarInfo();
   }, []);
 
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
+  };
+
+  const handleNext = () => {
+    setActiveStep((prevState) => prevState + 1);
+  };
+
+  const handleBack = () => {
+    if (activeStep) {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       ...carData, type: '',
@@ -81,6 +96,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
         await httpInstance.put(`/cars/${id}`, values);
         setLoading(false);
+        handleNext();
         setSnackBarProperties(
           {
             open: true,
@@ -267,31 +283,8 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     component: <UploadFiles carId={id} />,
   }];
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
-
-  const handleNext = () => {
-    setActiveStep((prevState) => prevState + 1);
-  };
-
-  const handleBack = () => {
-    if (!activeStep) {
-      //  here will send request to server then setActiveStep +1
-    } else {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    }
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ mb: '1.3rem', width: '100%' }}>
       <Stepper activeStep={activeStep}>
         {steps.map(({ label }) => (
           <Step key={label}>
@@ -300,34 +293,20 @@ function CustomStepper({ id }:{ id:string | undefined }) {
         ))}
       </Stepper>
       {steps[activeStep].component}
-      {activeStep === steps.length ? (
-        <>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </>
-      ) : (
+      {activeStep < steps.length ? (
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-          <Button
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-            disabled={activeStep === 0}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
-          {activeStep < steps.length - 1 ? (
+          {activeStep === 0 ? <> </> : (
             <Button
-              onClick={handleNext}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
             >
-              Next
+              Back
             </Button>
-          ) : <> </>}
+          )}
+
         </Box>
+      ) : (
+        <> </>
       )}
 
       <CustomizedSnackbars

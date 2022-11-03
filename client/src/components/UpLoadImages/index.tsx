@@ -5,12 +5,10 @@ import {
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import storage from '../../firebase/firebaseConfig';
-import httpInstance from '../../services';
+import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
 
 function UploadFiles({ carId }:{ carId:string | undefined }) {
-  console.log(Number(carId), 'car id');
-
   const [file, setFile] = useState<FileList | null>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -59,7 +57,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
               const rows: Array<object> = [];
               urls.map((url) => rows.push({ image: url, carId }));
               httpInstance.post('/cars/images', rows);
-              console.log('rows', rows);
             }).then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
         })
         .then(() => {
@@ -79,16 +76,37 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     }
   };
   return (
-    <div>
-      <input ref={fileInput} multiple type="file" onChange={handleChange} accept="/image/*" />
+    <div className="uploading-step">
+      <input
+        className="files-input"
+        ref={fileInput}
+        multiple
+        type="file"
+        onChange={handleChange}
+        accept="/image/*"
+      />
       {loading
         ? (
-          <>
-            <Button disabled>Upload</Button>
-            <p>Uploading ...</p>
-          </>
+          <Button
+            className="upload-btn"
+            variant="outlined"
+            disabled
+          >
+            Uploading
+
+          </Button>
         )
-        : <Button onClick={handleUpload}>Upload</Button>}
+        : (
+          <Button
+            className="upload-btn"
+            variant="contained"
+            type="submit"
+            onClick={handleUpload}
+            color="success"
+          >
+            Save
+          </Button>
+        )}
       <CustomizedSnackbars
         open={open}
         handleClose={handleCloseSnack}
