@@ -98,11 +98,11 @@ const updateCars = async (req: Request) => {
   return { status: 200, msg: 'done!', data: result };
 };
 const buyCar = async (req, res) => {
-  const { state, id } = req.body;
+  const { id } = req.body;
   const { userId } = res.locals.user;
   const carInfo = await getCarInfo(id);
   if (carInfo[0].state === 'on-market') {
-    await updateCarServes({ state }, id);
+    await updateCarServes({ state: 'sold' }, id);
     const result:{ email: string, fullName: string } = await findUserById({ id: userId });
     await sendEmail(result);
     return { status: 200, msg: 'successfully' };

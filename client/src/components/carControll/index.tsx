@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 
 import StripeForm from '../StripForm';
+import CustomizedSnackbars from '../snackbar';
 
 const stripePromise = loadStripe(
   'pk_test_TYooMQauvdEDq54NiTphI7jx',
@@ -18,10 +19,16 @@ function CarControll() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const [snackBarMessage, setSnackBarMessage] = useState<string>('');
+  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>('error');
+
   const options = {
     clientSecret: 'pi_1DseH42eZvKYlo2C5UQDyYph_secret_gowsU3j2SgDfFECrHNzE8UtGK',
   };
-
+  const handleCloseSnackBar = () => {
+    setOpenSnackBar(false);
+  };
   return (
     <>
       <section className="buttons-container">
@@ -51,8 +58,18 @@ function CarControll() {
           className="strip_Model"
         >
           <Elements stripe={stripePromise} options={options}>
-            <StripeForm />
+            <StripeForm
+              setSnackBarMessage={setSnackBarMessage}
+              setSnackBarType={setSnackBarType}
+              setOpenSnackBar={setOpenSnackBar}
+            />
           </Elements>
+          <CustomizedSnackbars
+            open={openSnackBar}
+            handleClose={handleCloseSnackBar}
+            message={snackBarMessage}
+            type={snackBarType}
+          />
         </Box>
       </Modal>
     </>
