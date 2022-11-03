@@ -19,13 +19,10 @@ function ProtectedRoute({ children, roles }:PrivateType) {
 function LoginProtectedRoute({ children }:LoginProtected) {
   const { userInfo }: UserContextTypeWithDispatch = useContext(UserContext);
   if (userInfo) {
-    let path = '/';
     if (userInfo?.role === 'user') {
-      path = '/';
-      return <Navigate to={path} replace />;
+      return <Navigate to="/" replace />;
     } if (userInfo?.role === 'admin') {
-      path = '/admin';
-      return <Navigate to={path} replace />;
+      return <Navigate to="/admin" replace />;
     }
   }
   return children;
