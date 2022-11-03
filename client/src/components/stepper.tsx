@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, useState } from 'react';
 
@@ -15,6 +14,7 @@ import { featuresArray } from '../assets/data/features';
 import CustomizedSnackbars from './snackbar';
 import { CarWithImages } from '../interfaces';
 import httpInstance from '../services';
+import UploadFiles from './UpLoadImages';
 
 const initialData = {
   id: 0,
@@ -44,10 +44,11 @@ const convertToKM = (value: number, type: string) => {
 
 function CustomStepper({ id }:{ id:string | undefined }) {
   const [carData, setCarData] = useState<CarWithImages>(initialData);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
     const getCarInfo = async () => {
@@ -261,7 +262,10 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     </Box>
   </SellCarModal>,
 
-  }, { label: 'Car Image', component: 'second' }];
+  }, {
+    label: 'Upload Images',
+    component: <UploadFiles carId={id} />,
+  }];
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -271,7 +275,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
   };
 
   const handleNext = () => {
-    setActiveStep((prevSate) => prevSate + 1);
+    setActiveStep((prevState) => prevState + 1);
   };
 
   const handleBack = () => {
@@ -316,9 +320,13 @@ function CustomStepper({ id }:{ id:string | undefined }) {
             Back
           </Button>
           <Box sx={{ flex: '1 1 auto' }} />
-          <Button onClick={handleNext}>
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-          </Button>
+          {activeStep < steps.length - 1 ? (
+            <Button
+              onClick={handleNext}
+            >
+              Next
+            </Button>
+          ) : <> </>}
         </Box>
       )}
 

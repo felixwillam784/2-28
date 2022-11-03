@@ -12,6 +12,7 @@ import {
   updateCarServes,
   findUserById,
   getCarByCustomerId,
+  addImagesService,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -118,6 +119,17 @@ const getUserCars = async (req, res) => {
     data: result,
   };
 };
+
+const addImages = async (request: { body: { imagesArray: Array<object>; }; }) => {
+  const { imagesArray } = request.body;
+  console.log('imagesArr', imagesArray);
+
+  const carImages: Array<object> = imagesArray;
+  const result = await addImagesService(carImages);
+  console.log('resultt', result);
+
+  return { status: 200, msg: 'successfully', data: null };
+};
 export {
   getFilteredCars,
   getCarsById,
@@ -127,4 +139,5 @@ export {
   addCar,
   buyCar,
   getUserCars,
+  addImages,
 };
