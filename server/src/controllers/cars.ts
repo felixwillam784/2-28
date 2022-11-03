@@ -57,12 +57,11 @@ const deleteCarsById = async (req: Request) => {
     throw createError(400, 'car not found');
   }
   if (process.env.NODE_ENV !== 'test') {
-    let emailTitle; let emailBody;
-
     const userInfo: { email: string, fullName: string } = await findUserById(
-      { id: carInfo[0].customerId });
-    emailTitle = 'Your Sell Car Request Has Been Rejected';
-    emailBody = `<p>Unfortunately, Your sell car request with the following details:</p>.
+      { id: carInfo[0].customerId },
+    );
+    const emailTitle = 'Your Sell Car Request Has Been Rejected';
+    const emailBody = `<p>Unfortunately, Your sell car request with the following details:</p>.
     <ul  class="list">
       <li>Brand: ${carInfo[0].brand}</li>
       <li>Model: ${carInfo[0].model}</li>
@@ -71,7 +70,7 @@ const deleteCarsById = async (req: Request) => {
       <li>location: ${carInfo[0].location}</li>
       <li>price: $${carInfo[0].price}</li>
     </ul>
-     <p>has been rejected. Good luck.</p>`
+     <p>has been rejected. Good luck.</p>`;
 
     const subject = 'Car trade team';
     const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);
@@ -140,7 +139,8 @@ const updateCars = async (req: Request) => {
     let emailTitle; let emailBody;
 
     const userInfo: { email: string, fullName: string } = await findUserById(
-      { id: result[1][0].customerId });
+      { id: result[1][0].customerId },
+    );
 
     if (body.state === 'under-check') {
       emailTitle = 'Your Sell Request Has Been Accepted!';
