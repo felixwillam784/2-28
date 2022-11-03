@@ -196,20 +196,9 @@ function NavBar() {
                 </Button>
               </NavLink>
             ))}
-            <Button
-              component="button"
-              onClick={handleCloseNavMenu}
-              sx={{
-                display: 'block',
-                color: 'var(--text-color)',
-                fontFamily: 'var(--font-family)',
-                fontWeight: '400',
-                fontSize: '14px',
-                marginBottom: '0.1rem',
-              }}
-            >
-              <SendRequestModule />
-            </Button>
+
+            <SendRequestModule />
+
           </Box>
 
           {(userInfo === null) ? (

@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { HighlightOff } from '@mui/icons-material';
 import { useFormik } from 'formik';
-import { Typography, TextField } from '@mui/material';
+import { Typography, TextField, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import SellCarModal from './Form';
 import { addCarSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
+import { UserContext } from '../../context';
 
 const convertToKM = (value: number, type: string) => {
   if (type === 'mile') return value * 1.609344;
@@ -28,14 +29,15 @@ const style = {
   p: 4,
 };
 
-export default function SendRequestModule() {
+function SendRequestModule() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { userInfo } = useContext(UserContext);
   const [loading, setLoading] = useState<boolean>(true);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       brand: '',
@@ -82,7 +84,25 @@ export default function SendRequestModule() {
 
   return (
     <div style={{ backgroundColor: '#fff' }}>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button
+        component="button"
+        onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          userInfo?.role === 'user'
+            ? handleOpen()
+            : navigate('/login');
+        }}
+        sx={{
+          display: 'block',
+          color: 'var(--text-color)',
+          fontFamily: 'var(--font-family)',
+          fontWeight: '400',
+          fontSize: '14px',
+          marginBottom: '0.1rem',
+        }}
+      >
+        Sell a car
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -130,3 +150,4 @@ export default function SendRequestModule() {
     </div>
   );
 }
+export default SendRequestModule;
