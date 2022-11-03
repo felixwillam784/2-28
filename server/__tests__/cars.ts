@@ -111,7 +111,6 @@ describe('/cars endpoint', () => {
   test('should return id of car that update', async () => {
     const result = await request(app).put('/api/v1/cars/1')
       .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
-      console.log(result.body);
       
     expect(result.body.data[0]).toEqual(0);
     expect(result.body.msg).toEqual('done!');

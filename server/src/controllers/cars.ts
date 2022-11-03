@@ -47,12 +47,35 @@ const addCar = async (req: Request, res) => {
 const schema = yup.object({
   id: yup.number().integer().required(),
 });
+
 const deleteCarsById = async (req: Request) => {
   const { id } = req.params;
   await schema.validate({ id });
+  const carInfo = await getCarInfo(id);
   const result = await deleteCars(id);
   if (result === 0) {
     throw createError(400, 'car not found');
+  }
+  if (process.env.NODE_ENV !== 'test') {
+    let emailTitle; let emailBody;
+
+    const userInfo: { email: string, fullName: string } = await findUserById(
+      { id: carInfo[0].customerId });
+    emailTitle = 'Your Sell Car Request Has Been Rejected';
+    emailBody = `<p>Unfortunately, Your sell car request with the following details:</p>.
+    <ul  class="list">
+      <li>Brand: ${carInfo[0].brand}</li>
+      <li>Model: ${carInfo[0].model}</li>
+      <li>Year: ${carInfo[0].year}</li>
+      <li>Mileage: ${carInfo[0].mileage}</li>
+      <li>location: ${carInfo[0].location}</li>
+      <li>price: $${carInfo[0].price}</li>
+    </ul>
+     <p>has been rejected. Good luck.</p>`
+
+    const subject = 'Car trade team';
+    const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);
+    await sendEmail(userInfo, subject, content);
   }
   return { status: 200, msg: 'done!', data: result };
 };
@@ -117,8 +140,8 @@ const updateCars = async (req: Request) => {
     let emailTitle; let emailBody;
 
     const userInfo: { email: string, fullName: string } = await findUserById(
-      { id: result[1][0].customerId },
-    );
+      { id: result[1][0].customerId });
+
     if (body.state === 'under-check') {
       emailTitle = 'Your Sell Request Has Been Accepted!';
       emailBody = `<p>We are happy to tell you that your sell car request has been accepted initially.</p>

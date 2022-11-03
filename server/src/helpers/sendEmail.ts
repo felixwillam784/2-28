@@ -20,7 +20,6 @@ const sendEmail = (userInfo, subject, content) => {
 
   transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      console.log(error);
       return { status: 500 };
     }
     return '';
