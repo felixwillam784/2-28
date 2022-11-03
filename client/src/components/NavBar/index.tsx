@@ -20,6 +20,9 @@ function NavBar() {
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
   const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleCloseSell = () => setOpen(false);
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
@@ -197,8 +200,24 @@ function NavBar() {
               </NavLink>
             ))}
 
-            <SendRequestModule />
-
+            <Button
+              component="button"
+              onClick={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                userInfo?.role === 'user' ? handleOpen() : navigate('/login');
+              }}
+              sx={{
+                display: 'block',
+                color: 'var(--text-color)',
+                fontFamily: 'var(--font-family)',
+                fontWeight: '400',
+                fontSize: '14px',
+                marginBottom: '0.1rem',
+              }}
+            >
+              Sell a car
+            </Button>
+            <SendRequestModule open={open} handleClose={handleCloseSell} />
           </Box>
 
           {(userInfo === null) ? (

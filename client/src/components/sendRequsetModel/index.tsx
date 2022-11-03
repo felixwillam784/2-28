@@ -29,15 +29,18 @@ const style = {
   p: 4,
 };
 
-function SendRequestModule() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+function SendRequestModule({ open, handleClose }: { open: boolean,
+  handleClose: () => void }) {
   const { userInfo } = useContext(UserContext);
   const [loading, setLoading] = useState<boolean>(true);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
+  const [snackBarProperties, setSnackBarProperties] = useState<{
+    open: boolean;
+    message: string;
+    type: 'success' | 'error';
+  }>({ open: false, message: '', type: 'error' });
+
   const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       brand: '',
@@ -59,23 +62,28 @@ function SendRequestModule() {
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
         await httpInstance.post('/cars', values);
         setLoading(false);
-        setSnackBarProperties(
-          {
-            open: true,
-            message: 'Sell car request sent successfully',
-            type: 'success',
-          },
-        );
-        setOpen(false);
+        setSnackBarProperties({
+          open: true,
+          message: 'Sell car request sent successfully',
+          type: 'success',
+        });
+        handleClose();
         resetForm();
       } catch (err) {
         setLoading(false);
-        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
+        setSnackBarProperties({
+          open: true,
+          message: 'something went wrong!',
+          type: 'error',
+        });
       }
     },
   });
 
-  const handleCloseSnackBar = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleCloseSnackBar = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -84,25 +92,6 @@ function SendRequestModule() {
 
   return (
     <div style={{ backgroundColor: '#fff' }}>
-      <Button
-        component="button"
-        onClick={() => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          userInfo?.role === 'user'
-            ? handleOpen()
-            : navigate('/login');
-        }}
-        sx={{
-          display: 'block',
-          color: 'var(--text-color)',
-          fontFamily: 'var(--font-family)',
-          fontWeight: '400',
-          fontSize: '14px',
-          marginBottom: '0.1rem',
-        }}
-      >
-        Sell a car
-      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -110,7 +99,6 @@ function SendRequestModule() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-
           <HighlightOff
             sx={{
               position: 'absolute',
@@ -119,7 +107,10 @@ function SendRequestModule() {
             onClick={handleClose}
           />
 
-          <Typography sx={{ fontSize: '1.5rem', width: 'fit-content', margin: '0 auto' }} component="h2">
+          <Typography
+            sx={{ fontSize: '1.5rem', width: 'fit-content', margin: '0 auto' }}
+            component="h2"
+          >
             Sell Your Car Now!
           </Typography>
           <hr
@@ -131,13 +122,8 @@ function SendRequestModule() {
             }}
           />
 
-          <SellCarModal
-            id={undefined}
-            modalType="addRequest"
-            formik={formik}
-          >
+          <SellCarModal id={undefined} modalType="addRequest" formik={formik}>
             {undefined}
-
           </SellCarModal>
         </Box>
       </Modal>
@@ -150,4 +136,5 @@ function SendRequestModule() {
     </div>
   );
 }
+
 export default SendRequestModule;
