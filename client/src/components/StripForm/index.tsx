@@ -22,12 +22,10 @@ function StripeForm({
         setOpenSnackBar(true);
         setSnackBarMessage('payment successfully check your email to more information');
         setSnackBarType('success');
-        console.log(1);
       } catch (error) {
         setOpenSnackBar(true);
         setSnackBarMessage('car not available to sell');
         setSnackBarType('error');
-        console.log(2);
       }
     };
     buyCar();
