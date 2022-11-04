@@ -1,13 +1,18 @@
-import { Button } from '@mui/material';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Button, CircularProgress } from '@mui/material';
 import {
   ref, getDownloadURL, uploadBytes,
 } from 'firebase/storage';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import storage from '../../firebase/firebaseConfig';
+import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
+import './style.css';
 
-function UploadFiles() {
+function UploadFiles({ carId }:{ carId:string | undefined }) {
   const [file, setFile] = useState<FileList | null>();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [
@@ -22,6 +27,7 @@ function UploadFiles() {
     setOpen(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fileInput = useRef<any>(null);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -38,25 +44,33 @@ function UploadFiles() {
       setLoading(true);
       const toUploadfiles = [];
       for (let i = 0; i < file.length; i += 1) {
-        const storageRef = ref(storage, `/Images/cars/carId/${file[i].name}`);
-        const touploadFile = uploadBytes(storageRef, file[i]);
-        toUploadfiles.push(touploadFile);
+        const storageRef = ref(storage, `/Cars' Images/${carId}/${file[i].name}`);
+        const toUploadFile = uploadBytes(storageRef, file[i]);
+        toUploadfiles.push(toUploadFile);
       }
       Promise.all(toUploadfiles)
         .then((snapshots) => {
-          const getImages = snapshots.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
-          return getImages;
+          const getImagesUrls = snapshots.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
+          return getImagesUrls;
         })
-        .then((todownloadImages) => Promise.all(todownloadImages))
+        .then((toDownloadUrls) => {
+          Promise.all(toDownloadUrls)
+            .then((urls) => {
+              const rows: Array<object> = [];
+              urls.map((url) => rows.push({ image: url, carId }));
+              httpInstance.post('/cars/images', rows);
+            }).then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
+        })
         .then(() => {
-          setLoading(false);
-          setFile(undefined);
-          setSnackData({ type: 'success', message: 'Uploaded successfully' });
-          setOpen(true);
           if (fileInput.current) {
             fileInput.current.value = null;
           }
+          setFile(undefined);
+          setLoading(false);
+          setSnackData({ type: 'success', message: 'Uploaded successfully' });
+          setOpen(true);
         })
+        .then(() => navigate('/admin'))
         .catch(() => {
           setSnackData({ type: 'error', message: 'Somthing went wrong' });
           setOpen(true);
@@ -64,16 +78,61 @@ function UploadFiles() {
     }
   };
   return (
-    <div>
-      <input ref={fileInput} multiple type="file" onChange={handleChange} accept="/image/*" />
-      {loading
-        ? (
-          <>
-            <Button disabled>Upload</Button>
-            <p>Uploading ...</p>
-          </>
-        )
-        : <Button onClick={handleUpload}>Upload</Button>}
+    <>
+      {!file ? (
+        <div className="contaner">
+          <div className="uploading-step">
+            <label className="custom-file-upload">
+              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              Open files
+            </label>
+            No images
+          </div>
+          <Button
+            className="upload-btn"
+            disabled
+          >
+            Save
+          </Button>
+        </div>
+      ) : (
+        <div className="contaner">
+          <div className="uploading-step">
+            <label className="custom-file-upload">
+              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              Open files
+            </label>
+            {`${file.length} images`}
+          </div>
+          {' '}
+          {loading
+            ? (
+              <div className="loading">
+                <Button
+                  className="upload-btn"
+                  variant="outlined"
+                  disabled
+                >
+                  Uploading
+
+                </Button>
+                <CircularProgress disableShrink />
+              </div>
+            )
+            : (
+              <Button
+                className="upload-btn"
+                variant="contained"
+                type="submit"
+                onClick={handleUpload}
+                color="success"
+              >
+                Save
+              </Button>
+            )}
+        </div>
+      )}
+
       <CustomizedSnackbars
         open={open}
         handleClose={handleCloseSnack}
@@ -81,7 +140,7 @@ function UploadFiles() {
         type={snackData.type}
       />
 
-    </div>
+    </>
   );
 }
 

@@ -22,4 +22,5 @@ carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
 carsRouter.patch('/buy', authMiddleware('user'), ExpressWrapper(buyCar));
 carsRouter.get('/user', authMiddleware('user'), ExpressWrapper(getUserCars));
 carsRouter.get('/:id', ExpressWrapper(getCarsById));
+
 export default carsRouter;

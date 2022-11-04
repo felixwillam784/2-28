@@ -120,6 +120,9 @@ const getCarByCustomerId = async (customerId) => {
   });
   return car;
 };
+
+const addImagesService = async () => {};
+
 export {
   getCars,
   getCarInfo,
@@ -128,4 +131,5 @@ export {
   getCarsDetailsQuery,
   addCarService,
   getCarByCustomerId,
+  addImagesService,
 };

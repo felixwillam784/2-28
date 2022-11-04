@@ -12,6 +12,7 @@ import {
   updateCarServes,
   findUserById,
   getCarByCustomerId,
+  addImagesService,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -118,6 +119,11 @@ const getUserCars = async (req, res) => {
     data: result,
   };
 };
+
+const addImages = async () => {
+  addImagesService();
+};
+
 export {
   getFilteredCars,
   getCarsById,
@@ -127,4 +133,5 @@ export {
   addCar,
   buyCar,
   getUserCars,
+  addImages,
 };

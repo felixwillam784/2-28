@@ -101,6 +101,7 @@ export interface LoginProtected {
 export interface EditCarFormProps {
   modalType: 'addRequest' | 'checkRequest',
   id: string | undefined,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formik : any,
   children: JSX.Element | undefined
 }
