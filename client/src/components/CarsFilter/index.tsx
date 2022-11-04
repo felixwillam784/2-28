@@ -203,7 +203,7 @@ function CarsFilter({
         <div style={{ width: 200, margin: 40 }}>
           <span> Max mileage (KM) : </span>
           <Slider
-            value={+mileage / 10000}
+            value={Number(mileage) / 10000}
             valueLabelDisplay="auto"
             onChange={changeMileage}
             marks={mileRang}

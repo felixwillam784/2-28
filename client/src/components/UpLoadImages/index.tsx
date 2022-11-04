@@ -1,4 +1,5 @@
-import { Button } from '@mui/material';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Button, CircularProgress } from '@mui/material';
 import {
   ref, getDownloadURL, uploadBytes,
 } from 'firebase/storage';
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import storage from '../../firebase/firebaseConfig';
 import httpInstance from '../../services/axiosConfig';
 import CustomizedSnackbars from '../snackbar';
+import './style.css';
 
 function UploadFiles({ carId }:{ carId:string | undefined }) {
   const [file, setFile] = useState<FileList | null>();
@@ -76,37 +78,61 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     }
   };
   return (
-    <div className="uploading-step">
-      <input
-        className="files-input"
-        ref={fileInput}
-        multiple
-        type="file"
-        onChange={handleChange}
-        accept="/image/*"
-      />
-      {loading
-        ? (
+    <>
+      {!file ? (
+        <div className="contaner">
+          <div className="uploading-step">
+            <label className="custom-file-upload">
+              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              Open files
+            </label>
+            No images
+          </div>
           <Button
             className="upload-btn"
-            variant="outlined"
             disabled
-          >
-            Uploading
-
-          </Button>
-        )
-        : (
-          <Button
-            className="upload-btn"
-            variant="contained"
-            type="submit"
-            onClick={handleUpload}
-            color="success"
           >
             Save
           </Button>
-        )}
+        </div>
+      ) : (
+        <div className="contaner">
+          <div className="uploading-step">
+            <label className="custom-file-upload">
+              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              Open files
+            </label>
+            {`${file.length} images`}
+          </div>
+          {' '}
+          {loading
+            ? (
+              <div className="loading">
+                <Button
+                  className="upload-btn"
+                  variant="outlined"
+                  disabled
+                >
+                  Uploading
+
+                </Button>
+                <CircularProgress disableShrink />
+              </div>
+            )
+            : (
+              <Button
+                className="upload-btn"
+                variant="contained"
+                type="submit"
+                onClick={handleUpload}
+                color="success"
+              >
+                Save
+              </Button>
+            )}
+        </div>
+      )}
+
       <CustomizedSnackbars
         open={open}
         handleClose={handleCloseSnack}
@@ -114,7 +140,7 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         type={snackData.type}
       />
 
-    </div>
+    </>
   );
 }
 
