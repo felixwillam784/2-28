@@ -84,7 +84,7 @@ function RequestsTable(props:Props) {
               ? skeletonRows
               : carsData.map((row:CarWithCustomerInfo) => (
                 <Row
-                  key={row.model}
+                  key={row.id}
                   car={row}
                   state={state}
                   setCarsData={setCarsData}
