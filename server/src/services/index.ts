@@ -6,7 +6,7 @@ import {
   addCarService,
   updateCarServes,
   getCarByCustomerId,
-  addImagesService,
+  addImageService,
 } from './cars';
 import {
   findUser, findUserById, signupUser, checkEmail, checkAdmin, findAdminById,
@@ -26,5 +26,5 @@ export {
   updateCarServes,
   findAdminById,
   getCarByCustomerId,
-  addImagesService,
+  addImageService,
 };

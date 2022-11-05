@@ -121,8 +121,10 @@ const getCarByCustomerId = async (customerId) => {
   return car;
 };
 
-const addImagesService = async () => {};
-
+const addImageService = async ({ image, carId }) => {
+  const rows = await Image.create({ ...{ image, carId } });
+  return rows;
+};
 export {
   getCars,
   getCarInfo,
@@ -131,5 +133,5 @@ export {
   getCarsDetailsQuery,
   addCarService,
   getCarByCustomerId,
-  addImagesService,
+  addImageService,
 };

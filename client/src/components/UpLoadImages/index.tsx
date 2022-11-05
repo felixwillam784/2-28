@@ -20,6 +20,18 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     setSnackData,
   ] = useState<{ type: 'error' | 'success' | 'info', message: string }>({ type: 'info', message: '' });
 
+  const saveImage = async (image: string) => {
+    const result = await httpInstance
+      .post(
+        '/cars/images',
+        {
+          image,
+          carId,
+        },
+      );
+    return result;
+  };
+
   const handleCloseSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -37,10 +49,7 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     setFile(fileList);
   };
   const handleUpload = () => {
-    if (!file) {
-      setSnackData({ type: 'info', message: 'You should choose an image befor upload' });
-      setOpen(true);
-    } else {
+    if (file) {
       setLoading(true);
       const toUploadfiles = [];
       for (let i = 0; i < file.length; i += 1) {
@@ -56,9 +65,7 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         .then((toDownloadUrls) => {
           Promise.all(toDownloadUrls)
             .then((urls) => {
-              const rows: Array<object> = [];
-              urls.map((url) => rows.push({ image: url, carId }));
-              httpInstance.post('/cars/images', rows);
+              urls.map((url) => saveImage(url));
             }).then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
         })
         .then(() => {

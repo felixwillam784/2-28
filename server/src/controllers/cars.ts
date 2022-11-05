@@ -12,7 +12,7 @@ import {
   updateCarServes,
   findUserById,
   getCarByCustomerId,
-  addImagesService,
+  addImageService,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 
@@ -120,8 +120,11 @@ const getUserCars = async (req, res) => {
   };
 };
 
-const addImages = async () => {
-  addImagesService();
+const addImages = async (request) => {
+  const { image, carId } = request.body;
+  const result = await addImageService({ image, carId });
+
+  return { status: 200, msg: 'successfully', data: result };
 };
 
 export {
