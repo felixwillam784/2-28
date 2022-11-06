@@ -5,13 +5,7 @@
 
 }
 
-.formLogin{
-  /* width: 50%; */
-  min-height: 20px;
-  /* display: flex; */
-  flex-direction: column;
-  justify-content: space-evenly;
-}
+
 .formLogin h1{
   font-size: 30px;
   font-weight: bold;
