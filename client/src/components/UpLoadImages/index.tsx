@@ -73,10 +73,8 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         }
         setFile(undefined);
         setLoading(false);
-        setSnackData({ type: 'success', message: 'Uploaded successfully' });
-        setOpen(true);
+        navigate(`/car/${carId}`);
       })
-      .then(() => navigate('/admin'))
       .catch(() => {
         setSnackData({ type: 'error', message: 'Somthing went wrong' });
         setOpen(true);
