@@ -166,11 +166,11 @@ const updateCars = async (req: Request) => {
 //-------------------------------------------------------
 
 const buyCar = async (req, res) => {
-  const { state, id } = req.body;
+  const { id } = req.body;
   const { userId } = res.locals.user;
   const carInfo = await getCarInfo(id);
   if (carInfo[0].state === 'on-market') {
-    await updateCarServes({ state }, id);
+    await updateCarServes({ state: 'sold' }, id);
     if (process.env.NODE_ENV !== 'test') {
       const result: { email: string, fullName: string } = await findUserById({ id: userId });
 

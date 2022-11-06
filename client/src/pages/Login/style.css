@@ -2,26 +2,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
 
-.formLogin{
-  width: 50%;
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
 .formLogin h1{
   font-size: 30px;
   font-weight: bold;
 }
 .main{
+  height:calc(100vh - 59px);
   background-color: #000;
   display: flex;
 }
 .Img{
   width: 30%;
-  height: 100vh;
+  height:calc(100vh - 59px);
   background-image: url(/public/images/2.jpg);
   background-size: cover;
   background-position: left;
@@ -33,7 +27,7 @@
   color: #fff;
   font-size: 30px;
   width: 80%;
-  height: 30vh;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -54,16 +48,12 @@
 }
 .form{
   width: 70%;
-  height: 100vh;
+  height:calc(100vh - 59px);
   border-radius: 45px 0 0 45px;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.button{
-  padding: 35px 0; 
-  background-color: #000;
-}
 
-/*--------------------------------------*/
+/*-----------------------------*/
