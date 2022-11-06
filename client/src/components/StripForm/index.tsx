@@ -14,20 +14,21 @@ function StripeForm({
   setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const { id } = useParams();
+  const buyCar = async () => {
+    try {
+      await httpInstance.patch('/cars/buy', { id });
+      setOpenSnackBar(true);
+      setSnackBarMessage('payment successfully check your email to more information');
+      setSnackBarType('success');
+    } catch (error) {
+      setOpenSnackBar(true);
+      setSnackBarMessage('car not available to sell');
+      setSnackBarType('error');
+    }
+  };
   const handleClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const buyCar = async () => {
-      try {
-        await httpInstance.patch('/cars/buy', { id });
-        setOpenSnackBar(true);
-        setSnackBarMessage('payment successfully check your email to more information');
-        setSnackBarType('success');
-      } catch (error) {
-        setOpenSnackBar(true);
-        setSnackBarMessage('car not available to sell');
-        setSnackBarType('error');
-      }
-    };
+
     buyCar();
   };
 
