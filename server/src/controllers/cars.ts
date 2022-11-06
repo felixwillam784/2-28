@@ -96,7 +96,7 @@ const updateCars = async (req: Request) => {
   const { id } = req.params;
   await updateCarSchema.validate(body);
   const getCar = await getCarInfo(id);
-  if (getCar[0].state === 'under-check') {
+  if (getCar[0].state === 'under-check' || getCar[0].state === 'on-market') {
     const result = await updateCarService(body, id);
     return { status: 200, msg: 'done!', data: result };
   }
