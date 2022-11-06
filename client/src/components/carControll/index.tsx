@@ -19,15 +19,16 @@ function CarControll() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
-  const [snackBarMessage, setSnackBarMessage] = useState<string>('');
-  const [snackBarType, setSnackBarType] = useState<'error' | 'success'>('error');
-
+  const [snackBar, setSnackBar] = useState<{ type: 'error' | 'success', message: string, open: boolean }>({
+    type: 'error',
+    message: '',
+    open: false,
+  });
   const options = {
     clientSecret: 'pi_1DseH42eZvKYlo2C5UQDyYph_secret_gowsU3j2SgDfFECrHNzE8UtGK',
   };
   const handleCloseSnackBar = () => {
-    setOpenSnackBar(false);
+    setSnackBar((prevState) => ({ ...prevState, open: true }));
   };
   return (
     <>
@@ -59,16 +60,14 @@ function CarControll() {
         >
           <Elements stripe={stripePromise} options={options}>
             <StripeForm
-              setSnackBarMessage={setSnackBarMessage}
-              setSnackBarType={setSnackBarType}
-              setOpenSnackBar={setOpenSnackBar}
+              setSnackBar={setSnackBar}
             />
           </Elements>
           <CustomizedSnackbars
-            open={openSnackBar}
+            open={snackBar.open}
             handleClose={handleCloseSnackBar}
-            message={snackBarMessage}
-            type={snackBarType}
+            message={snackBar.message}
+            type={snackBar.type}
           />
         </Box>
       </Modal>

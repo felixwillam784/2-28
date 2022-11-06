@@ -6,24 +6,28 @@ import httpInstance from '../../services';
 import './style.css';
 
 function StripeForm({
-  setSnackBarMessage,
-  setSnackBarType,
-  setOpenSnackBar,
-}:{ setSnackBarMessage: React.Dispatch<React.SetStateAction<string>>,
-  setSnackBarType:React.Dispatch<React.SetStateAction<'error' | 'success'>>,
-  setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+  setSnackBar,
+
+}:{ setSnackBar: React.Dispatch<React.SetStateAction<{
+  type: 'error' | 'success';
+  message: string;
+  open: boolean;
+}>> }) {
   const { id } = useParams();
   const buyCar = async () => {
     try {
       await httpInstance.patch('/cars/buy', { id });
-      setOpenSnackBar(true);
-      setSnackBarMessage('payment successfully check your email to more information');
-      setSnackBarType('success');
+      setSnackBar({
+        type: 'success',
+        message: 'payment successfully check your email to more information',
+        open: true,
+      });
     } catch (error) {
-      setOpenSnackBar(true);
-      setSnackBarMessage('car not available to sell');
-      setSnackBarType('error');
+      setSnackBar({
+        type: 'error',
+        message: 'car not available to sell',
+        open: true,
+      });
     }
   };
   const handleClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
