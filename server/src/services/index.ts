@@ -4,7 +4,7 @@ import {
   deleteCars,
   getCarsDetailsQuery,
   addCarService,
-  updateCarServes,
+  updateCarService,
   getCarByCustomerId,
   addImageService,
 } from './cars';
@@ -23,7 +23,7 @@ export {
   signupUser,
   checkEmail,
   checkAdmin,
-  updateCarServes,
+  updateCarService,
   findAdminById,
   getCarByCustomerId,
   addImageService,

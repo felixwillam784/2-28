@@ -9,7 +9,7 @@ import {
   getCarInfo,
   getCarsDetailsQuery,
   getCars,
-  updateCarServes,
+  updateCarService,
   findUserById,
   getCarByCustomerId,
   addImageService,
@@ -90,20 +90,23 @@ const getFilteredCars = async (req: Request) => {
 
 //-------------------------------------------------------
 
+// eslint-disable-next-line consistent-return
 const updateCars = async (req: Request) => {
   const { body } = req;
   const { id } = req.params;
   await updateCarSchema.validate(body);
-
-  const result = await updateCarServes(body, id);
-  return { status: 200, msg: 'done!', data: result };
+  const getCar = await getCarInfo(id);
+  if (getCar[0].state === 'under-check') {
+    const result = await updateCarService(body, id);
+    return { status: 200, msg: 'done!', data: result };
+  }
 };
 const buyCar = async (req, res) => {
   const { state, id } = req.body;
   const { userId } = res.locals.user;
   const carInfo = await getCarInfo(id);
   if (carInfo[0].state === 'on-market') {
-    await updateCarServes({ state }, id);
+    await updateCarService({ state }, id);
     const result:{ email: string, fullName: string } = await findUserById({ id: userId });
     await sendEmail(result);
     return { status: 200, msg: 'successfully' };

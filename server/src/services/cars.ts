@@ -101,7 +101,7 @@ const getCarsDetailsQuery = async (state, page) => {
   return cars;
 };
 
-const updateCarServes = async (body, id) => {
+const updateCarService = async (body, id) => {
   const car = await Car.update(
     { ...body },
     {
@@ -129,7 +129,7 @@ const addImageService = async (images:Array<object>) => {
 export {
   getCars,
   getCarInfo,
-  updateCarServes,
+  updateCarService,
   deleteCars,
   getCarsDetailsQuery,
   addCarService,
