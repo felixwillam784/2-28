@@ -1,6 +1,6 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
-  Collapse, ListItemButton, ListItemText,
+  Collapse, ListItemButton, ListItemText, Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import './style.css';
@@ -9,7 +9,7 @@ export default function ProfileInbox({
   children,
   primaryText,
   secondaryText,
-}: { children: JSX.Element, secondaryText: string, primaryText: string }) {
+}: { children: JSX.Element[], secondaryText: string, primaryText: string }) {
   const [open, setOpen] = useState<boolean>(true);
 
   const handleClick = () => {
@@ -27,7 +27,7 @@ export default function ProfileInbox({
         }
         onClick={handleClick}
       >
-        <ListItemText primary={primaryText} />
+        <ListItemText primary={<Typography variant="body1" sx={{ fontWeight: '500' }}>{primaryText}</Typography>} />
         <ListItemText
           sx={{
 
