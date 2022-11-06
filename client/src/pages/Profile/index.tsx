@@ -5,7 +5,7 @@ import {
 import ProfileInbox from '../../components/ProfileInbox';
 import SellRequest from '../../components/ProfileInbox/SellRequest';
 import { UserContext } from '../../context';
-import { UserContextTypeWithDispatch, UserSellRequests } from '../../interfaces';
+import { UserContextTypeWithDispatch, UserSellRequest, UserSellRequestsResponse } from '../../interfaces';
 import './style.css';
 import CustomizedSnackbars from '../../components/snackbar';
 import httpInstance from '../../services';
@@ -14,12 +14,12 @@ function Profile() {
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-  const [SellRequestData, setSellRequestData] = useState<UserSellRequests[]>([]);
+  const [SellRequestData, setSellRequestData] = useState<UserSellRequest[]>([]);
   useEffect(() => {
     const getSellRequests = async () => {
       try {
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
-        const response: any = await httpInstance.get('/cars/user');
+        const response:UserSellRequestsResponse = await httpInstance.get('/cars/user');
         setSellRequestData(response.data);
       } catch (err) {
         setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
@@ -66,7 +66,7 @@ function Profile() {
           primaryText="Sell requests"
           secondaryText="track your sell requests"
         >
-          {SellRequestData.map((request:UserSellRequests) => (
+          {SellRequestData.map((request:UserSellRequest) => (
             <SellRequest
               model={request.model}
               time={request.createdAt.split('T')[0]}

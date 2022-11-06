@@ -103,9 +103,14 @@ export interface EditCarFormProps {
   children: JSX.Element | undefined
 }
 
-export interface UserSellRequests {
+export interface UserSellRequest {
   createdAt:string,
   id:number,
   model:string,
   state:string,
+}
+
+export interface UserSellRequestsResponse {
+  msg: string,
+  data:UserSellRequest[]
 }
