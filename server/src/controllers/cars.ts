@@ -121,8 +121,8 @@ const getUserCars = async (req, res) => {
 };
 
 const addImages = async (request) => {
-  const { image, carId } = request.body;
-  const result = await addImageService({ image, carId });
+  const { images } = request.body;
+  const result = await addImageService(images);
 
   return { status: 200, msg: 'successfully', data: result };
 };

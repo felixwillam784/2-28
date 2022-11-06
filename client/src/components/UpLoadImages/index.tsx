@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { CloudUpload } from '@mui/icons-material';
 import { Button, CircularProgress } from '@mui/material';
 import {
@@ -21,14 +20,13 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     setSnackData,
   ] = useState<{ type: 'error' | 'success' | 'info', message: string }>({ type: 'info', message: '' });
 
-  const saveImage = async (image: string) => {
+  const saveImages = async (urls: Array<string>) => {
+    const images:Array<object> = [];
+    await urls.map((url) => images.push({ image: url, carId }));
     const result = await httpInstance
       .post(
         '/cars/images',
-        {
-          image,
-          carId,
-        },
+        { images },
       );
     return result;
   };
@@ -50,48 +48,46 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
     setFile(fileList);
   };
   const handleUpload = () => {
-    if (file) {
-      setLoading(true);
-      const toUploadfiles = [];
-      for (let i = 0; i < file.length; i += 1) {
-        const storageRef = ref(storage, `/Cars' Images/${carId}/${file[i].name}`);
-        const toUploadFile = uploadBytes(storageRef, file[i]);
-        toUploadfiles.push(toUploadFile);
-      }
-      Promise.all(toUploadfiles)
-        .then((snapshots) => {
-          const getImagesUrls = snapshots.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
-          return getImagesUrls;
-        })
-        .then((toDownloadUrls) => {
-          Promise.all(toDownloadUrls)
-            .then((urls) => {
-              urls.map((url) => saveImage(url));
-            })
-            .then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
-        })
-        .then(() => {
-          if (fileInput.current) {
-            fileInput.current.value = null;
-          }
-          setFile(undefined);
-          setLoading(false);
-          setSnackData({ type: 'success', message: 'Uploaded successfully' });
-          setOpen(true);
-        })
-        .then(() => navigate('/admin'))
-        .catch(() => {
-          setSnackData({ type: 'error', message: 'Somthing went wrong' });
-          setOpen(true);
-        });
+    if (!file) return;
+
+    setLoading(true);
+    const toUploadfiles = [];
+    for (let i = 0; i < file.length; i += 1) {
+      const storageRef = ref(storage, `/Cars' Images/${carId}/${file[i].name}`);
+      const toUploadFile = uploadBytes(storageRef, file[i]);
+      toUploadfiles.push(toUploadFile);
     }
+    Promise.all(toUploadfiles)
+      .then((snapshots) => {
+        const getImagesUrls = snapshots.map(({ ref: snapshotRef }) => getDownloadURL(snapshotRef));
+        return getImagesUrls;
+      })
+      .then((toDownloadUrls) => Promise.all(toDownloadUrls))
+      .then((urls) => {
+        saveImages(urls);
+      })
+      .then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }))
+      .then(() => {
+        if (fileInput.current) {
+          fileInput.current.value = null;
+        }
+        setFile(undefined);
+        setLoading(false);
+        setSnackData({ type: 'success', message: 'Uploaded successfully' });
+        setOpen(true);
+      })
+      .then(() => navigate('/admin'))
+      .catch(() => {
+        setSnackData({ type: 'error', message: 'Somthing went wrong' });
+        setOpen(true);
+      });
   };
   return (
     <>
       {file ? (
         <div className="contaner">
           <div className="uploading-step">
-            <label className="custom-file-upload">
+            <label htmlFor="file" className="custom-file-upload">
               <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
               <CloudUpload sx={{ mr: '0.3rem' }} />
               Open files
@@ -100,22 +96,26 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
           </div>
           {' '}
           <Button
-            disabled={!(file.length > 0)}
+            disabled={!(file.length > 0) || loading}
             className="upload-btn"
-            variant={!(file.length > 0) ? 'outlined' : 'contained'}
+            variant={!(file.length > 0) ? undefined : 'contained'}
             type="submit"
             onClick={handleUpload}
             color={loading ? undefined : 'success'}
           >
-            {loading ? 'Uploading' : 'save'}
+            {loading ? (
+              <>
+                Uploading
+                <CircularProgress disableShrink />
+              </>
+            ) : 'save'}
           </Button>
-          {loading ? <CircularProgress disableShrink /> : ' '}
         </div>
 
       ) : (
         <div className="contaner">
           <div className="uploading-step">
-            <label className="custom-file-upload">
+            <label htmlFor="file" className="custom-file-upload">
               <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
               <CloudUpload sx={{ mr: '0.3rem' }} />
               Open files
@@ -137,7 +137,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         message={snackData.message}
         type={snackData.type}
       />
-
     </>
   );
 }
