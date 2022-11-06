@@ -3,16 +3,25 @@ input[type="file"] {
   display: none;
 }
 .custom-file-upload {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+  width: 150px;
   border: 1px solid #ccc;
-  display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
   margin: 1.1rem;
 }
 .contaner {
  justify-items: center;
+ display: flex;
+ flex-direction: column;
 }
  .uploading-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Literata', serif;
   font-size: 18px;
   line-height: 1.3;
@@ -22,7 +31,7 @@ input[type="file"] {
 }
 .contaner .upload-btn{
   display: flex;
-  align-content: flex-end;
+  align-self: end;
 }
 
 .loading{

@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { CloudUpload } from '@mui/icons-material';
 import { Button, CircularProgress } from '@mui/material';
 import {
   ref, getDownloadURL, uploadBytes,
@@ -66,7 +67,8 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
           Promise.all(toDownloadUrls)
             .then((urls) => {
               urls.map((url) => saveImage(url));
-            }).then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
+            })
+            .then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }));
         })
         .then(() => {
           if (fileInput.current) {
@@ -86,11 +88,36 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
   };
   return (
     <>
-      {!file ? (
+      {file ? (
         <div className="contaner">
           <div className="uploading-step">
             <label className="custom-file-upload">
               <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              <CloudUpload sx={{ mr: '0.3rem' }} />
+              Open files
+            </label>
+            {`${file.length} images`}
+          </div>
+          {' '}
+          <Button
+            disabled={!(file.length > 0)}
+            className="upload-btn"
+            variant={!(file.length > 0) ? 'outlined' : 'contained'}
+            type="submit"
+            onClick={handleUpload}
+            color={loading ? undefined : 'success'}
+          >
+            {loading ? 'Uploading' : 'save'}
+          </Button>
+          {loading ? <CircularProgress disableShrink /> : ' '}
+        </div>
+
+      ) : (
+        <div className="contaner">
+          <div className="uploading-step">
+            <label className="custom-file-upload">
+              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
+              <CloudUpload sx={{ mr: '0.3rem' }} />
               Open files
             </label>
             No images
@@ -101,42 +128,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
           >
             Save
           </Button>
-        </div>
-      ) : (
-        <div className="contaner">
-          <div className="uploading-step">
-            <label className="custom-file-upload">
-              <input multiple ref={fileInput} type="file" onChange={handleChange} id="file" accept="/image/*" />
-              Open files
-            </label>
-            {`${file.length} images`}
-          </div>
-          {' '}
-          {loading
-            ? (
-              <div className="loading">
-                <Button
-                  className="upload-btn"
-                  variant="outlined"
-                  disabled
-                >
-                  Uploading
-
-                </Button>
-                <CircularProgress disableShrink />
-              </div>
-            )
-            : (
-              <Button
-                className="upload-btn"
-                variant="contained"
-                type="submit"
-                onClick={handleUpload}
-                color="success"
-              >
-                Save
-              </Button>
-            )}
         </div>
       )}
 
