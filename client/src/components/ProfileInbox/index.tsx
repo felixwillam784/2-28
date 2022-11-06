@@ -18,9 +18,22 @@ export default function ProfileInbox({
 
   return (
     <div className="profile_basic">
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton
+        disableRipple
+        sx={
+        {
+          '&:hover': { backgroundColor: '#FFF' },
+        }
+        }
+        onClick={handleClick}
+      >
         <ListItemText primary={primaryText} />
-        <ListItemText secondary={secondaryText} />
+        <ListItemText
+          sx={{
+
+          }}
+          secondary={secondaryText}
+        />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse className="collapse" in={open} timeout="auto" unmountOnExit>
