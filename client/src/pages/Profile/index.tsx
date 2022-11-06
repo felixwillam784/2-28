@@ -68,6 +68,7 @@ function Profile() {
         >
           {SellRequestData.map((request:UserSellRequest) => (
             <SellRequest
+              key={`${request.model}${request.createdAt}`}
               model={request.model}
               time={request.createdAt.split('T')[0]}
               state={request.state}
