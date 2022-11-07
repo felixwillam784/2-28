@@ -86,7 +86,7 @@ function NavBar() {
       }}
     >
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
-        <Toolbar disableGutters sx={{ height: { xs: '3.5rem', md: '3.5rem' } }}>
+        <Toolbar disableGutters sx={{ height: '64px' }}>
           <NavLink to="/">
             <Box
               component="img"
@@ -97,22 +97,6 @@ function NavBar() {
                 width: '170px',
               }}
             />
-            {/* <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                fontSize: '27px',
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              GoodCar
-            </Typography> */}
           </NavLink>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -171,16 +155,18 @@ function NavBar() {
             </Menu>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, mr: 2 }}>
-            <Box
-              component="img"
-              src={Images.logo}
-              alt="logo"
-              sx={{
-                width: '160px',
-                margin: '0 auto',
-                marginTop: '0.6rem',
-              }}
-            />
+            <NavLink to="/">
+              <Box
+                component="img"
+                src={Images.logo}
+                alt="logo"
+                sx={{
+                  width: '160px',
+                  margin: '0 auto',
+                  marginTop: '0.6rem',
+                }}
+              />
+            </NavLink>
           </Box>
 
           <Box sx={{
