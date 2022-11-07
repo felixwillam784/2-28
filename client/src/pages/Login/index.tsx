@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
@@ -12,6 +12,7 @@ function Login() {
   const [responseError, setResponseError] = useState<string>('');
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const navigate = useNavigate();
+  const { state } = useLocation();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -24,7 +25,7 @@ function Login() {
           setResponseError('');
           const result = await httpInstance.post('/auth/login', values);
           setUserInfo(result.data);
-          navigate('/');
+          navigate(state.currentLocation || '/');
         } catch (error:any) {
           setResponseError(error.response.data.message);
         }

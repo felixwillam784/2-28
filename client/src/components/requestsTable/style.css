@@ -23,3 +23,7 @@
  font-weight: 500 !important;
  font-size: 18px !important;
 }
+.cell{
+  font-size: 16px;
+  align-items: center;
+}

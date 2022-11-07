@@ -5,8 +5,9 @@ import {
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
+import Images from '../../assets/index';
 import { UserContext } from '../../context';
 import { UserContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';
@@ -65,11 +66,11 @@ function NavBar() {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await httpInstance.get('auth/logout');
+      setUserInfo(null);
     } catch (err) {
       setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
     }
-    setUserInfo(null);
-    navigate('/');
+    navigate('/login');
   };
   const location = pathname.slice(1);
 
@@ -82,30 +83,20 @@ function NavBar() {
         boxShadow:
         '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
         height: '3.7rem',
-        mb: '1rem',
       }}
     >
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
-        <Toolbar disableGutters sx={{ height: { xs: '3.5rem', md: '3.5rem' } }}>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar disableGutters sx={{ height: '64px' }}>
           <NavLink to="/">
-
-            <Typography
-              variant="h6"
-              noWrap
+            <Box
+              component="img"
+              src={Images.logo}
+              alt="logo"
               sx={{
-                mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                fontSize: '27px',
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
+                width: '170px',
               }}
-            >
-              GoodCar
-            </Typography>
+            />
           </NavLink>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -163,26 +154,20 @@ function NavBar() {
               </MenuItem>
             </Menu>
           </Box>
-
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GoodCar
-          </Typography>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, mr: 2 }}>
+            <NavLink to="/">
+              <Box
+                component="img"
+                src={Images.logo}
+                alt="logo"
+                sx={{
+                  width: '160px',
+                  margin: '0 auto',
+                  marginTop: '0.6rem',
+                }}
+              />
+            </NavLink>
+          </Box>
 
           <Box sx={{
             flexGrow: 1,
@@ -212,9 +197,10 @@ function NavBar() {
                     display: 'block',
                     color: 'var(--text-color)',
                     fontFamily: 'var(--font-family)',
-                    fontWeight: '400',
+                    fontWeight: '500',
                     fontSize: '14px',
                     marginBottom: '0.1rem',
+                    lineHeight: '2.75',
                   }}
                 >
                   {page.title}
@@ -232,9 +218,10 @@ function NavBar() {
                 display: 'block',
                 color: 'var(--text-color)',
                 fontFamily: 'var(--font-family)',
-                fontWeight: '400',
+                fontWeight: '500',
                 fontSize: '14px',
                 marginBottom: '0.1rem',
+                lineHeight: '2.75',
               }}
             >
               Sell a car

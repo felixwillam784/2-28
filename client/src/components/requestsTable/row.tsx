@@ -54,15 +54,13 @@ function Row(props:RowProps) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell sx={{ fontSize: '16px' }} component="th" scope="row">
-          {car.model}
-        </TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">{car.brand}</TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">{car.year}</TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">{car.location}</TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">{car.mileage}</TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">{car.price}</TableCell>
-        <TableCell sx={{ fontSize: '16px' }} align="center">
+        <TableCell className="cell" component="th" scope="row">{car.brand}</TableCell>
+        <TableCell className="cell">{car.model}</TableCell>
+        <TableCell className="cell">{car.year}</TableCell>
+        <TableCell className="cell">{car.location}</TableCell>
+        <TableCell className="cell">{car.mileage}</TableCell>
+        <TableCell className="cell">{car.price}</TableCell>
+        <TableCell className="cell">
           { state === 'pending' ? (
             <Button
               onClick={() => handleAccept(car.id)}

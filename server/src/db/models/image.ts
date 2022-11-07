@@ -10,7 +10,7 @@ const Image = sequelize.define<ImageInstance>('image', {
     autoIncrement: true,
   },
   image: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });

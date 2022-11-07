@@ -9,9 +9,10 @@ import {
   getCarInfo,
   getCarsDetailsQuery,
   getCars,
-  updateCarServes,
+  updateCarService,
   findUserById,
   getCarByCustomerId,
+  addImageService,
 } from '../services';
 import { addCarSchema, updateCarSchema } from '../validation';
 import emailTemplate from '../helpers/emailTemplate';
@@ -130,11 +131,18 @@ const getFilteredCars = async (req: Request) => {
 
 //-------------------------------------------------------
 
+// eslint-disable-next-line consistent-return
 const updateCars = async (req: Request) => {
   const { body } = req;
   const { id } = req.params;
+  const car = await getCarInfo(id);
+  if (!car.length) {
+    throw createError(400, 'car not found to update');
+  } else if (car[0].state === 'sold') {
+    throw createError(400, 'This car sold');
+  }
   await updateCarSchema.validate(body);
-  const result = await updateCarServes(body, id);
+  const result = await updateCarService(body, id);
   if (process.env.NODE_ENV !== 'test') {
     let emailTitle; let emailBody;
 
@@ -149,13 +157,15 @@ const updateCars = async (req: Request) => {
         come to see the car and gather its specifications preparing to publish it on our market.</p>
     <p>you can track the state of your request through your email or your profile.</p>
     <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
-    } else if (body.state === 'on-market') {
+    } else
+    if (body.state === 'on-market') {
       emailTitle = 'Your Car Added To The Market !';
       emailBody = `<p>We are happy to tell you that your sell car request
-     has been accepted and your car added to the market finally🌟.</p>
-     <p>You can track the state of your request through your email or your profile.</p>
-     <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
+       has been accepted and your car added to the market finally🌟.</p>
+       <p>You can track the state of your request through your email or your profile.</p>
+       <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
     }
+
     const subject = 'Car trade team';
     const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);
     await sendEmail(userInfo, subject, content);
@@ -170,7 +180,7 @@ const buyCar = async (req, res) => {
   const { userId } = res.locals.user;
   const carInfo = await getCarInfo(id);
   if (carInfo[0].state === 'on-market') {
-    await updateCarServes({ state: 'sold' }, id);
+    await updateCarService({ state: 'sold' }, id);
     if (process.env.NODE_ENV !== 'test') {
       const result: { email: string, fullName: string } = await findUserById({ id: userId });
 
@@ -202,6 +212,21 @@ const getUserCars = async (req, res) => {
   };
 };
 
+const addCarImagesController = async (request) => {
+  const { images } = request.body;
+  const { id } = request.params;
+  await addImageService(images);
+  const car = await getCarInfo(id);
+  if (!car.length) {
+    throw createError(400, 'car not found to update');
+  } else if (car[0].state !== 'under-check' && car[0].state !== 'on-market') {
+    throw createError(400, 'car not allowed to update');
+  }
+
+  const result = await updateCarService({ state: 'on-market' }, id);
+  return { status: 201, msg: 'successfully', data: result };
+};
+
 export {
   getFilteredCars,
   getCarsById,
@@ -211,4 +236,5 @@ export {
   addCar,
   buyCar,
   getUserCars,
+  addCarImagesController,
 };
