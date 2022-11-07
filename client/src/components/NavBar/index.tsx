@@ -82,7 +82,6 @@ function NavBar() {
         boxShadow:
         '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
         height: '3.7rem',
-        mb: '1rem',
       }}
     >
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
