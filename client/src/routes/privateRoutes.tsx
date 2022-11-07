@@ -7,8 +7,6 @@ function ProtectedRoute({ children, roles }:PrivateType) {
   const { pathname } = useLocation(); // to redirect location
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
 
-  console.log({ userInfo, roles });
-
   if (userInfo?.role !== roles) {
     if (roles === 'admin') {
       return <Navigate to="/admin/login" replace state={{ currentLocation: pathname }} />;
