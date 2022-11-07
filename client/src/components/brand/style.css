@@ -47,3 +47,10 @@
     width: 77%;
   }
 }
+.brand-text{
+  text-transform: capitalize;
+  color: var(--text-color);
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}

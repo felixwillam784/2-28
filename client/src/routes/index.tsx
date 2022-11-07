@@ -11,7 +11,7 @@ import Error from '../pages/Errors/Error';
 import App from '../App';
 import Cars from '../pages/Cars';
 import CheckCar from '../pages/CheckCar';
-import ProtectedRoute from './privateRoutes';
+import { ProtectedRoute, LoginProtectedRoute } from './privateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -22,14 +22,12 @@ const router = createBrowserRouter([
       { index: true, element: <Landing /> },
       {
         path: '/login',
-        element:
-  <Login />
+        element: <LoginProtectedRoute><Login /></LoginProtectedRoute>
         ,
       },
       {
         path: '/signup',
-        element:
-  <SignUp />
+        element: <LoginProtectedRoute><SignUp /></LoginProtectedRoute>
         ,
       },
       {
@@ -57,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin/login',
-        element: <AdminLogin />,
+        element: <LoginProtectedRoute><AdminLogin /></LoginProtectedRoute>,
       },
     ],
   },

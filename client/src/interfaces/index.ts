@@ -95,7 +95,9 @@ export interface PrivateType {
   children:JSX.Element,
   roles:string,
 }
-
+export interface LoginProtected {
+  children:JSX.Element,
+}
 export interface EditCarFormProps {
   modalType: 'addRequest' | 'checkRequest',
   id: string | undefined,
