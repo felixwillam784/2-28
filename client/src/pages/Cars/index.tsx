@@ -48,7 +48,7 @@ function Cars() {
         <TextField
           sx={{
             width: '50vw',
-            mb: '1.5rem',
+            mt: '1.5rem',
           }}
           id="outlined-basic"
           label="search"
@@ -91,7 +91,7 @@ function Cars() {
           ) : <h2 style={{ fontSize: '2rem' }}>NO results found</h2>)}
         <Pagination
           sx={{
-            margin: '2rem 0rem',
+            margin: '5rem 0rem',
           }}
           page={currentPage}
           onChange={paginationHandler}
