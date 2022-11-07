@@ -11,6 +11,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useLocation, useNavigate } from 'react-router-dom';
 import StripeForm from '../StripForm';
 import { UserContext } from '../../context';
+import CustomizedSnackbars from '../snackbar';
 
 const stripePromise = loadStripe(
   'pk_test_TYooMQauvdEDq54NiTphI7jx',
@@ -23,10 +24,17 @@ function CarControll() {
   const { userInfo } = useContext(UserContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [snackBar, setSnackBar] = useState<{ type: 'error' | 'success', message: string, open: boolean }>({
+    type: 'error',
+    message: '',
+    open: false,
+  });
   const options = {
     clientSecret: 'pi_1DseH42eZvKYlo2C5UQDyYph_secret_gowsU3j2SgDfFECrHNzE8UtGK',
   };
-
+  const handleCloseSnackBar = () => {
+    setSnackBar((prevState) => ({ ...prevState, open: true }));
+  };
   return (
     <>
       <section className="buttons-container">
@@ -46,7 +54,7 @@ function CarControll() {
           onClick={() => {
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             userInfo?.role === 'user'
-              ? handleOpen
+              ? handleOpen()
               : navigate('/login', { state: { currentLocation: pathname } });
           }}
           sx={{ backgroundColor: '#0A20E6' }}
@@ -66,8 +74,16 @@ function CarControll() {
           className="strip_Model"
         >
           <Elements stripe={stripePromise} options={options}>
-            <StripeForm />
+            <StripeForm
+              setSnackBar={setSnackBar}
+            />
           </Elements>
+          <CustomizedSnackbars
+            open={snackBar.open}
+            handleClose={handleCloseSnackBar}
+            message={snackBar.message}
+            type={snackBar.type}
+          />
         </Box>
       </Modal>
     </>
