@@ -5,10 +5,12 @@ import {
 } from '@mui/material';
 import { Elements } from '@stripe/react-stripe-js';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 
+import { useLocation, useNavigate } from 'react-router-dom';
 import StripeForm from '../StripForm';
+import { UserContext } from '../../context';
 import CustomizedSnackbars from '../snackbar';
 
 const stripePromise = loadStripe(
@@ -19,6 +21,9 @@ function CarControll() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { userInfo } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [snackBar, setSnackBar] = useState<{ type: 'error' | 'success', message: string, open: boolean }>({
     type: 'error',
     message: '',
@@ -45,7 +50,17 @@ function CarControll() {
           <WhatsApp />
           CONTACT
         </Button>
-        <Button onClick={handleOpen} sx={{ backgroundColor: '#0A20E6' }} variant="contained" size="large">
+        <Button
+          onClick={() => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            userInfo?.role === 'user'
+              ? handleOpen()
+              : navigate('/login', { state: { currentLocation: pathname } });
+          }}
+          sx={{ backgroundColor: '#0A20E6' }}
+          variant="contained"
+          size="large"
+        >
           Buy
         </Button>
       </section>
