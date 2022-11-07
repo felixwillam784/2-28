@@ -111,6 +111,7 @@ describe('/cars endpoint', () => {
   test('should return id of car that update', async () => {
     const result = await request(app).put('/api/v1/cars/1')
       .set('Cookie', `token=${process.env.ADMIN_TOKEN}`);
+      
     expect(result.body.data[0]).toEqual(0);
     expect(result.body.msg).toEqual('done!');
     expect(result.statusCode).toEqual(200);
@@ -208,7 +209,7 @@ describe('/cars endpoint', () => {
   });
   test('should return the password not match', async () => {
     const result = await request(app).post('/api/v1/auth/login')
-      .send({ email: 'hsam@gmail.com', password: '123456789' })
+      .send({ email: 'husam@gmail.com', password: '23456789' })
       .expect(400);
     expect(result.body.message).toEqual('wrong email or password');
   });
