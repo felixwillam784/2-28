@@ -10,7 +10,7 @@ import {
   addCar,
   buyCar,
   getUserCars,
-  addImages,
+  addCarImagesController,
 } from '../controllers';
 
 const carsRouter = Router();
@@ -23,6 +23,6 @@ carsRouter.post('/', authMiddleware('user'), ExpressWrapper(addCar));
 carsRouter.patch('/buy', authMiddleware('user'), ExpressWrapper(buyCar));
 carsRouter.get('/user', authMiddleware('user'), ExpressWrapper(getUserCars));
 carsRouter.get('/:id', ExpressWrapper(getCarsById));
-carsRouter.post('/images', authMiddleware('admin'), ExpressWrapper(addImages));
+carsRouter.post('/images/:id', authMiddleware('admin'), ExpressWrapper(addCarImagesController));
 
 export default carsRouter;

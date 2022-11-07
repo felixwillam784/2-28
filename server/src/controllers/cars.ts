@@ -135,12 +135,13 @@ const getFilteredCars = async (req: Request) => {
 const updateCars = async (req: Request) => {
   const { body } = req;
   const { id } = req.params;
-  await updateCarSchema.validate(body);
-  const getCar = await getCarInfo(id);
-  if (getCar[0].state === 'under-check' || getCar[0].state === 'on-market') {
-    const result = await updateCarService(body, id);
-    return { status: 200, msg: 'done!', data: result };
+  const car = await getCarInfo(id);
+  if (!car.length) {
+    throw createError(400, 'car not found to update');
+  } else if (car[0].state === 'sold') {
+    throw createError(400, 'This car sold');
   }
+  await updateCarSchema.validate(body);
   const result = await updateCarService(body, id);
   if (process.env.NODE_ENV !== 'test') {
     let emailTitle; let emailBody;
@@ -156,13 +157,15 @@ const updateCars = async (req: Request) => {
         come to see the car and gather its specifications preparing to publish it on our market.</p>
     <p>you can track the state of your request through your email or your profile.</p>
     <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
-    } else if (body.state === 'on-market') {
+    } else
+    if (body.state === 'on-market') {
       emailTitle = 'Your Car Added To The Market !';
       emailBody = `<p>We are happy to tell you that your sell car request
-     has been accepted and your car added to the market finally🌟.</p>
-     <p>You can track the state of your request through your email or your profile.</p>
-     <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
+       has been accepted and your car added to the market finally🌟.</p>
+       <p>You can track the state of your request through your email or your profile.</p>
+       <a href="https://car-trad.herokuapp.com/profile" class="button">Go To Profile!</a>`;
     }
+
     const subject = 'Car trade team';
     const content = emailTemplate(emailTitle, userInfo.fullName, emailBody);
     await sendEmail(userInfo, subject, content);
@@ -209,11 +212,19 @@ const getUserCars = async (req, res) => {
   };
 };
 
-const addImages = async (request) => {
+const addCarImagesController = async (request) => {
   const { images } = request.body;
-  const result = await addImageService(images);
+  const { id } = request.params;
+  await addImageService(images);
+  const car = await getCarInfo(id);
+  if (!car.length) {
+    throw createError(400, 'car not found to update');
+  } else if (car[0].state !== 'under-check' && car[0].state !== 'on-market') {
+    throw createError(400, 'car not allowed to update');
+  }
 
-  return { status: 200, msg: 'successfully', data: result };
+  const result = await updateCarService({ state: 'on-market' }, id);
+  return { status: 201, msg: 'successfully', data: result };
 };
 
 export {
@@ -225,5 +236,5 @@ export {
   addCar,
   buyCar,
   getUserCars,
-  addImages,
+  addCarImagesController,
 };

@@ -21,11 +21,10 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
   ] = useState<{ type: 'error' | 'success' | 'info', message: string }>({ type: 'info', message: '' });
 
   const saveImages = async (urls: Array<string>) => {
-    const images:Array<object> = [];
-    await urls.map((url) => images.push({ image: url, carId }));
+    const images = urls.map((url) => ({ image: url, carId }));
     const result = await httpInstance
       .post(
-        '/cars/images',
+        `/cars/images/${carId}`,
         { images },
       );
     return result;
@@ -66,7 +65,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
       .then((urls) => {
         saveImages(urls);
       })
-      .then(() => httpInstance.put(`/cars/${carId}`, { state: 'on-market' }))
       .then(() => {
         if (fileInput.current) {
           fileInput.current.value = null;

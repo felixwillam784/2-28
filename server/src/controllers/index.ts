@@ -7,7 +7,7 @@ import {
   addCar,
   buyCar,
   getUserCars,
-  addImages,
+  addCarImagesController,
 } from './cars';
 import {
   loginController,
@@ -29,5 +29,5 @@ export {
   addCar,
   buyCar,
   getUserCars,
-  addImages,
+  addCarImagesController,
 };
