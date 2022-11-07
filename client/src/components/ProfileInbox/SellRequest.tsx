@@ -1,27 +1,21 @@
-import { Chip, Typography } from '@mui/material';
+import { Chip, Paper, Typography } from '@mui/material';
 import './style.css';
 
-export default function SellRequest() {
+export default function SellRequest({ model, time, state }:{ model:string, time:string, state:string }) {
   return (
     <div className="sell_row_container">
-      <div className="sell_row">
+      <Paper
+        className="sell_row"
+        elevation={1}
+      >
         <Typography component="h2">
-          carName
+          {model}
         </Typography>
         <Typography component="p">
-          2022/10/15
+          {time}
         </Typography>
-        <Chip sx={{ color: '#FFB502' }} label="pending" variant="outlined" />
-      </div>
-      <div className="sell_row">
-        <Typography component="h2">
-          carName
-        </Typography>
-        <Typography component="p">
-          2022/10/15
-        </Typography>
-        <Chip label="primary" color="primary" variant="outlined" />
-      </div>
+        <Chip sx={{ color: 'var(--text-color)' }} className={state} label={state} variant="outlined" />
+      </Paper>
     </div>
 
   );

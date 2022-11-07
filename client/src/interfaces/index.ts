@@ -104,3 +104,15 @@ export interface EditCarFormProps {
   formik : any,
   children: JSX.Element | undefined
 }
+
+export interface UserSellRequest {
+  createdAt:string,
+  id:number,
+  model:string,
+  state:string,
+}
+
+export interface UserSellRequestsResponse {
+  msg: string,
+  data:UserSellRequest[]
+}

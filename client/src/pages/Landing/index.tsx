@@ -36,7 +36,7 @@ function Landing() {
 
       <HomeCardSection
         color="#FBC67F"
-        text="selling a used car?"
+        text="Selling a used car?"
         ask="Here's why you should do it on Carswitch"
       >
         <HomeCard
