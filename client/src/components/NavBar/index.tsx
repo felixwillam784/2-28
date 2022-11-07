@@ -66,11 +66,11 @@ function NavBar() {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await httpInstance.get('auth/logout');
+      setUserInfo(null);
     } catch (err) {
       setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
     }
-    setUserInfo(null);
-    navigate('/');
+    navigate('/login');
   };
   const location = pathname.slice(1);
 
