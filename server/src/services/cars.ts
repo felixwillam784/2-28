@@ -101,7 +101,7 @@ const getCarsDetailsQuery = async (state, page) => {
   return cars;
 };
 
-const updateCarServes = async (body, id) => {
+const updateCarService = async (body, id) => {
   const car = await Car.update(
     { ...body },
     {
@@ -120,12 +120,19 @@ const getCarByCustomerId = async (customerId) => {
   });
   return car;
 };
+
+const addImageService = async (images:Array<object>) => {
+  const rows = await Image.bulkCreate([...images]);
+
+  return rows;
+};
 export {
   getCars,
   getCarInfo,
-  updateCarServes,
+  updateCarService,
   deleteCars,
   getCarsDetailsQuery,
   addCarService,
   getCarByCustomerId,
+  addImageService,
 };

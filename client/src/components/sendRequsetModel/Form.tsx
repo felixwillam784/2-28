@@ -14,6 +14,7 @@ import {
   Autocomplete,
   TextareaAutosize,
 } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import { EditCarFormProps } from '../../interfaces';
 import brands from '../../assets/data/brands.json';
 
@@ -231,16 +232,17 @@ function SellCarModal(props:EditCarFormProps) {
           {children}
         </Box>
         <Button
+          endIcon={<SendIcon />}
           sx={{
-            mb: '0.5rem',
-            width: modalType === 'checkRequest' ? '50%' : '100%',
+            mb: '1.3rem',
+            width: modalType === 'checkRequest' ? '50%' : '50%',
           }}
           color="primary"
           variant="contained"
           fullWidth
           type="submit"
         >
-          Submit
+          Send
         </Button>
 
       </form>
