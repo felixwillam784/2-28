@@ -7,7 +7,7 @@ import toyota from './toyota.png';
 import mitsbishi from './mitsubishi_v2.png';
 import audi from './audi.png';
 import notFound from './notFound.svg';
-import logo from './logo.svg';
+import logo from './logo.png';
 
 interface Image {
   privateSeller: string,

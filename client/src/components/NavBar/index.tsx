@@ -83,7 +83,6 @@ function NavBar() {
         boxShadow:
         '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
         height: '3.7rem',
-        mb: '1rem',
       }}
     >
       <Container maxWidth="xl" sx={{ height: '3.7rem' }}>
@@ -94,9 +93,8 @@ function NavBar() {
               src={Images.logo}
               alt="logo"
               sx={{
-                mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                width: '90px',
+                width: '170px',
               }}
             />
             {/* <Typography
@@ -178,7 +176,9 @@ function NavBar() {
               src={Images.logo}
               alt="logo"
               sx={{
-                width: '90px',
+                width: '160px',
+                margin: '0 auto',
+                marginTop: '0.6rem',
               }}
             />
           </Box>
@@ -211,9 +211,10 @@ function NavBar() {
                     display: 'block',
                     color: 'var(--text-color)',
                     fontFamily: 'var(--font-family)',
-                    fontWeight: '400',
+                    fontWeight: '500',
                     fontSize: '14px',
                     marginBottom: '0.1rem',
+                    lineHeight: '2.75',
                   }}
                 >
                   {page.title}
@@ -231,9 +232,10 @@ function NavBar() {
                 display: 'block',
                 color: 'var(--text-color)',
                 fontFamily: 'var(--font-family)',
-                fontWeight: '400',
+                fontWeight: '500',
                 fontSize: '14px',
                 marginBottom: '0.1rem',
+                lineHeight: '2.75',
               }}
             >
               Sell a car
