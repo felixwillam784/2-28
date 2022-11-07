@@ -69,7 +69,7 @@ function NavBar() {
     } catch (err) {
       setSnackBarProperties({ open: true, message: 'something went wrong! Try again.', type: 'error' });
     }
-    // navigate('/');
+    navigate('/login');
   };
   const location = pathname.slice(1);
 

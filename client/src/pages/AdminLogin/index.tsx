@@ -13,14 +13,12 @@ function AdminLogin() {
   const { setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
   const { state } = useLocation();
   const navigate = useNavigate();
-  console.log(state?.currentLocation, 'jjjjjjjjjjjj');
 
   const login = async (values:any) => {
     try {
       setResponseError('');
       const result = await httpInstance.post('/auth/admin/login', values);
       setUserInfo(result.data);
-      console.log(result.data);
       navigate(state?.currentLocation || '/');
     } catch (error:any) {
       setResponseError(error.response.data.message);
