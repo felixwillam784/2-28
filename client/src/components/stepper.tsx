@@ -43,6 +43,8 @@ const convertToKM = (value: number, type: string) => {
 
 function CustomStepper({ id }:{ id:string | undefined }) {
   const [carData, setCarData] = useState<CarWithImages>(initialData);
+  console.log(carData);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
   const [snackBarProperties, setSnackBarProperties] = useState<
@@ -132,7 +134,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           name="quality"
           label="quality"
           type="number"
-          value={formik.values.quality}
+          value={formik.values.quality || 0}
           onChange={formik.handleChange}
           error={formik.touched.quality && Boolean(formik.errors.quality)}
           helperText={formik.touched.quality && formik.errors.quality}
@@ -216,8 +218,8 @@ function CustomStepper({ id }:{ id:string | undefined }) {
             onChange={formik.handleChange}
             value={!formik.values.fuel ? '' : formik.values.fuel}
           >
-            <FormControlLabel name="fuel" value="manual" control={<Radio />} label="petrol" />
-            <FormControlLabel name="fuel" value="automatic" control={<Radio />} label="diesel" />
+            <FormControlLabel name="fuel" value="petrol" control={<Radio />} label="petrol" />
+            <FormControlLabel name="fuel" value="diesel" control={<Radio />} label="diesel" />
           </RadioGroup>
         </Typography>
       </Typography>
