@@ -206,28 +206,7 @@ function SellCarModal(props:EditCarFormProps) {
                 helperText={formik.touched.location && formik.errors.location}
               />
             </Typography>
-            <Typography
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '32vw',
-                marginBottom: '1rem',
-              }}
-              component="label"
-            >
-              price
-              <TextField
-                id="price"
-                name="price"
-                label="price"
-                type="number"
-                value={!formik.values.price ? '' : formik.values.price}
-                onChange={formik.handleChange}
-                error={formik.touched.price && Boolean(formik.errors.price)}
-                helperText={formik.touched.price && formik.errors.price}
-              />
-            </Typography>
+
           </Box>
           {children}
         </Box>
