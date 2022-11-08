@@ -1,13 +1,6 @@
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
-    padding: 8px 10px  !important;    
+.input_wrapper{
+    max-height: 70vh;
 }
-.css-1opjkmp-MuiTypography-root{
+.input_field{
     max-height: 3rem;
-}
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-    bottom: 1.5rem !important;
-    top: 0rem;
-}
-.css-1q0tcuv-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-    max-height: 2.5rem;
 }
