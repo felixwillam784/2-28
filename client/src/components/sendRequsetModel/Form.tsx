@@ -13,10 +13,12 @@ import {
   Checkbox,
   Autocomplete,
   TextareaAutosize,
+  InputLabel,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { EditCarFormProps } from '../../interfaces';
 import brands from '../../assets/data/brands.json';
+import './style.css';
 
 function SellCarModal(props:EditCarFormProps) {
   const {
@@ -29,7 +31,7 @@ function SellCarModal(props:EditCarFormProps) {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        marginTop: '0.3rem',
+        marginTop: '1.3rem',
       }}
     >
 
@@ -106,7 +108,6 @@ function SellCarModal(props:EditCarFormProps) {
               <TextField
                 id="model"
                 name="model"
-                label="model"
                 value={formik.values.model}
                 onChange={formik.handleChange}
                 error={formik.touched.model && Boolean(formik.errors.model)}
@@ -127,7 +128,6 @@ function SellCarModal(props:EditCarFormProps) {
               <TextField
                 id="year"
                 name="year"
-                label="year"
                 type="number"
                 value={!formik.values.year ? '' : formik.values.year}
                 onChange={formik.handleChange}
@@ -159,7 +159,6 @@ function SellCarModal(props:EditCarFormProps) {
                 <TextField
                   id="mileage"
                   name="mileage"
-                  label="mileage"
                   type="number"
                   value={!formik.values.mileage ? '' : formik.values.mileage}
                   onChange={formik.handleChange}
@@ -199,14 +198,33 @@ function SellCarModal(props:EditCarFormProps) {
               <TextField
                 id="location"
                 name="location"
-                label="location"
                 value={formik.values.location}
                 onChange={formik.handleChange}
                 error={formik.touched.location && Boolean(formik.errors.location)}
                 helperText={formik.touched.location && formik.errors.location}
               />
             </Typography>
-
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '32vw',
+                marginBottom: '1rem',
+              }}
+              component="label"
+            >
+              price
+              <TextField
+                id="price"
+                name="price"
+                type="number"
+                value={!formik.values.price ? '' : formik.values.price}
+                onChange={formik.handleChange}
+                error={formik.touched.price && Boolean(formik.errors.price)}
+                helperText={formik.touched.price && formik.errors.price}
+              />
+            </Typography>
           </Box>
           {children}
         </Box>
