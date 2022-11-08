@@ -1,5 +1,5 @@
 .home_card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(6, 79, 238, 0.447);
   transition: 0.3s;
   width: 25%;
   height: 15rem;
@@ -10,10 +10,9 @@
   justify-content: space-around;
   padding:1rem;
   background-color: white;
-
 }
 .home_card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(6, 79, 238, 0.447);
 }
 .card-image {
     width: 90px;
