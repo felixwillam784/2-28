@@ -70,8 +70,8 @@ function RequestsTable(props:Props) {
           <TableHead sx={{ backgroundColor: '#d4d3d36b' }}>
             <TableRow>
               <TableCell />
-              <TableCell sx={{ fontSize: '20px' }}>Model</TableCell>
-              <TableCell sx={{ fontSize: '20px' }} align="center">Brand</TableCell>
+              <TableCell sx={{ fontSize: '20px' }}>Brand</TableCell>
+              <TableCell sx={{ fontSize: '20px' }} align="center">Model</TableCell>
               <TableCell sx={{ fontSize: '20px' }} align="center">Year</TableCell>
               <TableCell sx={{ fontSize: '20px' }} align="center">Location</TableCell>
               <TableCell sx={{ fontSize: '20px' }} align="center">Mileage(KM)</TableCell>

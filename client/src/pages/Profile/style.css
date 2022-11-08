@@ -1,0 +1,38 @@
+.profile-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 500px;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 150px !important;
+    height: 150px !important;
+    font-size: 50px !important;
+}
+
+.user-name {
+    color: var(--text-color) !important;
+    margin-top: 0.7rem !important;
+    font-size: 25px !important;
+    font-weight: 500 !important;
+}
+
+.user-email {
+    font-size: 13px !important;
+    color: var(--second-text-color) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.sell-requests {
+    margin: 0 auto !important;
+    border-radius: 10px !important;
+}

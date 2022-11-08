@@ -4,8 +4,9 @@ import {
   deleteCars,
   getCarsDetailsQuery,
   addCarService,
-  updateCarServes,
+  updateCarService,
   getCarByCustomerId,
+  addImageService,
 } from './cars';
 import {
   findUser, findUserById, signupUser, checkEmail, checkAdmin, findAdminById,
@@ -22,7 +23,8 @@ export {
   signupUser,
   checkEmail,
   checkAdmin,
-  updateCarServes,
+  updateCarService,
   findAdminById,
   getCarByCustomerId,
+  addImageService,
 };

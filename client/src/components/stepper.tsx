@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, useState } from 'react';
 
 import {
@@ -15,6 +13,7 @@ import { featuresArray } from '../assets/data/features';
 import CustomizedSnackbars from './snackbar';
 import { CarWithImages } from '../interfaces';
 import httpInstance from '../services';
+import UploadFiles from './UpLoadImages';
 
 const initialData = {
   id: 0,
@@ -44,10 +43,11 @@ const convertToKM = (value: number, type: string) => {
 
 function CustomStepper({ id }:{ id:string | undefined }) {
   const [carData, setCarData] = useState<CarWithImages>(initialData);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
   const [snackBarProperties, setSnackBarProperties] = useState<
   { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
     const getCarInfo = async () => {
@@ -65,6 +65,22 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     getCarInfo();
   }, []);
 
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
+  };
+
+  const handleNext = () => {
+    setActiveStep((prevState) => prevState + 1);
+  };
+
+  const handleBack = () => {
+    if (activeStep) {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       ...carData, type: '',
@@ -80,6 +96,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
         setSnackBarProperties((preState) => ({ ...preState, open: false }));
         await httpInstance.put(`/cars/${id}`, values);
         setLoading(false);
+        handleNext();
         setSnackBarProperties(
           {
             open: true,
@@ -261,33 +278,13 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     </Box>
   </SellCarModal>,
 
-  }, { label: 'Car Image', component: 'second' }];
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
-
-  const handleNext = () => {
-    setActiveStep((prevSate) => prevSate + 1);
-  };
-
-  const handleBack = () => {
-    if (!activeStep) {
-      //  here will send request to server then setActiveStep +1
-    } else {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    }
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  }, {
+    label: 'Upload Images',
+    component: <UploadFiles carId={id} />,
+  }];
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ mb: '1.3rem', width: '100%' }}>
       <Stepper activeStep={activeStep}>
         {steps.map(({ label }) => (
           <Step key={label}>
@@ -296,30 +293,20 @@ function CustomStepper({ id }:{ id:string | undefined }) {
         ))}
       </Stepper>
       {steps[activeStep].component}
-      {activeStep === steps.length ? (
-        <>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </>
-      ) : (
+      {activeStep < steps.length ? (
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-          <Button
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-            disabled={activeStep === 0}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
-          <Button onClick={handleNext}>
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-          </Button>
+          {activeStep === 0 ? <> </> : (
+            <Button
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+          )}
+
         </Box>
+      ) : (
+        <> </>
       )}
 
       <CustomizedSnackbars

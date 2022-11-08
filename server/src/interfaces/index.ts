@@ -93,6 +93,7 @@ export interface CustomerInstance
 interface ImageAttributes {
   id: number;
   image: string;
+  carId?: number;
 }
 type ImageCreationAttributes = Optional<ImageAttributes, 'id'>;
 export interface ImageInstance
