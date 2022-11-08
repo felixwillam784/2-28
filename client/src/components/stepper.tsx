@@ -180,6 +180,47 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           </RadioGroup>
         </Typography>
       </Typography>
+      <Typography
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '32vw',
+          margin: '1rem 0',
+        }}
+        component="label"
+      >
+        Fuel
+        <Typography
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '32vw',
+            margin: '1rem 0',
+          }}
+          component="div"
+        >
+          <RadioGroup
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              width: '100%',
+            }}
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="manual"
+            name="fuel"
+            onChange={formik.handleChange}
+            value={!formik.values.fuel ? '' : formik.values.fuel}
+          >
+            <FormControlLabel name="fuel" value="manual" control={<Radio />} label="petrol" />
+            <FormControlLabel name="fuel" value="automatic" control={<Radio />} label="diesel" />
+          </RadioGroup>
+        </Typography>
+      </Typography>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
