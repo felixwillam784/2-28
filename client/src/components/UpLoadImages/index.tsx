@@ -5,7 +5,7 @@ import {
 } from 'firebase/storage';
 import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SnackBarContext } from '../../context';
+import { SnackBarContext } from '../../contexts';
 import storage from '../../firebase/firebaseConfig';
 import { SnackBarContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';

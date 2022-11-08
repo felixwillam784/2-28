@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import SellCarModal from './Form';
 import { addCarSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosConfig';
-import { SnackBarContext, UserContext } from '../../context';
+import { SnackBarContext, UserContext } from '../../contexts';
 import { SnackBarContextTypeWithDispatch } from '../../interfaces';
 
 const convertToKM = (value: number, type: string) => {

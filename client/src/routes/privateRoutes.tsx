@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { UserContext } from '../context';
+import { UserContext } from '../contexts';
 import { LoginProtected, PrivateType, UserContextTypeWithDispatch } from '../interfaces';
 
 function ProtectedRoute({ children, roles }:PrivateType) {

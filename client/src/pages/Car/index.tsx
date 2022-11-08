@@ -7,7 +7,7 @@ import CarSlider from '../../components/CarSlider';
 import httpInstance from '../../services/index';
 import { CarWithImages, SnackBarContextTypeWithDispatch } from '../../interfaces';
 import CarNotFound from '../../components/CarNotFound';
-import { SnackBarContext } from '../../context';
+import { SnackBarContext } from '../../contexts';
 
 function Car() {
   const [carInfo, setCarInfo] = useState<CarWithImages>();

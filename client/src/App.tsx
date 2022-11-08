@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import UserInfoProvider, { SnackBarProvider } from './context';
+import { UserInfoProvider, SnackBarProvider } from './contexts';
 
 function App() {
   return (

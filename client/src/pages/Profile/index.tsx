@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import ProfileInbox from '../../components/ProfileInbox';
 import SellRequest from '../../components/ProfileInbox/SellRequest';
-import { SnackBarContext, UserContext } from '../../context';
+import { SnackBarContext, UserContext } from '../../contexts';
 import {
   SnackBarContextTypeWithDispatch,
   UserContextTypeWithDispatch, UserSellRequest, UserSellRequestsResponse,

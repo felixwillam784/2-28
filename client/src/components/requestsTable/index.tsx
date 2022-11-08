@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Row from './row';
-import { SnackBarContext } from '../../context';
+import { SnackBarContext } from '../../contexts';
 
 import {
   Params, CarsWithCustomerData, CarsWithCustomerRow, CarWithCustomerInfo,

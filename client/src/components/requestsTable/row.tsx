@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
 import { RowProps, SnackBarContextTypeWithDispatch } from '../../interfaces';
-import { SnackBarContext } from '../../context';
+import { SnackBarContext } from '../../contexts';
 
 function Row(props:RowProps) {
   const {

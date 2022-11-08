@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Button } from '@mui/material';
 import { PaymentElement } from '@stripe/react-stripe-js';
 import { useParams } from 'react-router-dom';
-import { SnackBarContext } from '../../context';
+import { SnackBarContext } from '../../contexts';
 import httpInstance from '../../services';
 
 import './style.css';

@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import { loginSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { UserContext } from '../../context';
+import { UserContext } from '../../contexts';
 import { UserContextTypeWithDispatch } from '../../interfaces';
 
 function Login() {

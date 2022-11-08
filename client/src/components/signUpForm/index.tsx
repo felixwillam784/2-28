@@ -2,7 +2,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../context';
+import { UserContext } from '../../contexts';
 import { signupschema } from '../../helpers/validationSchema';
 import { UserContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services';

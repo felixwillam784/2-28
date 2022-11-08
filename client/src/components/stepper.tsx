@@ -13,7 +13,7 @@ import { featuresArray } from '../assets/data/features';
 import { CarWithImages, SnackBarContextTypeWithDispatch } from '../interfaces';
 import httpInstance from '../services';
 import UploadFiles from './UpLoadImages';
-import { SnackBarContext } from '../context';
+import { SnackBarContext } from '../contexts';
 
 const initialData = {
   id: 0,

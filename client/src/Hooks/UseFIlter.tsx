@@ -2,7 +2,7 @@ import {
   SetStateAction, useEffect, useState, useContext,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import { SnackBarContext } from '../context';
+import { SnackBarContext } from '../contexts';
 import {
   CarsFilterProps, CarsWithImagesData, Params, SnackBarContextTypeWithDispatch,
 } from '../interfaces';

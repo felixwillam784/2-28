@@ -10,7 +10,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import StripeForm from '../StripForm';
-import { UserContext } from '../../context';
+import { UserContext } from '../../contexts';
 
 const stripePromise = loadStripe(
   'pk_test_TYooMQauvdEDq54NiTphI7jx',

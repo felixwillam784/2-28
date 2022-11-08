@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import Images from '../../assets/index';
-import { SnackBarContext, UserContext } from '../../context';
+import { SnackBarContext, UserContext } from '../../contexts';
 import { SnackBarContextTypeWithDispatch, UserContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';
 import SendRequestModule from '../sendRequsetModel';
