@@ -11,29 +11,6 @@ import CustomizedSnackbars from '../snackbar';
 
 import './style.css';
 
-const mileRang = [
-  {
-    value: 0,
-    label: '0',
-  },
-  {
-    value: 25,
-    label: '250K',
-  },
-  {
-    value: 50,
-    label: '500K',
-  },
-  {
-    value: 75,
-    label: '750K',
-  },
-  {
-    value: 100,
-    label: '1M',
-  },
-];
-
 const getYears = ():Array<string> => {
   const yearsArr = [];
   const yearNow = new Date().getFullYear();
@@ -127,7 +104,9 @@ function CarsFilter({
             value={Number(mileage) / 10000}
             valueLabelDisplay="auto"
             onChange={changeMileage}
-            marks={mileRang}
+            max={1000000}
+            min={10000}
+            step={10000}
           />
         </div>
         <CustomizedSnackbars
