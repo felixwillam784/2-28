@@ -7,7 +7,6 @@ import brands from '../../assets/data/brands.json';
 import models from '../../assets/data/models.json';
 import useFIlter from '../../Hooks/UseFIlter';
 import { CarsFilterProps } from '../../interfaces';
-import CustomizedSnackbars from '../snackbar';
 
 import './style.css';
 
@@ -57,8 +56,6 @@ function CarsFilter({
     fuel,
     maxPrice,
     isGoodPrice,
-    openSnackBar,
-    handleClose,
     changePriceType,
     changeBrand,
     changeModel,
@@ -130,12 +127,6 @@ function CarsFilter({
             marks={mileRang}
           />
         </div>
-        <CustomizedSnackbars
-          open={openSnackBar}
-          handleClose={handleClose}
-          message="something went wrong"
-          type="error"
-        />
         <Autocomplete
           disablePortal
           id="combo-box"

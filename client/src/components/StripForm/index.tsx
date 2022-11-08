@@ -1,29 +1,26 @@
+import { useContext } from 'react';
 import { Button } from '@mui/material';
 import { PaymentElement } from '@stripe/react-stripe-js';
 import { useParams } from 'react-router-dom';
+import { SnackBarContext } from '../../contexts';
 import httpInstance from '../../services';
 
 import './style.css';
+import { SnackBarContextTypeWithDispatch } from '../../interfaces';
 
-function StripeForm({
-  setSnackBar,
-
-}:{ setSnackBar: React.Dispatch<React.SetStateAction<{
-  type: 'error' | 'success';
-  message: string;
-  open: boolean;
-}>> }) {
+function StripeForm() {
   const { id } = useParams();
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
   const buyCar = async () => {
     try {
       await httpInstance.patch('/cars/buy', { id });
-      setSnackBar({
+      setSnackBarProperties({
         type: 'success',
         message: 'payment successfully check your email to more information',
         open: true,
       });
     } catch (error) {
-      setSnackBar({
+      setSnackBarProperties({
         type: 'error',
         message: 'car not available to sell',
         open: true,

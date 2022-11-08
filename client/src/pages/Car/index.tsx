@@ -1,37 +1,31 @@
 import './style.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import CarInfo from '../../components/CarInfoSection';
 import CarSlider from '../../components/CarSlider';
 import httpInstance from '../../services/index';
-import { CarWithImages } from '../../interfaces';
+import { CarWithImages, SnackBarContextTypeWithDispatch } from '../../interfaces';
 import CarNotFound from '../../components/CarNotFound';
-import CustomizedSnackbars from '../../components/snackbar';
+import { SnackBarContext } from '../../contexts';
 
 function Car() {
   const [carInfo, setCarInfo] = useState<CarWithImages>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpenSnackBar(false);
-  };
   const { id } = useParams();
   useEffect(() => {
     const getCarInfo = async () => {
       try {
+        setSnackBarProperties((preState) => ({ ...preState, open: false }));
         setIsLoading(true);
         const response = await httpInstance.get(`/cars/${id}`);
         setCarInfo(response.data[0]);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
-        setOpenSnackBar(true);
+        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
       }
     };
     getCarInfo();
@@ -43,15 +37,7 @@ function Car() {
   }
   if (!carInfo) {
     return (
-      <>
-        <CarNotFound />
-        <CustomizedSnackbars
-          type="error"
-          message="something went wrong"
-          open={openSnackBar}
-          handleClose={handleClose}
-        />
-      </>
+      <CarNotFound />
     );
   }
   return (
