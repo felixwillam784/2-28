@@ -26,7 +26,7 @@ const style = {
   borderRadius: '20px',
   boxShadow: 24,
   width: '40vw',
-  p: 4,
+  p: 2,
 };
 
 function SendRequestModule({ open, handleClose }: { open: boolean,
