@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import {
   Checkbox, Button,
@@ -10,10 +10,10 @@ import { useFormik } from 'formik';
 import SellCarModal from './sendRequsetModel/Form';
 import { checkCarSchema } from '../helpers/validationSchema';
 import { featuresArray } from '../assets/data/features';
-import CustomizedSnackbars from './snackbar';
-import { CarWithImages } from '../interfaces';
+import { CarWithImages, SnackBarContextTypeWithDispatch } from '../interfaces';
 import httpInstance from '../services';
 import UploadFiles from './UpLoadImages';
+import { SnackBarContext } from '../context';
 
 const initialData = {
   id: 0,
@@ -45,8 +45,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
   const [carData, setCarData] = useState<CarWithImages>(initialData);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
   const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
@@ -64,13 +63,6 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     };
     getCarInfo();
   }, []);
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
 
   const handleNext = () => {
     setActiveStep((prevState) => prevState + 1);
@@ -309,12 +301,6 @@ function CustomStepper({ id }:{ id:string | undefined }) {
         <> </>
       )}
 
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleClose}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
     </Box>
   );
 }

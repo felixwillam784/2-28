@@ -3,22 +3,19 @@ import { Button, CircularProgress } from '@mui/material';
 import {
   ref, getDownloadURL, uploadBytes,
 } from 'firebase/storage';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SnackBarContext } from '../../context';
 import storage from '../../firebase/firebaseConfig';
+import { SnackBarContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';
-import CustomizedSnackbars from '../snackbar';
 import './style.css';
 
 function UploadFiles({ carId }:{ carId:string | undefined }) {
   const [file, setFile] = useState<FileList | null>();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [
-    snackData,
-    setSnackData,
-  ] = useState<{ type: 'error' | 'success' | 'info', message: string }>({ type: 'info', message: '' });
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const saveImages = async (urls: Array<string>) => {
     const images = urls.map((url) => ({ image: url, carId }));
@@ -28,13 +25,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         { images },
       );
     return result;
-  };
-
-  const handleCloseSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,11 +64,11 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
         navigate(`/car/${carId}`);
       })
       .catch(() => {
-        setSnackData({ type: 'error', message: 'Somthing went wrong' });
-        setOpen(true);
+        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
       });
   };
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {file ? (
         <div className="contaner">
@@ -126,13 +116,6 @@ function UploadFiles({ carId }:{ carId:string | undefined }) {
           </Button>
         </div>
       )}
-
-      <CustomizedSnackbars
-        open={open}
-        handleClose={handleCloseSnack}
-        message={snackData.message}
-        type={snackData.type}
-      />
     </>
   );
 }

@@ -1,6 +1,11 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import {
+  SetStateAction, useEffect, useState, useContext,
+} from 'react';
 import { useLocation } from 'react-router-dom';
-import { CarsFilterProps, CarsWithImagesData, Params } from '../interfaces';
+import { SnackBarContext } from '../context';
+import {
+  CarsFilterProps, CarsWithImagesData, Params, SnackBarContextTypeWithDispatch,
+} from '../interfaces';
 import httpInstance from '../services';
 
 export default function useFIlter({
@@ -16,15 +21,7 @@ export default function useFIlter({
   const [fuel, setFuel] = useState<string | null>('');
   const [maxPrice, setMaxPrice] = useState<number>(0);
   const [isGoodPrice, setPriceBool] = useState<boolean>(false);
-  const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpenSnackBar(false);
-  };
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const changePriceType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPriceBool(event.target.checked);
@@ -94,7 +91,7 @@ export default function useFIlter({
     const getCars = async () => {
       try {
         setLoading(true);
-        setOpenSnackBar(false);
+        setSnackBarProperties((preState) => ({ ...preState, open: false }));
         const response: CarsWithImagesData = await httpInstance.get('/cars?', { params });
         setCars(response.data.rows);
         setPagination(response.data.count);
@@ -103,7 +100,7 @@ export default function useFIlter({
         }
         setLoading(false);
       } catch (error) {
-        setOpenSnackBar(true);
+        setSnackBarProperties({ open: true, message: 'something went wrong!', type: 'error' });
       }
     };
     getCars();
@@ -116,8 +113,6 @@ export default function useFIlter({
     fuel,
     maxPrice,
     isGoodPrice,
-    openSnackBar,
-    handleClose,
     changePriceType,
     changeBrand,
     changeModel,

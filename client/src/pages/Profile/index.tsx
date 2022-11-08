@@ -4,16 +4,17 @@ import {
 } from '@mui/material';
 import ProfileInbox from '../../components/ProfileInbox';
 import SellRequest from '../../components/ProfileInbox/SellRequest';
-import { UserContext } from '../../context';
-import { UserContextTypeWithDispatch, UserSellRequest, UserSellRequestsResponse } from '../../interfaces';
+import { SnackBarContext, UserContext } from '../../context';
+import {
+  SnackBarContextTypeWithDispatch,
+  UserContextTypeWithDispatch, UserSellRequest, UserSellRequestsResponse,
+} from '../../interfaces';
 import './style.css';
-import CustomizedSnackbars from '../../components/snackbar';
 import httpInstance from '../../services';
 
 function Profile() {
   const { userInfo }:UserContextTypeWithDispatch = useContext(UserContext);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
   const [SellRequestData, setSellRequestData] = useState<UserSellRequest[]>([]);
   useEffect(() => {
     const getSellRequests = async () => {
@@ -28,12 +29,6 @@ function Profile() {
     getSellRequests();
   }, []);
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
   return (
     <Box className="profile-container">
       <Box className="user-info-container">
@@ -76,12 +71,6 @@ function Profile() {
           ))}
         </ProfileInbox>
       </Paper>
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleClose}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
     </Box>
 
   );

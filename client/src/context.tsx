@@ -3,8 +3,12 @@ import {
 } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { UserContextType, UserContextTypeWithDispatch } from './interfaces';
+import {
+  UserContextType, UserContextTypeWithDispatch, SnackBarContextType,
+  SnackBarContextTypeWithDispatch,
+} from './interfaces';
 import httpInstance from './services/axiosConfig';
+import CustomizedSnackbars from './components/snackbar';
 
 export const UserContext = createContext<UserContextTypeWithDispatch>({
   userInfo: {
@@ -50,5 +54,39 @@ export default function UserInfoProvider({ children }:any) {
     <UserContext.Provider value={value}>
       { children }
     </UserContext.Provider>
+  );
+}
+
+export const SnackBarContext = createContext<SnackBarContextTypeWithDispatch>({
+  snackBarProperties:
+  { open: false, message: '', type: 'error' },
+  setSnackBarProperties: () => ({ open: false, message: '', type: 'error' }),
+});
+
+export function SnackBarProvider({ children }:any) {
+  const [snackBarProperties, setSnackBarProperties] = useState<SnackBarContextType>(
+    { open: false, message: '', type: 'error' },
+  );
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackBarProperties((preState) => ({ ...preState, open: false }));
+  };
+  const value = useMemo(() => ({
+    snackBarProperties, setSnackBarProperties,
+  }), [snackBarProperties]);
+
+  return (
+    <SnackBarContext.Provider value={value}>
+      { children }
+      <CustomizedSnackbars
+        open={snackBarProperties.open}
+        handleClose={handleClose}
+        message={snackBarProperties.message}
+        type={snackBarProperties.type}
+      />
+    </SnackBarContext.Provider>
   );
 }

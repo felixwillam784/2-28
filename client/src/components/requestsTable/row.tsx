@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -12,14 +12,17 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import httpInstance from '../../services/axiosConfig';
 import './style.css';
-import { RowProps } from '../../interfaces';
+import { RowProps, SnackBarContextTypeWithDispatch } from '../../interfaces';
+import { SnackBarContext } from '../../context';
 
 function Row(props:RowProps) {
   const {
-    car, state, setCarsData, setSnackBarProperties,
+    car, state, setCarsData,
   } = props;
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
+
   const deleteCar = async (id:number) => {
     try {
       setSnackBarProperties((preState) => ({ ...preState, open: false }));
