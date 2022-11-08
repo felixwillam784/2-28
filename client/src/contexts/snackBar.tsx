@@ -13,7 +13,11 @@ export const SnackBarContext = createContext<SnackBarContextTypeWithDispatch>({
   setSnackBarProperties: () => ({ open: false, message: '', type: 'error' }),
 });
 
-export default function SnackBarProvider({ children }:any) {
+type Props = {
+  children :JSX.Element
+};
+
+export default function SnackBarProvider({ children }:Props) {
   const [snackBarProperties, setSnackBarProperties] = useState<SnackBarContextType>(
     { open: false, message: '', type: 'error' },
   );
