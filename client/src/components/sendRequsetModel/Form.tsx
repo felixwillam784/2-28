@@ -140,7 +140,6 @@ function SellCarModal(props:EditCarFormProps) {
               />
             </Typography>
             <Typography
-              // className="input_field"
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
