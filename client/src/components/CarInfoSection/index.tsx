@@ -12,7 +12,7 @@ import CarControll from '../carControll';
 import { CarWithImages } from '../../interfaces';
 
 type Props = {
-  carInfo: CarWithImages | undefined
+  carInfo: CarWithImages
 };
 
 const numberWithCommas = (x: number) => {
@@ -50,16 +50,21 @@ function CarInfo({ carInfo }: Props) {
               {`${carInfo?.mileage} KM`}
             </Typography>
             <span className="dot-divider">.</span>
-            <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+            <Box
+              sx={{
+                mt: '-5px',
+                position: 'relative',
+                display: 'inline-flex',
+              }}
+            >
               <CircularProgress
-                sx={{ marginTop: '-5px', color: '#393d47' }}
                 variant="determinate"
                 value={carInfo?.quality}
               />
               <Box
                 sx={{
-                  top: -1,
-                  left: 4,
+                  top: 0,
+                  left: 0,
                   bottom: 0,
                   right: 0,
                   position: 'absolute',
@@ -70,10 +75,10 @@ function CarInfo({ carInfo }: Props) {
               >
                 <Typography
                   variant="caption"
+                  component="div"
                   color="text.secondary"
                 >
-                  {carInfo?.quality}
-                  %
+                  {`${Math.round(carInfo?.quality)}%`}
                 </Typography>
               </Box>
             </Box>

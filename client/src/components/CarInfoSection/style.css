@@ -28,14 +28,14 @@
   position: absolute;
   font-size: 2px !important;
   background-color: #FFF;
-  width : 29px !important;
-  height : 29px !important;
+  width : 33px !important;
+  height : 33px !important;
   border: 0.5px solid #47BC2F ;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 10px;
+  left: 7px;
   top: 15px;
 }
 
@@ -57,7 +57,7 @@
   margin-top: 0px !important;
   font-weight: 500 !important;
   font-size: 1.5rem !important;
-  color: #f5965b;
+  color: #ed7124;
 }
 
 .main-info-container {
@@ -101,9 +101,7 @@
   font-weight: 700;
   margin: 0 0.5rem;
 }
-.quality-circle{
-  
-}
+
 .subtitle {
   width: fit-content;
   font-weight: 500 !important;

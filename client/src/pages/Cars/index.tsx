@@ -88,7 +88,14 @@ function Cars() {
               ))}
 
             </div>
-          ) : <h2 style={{ fontSize: '2rem' }}>NO results found</h2>)}
+          ) : (
+            <p style={{ fontSize: '1.3rem', textAlign: 'center' }}>
+              The cars you are looking for
+              <br />
+              {' '}
+              do not exist yet
+            </p>
+          ))}
         <Pagination
           sx={{
             margin: '2rem 0rem',
