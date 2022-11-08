@@ -26,7 +26,7 @@ function NavBar() {
   const handleCloseSell = () => setOpen(false);
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
-    ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
+    ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'Market', path: 'cars' }]
     : [{ title: 'HOME', path: '' }, { title: 'Buy car', path: 'cars' }];
 
   const settings = userInfo?.role.toLowerCase() === 'admin'
@@ -132,25 +132,27 @@ function NavBar() {
               ))}
               <MenuItem onClick={handleCloseNavMenu}>
 
-                <Button
-                  component="button"
-                  onClick={() => {
-                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                    userInfo?.role === 'user' ? handleOpen() : navigate('/login');
-                  }}
-                  sx={{
-                    display: 'block',
-                    color: 'var(--text-color)',
-                    fontFamily: 'var(--font-family)',
-                    fontWeight: '500',
-                    fontSize: '14px',
-                    marginBottom: '0.1rem',
-                    paddingLeft: '0.1rem',
-                    marginTop: '-0.5rem',
-                  }}
-                >
-                  Sell a car
-                </Button>
+                {userInfo?.role === 'admin' ? null : (
+                  <Button
+                    component="button"
+                    onClick={() => {
+                      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                      userInfo?.role === 'user' ? handleOpen() : navigate('/login');
+                    }}
+                    sx={{
+                      display: 'block',
+                      color: 'var(--text-color)',
+                      fontFamily: 'var(--font-family)',
+                      fontWeight: '500',
+                      fontSize: '14px',
+                      marginBottom: '0.1rem',
+                      paddingLeft: '0.1rem',
+                      marginTop: '-0.5rem',
+                    }}
+                  >
+                    Sell Car
+                  </Button>
+                )}
               </MenuItem>
             </Menu>
           </Box>
@@ -208,30 +210,34 @@ function NavBar() {
               </NavLink>
             ))}
 
-            <Button
-              component="button"
-              onClick={() => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                userInfo?.role === 'user' ? handleOpen() : navigate('/login');
-              }}
-              sx={{
-                display: 'block',
-                color: 'var(--text-color)',
-                fontFamily: 'var(--font-family)',
-                fontWeight: '500',
-                fontSize: '14px',
-                marginBottom: '0.1rem',
-                lineHeight: '2.75',
-              }}
-            >
-              Sell a car
-            </Button>
-            <SendRequestModule open={open} handleClose={handleCloseSell} />
+            {userInfo?.role === 'admin' ? null : (
+              <>
+                <Button
+                  component="button"
+                  onClick={() => {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                    userInfo?.role === 'user' ? handleOpen() : navigate('/login');
+                  }}
+                  sx={{
+                    display: 'block',
+                    color: 'var(--text-color)',
+                    fontFamily: 'var(--font-family)',
+                    fontWeight: '500',
+                    fontSize: '14px',
+                    marginBottom: '0.1rem',
+                    lineHeight: '2.75',
+                  }}
+                >
+                  Sell Car
+                </Button>
+                <SendRequestModule open={open} handleClose={handleCloseSell} />
+              </>
+            )}
           </Box>
 
           {(userInfo === null) ? (
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, display: 'flex', flexWrap: 'no-wrap' }}>
               { location !== 'login' && (
               <NavLink to="login" style={{ textDecoration: 'none' }}>
                 <Button
@@ -275,7 +281,7 @@ function NavBar() {
                 </Tooltip>
                 <Typography
                   variant="body1"
-                  sx={{ marginLeft: '0.5rem', cursor: 'pointer' }}
+                  sx={{ marginLeft: '0.5rem', cursor: 'pointer', display: { xs: 'none', md: 'block' } }}
                   onClick={handleOpenUserMenu}
                 >
                   {` ${userInfo.username}`}
