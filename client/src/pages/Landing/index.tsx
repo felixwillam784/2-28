@@ -10,7 +10,7 @@ function Landing() {
       <HeroSection />
       <Brand />
       <HomeCardSection
-        color="#8EB3FE"
+        color="#407cf5"
         text="Buying a used car?"
         ask="Here's why you should do it on
         GOODCAR"
@@ -36,7 +36,7 @@ function Landing() {
       </HomeCardSection>
 
       <HomeCardSection
-        color="#FBC67F"
+        color="#e5a148"
         text="Selling a used car?"
         ask="Here's why you should do it on
         GOODCAR"

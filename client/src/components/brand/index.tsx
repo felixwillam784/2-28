@@ -11,23 +11,40 @@ function Brand() {
       </div>
       <div className="imgCarLogo">
         <Link
-          className="brand_link"
+          state={{ brand: 'BMW' }}
+          to="/cars"
+        >
+          <Image src={Images.bmw} alt="bmw" />
+        </Link>
+        <Link
           state={{ brand: 'Audi' }}
           to="/cars"
         >
           <Image src={Images.audi} alt="audi" />
         </Link>
-        <Link state={{ brand: 'Mitsubishi' }} to="/cars">
+        <Link
+          state={{ brand: 'Mitsubishi' }}
+          to="/cars"
+        >
           <Image src={Images.mitsbishi} alt="mitsubishi" />
         </Link>
-        <Link state={{ brand: 'Nissan' }} to="/cars">
-          <Image src={Images.nissan} alt="nissan" />
-        </Link>
-        <Link state={{ brand: 'Toyota' }} to="/cars">
+        <Link
+          state={{ brand: 'Toyota' }}
+          to="/cars"
+        >
           <Image src={Images.toyota} alt="toyota" />
         </Link>
-        <Link state={{ brand: 'Lamborghini' }} to="/cars">
+        <Link
+          state={{ brand: 'Lamborghini' }}
+          to="/cars"
+        >
           <Image src={Images.lamborghini} alt="lamborghini" />
+        </Link>
+        <Link
+          state={{ brand: 'Nissan' }}
+          to="/cars"
+        >
+          <Image src={Images.nissan} alt="nissan" />
         </Link>
       </div>
     </section>
