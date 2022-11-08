@@ -23,7 +23,7 @@ export default function CustomizedSnackbars({
       <Snackbar
         open={open}
         autoHideDuration={3000}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         onClose={handleClose}
       >
         <Alert onClose={handleClose} sx={{ width: '100%' }} severity={type}>{message}</Alert>

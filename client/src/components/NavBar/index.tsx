@@ -8,22 +8,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 // import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import Images from '../../assets/index';
-import { UserContext } from '../../context';
-import { UserContextTypeWithDispatch } from '../../interfaces';
+import { SnackBarContext, UserContext } from '../../contexts';
+import { SnackBarContextTypeWithDispatch, UserContextTypeWithDispatch } from '../../interfaces';
 import httpInstance from '../../services/axiosConfig';
-import CustomizedSnackbars from '../snackbar';
 import SendRequestModule from '../sendRequsetModel';
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const { userInfo, setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleCloseSell = () => setOpen(false);
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'SHOP', path: 'cars' }]
@@ -35,12 +33,6 @@ function NavBar() {
 
   const navigate = useNavigate();
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -333,12 +325,6 @@ function NavBar() {
 
         </Toolbar>
       </Container>
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleClose}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
     </AppBar>
   );
 }

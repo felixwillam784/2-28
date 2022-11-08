@@ -7,16 +7,17 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Row from './row';
+import { SnackBarContext } from '../../contexts';
 
 import {
   Params, CarsWithCustomerData, CarsWithCustomerRow, CarWithCustomerInfo,
+  SnackBarContextTypeWithDispatch,
 } from '../../interfaces';
 import { TableSkeleton } from '../skeletons';
 import httpInstance from '../../services/axiosConfig';
-import CustomizedSnackbars from '../snackbar';
 
 type Props = {
   state : string
@@ -31,15 +32,7 @@ function RequestsTable(props:Props) {
   const [page, setPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
-  const [snackBarProperties, setSnackBarProperties] = useState<
-  { open:boolean, message:string, type:'success' | 'error' }>({ open: false, message: '', type: 'error' });
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -88,7 +81,6 @@ function RequestsTable(props:Props) {
                   car={row}
                   state={state}
                   setCarsData={setCarsData}
-                  setSnackBarProperties={setSnackBarProperties}
                 />
               ))}
           </TableBody>
@@ -98,12 +90,6 @@ function RequestsTable(props:Props) {
       <Stack sx={{ width: '100%' }} spacing={2}>
         <Pagination onChange={handleChangePage} sx={{ margin: '2rem auto 0 auto' }} count={pageCount} size="large" />
       </Stack>
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleClose}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
     </Box>
   );
 }

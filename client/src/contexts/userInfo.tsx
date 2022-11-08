@@ -3,8 +3,10 @@ import {
 } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { UserContextType, UserContextTypeWithDispatch } from './interfaces';
-import httpInstance from './services/axiosConfig';
+import {
+  UserContextType, UserContextTypeWithDispatch,
+} from '../interfaces';
+import httpInstance from '../services/axiosConfig';
 
 export const UserContext = createContext<UserContextTypeWithDispatch>({
   userInfo: {

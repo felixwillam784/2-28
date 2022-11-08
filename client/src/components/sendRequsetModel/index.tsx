@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import SellCarModal from './Form';
 import { addCarSchema } from '../../helpers/validationSchema';
 import httpInstance from '../../services/axiosConfig';
-import CustomizedSnackbars from '../snackbar';
-import { UserContext } from '../../context';
+import { SnackBarContext, UserContext } from '../../contexts';
+import { SnackBarContextTypeWithDispatch } from '../../interfaces';
 
 const convertToKM = (value: number, type: string) => {
   if (type === 'mile') return value * 1.609344;
@@ -33,11 +33,7 @@ function SendRequestModule({ open, handleClose }: { open: boolean,
   handleClose: () => void }) {
   const { userInfo } = useContext(UserContext);
   const [loading, setLoading] = useState<boolean>(true);
-  const [snackBarProperties, setSnackBarProperties] = useState<{
-    open: boolean;
-    message: string;
-    type: 'success' | 'error';
-  }>({ open: false, message: '', type: 'error' });
+  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const navigate = useNavigate();
 
@@ -80,16 +76,6 @@ function SendRequestModule({ open, handleClose }: { open: boolean,
     },
   });
 
-  const handleCloseSnackBar = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackBarProperties((preState) => ({ ...preState, open: false }));
-  };
-
   return (
     <div style={{ backgroundColor: '#fff' }}>
       <Modal
@@ -127,12 +113,6 @@ function SendRequestModule({ open, handleClose }: { open: boolean,
           </SellCarModal>
         </Box>
       </Modal>
-      <CustomizedSnackbars
-        open={snackBarProperties.open}
-        handleClose={handleCloseSnackBar}
-        message={snackBarProperties.message}
-        type={snackBarProperties.type}
-      />
     </div>
   );
 }

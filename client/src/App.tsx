@@ -1,14 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import UserInfoProvider from './context';
+import { UserInfoProvider, SnackBarProvider } from './contexts';
 
 function App() {
   return (
     <div>
-      <UserInfoProvider>
-        <NavBar />
-        <Outlet />
-      </UserInfoProvider>
+      <SnackBarProvider>
+        <UserInfoProvider>
+          <NavBar />
+          <Outlet />
+        </UserInfoProvider>
+      </SnackBarProvider>
     </div>
   );
 }
