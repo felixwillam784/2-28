@@ -57,3 +57,27 @@
 }
 
 /*-----------------------------*/
+
+@media only screen and (max-width: 600px) {
+
+  .main {
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+  }
+  .decs {
+    display: none;
+  }
+
+  .form {
+    border-radius: 0 45px 0 45px;
+    height: 80%;
+    width: fit-content;
+    position: absolute;
+  }
+
+  .Img {
+    width: 100vw !important;
+    background-position: none;
+  }
+}
