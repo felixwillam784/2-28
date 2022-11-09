@@ -43,8 +43,6 @@ const convertToKM = (value: number, type: string) => {
 
 function CustomStepper({ id }:{ id:string | undefined }) {
   const [carData, setCarData] = useState<CarWithImages>(initialData);
-  console.log(carData);
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState<boolean>(true);
   const [snackBarProperties, setSnackBarProperties] = useState<
