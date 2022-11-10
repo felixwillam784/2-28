@@ -37,7 +37,11 @@ export default function DrawerAppBar(props: CarsFilterProps) {
 
   return (
     <Box sx={{
-      padding: '1rem', height: '3rem', zIndex: 1,
+      padding: '1rem',
+      height: '3rem',
+      zIndex: 1,
+      position: 'absolute',
+      top: '4.5rem',
     }}
     >
 
