@@ -107,13 +107,13 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     label: 'Car Into',
     component:
   <SellCarModal id={id} modalType="checkRequest" formik={formik}>
-    <Box sx={{ width: '47%' }}>
+    <Box sx={{ width: { sm: '100%', md: '47%' } }}>
       <Typography
         sx={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: '32vw',
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
@@ -124,7 +124,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           name="quality"
           label="quality"
           type="number"
-          value={formik.values.quality}
+          value={formik.values.quality || 0}
           onChange={formik.handleChange}
           error={formik.touched.quality && Boolean(formik.errors.quality)}
           helperText={formik.touched.quality && formik.errors.quality}
@@ -137,7 +137,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: '32vw',
+          width: { xs: '100%', ms: '100%', md: '90%' },
           margin: '1rem 0',
         }}
         component="label"
@@ -147,8 +147,8 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '32vw',
+            justifyContent: 'end',
+            width: '90%',
             margin: '1rem 0',
           }}
           component="div"
@@ -158,8 +158,9 @@ function CustomStepper({ id }:{ id:string | undefined }) {
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'row',
-              justifyContent: 'flex-end',
-              width: '100%',
+              justifyContent: 'space-around',
+              flexWrap: 'nowrap',
+              width: '15rem',
             }}
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="manual"
@@ -172,36 +173,73 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           </RadioGroup>
         </Typography>
       </Typography>
-
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-
+      <Typography
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '90%',
+          margin: '1rem 0',
+        }}
+        component="label"
+      >
+        Fuel
         <Typography
           sx={{
             display: 'flex',
-            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
-            width: '50%',
+            justifyContent: 'end',
+            width: '90%',
             margin: '1rem 0',
           }}
-          component="label"
+          component="div"
         >
-          <Checkbox
-            name="isGoodPrice"
-            id="isGoodPrice"
-            value={formik.values.isGoodPrice}
+          <RadioGroup
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'nowrap',
+              width: '15rem',
+            }}
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="manual"
+            name="fuel"
             onChange={formik.handleChange}
-          />
-
-          Is Good Price
+            value={!formik.values.fuel ? '' : formik.values.fuel}
+          >
+            <FormControlLabel name="fuel" value="petrol" control={<Radio />} label="petrol" />
+            <FormControlLabel name="fuel" value="diesel" control={<Radio />} label="diesel" />
+          </RadioGroup>
         </Typography>
-      </Box>
+      </Typography>
+
+      <Typography
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          margin: '1rem 0',
+        }}
+        component="label"
+      >
+        <Checkbox
+          name="isGoodPrice"
+          id="isGoodPrice"
+          value={formik.values.isGoodPrice}
+          onChange={formik.handleChange}
+        />
+
+        Is Good Price
+      </Typography>
       <Typography
         sx={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: '32vw',
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
@@ -237,7 +275,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: '32vw',
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
