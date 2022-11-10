@@ -113,7 +113,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '100%' },
+          width: { sm: '90% ', md: '90%' },
           marginBottom: '1rem',
         }}
         component="label"
@@ -137,7 +137,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '100%' },
+          width: { sm: '90% ', md: '90%' },
           margin: '1rem 0',
         }}
         component="label"
@@ -148,7 +148,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            width: { sm: '90% ', md: '100%' },
+            width: { sm: '90% ', md: '90%' },
             margin: '1rem 0',
           }}
           component="div"
@@ -196,7 +196,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '100%' },
+          width: { sm: '90% ', md: '90%' },
           marginBottom: '1rem',
         }}
         component="label"
@@ -232,7 +232,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '100%' },
+          width: { sm: '90% ', md: '90%' },
           marginBottom: '1rem',
         }}
         component="label"

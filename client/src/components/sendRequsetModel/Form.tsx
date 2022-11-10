@@ -59,7 +59,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 marginBottom: '1rem',
               }}
               component="label"
@@ -101,7 +101,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 marginBottom: '1rem',
               }}
               component="label"
@@ -123,7 +123,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 marginBottom: '1rem',
               }}
               component="label"
@@ -145,7 +145,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 margin: '1rem 0',
               }}
               component="label"
@@ -156,7 +156,7 @@ function SellCarModal(props:EditCarFormProps) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  width: { sm: '100% ', md: '100%' },
+                  width: '100%',
                   margin: '1rem 0',
                 }}
                 component="div"
@@ -197,7 +197,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 marginBottom: '1rem',
               }}
               component="label"
@@ -221,7 +221,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { sm: '90% ', md: '100%' },
+                width: { sm: '90% ', md: '90%' },
                 marginBottom: '1rem',
               }}
               component="label"
