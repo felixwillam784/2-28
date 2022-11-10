@@ -20,7 +20,10 @@
     "init": "cd client && npm i && cd ../server && npm i",
     "install": "npm run init",
     "dev": "cd server && npm run dev",
-    "heroku-postbuild": "cd client && npm run build"
+    "build:react:server":"cd client && npm run build && cd ../server && npm run build",
+    "heroku-postbuild": "npm run build:react:server",
+    "build": "npm i && npm run build:react:server"
+
   },
   "repository": {
     "type": "git",
