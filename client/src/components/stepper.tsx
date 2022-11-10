@@ -124,7 +124,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           name="quality"
           label="quality"
           type="number"
-          value={formik.values.quality}
+          value={formik.values.quality || 0}
           onChange={formik.handleChange}
           error={formik.touched.quality && Boolean(formik.errors.quality)}
           helperText={formik.touched.quality && formik.errors.quality}
@@ -169,6 +169,47 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           >
             <FormControlLabel name="transmission" value="manual" control={<Radio />} label="Manual" />
             <FormControlLabel name="transmission" value="automatic" control={<Radio />} label="Automatic" />
+          </RadioGroup>
+        </Typography>
+      </Typography>
+      <Typography
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '32vw',
+          margin: '1rem 0',
+        }}
+        component="label"
+      >
+        Fuel
+        <Typography
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '32vw',
+            margin: '1rem 0',
+          }}
+          component="div"
+        >
+          <RadioGroup
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              width: '100%',
+            }}
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="manual"
+            name="fuel"
+            onChange={formik.handleChange}
+            value={!formik.values.fuel ? '' : formik.values.fuel}
+          >
+            <FormControlLabel name="fuel" value="petrol" control={<Radio />} label="petrol" />
+            <FormControlLabel name="fuel" value="diesel" control={<Radio />} label="diesel" />
           </RadioGroup>
         </Typography>
       </Typography>
