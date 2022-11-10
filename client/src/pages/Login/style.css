@@ -72,12 +72,44 @@
   .form {
     border-radius: 0 45px 0 45px;
     height: 80%;
-    width: fit-content;
     position: absolute;
   }
 
   .Img {
     width: 100vw !important;
     background-position: none;
+  }
+  .formLogin {
+    width: 80%;
+  }
+  .formLogin h1 {
+    letter-spacing: 0.04rem;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.9rem;
+}
+
+  .form .button{
+      margin-top: 1rem;
+  }
+  .formLogin input {
+      height: 10px;
+      font-size: 12px;
+  }
+  .formLogin label {
+      font-size: 12px;
+  }
+  .formLogin p {
+      font-size: 12px;
+      width: 100%;
+      margin-block-start: 0.2em;
+      margin-block-end: 0.2em;
+  }
+  .formLogin .button {
+      width: 70%;
+      height: 1.3rem;
+      font-size: 12px;
+      display: flex;
+      align-self: center;
   }
 }
