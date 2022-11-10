@@ -29,7 +29,7 @@ const signupUser = async ({
     fullName,
     phoneNumber,
   });
-  return userInfo.id;
+  return userInfo;
 };
 
 const checkAdmin = async ({ username }) => {
