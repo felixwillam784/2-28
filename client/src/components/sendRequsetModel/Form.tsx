@@ -178,6 +178,7 @@ function SellCarModal(props:EditCarFormProps) {
                     alignItems: 'center',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
+                    flexWrap: 'nowrap',
                     width: '15rem',
                   }}
                   aria-labelledby="demo-radio-buttons-group-label"

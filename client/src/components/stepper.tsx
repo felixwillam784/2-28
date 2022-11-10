@@ -113,7 +113,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '90%' },
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
@@ -137,7 +137,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '90%' },
+          width: { xs: '100%', ms: '100%', md: '90%' },
           margin: '1rem 0',
         }}
         component="label"
@@ -147,8 +147,8 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            width: { sm: '90% ', md: '90%' },
+            justifyContent: 'end',
+            width: '90%',
             margin: '1rem 0',
           }}
           component="div"
@@ -158,8 +158,9 @@ function CustomStepper({ id }:{ id:string | undefined }) {
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'row',
-              justifyContent: 'flex-end',
-              width: '100%',
+              justifyContent: 'space-around',
+              flexWrap: 'nowrap',
+              width: '15rem',
             }}
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="manual"
@@ -178,7 +179,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: '32vw',
+          width: '90%',
           margin: '1rem 0',
         }}
         component="label"
@@ -188,8 +189,8 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '32vw',
+            justifyContent: 'end',
+            width: '90%',
             margin: '1rem 0',
           }}
           component="div"
@@ -199,8 +200,9 @@ function CustomStepper({ id }:{ id:string | undefined }) {
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'row',
-              justifyContent: 'flex-end',
-              width: '100%',
+              justifyContent: 'space-around',
+              flexWrap: 'nowrap',
+              width: '15rem',
             }}
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="manual"
@@ -237,7 +239,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '90%' },
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
@@ -273,7 +275,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: { sm: '90% ', md: '90%' },
+          width: '90%',
           marginBottom: '1rem',
         }}
         component="label"
