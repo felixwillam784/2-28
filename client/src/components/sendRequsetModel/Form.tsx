@@ -37,7 +37,6 @@ function SellCarModal(props:EditCarFormProps) {
 
       <form
         style={{
-          maxHeight: '90vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -47,19 +46,29 @@ function SellCarModal(props:EditCarFormProps) {
       >
         <Box sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
           width: '98%',
           marginBottom: '2rem',
-          overflowY: { md: 'auto', xs: 'auto' },
+          // overflowY: { md: 'auto', xs: 'auto' },
         }}
         >
-          <Box className="input_wrapper" sx={{ width: { lg: '47%', md: '100%', xs: '100%' } }}>
+          <Box
+            className="input_wrapper"
+            sx={{
+              width:
+            { sm: '100%', md: modalType === 'addRequest' ? '100%' : '47%' },
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: modalType === 'addRequest' ? 'center' : 'space-between',
+            }}
+          >
             <Typography
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { lg: '32vw', md: '70vw', xs: '70vw' },
+                width: '90%',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -101,7 +110,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { lg: '32vw', md: '70vw', xs: '70vw' },
+                width: '90%',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -123,7 +132,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { lg: '32vw', md: '70vw', xs: '70vw' },
+                width: '90%',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -145,7 +154,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'start',
-                width: { lg: '32vw', md: '73vw', xs: '73vw' },
+                width: '90%',
                 margin: '1rem 0',
               }}
               component="label"
@@ -156,7 +165,7 @@ function SellCarModal(props:EditCarFormProps) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  width: { lg: '32vw', md: '73vw', xs: '73vw' },
+                  width: '100%',
                   margin: '1rem 0',
                 }}
                 component="div"
@@ -178,6 +187,7 @@ function SellCarModal(props:EditCarFormProps) {
                     alignItems: 'center',
                     flexDirection: 'row',
                     justifyContent: 'space-around',
+                    flexWrap: 'nowrap',
                     width: '15rem',
                   }}
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -197,7 +207,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { lg: '32vw', md: '70vw', xs: '70vw' },
+                width: '90%',
                 marginBottom: '1rem',
               }}
               component="label"
@@ -221,7 +231,7 @@ function SellCarModal(props:EditCarFormProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                width: { lg: '32vw', md: '70vw', xs: '70vw' },
+                width: '90%',
                 marginBottom: '1rem',
               }}
               component="label"
