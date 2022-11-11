@@ -107,7 +107,7 @@ function CustomStepper({ id }:{ id:string | undefined }) {
     label: 'Car Into',
     component:
   <SellCarModal id={id} modalType="checkRequest" formik={formik}>
-    <Box sx={{ width: { sm: '100%', md: '47%' } }}>
+    <Box sx={{ width: { sm: '100%', md: '47%' }, marginTop: { sm: '1rem', md: '0' } }}>
       <Typography
         sx={{
           display: 'flex',

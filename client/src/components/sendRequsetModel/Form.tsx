@@ -37,7 +37,6 @@ function SellCarModal(props:EditCarFormProps) {
 
       <form
         style={{
-          maxHeight: '90vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -49,11 +48,21 @@ function SellCarModal(props:EditCarFormProps) {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
-          width: '100%',
+          width: '98%',
           marginBottom: '2rem',
+          // overflowY: { md: 'auto', xs: 'auto' },
         }}
         >
-          <Box className="input_wrapper" sx={{ width: { sm: '100%', md: '47%' } }}>
+          <Box
+            className="input_wrapper"
+            sx={{
+              width:
+            { sm: '100%', md: modalType === 'addRequest' ? '100%' : '47%' },
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: modalType === 'addRequest' ? 'center' : 'space-between',
+            }}
+          >
             <Typography
               sx={{
                 display: 'flex',

@@ -44,11 +44,19 @@ const signupController = async (req:Request) => {
     throw createError(400, 'this email is registered');
   }
   const hashedPassword = await bcrypt.hash(password, 12);
-  const user = await signupUser({
+  const user:{ id:number, fullName:string,
+    email: string } = await signupUser({
     email, password: hashedPassword, phoneNumber, fullName,
   });
   const token = await generateToken({ userId: user, role: 'user' });
-  return { status: 201, msg: 'done!', token };
+  return {
+    status: 201,
+    msg: 'done!',
+    data: {
+      id: user.id, email: user.email, username: user.fullName, role: 'user',
+    },
+    token,
+  };
 };
 
 const userController = async (req:Request) => {

@@ -44,23 +44,23 @@ const loginSchema = yup.object({
 const signupschema = yup.object({
   fullName: yup
     .string()
-    .required('Name is required')
+    .required('required')
     .min(3, 'name must contain at least 3 characters')
     .max(50, 'name must contain at most 50 characters'),
   email: yup
     .string()
     .email('Enter a valid email')
-    .required('Email is required!'),
+    .required('required!'),
   phoneNumber: yup
     .string()
-    .required('Phone number is required!'),
+    .required('required!'),
   password: yup
     .string()
     .min(8, 'password must contain at least 8 characters')
-    .required('Password is required!'),
+    .required('required!'),
   repassword: yup.string()
     .oneOf([yup.ref('password'), null], 'Passwords not match')
-    .required('Confirm Password is required!'),
+    .required('required!'),
 });
 
 const basicSchema = yup.object({
@@ -74,11 +74,11 @@ const basicSchema = yup.object({
 const AdminLoginSchema = yup.object({
   username: yup
     .string()
-    .required('user name is required'),
+    .required('required'),
   password: yup
     .string()
     .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .required('required'),
 });
 export {
   loginSchema, addCarSchema, signupschema, AdminLoginSchema, basicSchema, checkCarSchema,
