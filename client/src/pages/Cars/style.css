@@ -1,11 +1,11 @@
-.search_container{
-  margin-top: 1.5rem;
+.search_container {
+    margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-content: center;
 }
 
-.cars_Container{
+.cars_Container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,21 +13,30 @@
     width: 100%;
     padding-left: 20rem;
 }
-.car_wrapper{
+
+.car_wrapper {
     display: flex;
     /* flex-direction: column; */
     flex-wrap: wrap;
     align-items: center;
     width: 60vw;
     margin-top: .5rem;
-    justify-content: space-between ;
+    gap: 4rem;
+    justify-content: flex-start;
+}
+
+@media (max-width: 800px) {
+    .car_wrapper {
+        justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
-    .cars_Container{
+    .cars_Container {
         padding-left: 0rem;
     }
-    .car_wrapper{
+
+    .car_wrapper {
         width: 70vw;
     }
 }
