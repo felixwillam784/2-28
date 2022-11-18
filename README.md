@@ -96,12 +96,12 @@
 
 ### Built With <span id="built-with"></span>
 
-* [React.js](https://reactjs.org/)
+* [React.js](https://beta.reactjs.org/)
 * [Express.js](https://expressjs.com/)
 * [TypeScript](https://www.typescriptlang.org/docs/)
 * [PostgreSQL](https://www.postgresql.org/docs/)
 * [Material UI](https://mui.com/)
-* [Firebase](https://firebase.google.com/)
+* [Firebase](https://firebase.google.com/docs/web/setup)
 * [Stripe](https://stripe.com/)
 * [Nodemailer](https://nodemailer.com/about/)
 
@@ -197,9 +197,9 @@ Don't forget to give the project a star! Thanks again!
 ## Contact <span id="contact"></span>
 ### Our Great Contributors
 - Husam abu mughessib - [@husam](https://github.com/husamkamal) - husamkmal94@gmail.com
-- Tariq Abu Sada - [@tariqesa](https://github.com/tariqabusada) - tariqesa101@gmail.com
 - AbdAlilah Abu Al Hussein - [@AbdAlilah](https://github.com/abdou059) - abdoumonuir9@gmail.com
 - Mai abu aabid - [@maimohammed](https://github.com/mai-mohammed) - maiimohammedd21@gmail.com
+- Tariq Abu Sada - [@tariqesa](https://github.com/tariqabusada) - tariqesa101@gmail.com
 
 ### Our Great Team Leader
 - Lina Ebeid - [@LinaEbeid](https://github.com/LinaYahya) - linaebe0@gmail.com
