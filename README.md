@@ -151,16 +151,25 @@ To get a local copy up and running follow these simple example steps.
 ## Usage <span id="usage"></span>
 ### User Stories <span id="user-stories"></span>
 #### As a user who wants to sell a car: <span id="seller-stories"></span>
-
-
+- I can create a new account.
+- I can log into my account.
+- I want to see my profile.
+- I can send request to sell my car.
+- I can see my cars and the status of each one.
 #### As a user who wants to buy a car: <span id="buyer-stories"></span>
-
-
-
-### User Journey <span id="user-journey"></span>
-#### As a **SELLER** <span id="seller-journey"></span>
-
-#### As a **BUYER** <span id="buyer-journey"></span>
+- I can create a new account.
+- I can log into my account.
+- I want to see my profile.
+- I want to see all cars that shown to selling.
+- I want to filter cars depends on multi-types of spacefications.
+- I want to contact admin to more informations.
+- I want to reserve the car by paying part of the price.
+- I will recive an email message after payment process to complete the purchase procedures.
+#### As a user who wants to control the status of sales requests: <span id="admin-stories"></span>
+- I can log into admin's dashboard.
+- I want to accept/reject any sales request in "pending" state.
+- I want to accept/reject any sales request in "on-check" state.
+- I want to update the car informations and upload some of it's images befor shown "on-market".
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
