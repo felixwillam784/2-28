@@ -9,13 +9,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/CA-G12/car-trade">
-    <img src="https://i.imgur.com/veF5F6J.png" alt="Logo" width="160" height="160">
+    <img src="https://i.imgur.com/veF5F6J.png" alt="Logo" width="200" height="140">
   </a>
 
-<h1 align="center">Car Trade</h1>
-
   <p align="center">
-       A website is a way to buy and sell a car simply and easily
     <br />
     <br />
     <a href="https://car-tradee.herokuapp.com">View Demo on Heroku</a>
@@ -82,17 +79,17 @@
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Problem <span id="problem"></span>
-1-Limited access to more buyers
-2-Lack of experience with some buyers or sellers
-3-Difficulty in dealing with buyers from outside the region
-4-Limited search process for cars with certain specifications.
+- Limited access to more buyers
+- Lack of experience with some buyers or sellers
+- Difficulty in dealing with buyers from outside the region
+- Limited search process for cars with certain specifications.
 
 ### Solution <span id="solution"></span>
-1- Wider access to more buyers
-2- Manage selling processes
-3- Tell buyer and seller all details for the sales processes
-5- There are alot of cars options for buyers
-6- More reachable to specifice cars
+- Wider access to more buyers
+- Manage selling processes
+- Tell buyer and seller all details for the sales processes
+- There are alot of cars options for buyers
+- More reachable to specifice cars
 
 ### Built With <span id="built-with"></span>
 
@@ -178,8 +175,6 @@ To get a local copy up and running follow these simple example steps.
 
 <!-- CONTRIBUTING -->
 ## Contributing <span id="contributing"></span>
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
