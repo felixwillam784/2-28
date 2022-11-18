@@ -106,7 +106,7 @@
 * [Nodemailer](https://nodemailer.com/about/)
 
 ### Database Schema <span id="database-schema"></span>
-![image]()
+![image](https://i.imgur.com/ih6nChg.png)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
