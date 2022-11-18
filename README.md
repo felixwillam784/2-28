@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CA-G12/car-trade">
-    <img src="https://car-tradee.herokuapp.com/static/media/logo.4c3bccf20893b21938cd.png" alt="Logo" width="160" height="160">
+    <img src="https://i.imgur.com/veF5F6J.png" alt="Logo" width="160" height="160">
   </a>
 
 <h1 align="center">Car Trade</h1>
@@ -58,16 +58,11 @@
         <li>
           <a href="#user-stories">User Stories</a>
             <ul>
-                <li><a href="#student-stories">As a Buyer</a></li>
-                <li><a href="#teacher-stories">As a Seller</a></li>
+                <li><a href="#buyer-stories">As a Buyer</a></li>
+                <li><a href="#seller-stories">As a Seller</a></li>
+                <li><a href="#admin-stories">As an Admin</a></li>
             </ul>
-          </li>           <li>
-          <a href="#user-journey">User Journey</a>
-          <ul>
-              <li><a href="#student-journey">As a Buyer</a></li>
-                <li><a href="#teacher-journey">As a Seller</a></li>
-          </ul>
-          </li> 
+          </li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -87,10 +82,17 @@
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Problem <span id="problem"></span>
-
+1-Limited access to more buyers
+2-Lack of experience with some buyers or sellers
+3-Difficulty in dealing with buyers from outside the region
+4-Limited search process for cars with certain specifications.
 
 ### Solution <span id="solution"></span>
-
+1- Wider access to more buyers
+2- Manage selling processes
+3- Tell buyer and seller all details for the sales processes
+5- There are alot of cars options for buyers
+6- More reachable to specifice cars
 
 ### Built With <span id="built-with"></span>
 
