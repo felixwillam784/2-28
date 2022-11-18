@@ -16,12 +16,12 @@ import SendRequestModule from '../sendRequsetModel';
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const { userInfo, setUserInfo }:UserContextTypeWithDispatch = useContext(UserContext);
+  const { userInfo, setUserInfo }: UserContextTypeWithDispatch = useContext(UserContext);
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleCloseSell = () => setOpen(false);
-  const { setSnackBarProperties }:SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
+  const { setSnackBarProperties }: SnackBarContextTypeWithDispatch = useContext(SnackBarContext);
 
   const pages = userInfo?.role.toLowerCase() === 'admin'
     ? [{ title: 'HOME', path: '' }, { title: 'Dashboard', path: 'admin' }, { title: 'Market', path: 'cars' }]
@@ -48,7 +48,7 @@ function NavBar() {
     setAnchorElUser(null);
   };
 
-  const handleSetting = (setting:string) => {
+  const handleSetting = (setting: string) => {
     if (setting === 'Profile') {
       navigate('/profile');
     }
@@ -65,7 +65,6 @@ function NavBar() {
     navigate('/login');
   };
   const location = pathname.slice(1);
-
   return (
     <AppBar
       position="sticky"
@@ -73,7 +72,7 @@ function NavBar() {
         backgroundColor: '#fff',
         color: 'var(--text-color)',
         boxShadow:
-        '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
+          '0px 2px 4px -1px rgb(0 0 0 / 5%), 0px 4px 5px 0px rgb(0 0 0 / 6%), 0px 1px 10px 0px rgb(0 0 0 / 0%)',
         height: '3.7rem',
       }}
     >
@@ -230,37 +229,37 @@ function NavBar() {
           {(userInfo === null) ? (
 
             <Box sx={{ flexGrow: 0, display: 'flex', flexWrap: 'no-wrap' }}>
-              { location !== 'login' && (
-              <NavLink to="login" style={{ textDecoration: 'none' }}>
-                <Button
-                  variant="text"
-                  sx={{
-                    color: 'var(--text-color)',
-                  }}
-                >
-                  Login
+              {location !== 'login' && location !== 'admin/login' && (
+                <NavLink to="login" style={{ textDecoration: 'none' }}>
+                  <Button
+                    variant="text"
+                    sx={{
+                      color: 'var(--text-color)',
+                    }}
+                  >
+                    Login
 
-                </Button>
-              </NavLink>
+                  </Button>
+                </NavLink>
 
               )}
-              {location !== 'signup' && (
-              <NavLink to="signup" style={{ textDecoration: 'none' }}>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    borderColor: 'var(--text-color)',
-                    color: 'var(--text-color)',
-                    ':hover': {
-                      backgroundColor: '#2f36430f',
+              {location !== 'signup' && location !== 'admin/login' && (
+                <NavLink to="signup" style={{ textDecoration: 'none' }}>
+                  <Button
+                    variant="outlined"
+                    sx={{
                       borderColor: 'var(--text-color)',
-                    },
-                  }}
-                >
-                  SingUp
+                      color: 'var(--text-color)',
+                      ':hover': {
+                        backgroundColor: '#2f36430f',
+                        borderColor: 'var(--text-color)',
+                      },
+                    }}
+                  >
+                    SingUp
 
-                </Button>
-              </NavLink>
+                  </Button>
+                </NavLink>
               )}
             </Box>
           )
@@ -327,7 +326,7 @@ function NavBar() {
                   </MenuItem>
                 </Menu>
               </Box>
-            ) }
+            )}
 
         </Toolbar>
       </Container>
