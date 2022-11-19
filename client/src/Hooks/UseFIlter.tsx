@@ -49,7 +49,7 @@ export default function useFIlter({
     event: Event,
     value: number | number[],
   ) => {
-    setMileage(+value * 10000);
+    setMileage(value);
   };
   const changefuelType = (
     event: React.SyntheticEvent<Element, Event>,
