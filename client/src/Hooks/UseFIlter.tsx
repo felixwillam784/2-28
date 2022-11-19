@@ -15,7 +15,6 @@ export default function useFIlter({
   const { state } = useLocation();
 
   const [brand, setBrand] = useState<string>(state?.brand || '');
-  const [model, setModel] = useState<string | null>('');
   const [mileage, setMileage] = useState<number | number[] >(0);
   const [year, setYear] = useState<string | null>(null);
   const [fuel, setFuel] = useState<string | null>('');
@@ -32,12 +31,6 @@ export default function useFIlter({
     value: SetStateAction<string>,
   ) => {
     setBrand(value);
-  };
-  const changeModel = (
-    event: React.SyntheticEvent<Element, Event>,
-    value: string | null,
-  ) => {
-    setModel(value);
   };
   const changeYear = (
     event: React.SyntheticEvent<Element, Event>,
@@ -67,9 +60,6 @@ export default function useFIlter({
       page: currentPage,
       state: 'on-market',
     };
-    if (model?.length !== 0 || search.length !== 0) {
-      params.model = model || search;
-    }
     if (brand?.length !== 0) {
       params.brand = brand;
     }
@@ -104,10 +94,9 @@ export default function useFIlter({
       }
     };
     getCars();
-  }, [brand, model, mileage, year, fuel, isGoodPrice, currentPage, search, maxPrice]);
+  }, [brand, mileage, year, fuel, isGoodPrice, currentPage, search, maxPrice]);
   return {
     brand,
-    model,
     mileage,
     year,
     fuel,
@@ -115,7 +104,6 @@ export default function useFIlter({
     isGoodPrice,
     changePriceType,
     changeBrand,
-    changeModel,
     changeYear,
     changeMileage,
     changefuelType,

@@ -4,7 +4,6 @@ import {
 } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import brands from '../../assets/data/brands.json';
-import models from '../../assets/data/models.json';
 import useFIlter from '../../Hooks/UseFIlter';
 import { CarsFilterProps } from '../../interfaces';
 
@@ -27,7 +26,6 @@ function CarsFilter({
   const { state } = useLocation();
   const {
     brand,
-    model,
     mileage,
     year,
     fuel,
@@ -35,7 +33,6 @@ function CarsFilter({
     isGoodPrice,
     changePriceType,
     changeBrand,
-    changeModel,
     changeYear,
     changeMileage,
     changefuelType,
@@ -64,20 +61,6 @@ function CarsFilter({
               {...params}
               label="Brand"
               value={brand}
-            />
-          )}
-        />
-        <Autocomplete
-          disablePortal
-          id="combo-box"
-          onChange={changeModel}
-          options={models.map((e) => e.model)}
-          sx={{ width: 250 }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Model"
-              value={model}
             />
           )}
         />
