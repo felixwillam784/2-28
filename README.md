@@ -15,8 +15,6 @@
   <p align="center">
     <br />
     <br />
-    <a href="https://car-tradee.herokuapp.com">View Demo on Heroku</a>
-     .
     <a href="https://car-trede.onrender.com">View Demo on Render</a>
     .
     <a href="https://www.figma.com/file/4j4A83unKcFHLyfKiIwrQq/Car-trade?node-id=0%3A1">Design Link</a>
