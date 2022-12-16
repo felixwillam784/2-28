@@ -17,7 +17,7 @@ function HeroSection() {
         }}
         component="img"
         alt="banner image contains car photo"
-        src="https://carswitch.com/components/choose-country/images/banner.jpg"
+        src="https://i.imgur.com/A42JnTN.jpg"
       />
       <CssBaseline />
       <Container
