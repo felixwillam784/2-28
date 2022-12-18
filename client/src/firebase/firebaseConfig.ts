@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: 'goodcar-c7274.appspot.com',
   messagingSenderId: '574676843454',
   appId: '1:574676843454:web:746ab04090e767347017ef',
-  measurementId: 'G-5DNHJ86BXG',
+  // measurementId: 'G-5DNHJ86BXG',
 };
 
 const app = initializeApp(firebaseConfig);
